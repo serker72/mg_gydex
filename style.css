@@ -38,7 +38,7 @@
 
 
 body{
-	background-image:url(/images/f.jpg);
+	/*background-image:url(/images/f.jpg);*/
 	background-position:left top;
 	background-repeat:repeat-x;
 	margin: 0px 0px 0px 0px; 
@@ -46,7 +46,7 @@ body{
 	
 }
 body, p, td, input, label, textarea, select, option{
-	font-family:IstokWeb, Tahoma, Geneva, sans-serif;
+	font-family: MyriadProRegular, IstokWeb, Tahoma, Geneva, sans-serif;
 	font-size:18px;
 	color:#959595;
 }
@@ -71,16 +71,16 @@ img{border:none;}
 
 
 #wrapper{
-	margin: 0px 0px 0px 0px; 
+/*	margin: 0px 0px 0px 0px; 
 	padding: 0px 0px 0px 0px;
 	min-width:1100px !important;
-	 
+*/	 
 	 
 }
 
 #header{
 	
-	width:1000px;
+	width:1200px;
 	margin:0px auto;
 	font-size:15px;	
 		
@@ -452,14 +452,14 @@ a.custom-pager-button{
 	background-color:#fafafa;
 	height:470px;
 	overflow:hidden;
-	background-image:url(/images/world.png);
+	/*background-image:url(/images/world.png);*/
 	background-position:center top;
 	background-repeat:no-repeat;
 	
 	
 }
 #benefits-inner{
-	width:1000px;
+	width:1200px;
 	margin:0px auto;
 	
 }
@@ -2333,4 +2333,191 @@ a.unsub_button{
 a.news_more:hover{
 	color:#e9510f !important;	
 	background-image:url(/images/rn-more-hover.png) !important;
+}
+
+/**************************************************************************************/
+/************************************
+ *    лассы   
+ ************************************/
+.container-fluid {
+    margin: 0 auto;
+    padding-right: 0px;
+    padding-left: 0px;
+    width: 1200px;
+    font-family: MyriadProRegular;
+}
+
+.logo {
+    height: 145px;
+    padding: 24px 0 0 100px;
+    /*background: url('img/logo.png') no-repeat top 24px left 100px;*/
+}
+
+.contacts {
+    font-size: 17px;
+    height: 145px;
+    padding: 40px 0 0 30px;
+}
+
+.contacts_phone {
+    height: 45px;
+}
+
+.contacts_mail {
+    height: 65px;
+}
+
+.contacts_mail > div > a {
+    color: #333;
+    text-decoration: none;
+}
+
+.contacts_mail > div > a:hover,
+.contacts_mail > div > a:focus
+{
+    color: #c73741;
+    text-decoration: none;
+}
+
+.search {
+    height: 145px;
+    /*padding: 0 0 0 35px;*/
+}
+
+.search_lang {
+    height: 33px;
+    /*width: 244px;*/
+    /*text-align: right;*/
+}
+
+.search_lang ul {
+}
+
+.search_lang ul li {
+    background: url('img/lang_splitter.png') no-repeat top 0px left 0px;
+    display: inline;
+    list-style-type: none;
+    font-size: 15px;
+    padding: 8px 8px 5px 11px;
+}
+
+.search_lang ul li:first-child {
+    background: none;
+}
+
+.search_lang ul li:last-child {
+    padding: 8px 2px 5px 11px;
+}
+
+.search_lang ul li a,
+.search_lang ul li a:hover,
+.search_lang ul li a:focus
+{
+    color: #2b2a29;
+    text-decoration: none;
+}
+
+.search_find {
+    height: 44px;
+    padding-top: 5px;
+}
+
+.search_str {
+    width: 200px;
+    height: 38px;
+    background-color: #f0efeb;
+}
+
+.search_button {
+    position: absolute;
+}
+
+.search_call {
+    height: 68px;
+    padding-top: 20px;
+    width: 244px;
+}
+
+.search_call_link {
+    background-color: #eb3844;
+    color: #feffff;
+    font-size: 17px;
+    padding: 13px 50px 12px 50px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+a.search_call_link:hover,
+a.search_call_link:focus
+{
+    color: #2b2a29;
+    text-decoration: none;
+}
+
+.navbar-nav > li {
+}
+
+.navbar-nav > li > a {
+    text-transform: uppercase;
+    font-size: 18px;
+    color: #feffff;
+    height: 75px;
+    padding-top: 27px;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.navbar-nav > li > a:hover, 
+.navbar-nav > li > a:focus,
+.navbar-nav > li.dropdown.open > a.dropdown-toggle
+{
+    background-color: #eb3844;
+}
+
+.dropdown-menu {
+    height: 165px;
+    width: 450px;
+    background-color: #333333;
+}
+
+ul.dropdown-menu {
+  list-style-position: inside;
+  -moz-column-count: 2; /* Firefox */
+  -webkit-column-count: 2; /* Safari and Chrome */
+  column-count: 2;
+  height: 165px;
+}
+
+.dropdown-menu > li > a {
+    color: #feffff;
+}
+
+.dropdown-menu > li > a:hover, 
+.dropdown-menu > li > a:focus
+{
+    color: #c73741;
+    background-color: #333333;
+}
+
+ul.nav li.dropdown:hover ul.dropdown-menu {
+    display: block;
+}
+
+
+/************************************
+ * #ID - Ёлементы
+ ************************************/
+#wrapper {
+}
+
+#header {
+    height: 220px;
+}
+
+#main_menu {
+    background-color: #333333;
+    height: 75px;
+    clear: both;
+    /*padding: 0 100px;*/
+    padding-left: 100px;
 }
