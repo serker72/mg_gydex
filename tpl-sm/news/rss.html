@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="%{$encoding}%"?>
+<rss version="2.0">
+  <channel>
+    <title>%{$sitetitle}%</title>
+    <link>%{$siteurl}%</link>
+    <description>%{$sitedescription}%</description>
+    <language>%{$language}%</language>
+    <lastBuildDate>%{$builddate}%</lastBuildDate>
+    <generator>BlackCat</generator>
+   	
+%{section name=itemsec loop=$items}%
+
+    <item>
+      <title>%{$items[itemsec].itemname}%</title>
+      <link>%{$items[itemsec].itemurl}%</link>
+      <description><![CDATA[%{$items[itemsec].annot}%]]></description>
+      <pubDate>%{$items[itemsec].itemdate}%</pubDate>
+    </item>
+
+%{/section}%
+
+
+  </channel>
+</rss>

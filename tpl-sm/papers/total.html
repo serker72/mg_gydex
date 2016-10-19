@@ -1,0 +1,155 @@
+
+<div id="page_slider-wrapper">   
+	<div id="page_slider"> 
+        <div class="heading">
+        %{$mm.name}%
+        </div>
+    
+        <div class="navi">
+        %{$navi}%
+        </div>
+    
+    </div>
+
+</div>
+
+
+<div id="page_text">	
+    
+
+	 <div class="paper_text">
+    
+    	<div class="paper_left">
+    	
+        	<!--<img src="/%{$photo}%" />-->
+           <div class="col1">
+                <a href="/presentation.pdf" target="_blank" download="" class="button">Скачать презентацию</a>
+                
+                <a href="/contacts/" class="button">Наши контакты</a>
+                
+                <div class="connect">Свяжитесь с нами уже <br />
+                
+                сегодня: %{$FEEDBACK_PHONE}%</div>
+            </div>
+            
+    	</div>
+        <div class="paper_common">
+        	
+            <h1>%{$title}%</h1>
+			  
+	    	<div class="simple_text">
+            %{$text}%
+            </div>
+            <br>
+
+             
+          
+           
+            %{foreach name=mat from=$materials item=mp}%%{/foreach}%
+            
+            %{if $smarty.foreach.mat.total>0 or $smarty.section.foreach.ng.total>0}%
+            
+            <h2>Смотрите также:</h2>
+            
+            <div id="recent_news_block">
+            %{foreach name=mat from=$materials item=mp}%
+            
+             
+            
+            
+                <div class="recent_news_slide">
+                    
+                    <div class="news_preview">
+                          <div class="news_preview_slide" style="background-image:url(/%{$mp.photo_small}%)"></div>
+                    </div>
+                    
+                    
+                   
+                    
+                    <div class="news_meta">
+                        <div class="news_meta_data">Дата: <span class="news_meta_value">%{$mp.pdate}% </span></div>
+                        
+                      
+                    </div>
+                    
+                     <div class="news_title">
+                        <h3>%{$mp.name}%</h3>
+                    </div>
+                    
+                    <div class="news_anons">
+                        %{$mp.small_txt|strip_tags|trim|truncate:110:"...":false}%
+                    </div>
+                    <a href="%{$mp.page_url}%" class="news_more">Узнать больше</a>
+                    
+                  
+     
+                
+                </div>	
+                
+            
+            
+             %{/foreach}%
+             </div>
+              <div class="clr"></div>
+              <br>
+
+             <div id="recent_news_block">
+              %{foreach name=ng from=$news item=mp}%
+            
+             
+            
+            
+                <div class="recent_news_slide">
+                    
+                    <div class="news_preview">
+                          <div class="news_preview_slide" style="background-image:url(/%{$mp.photo_small}%)"></div>
+                    </div>
+                    
+                    
+                   
+                    
+                    <div class="news_meta">
+                        <div class="news_meta_data">Дата: <span class="news_meta_value">%{$mp.newsdate}% </span></div>
+                        
+                      
+                    </div>
+                    
+                     <div class="news_title">
+                        <h3>%{$mp.name}%</h3>
+                    </div>
+                    
+                    <div class="news_anons">
+                        %{$mp.small_txt}%
+                    </div>
+                    <a href="%{$mp.path}%" class="news_more">Узнать больше</a>
+                    
+                  
+     
+                
+                </div>	
+                
+            
+            
+             %{/foreach}%
+             
+             <div class="clr"></div>
+            </div> 
+            %{/if}%
+            
+            
+            
+		
+        </div>
+    </div>
+
+	
+	
+
+	
+    
+    
+</div>    
+
+
+
+ 

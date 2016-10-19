@@ -1,0 +1,183 @@
+ <script type="text/javascript" src="js/jquery.fixedheadertable.js?i=5"></script> 
+ 
+<link href="css/css/defaultTheme.css?i=5" rel="stylesheet" media="screen" />
+<link href="css/css/myTheme.css?i=5" rel="stylesheet" media="screen" />
+       
+<link href="css/css/960.css?i=5" rel="stylesheet" media="screen" />
+<script type="text/javascript">
+$(function(){
+	
+		wb=1000;
+		hb=550;
+		
+		
+		 do_it=($('.gydex_rights').width()>wb)||($('.gydex_rights').height()>hb);
+		 
+		 if($('.gydex_rights').width()>wb){
+			 w=wb;
+		 }else w=parseInt($('.gydex_rights').width());//+20
+		 
+		 if($('.gydex_rights').height()>hb){
+			h=hb; 
+		 }else h=$('.gydex_rights').height()+25;
+		 
+		 if(do_it){ 
+		   //alert(''+w+''+';'+h+'');
+		   $('.gydex_rights').fixedHeaderTable({
+	   
+			  width:          ''+w+'',
+			  height:         ''+h+'',
+			  themeClass:     'fht-default',
+			  borderCollapse:  true,
+			  fixedColumns:    1, // fixed first columns
+			  fixedColumn:     true, // For backward-compatibility
+			  sortable:        false,
+			  autoShow:        true, // hide table after its created
+			  footer:          false, // show footer
+			  cloneHeadToFoot: false, // clone head and use as footer
+			  autoResize:      false, // resize table if its parent wrapper changes size
+			  create:          null // callback after plugin completes
+ 			});	
+			
+		 }
+});
+</script>
+
+
+%{include file=discr/common_divs.html}%
+
+
+<!-- Окно правки объекта -->
+<div id="obj_edit" style="width:320px; height:240px; border: 1px solid black; background-color:white; display:none; position:absolute; top:0px; left:0px; padding: 10px 10px 10px 10px;">
+	<h3>Правка объекта</h3>
+    
+    <input name="id_obj" type="hidden" id="id_obj" value="" />
+    <strong>Название объекта:</strong><br />
+    <input name="" type="text" id="name_obj" size="40" maxlength="255">
+    <p />
+    
+    <strong>Описание:</strong><br />
+    <textarea name="" cols="40" rows="5" id="info_obj"></textarea>
+    <p />
+        
+    <input name="" type="button" id="new_obj" value="Добавить" onClick="
+    m=document.getElementById('name_obj'); if(m.value.length<1) {alert('Заполните Название объекта!'); return false;} 
+    n=document.getElementById('info_obj'); 
+    
+    mn=document.getElementById('obj_edit'); mn.style.display='none'; 
+    %{$EVENT}%
+    mn=document.getElementById('wait_win'); 
+    $(mn).css('left', coord[0]);
+    $(mn).css('top', coord[1]);
+    
+    
+    
+     mn.className='wait_window_vis'; 
+    
+    xajax_AddObj(m.value, n.value); 
+    return false;
+    ">
+    <input name="" type="button" id="ed_obj" value="Сохранить" onclick="
+    
+    m=document.getElementById('name_obj'); if(m.value.length<1) {alert('Заполните Название объекта!'); return false;} 
+    n=document.getElementById('info_obj'); 
+    o=document.getElementById('id_obj'); 
+    
+    mn=document.getElementById('obj_edit'); mn.style.display='none'; 
+    %{$EVENT}%
+    mn=document.getElementById('wait_win'); mn.style.top=coord[1]; mn.style.left=coord[0]; mn.className='wait_window_vis'; 
+    
+    xajax_EdObj(o.value, m.value, n.value); 
+    return false;
+    ">
+    
+    <input name="" type="button" onClick="mn=document.getElementById('obj_edit'); mn.style.display='none';" value="Отмена">
+</div>
+
+ 
+    <!-- navi objects here -->
+    %{$navi_objects}%
+    
+   
+     <!-- navi groups here -->
+    %{$navi_groups}%
+    
+  
+    
+     <table class="gydex_rights">
+     <thead>
+      <tr align="left" valign="top">
+        <th   ><strong>
+        Объекты (<a href="#" title="добавить объект" onClick="
+            %{$EVENT}%
+            mn=document.getElementById('obj_edit'); 
+            $(mn).css('left', coord[0]);
+    $(mn).css('top', coord[1]);
+            mm=document.getElementById('ed_obj'); mm.style.display='none';
+            mm=document.getElementById('new_obj'); mm.style.display='inline';
+            mm=document.getElementById('name_obj'); mm.value='';
+            mm=document.getElementById('info_obj'); mm.value='';
+            mn.style.display='block';
+            mm=document.getElementById('name_obj'); mm.focus();
+            
+            return false;
+        ">+</a>)
+        /<br />Группы 
+        (<a href="#" title="добавить группу" onClick="
+            %{$EVENT}%
+            mn=document.getElementById('group_edit'); 
+            $(mn).css('left', coord[0]);
+    $(mn).css('top', coord[1]);
+            
+            mm=document.getElementById('ed_group'); mm.style.display='none';
+            mm=document.getElementById('new_group'); mm.style.display='inline';
+            mm=document.getElementById('name_group'); mm.value='';
+            mm=document.getElementById('info_group'); mm.value='';
+            mm=document.getElementById('group_is_active'); mm.checked=false;
+            
+            mn.style.display='block';
+            mm=document.getElementById('name_group'); mm.focus();
+            
+            return false;
+        
+        ">+</a>)</strong></th>
+        
+        %{section name=obsec loop=$objects}%
+          <th   id="object_title_cell_%{$objects[obsec].id}%">
+            
+           %{include file="discr/object_title_cell.html" selected_item=$objects[obsec]}%
+            
+        </th> 
+        %{/section}%
+        
+      </tr>
+      </thead>
+      <tbody>
+      %{section name=groupsec loop=$groups}%
+       <tr align="left" valign="top">
+        <td   id="group_title_cell_%{$groups[groupsec].id}%">
+             %{include file="discr/group_title_cell.html" selected_item=$groups[groupsec]}%
+            
+        </td>
+        %{section name=inner_obsec loop=$groups[groupsec].inner_objects}%
+          <td id="group_%{$groups[groupsec].id}%_object_%{$groups[groupsec].inner_objects[inner_obsec].id}%_rights_cell">
+          
+          %{include file="discr/group_object_rights_cell.html" selected_object=$groups[groupsec].inner_objects[inner_obsec] group_id=$groups[groupsec].id}%
+         
+          </td>
+         %{/section}%
+      </tr>	
+      %{/section}%
+    </tbody>
+    </table>
+    
+    
+     <!-- navi groups here -->
+    %{$navi_groups}%
+   
+    <!-- navi objects here -->
+    %{$navi_objects}%
+  
+
+
+

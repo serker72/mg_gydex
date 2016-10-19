@@ -1,0 +1,26 @@
+
+%{$pages}%
+
+<ul>
+%{section name=rowsec loop=$items}%
+
+<!--<span class="dis_orange">%{$smarty.section.rowsec.index+1}%.</span><br />
+
+%{$items[rowsec].txt}%
+
+%{$items[rowsec].name}%-->
+<li>
+%{$items[rowsec].txt|strip_tags}%<br />
+<br />
+
+%{$items[rowsec].name}%
+</li>
+<br />
+<br />
+
+
+
+%{/section}%
+</ul>
+
+%{$pages}%

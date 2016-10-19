@@ -1,0 +1,13 @@
+%{section name=itemsec loop=$items}%%{/section}%
+%{if $smarty.section.itemsec.total>0}%
+<ul>
+%{section name=itemsec loop=$items}%
+
+<li>
+	<a href="%{$items[itemsec].url}%" %{if $is_new}%target="_blank"%{/if}%>%{$items[itemsec].name}%</a>
+
+	%{$items[itemsec].subs}%
+</li>
+%{/section}%
+</ul>
+%{/if}%

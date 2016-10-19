@@ -1,0 +1,147 @@
+
+ 
+
+%{section name=rowsec loop=$items}%%{/section}%
+
+
+ 
+ 
+<table width="100%" border="0" cellpadding="2" cellspacing="0" class="reptable">
+<thead>
+<tr align="center" valign="top">
+	<th  class="itemshead"  scope="col" width="*">Файл
+    </th>
+    <th class="itemshead"  scope="col" width="60">Размер
+    </th>
+	<th class="itemshead"  scope="col" width="100">Получить
+    </th>
+    
+    
+     
+ 
+    
+    
+    <!--<th class="itemshead"   scope="col" width="24">
+    <input type="checkbox" id="check_all%{$id_prefix}%" value="1" />
+    <script type="text/javascript">
+	$(function(){
+		$("#check_all%{$id_prefix}%").bind("change", function(){
+			if($("#check_all%{$id_prefix}%").prop("checked")){
+				$.each($("input[id^=check_file%{$id_prefix}%]"),function(k,v){
+					if($(v).prop("checked")==false) $(v).prop("checked", true);
+				});
+			}else{
+				$.each($("input[id^=check_file%{$id_prefix}%]"),function(k,v){
+					if($(v).prop("checked")==true) $(v).prop("checked", false);
+				});
+			}
+			
+			if($("#check_all%{$id_prefix}%").prop("checked")){
+				$.each($("input[id^=fcheck_file%{$id_prefix}%]"),function(k,v){
+					if($(v).prop("checked")==false) $(v).prop("checked", true);
+				});
+			}else{
+				$.each($("input[id^=fcheck_file%{$id_prefix}%]"),function(k,v){
+					if($(v).prop("checked")==true) $(v).prop("checked", false);
+				});
+			}
+		});
+	});
+	</script>
+    
+    </th>-->
+   
+    
+   
+    <th class="itemshead"   scope="col" width="24">
+    
+     Удалить 
+    </th>
+    
+    
+</tr>
+
+</thead>
+<tbody>
+ 
+
+
+%{section name=rowsec loop=$items}%
+<tr align="center" valign="top" id="file_row_%{$items[rowsec].id}%">
+	<td class="itemscell" width="*" align="left"><a href="%{$loadname}%?id=%{$items[rowsec].id}%"><img src="/img/doc.gif" width="13" height="13" alt="" border="0" />%{$items[rowsec].orig_name}%</a>
+ 
+        
+    %{if $items[rowsec].is_image}%
+    <a href="%{$viewname}%?id=%{$items[rowsec].id}%" target="_blank"><img src="/img/doc.gif" width="13" height="13" alt="" border="0" /></a>
+    %{/if}%
+    
+    </td>
+     <td class="itemscell" width="60">
+    %{$items[rowsec].size|string_format:"%.3f&nbsp;МБ"}%
+    
+    
+   
+    
+    
+    </td>
+    
+    <td class="itemscell" width="100">
+    <input type="button" value="Получить" onclick="location.href='%{$loadname}%?id=%{$items[rowsec].id}%';" />
+    
+    </td>
+   
+    
+     
+  
+    
+   <!-- 
+    <th class="itemscell" scope="col" width="24">
+    <input type="checkbox" id="check_file%{$id_prefix}%_%{$items[rowsec].id}%" name="check_file%{$id_prefix}%_%{$items[rowsec].id}%" value="%{$items[rowsec].id}%" />
+    
+    
+    </th>
+    
+    
+    -->
+  
+     <td class="itemscell" width="24">
+        
+     <a href="#" id="delete%{$id_prefix}%_%{$items[rowsec].id}%"><img src="/img/delete.jpg"   alt="удалить..." title="удалить..." border="0" /></a>
+     <script type="text/javascript">
+	  $(function(){
+			$("#delete%{$id_prefix}%_%{$items[rowsec].id}%").bind("click",function(){
+				if(window.confirm("Вы действительно хотите удалить файл %{$items[rowsec].orig_name|escape}%?")){
+					
+					$("#file_row_%{$items[rowsec].id}%").remove();		
+					$.ajax({
+					  async: true,
+					  url: "js/%{$pagename}%",
+					  type: "POST",
+					  data:{
+						  "action":"delete_file",
+						  "id":"%{$items[rowsec].id}%"
+					  },
+					  beforeSend: function(){
+						//alert("Загрузка реквизитов.");
+					  },
+					  success: function(data){
+						//$("#positions_dialog_table").html(data);  
+					  },
+					  error: function(xhr, status, n){
+						 //alert("Ошибка удаления файла."+status+n);	
+					  }	 
+					});	
+				}
+				return false;
+			});
+	  });
+	 </script>
+    
+    </td>
+   
+  
+</tr>
+%{/section}%
+</tbody>
+</table>
+ 

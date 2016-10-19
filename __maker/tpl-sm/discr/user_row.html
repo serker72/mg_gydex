@@ -1,0 +1,11 @@
+<td  id="group_title_cell_%{$selected_user.id}%">
+             %{include file="discr/users_title_cell.html" selected_item=$selected_user}%
+            
+        </td>
+        %{section name=inner_obsec loop=$selected_user.inner_objects}%
+          <td id="group_%{$selected_user.id}%_object_%{$selected_user.inner_objects[inner_obsec].id}%_rights_cell">
+          
+          %{include file="discr/user_object_rights_cell.html" selected_object=$selected_user.inner_objects[inner_obsec] group_id=$selected_user.id}%
+         
+          </td>
+         %{/section}%

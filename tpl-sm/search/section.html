@@ -1,0 +1,71 @@
+<h3>%{$titletext}%</h3>
+%{$pages}%
+
+
+<table width="98%" border="0" cellspacing="10" cellpadding="0">
+
+%{section name=itemsec loop=$items}%
+
+%{if $mode==1 or $mode==0}%
+<!-- in razd, paper -->
+
+<tr align="left" valign="top">
+	<td width="*" class="itemscell">
+	<h4><a href="%{$items[itemsec].url}%" target="_blank">%{$items[itemsec].title}%</a></h4>
+	<div class="paper_annot">
+	%{$items[itemsec].annot}%
+	<br>
+	<a href="%{$items[itemsec].url}%" target="_blank">%{$items[itemsec].more}%</a>
+	</div>
+	</td>
+</tr>
+
+%{/if}%
+
+%{if $mode==2}%
+<!-- in firm -->
+<tr align="left" valign="top">
+<td width="*" class="itemscell">
+<a href="%{$items[itemsec].url}%" target="_blank"><img src="/%{$items[itemsec].image_src}%" alt="%{$items[itemsec].altname}%" border="0"  align="left" hspace="5" vspace="2">
+%{$items[itemsec].name}%</a>
+<div class="paper_annot">
+	%{$items[itemsec].annot}%
+	<br clear="all">
+	<a href="%{$items[itemsec].url}%" target="_blank">%{$items[itemsec].more}%</a>
+	</div>
+</td>
+</tr>
+%{/if}%
+
+%{if $mode==3}%
+<!-- in good -->
+<tr align="left" valign="top">
+<td width="*" class="itemscell">
+<a href="%{$items[itemsec].url}%" target="_blank"><img src="/%{$items[itemsec].image_src}%" alt="%{$items[itemsec].altname}%" border="0"  align="left" hspace="5" vspace="2">
+%{$items[itemsec].name}%</a>
+<br>
+%{$items[itemsec].firm}%
+%{$items[itemsec].annot}%
+<div class="basicprice">%{$items[itemsec].price}%</div>
+</td>
+</tr>
+%{/if}%
+
+%{if $mode==4}%
+<!-- in photo -->
+<tr align="left" valign="top">
+<td width="*" class="itemscell">
+<a href="%{$items[itemsec].url}%" target="_blank"><img src="/%{$items[itemsec].image_src}%" alt="%{$items[itemsec].altname}%" border="0"  align="left" hspace="5" vspace="2">
+%{$items[itemsec].name}%</a>
+<div class="paper_annot">
+	%{$items[itemsec].annot}%
+	<br  clear="all">
+	<a href="%{$items[itemsec].url}%" target="_blank">%{$items[itemsec].more}%</a>
+	</div>
+</td>
+</tr>
+%{/if}%
+
+%{/section}%
+</table>
+%{$pages}%

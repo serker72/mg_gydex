@@ -1,0 +1,231 @@
+
+<div id="page_slider-wrapper">   
+	<div id="page_slider"> 
+        <div class="heading">
+        %{$mm.name}%
+        </div>
+    
+        <div class="navi">
+        %{$navi}%
+        </div>
+    
+    </div>
+
+</div>
+
+
+<div id="page_text">	
+    
+
+	<h1>%{$news.name}%</h1>
+	<strong>%{$news.pdate}%</strong>
+
+	
+	<div class="paper_text">
+    
+    	<div class="paper_left">
+    	
+        	<img src="/%{$news.photo_small}%" />
+    	</div>
+        <div class="paper_common">
+	    	<div class="simple_text">
+            %{$news.big_txt}%
+            </div>
+            <br>
+
+            
+            <a name="pictures"></a>
+            %{section name=picsec loop=$pictures}%%{/section}%
+             %{section name=fsec loop=$files}%%{/section}%
+            
+            %{if $smarty.section.picsec.total>0 or  $smarty.section.fsec.total>0}%
+            <h2>Дополнительные материалы</h2>
+            %{/if}%
+            
+            %{if $smarty.section.picsec.total>0}%
+            
+            
+            <link rel="stylesheet" href="/js/fancybox/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
+        <script type="text/javascript" src="/js/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+        
+        <!-- Optionally add helpers - button, thumbnail and/or media -->
+        <link rel="stylesheet" href="/js/fancybox/source/helpers/jquery.fancybox-buttons.css?v=1.0.5" type="text/css" media="screen" />
+        <script type="text/javascript" src="/js/fancybox/source/helpers/jquery.fancybox-buttons.js?v=1.0.5"></script>
+        <script type="text/javascript" src="/js/fancybox/source/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
+        
+        <link rel="stylesheet" href="/js/fancybox/source/helpers/jquery.fancybox-thumbs.css?v=1.0.7" type="text/css" media="screen" />
+        <script type="text/javascript" src="/js/fancybox/source/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
+            
+            
+            
+           
+            
+            %{section name=picsec loop=$pictures}%
+            <div class="img_preview">
+            <a class="fancybox" rel="group" href="%{$pictures[picsec].full_url}%.jpg"><img src="/img/01.gif" style="background-image:url(%{$pictures[picsec].small_url}%); background-position:center center; background-repeat:no-repeat; " width="315" height="200"  /></a>
+            
+            	<div class="img_meta">
+                Тип: %{$pictures[picsec].ext|upper}% |   ~%{$pictures[picsec].size}% Mb	<br>
+				%{$pictures[picsec].width}%x%{$pictures[picsec].height}% pix
+                </div>
+            </div>
+            %{/section}%
+            <div class="clr"></div>
+            <script type="text/javascript">
+            $(function(){
+                $(".fancybox").fancybox();
+            });
+            </script>
+            
+            %{/if}%
+            
+            
+            
+            
+            
+            
+            
+            <a name="files"></a>
+           
+            %{if $smarty.section.fsec.total>0}%
+            
+            
+            
+            %{section name=fsec loop=$files}%
+                <div class="img_preview"><a href="%{$files[fsec].full_url}%">%{$files[fsec].orig_name}%</a></li>
+                	<div class="img_meta">
+                Тип: %{$files[fsec].ext|upper}% |   ~%{$files[fsec].size}% Mb	<br>
+				 
+                </div>
+                
+                </div>
+            %{/section}%
+            <div class="clr"></div> 
+            %{/if}%
+            
+            
+            %{if $news.txt2!="" and $news.txt2!="<br />"}%
+            <h2>Дополнительная информация</h2>
+            <div class="simple_text">%{$news.txt2}%</div>
+            %{/if}%
+        
+            
+            
+            <div class="news_comments">
+            
+                <h2>Комментарии</h2>	
+                                    
+                 
+                <a class="button" id="comment_caller" href="#">Отправить комментарий</a>
+            
+                <script type="text/javascript">
+                $(function(){
+                    $("#review_send").bind("submit", function(){
+                                    can_go=true; 
+                                     
+                                    if(can_go&&($.trim($("#clinic_review_txt").val()).length<10)){
+                                        can_go=false;	
+                                        alert("Заполните поле Комментарий!");
+                                        $("#clinic_review_txt").focus();
+                                                                
+                                    }
+                                    if(can_go&&($("#clinic_name").val().length==0)){
+                                        can_go=false;	
+                                        alert("Заполните поле Ваше имя!");
+                                        $("#clinic_name").focus();
+                                        
+                                    }
+                                    
+                                    if(can_go&&($("#clinic_email").val().length==0)){
+                                        can_go=false;	
+                                        alert("Заполните поле Ваша электронная почта!");
+                                        $("#clinic_email").focus();
+                                        
+                                    }
+                                    
+                                    
+                                      
+                                    
+                                    
+                                    if(can_go){
+                                        $.ajax({
+                                        async: true,
+                                        url: "/js/news_comments.php",
+                                        type: "POST",
+                                        data:{
+                                            "action":"send_comment",
+                                            "id": "%{$news.id}%",
+                                             
+                                            "name": $("#clinic_name").val(),
+                                            "email": $("#clinic_email").val(),
+                                             
+                                         
+                                            "txt": $("#clinic_review_txt").val()
+                                        },
+                                        beforeSend: function(){
+                                            $("#clinic_review_status").html('<img src="/img/wait.gif" alt="подождите, пожалуйста...">');
+                                        },
+                                        success: function(data){
+                                          //alert("%{$named}% добавлены!"); 
+                                             alert(data);	
+                                          //$("#clinic_review_cancel").trigger("click");
+                                          
+                                          
+                                            $("#clinic_review_txt").val('');
+                                         
+                                            $("#clinic_email").val('');
+                                            $("#clinic_name").val('');
+											$("#popup_comment a.close_feedback").trigger("click");
+                                            
+                                             
+                                        },
+                                        error: function(xhr, status){
+                                            alert('Ошибка отправки комментария.');
+                                            
+                                        }	 
+                                    });	
+                                    }
+                                    
+                                    
+                                    return false;
+                                 });
+                
+                })
+                </script>
+                
+                
+                <a name="comments"></a>
+                 
+                %{section name=rowsecc loop=$comments}%
+                <div class="review_block">
+                    <div class="offer_rubric">%{$comments[rowsecc].pdate}% %{$comments[rowsecc].name}%:</div>
+                   
+                   
+                    
+                  
+                     
+                     <div class="review_text">%{$comments[rowsecc].txt}%</div>
+                    
+                    
+                    
+                    
+                </div>
+                %{sectionelse}%
+                 
+                <p>
+                <em>Комментариев пока нет. Будьте первыми!</em>
+                </p>
+                 
+                %{/section}%
+            
+            </div>
+            
+            
+            
+        </div>
+    </div>
+
+	
+    
+    
+</div>    

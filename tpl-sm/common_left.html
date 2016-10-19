@@ -1,0 +1,31 @@
+%{if $has_slider}%
+
+	<div id="slider-wrapper">    	 
+        <div id="slider" class="cycle-slideshow"
+        data-cycle-fx="scrollHorz"
+  	data-cycle-timeout="10000"
+    data-cycle-speed="500"
+  	data-cycle-slides="> div.slide"
+    data-cycle-pager=".custom-pager"
+    data-cycle-pager-template=" <a href='#' class='custom-pager-button'>&nbsp;</a> ">
+        	 
+             <div class="custom-pager"></div>
+             
+            
+            <div class="cycle-prev"></div>
+    		<div class="cycle-next"></div>
+        	%{foreach from=$upbanners item=ban}%
+             
+            <div class="slide %{if $ban.align_mode==1}% rl %{/if}%" style="background-image:url(/%{$ban.photo_small}%); background-position:%{if $ban.align_mode==0}%left%{else}%right%{/if}% center; background-repeat:no-repeat;">
+            	%{$ban.small_txt}%
+                               
+            </div>
+            %{/foreach}%
+            
+            
+            
+        </div>        
+    </div>
+%{/if}%
+ 
+    

@@ -1,0 +1,364 @@
+<h1>GYDEX.Регистрация</h1>
+
+<div class="simple_text">
+ 
+Для регистрации в CRM GYDEX просим Вас заполнить форму заявки.
+
+ <br>
+<br>
+
+
+</div>
+
+
+<div id="register_crm_form" style="">
+
+
+<div style=" width:310px; float:left; margin-right:30px;">
+ 
+<label for="register_crm_org">Ваша организация: <span class="dis_orange">*</span></label><br />
+<input type="text" id="register_crm_org" size="40" maxlength="255" value="" class="dis_feedback" />
+<br /><br /> 
+ 
+ 
+<label for="register_crm_org_fio">Ответственное лицо в Вашей организации<br>
+ за CRM GYDEX: <span class="dis_orange">*</span></label><br />
+<input type="text" id="register_crm_org_fio" size="60" maxlength="255" value="" class="dis_feedback" />
+<br /><br />
+
+
+
+<label for="register_crm_fio">Ваше Ф.И.О.: <span class="dis_orange">*</span></label><br />
+<input type="text" id="register_crm_fio" size="60" maxlength="255" value="" class="dis_feedback" />
+<br /><br />
+
+
+
+
+<label for="register_crm_city">Город: <span class="dis_orange">*</span></label><br />
+<input type="text" id="register_crm_city" size="40" maxlength="255" value="" class="dis_feedback" />
+<br /> 
+
+
+
+<label for="register_crm_position">Должность: <span class="dis_orange">*</span></label><br />
+<input type="text" id="register_crm_position" size="60" maxlength="255" value="" class="dis_feedback" />
+<br /><br />
+
+
+
+<label for="register_crm_dep">Отдел: <span class="dis_orange">*</span></label><br />
+<input type="text" id="register_crm_dep" size="60" maxlength="255" value="" class="dis_feedback" />
+<br /><br />
+
+
+
+
+
+
+<label for="register_crm_birthday">Дата рождения: <span class="dis_orange">*</span></label><br />
+<input type="text" id="register_crm_birthday" placeholder="дд.мм.гггг" size="60" maxlength="255" value="" class="dis_feedback" />
+<br /><br />
+
+
+
+
+
+
+</div>
+<div style="float:left; width:310px; margin-right:30px;"> 
+
+     
+  
+<label for="register_crm_email">Электронная почта: <span class="dis_orange">*</span></label><br />
+<input type="text" id="register_crm_email" size="60" maxlength="255" value="" class="dis_feedback" />
+<br /><br />
+
+ <label for="register_crm_phone">Мобильный телефон: <span class="dis_orange">*</span></label><br />
+<input type="text" id="register_crm_phone" size="40" maxlength="255" value="" placeholder="(ХХХ) ХХХ ХХХХ" class="dis_feedback" />
+<br /><br />
+  
+  
+
+<label for="register_crm_work_phone">Рабочий телефон с добавочным: <span class="dis_orange">*</span></label><br />
+<input type="text" id="register_crm_work_phone" size="40" maxlength="255" value="" class="dis_feedback" placeholder="(ХХХ) ХХХ ХХХХ, доб. ХХХ" />
+<br /><br />  
+
+
+<label for="register_crm_work_hours">Часы работы: <span class="dis_orange">*</span></label><br />
+<input type="text" id="register_crm_work_hours" size="40" maxlength="255" value="" class="dis_feedback" placeholder="чч:мм-чч:мм" />
+<br /><br />  
+  
+
+ 	
+ 
+
+<label for="register_crm_message">Дополнительная информация:  </label><br />
+<textarea cols="50" rows="7" id="register_crm_message" class="dis_feedback" style="height:190px !important;"></textarea>
+<br /><br />
+ 
+</div>
+<br clear="all" />
+
+
+<div style="float:left; margin-right:30px;"> 
+<label>Защитный код: <span class="dis_orange">*</span></label><br />
+ 
+
+<img src="/js/captcha.php?seed=3" id="register_crm_captcha_img" />
+<input type="text" size="5" maxlength="25" id="register_crm_captcha" class="dis_feedback" value="" style="width:175px !important;" />
+</div>
+
+
+<div style="float:left; margin-right:20px;"><br>
+<br>
+
+<input id="register_crm_mess" type="button" value="Отправить заявку" />
+
+</div>
+<br clear="all">
+
+
+<small><em>Поля, отмеченные <span class="dis_orange">*</span>, обязательны для заполнения.</em></small>
+<br />
+ 
+
+<p id="register_crm_complete" style="display:none;">Спасибо за заявку на регистрацию. 
+Мы обработаем Вашу заявку и свяжемся с Вами!<br></p>
+
+
+
+ 
+<p />
+
+</div>
+ 
+<script type="text/javascript">
+$(function(){
+	  $("#register_crm_city").select2(
+	 
+	 {
+    
+	multiple: false,
+	
+	minimumInputLength:2,
+	width:"resolve",
+	 
+    ajax: {
+            url: "/js/city_select.php",
+            dataType: 'json',
+            quietMillis: 100,
+            data: function (term, page) {
+                return {
+                    term: term, //search term
+                    page_limit: 10 // page size
+                };
+            },
+            results: function (data, page) {
+                return { results: data.results };
+            }
+
+        },
+        
+	 }
+	 ); 
+	
+	$("#register_crm_mess").bind("click", function(){
+		var can_send=true;
+		
+		if(can_send&&$("#register_crm_fio").val().length<3){
+			can_send=can_send&&false;
+			alert("Заполните поле Ваше имя!");
+			$("#register_crm_fio").focus();				
+		}
+		
+		
+		if(can_send&&$("#register_crm_org").val().length<5){
+			can_send=can_send&&false;
+			alert("Заполните поле Ваша организация!");
+			$("#register_crm_org").focus();				
+		}
+		
+		
+		if(can_send&&$("#register_crm_org_fio").val().length<5){
+			can_send=can_send&&false;
+			alert("Заполните поле Ответственное лицо!");
+			$("#register_crm_org_fio").focus();				
+		}
+		
+		
+		
+		if(can_send&&$("#register_crm_email").val().length<5){
+			can_send=can_send&&false;
+			alert("Заполните поле Электронная почта!");
+			$("#register_crm_email").focus();				
+		}
+		
+		 
+		if(can_send&&$("#register_crm_city").val().length<3){
+			can_send=can_send&&false;
+			alert("Заполните поле Город!");
+			$("#register_crm_city").focus();				
+		}
+		
+		//--
+	 	if(can_send&&$("#register_crm_position").val().length<3){
+			can_send=can_send&&false;
+			alert("Заполните поле Должность!");
+			$("#register_crm_position").focus();				
+		}
+		if(can_send&&$("#register_crm_dep").val().length<3){
+			can_send=can_send&&false;
+			alert("Заполните поле Отдел!");
+			$("#register_crm_dep").focus();				
+		}
+		
+		if(can_send&&$("#register_crm_birthday").val().length<3){
+			can_send=can_send&&false;
+			alert("Заполните поле Дата рождения!");
+			$("#register_crm_birthday").focus();				
+		}
+		
+		
+		if(can_send&&$("#register_crm_phone").val().length<3){
+			can_send=can_send&&false;
+			alert("Заполните поле Мобильный телефон!");
+			$("#register_crm_phone").focus();				
+		}
+		
+		if(can_send&&$("#register_crm_work_phone").val().length<3){
+			can_send=can_send&&false;
+			alert("Заполните поле Рабочий телефон с добавочным!");
+			$("#register_crm_work_phone").focus();				
+		}
+		
+		   
+		
+		if(can_send&&$("#register_crm_work_hours").val().length<3){
+			can_send=can_send&&false;
+			alert("Заполните поле Часы работы!");
+			$("#register_crm_work_hours").focus();				
+		}
+		
+		 
+		
+		if(can_send&&$("#register_crm_captcha").val().length<3){
+			can_send=can_send&&false;
+			alert("Заполните поле Защитный код!");
+			$("#register_crm_captcha").focus();				
+		}
+		
+		if(can_send){
+			$.ajax({
+				async: false,
+				url: "/js/send_claim.php",
+				type: "POST",
+				data:{
+					"action":"test_captcha_simple",
+					"captcha":$("#register_crm_captcha").val(),
+					"seed":"3"
+				 
+					 
+				},
+				beforeSend: function(){
+				 
+				},
+				success: function(data){
+				
+				  if(data!=0){
+					 
+					 
+					   alert("Неверно введен Защитный код!");	
+					   $("#register_crm_captcha").focus();		
+					  //   Recaptcha.reload();
+				  	 	can_send=can_send&&false;
+				  } 
+				},
+				error: function(xhr, status){
+				
+					
+				}	 
+			});
+				
+			
+		}
+		
+		
+		if(can_send){
+			 
+			 var abilities='';
+			 
+			  
+			 $.ajax({
+				async: true,
+				url: "/js/send_claim.php",
+				type: "POST",
+				data:{
+					"action":"send_register_crm",
+					"message": $('#register_crm_message').val(),
+					"fio": $('#register_crm_fio').val(),
+					//"city": $('#city').val(),
+					"phone": $('#register_crm_phone').val(),
+					"work_phone": $('#register_crm_work_phone').val(),
+					 
+					"email": $('#register_crm_email').val(),
+					
+				 
+					
+					"org": $("#register_crm_org").val(),
+					"org_fio":$("#register_crm_org_fio").val(),
+					"city":$("#register_crm_city").val(),
+					
+					
+					"position":$("#register_crm_position").val(),
+					"dep":$("#register_crm_dep").val(),
+					"birthday":$("#register_crm_birthday").val(),
+					"hours":$("#register_crm_work_hours").val(),
+					
+					
+					
+					
+					 
+				},
+				beforeSend: function(){
+				 	$("#register_crm_form input").prop("disabled", true);
+					$("#register_crm_form select").prop("disabled", true);
+					$("#register_crm_form textarea").prop("disabled", true);
+				},
+				success: function(data){
+				 // $("#is_confirmed_confirmer").html(data);
+				 	$("#register_crm_form input[type=text]").val('');
+					$("#register_crm_form textarea").val('');
+					
+					$("#register_crm_city").select2("val", "");
+					$("input[id^=register_crm_abilities_]:checked").prop("checked",false);
+					
+				 	$("#register_crm_form input").prop("disabled", false);
+					$("#register_crm_form select").prop("disabled", false);
+					$("#register_crm_form textarea").prop("disabled", false);
+					
+					$('#register_crm_complete').show('fast'); 
+					 
+				 	 
+					window.setTimeout("$('#register_crm_complete').toggle('display');",7000);
+					
+					 
+				  	//Recaptcha.reload();
+				},
+				error: function(xhr, status){
+					$("#register_crm_form input").prop("disabled", false);
+					$("#register_crm_form textarea").prop("disabled", false);
+					$("#register_crm_form select").prop("disabled", false);
+					
+				}	 
+			});
+		}
+			
+		
+		
+	});
+	
+});
+</script>
+
+

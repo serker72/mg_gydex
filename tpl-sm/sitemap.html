@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+%{section name=itemsec loop=$items}%
+   <url>
+      <loc>%{$items[itemsec].url|escape:"html"}%</loc>
+      %{if $items[itemsec].lastmod!=""}%<lastmod>%{$items[itemsec].lastmod|escape:"html"}%</lastmod>%{/if}%
+      %{if $items[itemsec].priority!=""}%<priority>%{$items[itemsec].priority|escape:"html"}%</priority>%{/if}%
+      %{if $items[itemsec].changefreq!=""}%<changefreq>%{$items[itemsec].changefreq|escape:"html"}%</changefreq>%{/if}%
+   </url>
+%{/section}%
+</urlset>  

@@ -1,0 +1,42 @@
+ <div id="numbers">
+        <div id="numbers_inner">
+        	<h2>GYDEX в цифрах</h2>
+            <div class="descr">Мы предлагаем решения, которые действительно работают!</div>
+            
+            <div id="numbers_slider_wrapper">
+            
+                <div class="num-cycle-prev"></div>
+                <div class="num-cycle-next"></div>
+                
+                <div id="numbers_slider" class="cycle-slideshow"
+                data-cycle-fx="carousel"
+                data-cycle-timeout="7000"
+                data-cycle-speed="500"
+                data-cycle-carousel-visible="4"
+                data-cycle-slides="> div.numbers_block"
+                data-cycle-prev=".num-cycle-prev"
+                data-cycle-next=".num-cycle-next"
+        
+                 >
+         
+                
+                    %{foreach from=$nums name=nf item=item}%
+                    <div class="numbers_block">
+                        <div class="number%{$item.class_index}%">
+                        %{if $item.low}%<div style="margin-top:15px;">%{/if}%
+                        %{$item.number}%
+                          %{if $item.low}%</div>%{/if}%
+                        </div>
+                    
+                        <div class="descr"> 
+                            %{$item.name}%
+                        </div>
+                    </div>
+                    %{/foreach}%
+                
+                </div>
+             
+             </div>
+        
+        </div>    
+    </div>

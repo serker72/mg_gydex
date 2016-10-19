@@ -1,0 +1,63 @@
+
+<div id="page_slider-wrapper">   
+	<div id="page_slider"> 
+        <div class="heading">
+        %{$mm.name}%
+        </div>
+    
+        <div class="navi">
+        %{$navi}%
+        </div>
+    
+    </div>
+
+</div>
+
+
+%{$clients}%
+
+
+<div id="page_text">
+	<div style="float:left; margin-right:20px;">
+     	<div itemscope itemtype="http://schema.org/Organization">
+       <span itemprop="name"> %{$mm.txt}%</span>
+        
+        %{$mm.txt2}%
+        
+         
+            
+        %{$mm.txt3}%
+        </div>
+    </div>
+    
+    %{if $has_callback_form}%
+      <!--<div style="float:left; margin-left:90px;"><br>
+<br>
+<a class="button" id="callback_caller" href="#">Заказать обратный звонок</a></div>
+		%{if $do_callback}%
+        <script type="text/javascript">
+		$(function(){
+			$("#callback_caller").trigger("click");
+		});
+		</script>
+        %{/if}%
+    %{/if}%
+    -->
+    
+    %{include file="callback.html"}%
+    
+    
+    
+    
+    
+     %{$content}%
+
+	 %{$faq}%
+
+	<div class="clr"></div>
+    
+     
+
+</div>
+
+ 

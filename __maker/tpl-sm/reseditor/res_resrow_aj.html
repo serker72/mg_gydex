@@ -1,0 +1,71 @@
+
+ <table class="gydex_table" >
+           
+          <tbody>
+
+ 
+%{section name=ressec loop=$ress}%
+	
+<tr align="left" valign="top">
+		<td width="150" class="itemscell">
+
+		
+		<a href="#file_id=%{$fileno}%&res_id=%{$ress[ressec].resno}%" name="file_id=%{$fileno}%&res_id=%{$ress[ressec].resno}%" class="maxi" title="править ресурс" onclick="
+%{$COORDFUNC}% 
+n=document.getElementById('doEdRes'); n.style.display='inline'; 
+n=document.getElementById('doInpRes'); n.style.display='none'; 
+m=document.getElementById('res_add_win'); 
+
+$('#res_add_win').css('top', coord[1]);
+$('#res_add_win').css('left', coord[0]);
+
+ 
+aa=document.getElementById('res_file_id'); aa.value='%{$fileno_}%';
+
+cc=document.getElementById('old_res_id'); cc.value='%{$ress[ressec].resno_}%';
+dd=document.getElementById('res_id'); dd.value='%{$ress[ressec].resno_}%';
+
+bb=document.getElementById('res_descr'); bb.value='%{$ress[ressec].resdescr_}%';  
+m.className='work_window_vis';
+return false;
+
+">%{$ress[ressec].resname}%</a>
+		
+		
+		<a href="#file_id=%{$fileno}%" title="удалить ресурс" onclick="if(window.confirm('ВНИМАНИЕ!!! Вы действительно хотите удалить данный ресурс из списка?')){ xajax_DelRes('%{$fileno}%', '%{$ress[ressec].resno}%'); return false;}"><img src="/img/delete.jpg" alt="удалить ресурс" width="16" height="16" border="0"></a><br>
+		
+		
+		&nbsp;&nbsp;<a href="#file_id=%{$fileno}%&res_id=%{$ress[ressec].resno}%addfile" name="file_id=%{$fileno}%&res_id=%{$ress[ressec].resno}%addfile" class="mini" title="добавить значение" onclick="
+
+%{$COORDFUNC}% 
+n=document.getElementById('doInpVal'); n.style.display='inline'; 
+n=document.getElementById('doEdVal'); n.style.display='none'; 
+m=document.getElementById('val_add_win');
+
+$('#val_add_win').css('top', coord[1]);
+$('#val_add_win').css('left', coord[0]);
+
+
+aa=document.getElementById('val_file_id'); aa.value='%{$fileno_}%';
+
+cc=document.getElementById('val_res_id'); cc.value='%{$ress[ressec].resno_}%';
+
+bb=document.getElementById('res_value'); bb.value='';  
+m.className='val_window_vis';
+return false;
+
+"><img src="../img/doc.gif" alt="добавить значение" width="13" height="13" border="0">добавить значение...</a><br>
+
+		<em>%{$ress[ressec].resdescr}%</em>
+		</td>
+		<td width="*" class="itemscell">
+		
+		<div id="%{$fileno}%_%{$ress[ressec].resno}%_vals">
+		%{$ress[ressec].langs}%
+		</div>
+		</td>
+	</tr>
+
+%{/section}%
+</tbody>
+</table>

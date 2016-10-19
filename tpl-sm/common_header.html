@@ -1,0 +1,57 @@
+
+
+
+
+
+	<div id="header">
+    	<div id="header_contacts">
+             %{$text1}%%{$text2}%
+            <div class="clr"></div>
+        </div>
+        
+        
+        <div id="header_login">
+                 
+            
+			<a class="call" href="/contacts/?do_callback">Заказать обратный звонок</a> 
+        
+        	<a href="#" class="login">Войти</a>
+            <div class="line"></div>
+        	<a href="/register.php" class="register">Зарегистрироваться</a>
+        	<div class="clr"></div>
+        </div>
+        <div class="clr"></div>
+        
+        
+    	<div id="header_logo">
+       	 <a href="/"><img src="/images/gydex_logo.png" width="197" height="62" alt="GYDEX" /></a> 
+        </div>
+        
+        <div id="header_menu">
+        	<ul class="menu">
+            %{section name=hmenusec loop=$hmenu}%
+            %{section name=hmenusec1 loop=$hmenu[hmenusec].subs}%%{/section}%
+             <!-- hmenu item -->
+                <li class="%{if $hmenu[hmenusec].is_current}%current%{/if}%"><a href="%{$hmenu[hmenusec].item_url}%"  class="%{if $hmenu[hmenusec].is_current}%current%{/if}% %{if $smarty.section.hmenusec1.total>0}%nested%{/if}%">%{$hmenu[hmenusec].name}%</a>
+                	%{if $smarty.section.hmenusec1.total>0}%
+                    <ul>
+                     %{foreach from=$hmenu[hmenusec].subs item=itm}%
+                 		<li  class="%{if $itm.is_current}%current%{/if}% "><a href="%{$itm.item_url}%"  class="%{if $itm.is_current}%current%{/if}% " >%{$itm.name}%</a></li>
+                     %{/foreach}%
+                    </ul>
+                    %{/if}%
+                </li>
+            <!-- endof hmenu item -->
+        
+        	%{/section}%
+         	</ul>
+        
+   	  		
+        </div>
+   		<div class="clr"></div>
+        
+        
+  </div>
+
+
+ 

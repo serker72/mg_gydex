@@ -1,0 +1,181 @@
+
+<!-- форма разбивки списка итемов по Х штук на страницу -->
+%{if $has_razb}%
+	<form action="/vieworders.php" name="topa" id="topa">
+		<input type="hidden" name="from" value="0">
+		<strong>%{$razb_capt}%</strong> 
+		<select name="to_page" id="to_page" onChange="document.forms.topa.submit();">
+			<option value="5"%{if $topage==1}% SELECTED %{/if}%>5</option>			
+			<option value="1"%{if $topage==1}% SELECTED %{/if}%>1</option>			
+			<option value="10"%{if $topage==10}% SELECTED %{/if}%>10</option>
+		</select> <strong>%{$razb_what}%</strong>
+		</form>	
+%{/if}%
+
+
+<form action="/vieworders.php" method="post" name="chorrr" id="chorr">
+<input type="hidden" name="from" value="%{$fromno}%">
+<input type="hidden" name="to_page" value="%{$topage}%">
+<input type="hidden" name="order_no" value="%{$order_no}%">
+
+<script language="JavaScript" type="text/javascript">
+formcnt=0; formarr=new Array();
+</script>
+
+%{$pages}%
+
+<table width="95%" border="0" cellspacing="15" cellpadding="5">
+%{section name=ordsec loop=$orders}%
+	%{if $orders[ordsec].is_blocked}%
+		<tr align="left" valign="top">
+		<td width="100%" class="itemscell">
+			<h3>%{$ordertitle}%%{$orders[ordsec].orderno}%</h3>
+			
+			<strong>%{$orders[ordsec].date}%  <em>%{$orders[ordsec].status}%</em></strong><br>
+			
+			<table width="99%" border="0" cellspacing="0" cellpadding="0">
+			<tr align="left" valign="top">
+			<td width="100%" class="pole">	
+			
+			<table width="100%" border="0" cellspacing="1" cellpadding="8">
+			<tr>
+				<td width="40%" class="itemshead">
+				%{$good_title}%
+				</td>
+				<td width="20%" class="itemshead">
+				%{$price_title}%
+				</td>
+				<td width="20%" class="itemshead">
+				%{$quant_title}%
+				</td>
+				<td width="20%" class="itemshead">
+				%{$cost_title}%
+				</td>
+			</tr>
+			<!-- позиции заказа -->
+			%{section name=possec loop=$orders[ordsec].pos}%
+				<tr>
+					<td width="40%" class="itemscell">
+					<a href="%{$orders[ordsec].pos[possec].good_url}%" target="_blank">%{$orders[ordsec].pos[possec].good_name}%</a>
+					 %{$orders[ordsec].pos[possec].options}%
+					 
+					 <br>
+					%{$orders[ordsec].pos[possec].comment}%
+					</td>
+					<td width="20%" class="itemscell">
+					%{$orders[ordsec].pos[possec].price}%
+					</td>
+					<td width="20%" class="itemscell">
+					%{$orders[ordsec].pos[possec].quantity}%
+					</td>
+					<td width="20%" class="itemscell">
+					%{$orders[ordsec].pos[possec].cost}%
+					</td>
+				</tr>
+			%{/section}%
+			</table>
+			
+			
+			</td>
+			</tr>
+			</table>
+			
+			<strong>%{$email_caption}%&nbsp;</strong>%{$orders[ordsec].email}%<br>
+			<strong>%{$phone_caption}%&nbsp;</strong>%{$orders[ordsec].phone}%<br>
+			<strong>%{$address_caption}%&nbsp;</strong>%{$orders[ordsec].address}%<br>
+			
+			
+			<strong>%{$orders[ordsec].skidka}%</strong><br>
+			<strong>%{$orders[ordsec].itogo}%</strong>
+		</td>
+		</tr>
+	%{else}%
+		<tr align="left" valign="top">
+		<td width="100%" class="itemscell">
+			<h3>%{$ordertitle}%%{$orders[ordsec].orderno}%</h3>
+			
+			<strong>%{$orders[ordsec].date}%  <em>%{$orders[ordsec].status}%</em></strong><br>
+		
+				<input type="checkbox" name="%{$orders[ordsec].orderno}%_do_process" id="%{$orders[ordsec].orderno}%_do_process" value="">%{$change_caption}%
+		
+			<table width="99%" border="0" cellspacing="0" cellpadding="0">
+			<tr align="left" valign="top">
+			<td width="100%" class="pole">	
+		
+		
+			<table width="100%" border="0" cellspacing="1" cellpadding="8">
+			<tr>
+				<td width="40%" class="itemshead">
+				%{$good_title}%
+				</td>
+				<td width="20%" class="itemshead">
+				%{$price_title}%
+				</td>
+				<td width="20%" class="itemshead">
+				%{$quant_title}%
+				</td>
+				<td width="20%" class="itemshead">
+				%{$cost_title}%
+				</td>
+			</tr>
+			<!-- позиции заказа -->
+			%{section name=possec loop=$orders[ordsec].pos}%
+					<tr>
+						<td width="40%" class="itemscell">
+						<a href="%{$orders[ordsec].pos[possec].good_url}%" target="_blank">%{$orders[ordsec].pos[possec].good_name}%</a>
+						<table> 
+							%{$orders[ordsec].pos[possec].options}%
+						
+						</table>
+						<input type="text" name="%{$orders[ordsec].pos[possec].itemno}%_comments" value="%{$orders[ordsec].pos[possec].comment}%" size="40" maxlength="255" onfocus="m=document.getElementById('%{$orders[ordsec].orderno}%_do_process'); m.checked=true;">
+						<input type="hidden" name="%{$orders[ordsec].orderno}%_%{$orders[ordsec].pos[possec].itemno}%_position" value="%{$orders[ordsec].pos[possec].itemno}%">
+						</td>
+						<td width="20%" class="itemscell">
+						%{$orders[ordsec].pos[possec].price}%
+						</td>
+						<td width="20%" class="itemscell">
+						<input type="text" name="%{$orders[ordsec].pos[possec].itemno}%_quantity" value="%{$orders[ordsec].pos[possec].quantity}%" size="3" maxlength="3" onfocus="m=document.getElementById('%{$orders[ordsec].orderno}%_do_process'); m.checked=true;">
+						</td>
+						<td width="20%" class="itemscell">
+						%{$orders[ordsec].pos[possec].cost}%
+						</td>
+					</tr>
+			%{/section}%
+			</table>
+		
+			</td>
+			</tr>
+			</table>
+		
+			<strong>%{$email_caption}%&nbsp;</strong><input type="text" name="%{$orders[ordsec].orderno}%_email" id="%{$orders[ordsec].orderno}%_email" value="%{$orders[ordsec].email}%" size="20" maxlength="40" onfocus="m=document.getElementById('%{$orders[ordsec].orderno}%_do_process'); m.checked=true;">&nbsp;&nbsp;
+			<strong>%{$phone_caption}%&nbsp;</strong><input type="text" name="%{$orders[ordsec].orderno}%_phone" id="%{$orders[ordsec].orderno}%_phone" value="%{$orders[ordsec].phone}%" size="20" maxlength="40" onfocus="m=document.getElementById('%{$orders[ordsec].orderno}%_do_process'); m.checked=true;"><br>
+			<strong>%{$address_caption}%&nbsp;</strong><br>
+			<textarea cols="45" rows="5" name="%{$orders[ordsec].orderno}%_address" id="%{$orders[ordsec].orderno}%_address" onfocus="m=document.getElementById('%{$orders[ordsec].orderno}%_do_process'); m.checked=true;">%{$orders[ordsec].address}%</textarea>
+			<br>
+			
+			<strong>%{$orders[ordsec].skidka}%</strong><br>
+			<strong>%{$orders[ordsec].itogo}%</strong>
+			<script language="JavaScript" type="text/javascript"> formarr[formcnt]="%{$orders[ordsec].orderno}%_do_process"; formcnt++;</script>
+			
+			
+		</td>
+		</tr>
+	%{/if}%
+%{/section}%
+</table>
+
+%{$pages}%
+
+<p>
+<input type="submit" name="doAlter" value="%{$change_marked}%" onclick="return window.confirm('%{$confirm_prompt}%');">
+<input type="submit" name="doDelete" value="%{$del_marked}%" onclick="return window.confirm('%{$confirm_delete_prompt}%');">
+
+<input type="reset" name="hh" value="%{$cancel_caption}%">
+</form>
+
+<!-- валидатор формы -->
+<script  language="JavaScript">  
+  var  frmvalidator    =  new  Validator("chorrr");  
+  %{$formrules}%
+</script>  
+

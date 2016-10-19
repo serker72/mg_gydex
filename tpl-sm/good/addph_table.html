@@ -1,0 +1,27 @@
+<!-- таблица доп. фото неограниченной ширины, в диве с гор. прокруткой -->
+<h4>%{$caption}%:</h4>
+<div class="addph_container">
+	<table width="*" border="0" cellspacing="0" cellpadding="5">
+	<tr align="center" valign="bottom">
+		%{section name=cellsec loop=$cells}%
+		
+		%{if $cells[cellsec].photo_exists}%
+		<td width="120"><a href="/viewaddphoto.php?photo_id=%{$cells[cellsec].photo_id}%"><img src="/%{$cells[cellsec].item_image_s}%" alt="" width="%{$cells[cellsec].image_s_w}%" height="%{$cells[cellsec].image_s_h}%" border="0"><br>
+		%{$cells[cellsec].itemname}%</a>
+		
+		%{else}%
+		
+		<td width="120"><img src="/img/image_missing.gif" alt="" width="100" height="100" border="0"><br>
+		%{$cells[cellsec].itemname}%
+		</td>
+		%{/if}%
+		
+		%{/section}%
+		
+		
+		<td width="*"><img src="/01.gif" border=0 width="1" height="120">
+		</td>
+	</tr>
+	</table>
+</div>
+<p>

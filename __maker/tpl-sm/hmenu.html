@@ -1,0 +1,12 @@
+<table width="*" border="0" cellspacing="1" cellpadding="5">
+<tr align="left" valign="top">
+	%{section name=mysec loop=$items}%
+	
+	<td style="background-color: Silver;">
+		<a href="razds.php?id=%{$items[mysec].id}%">%{$items[mysec].name}%</a><br>
+	</td>
+	
+	%{/section}%
+
+</tr>
+</table>

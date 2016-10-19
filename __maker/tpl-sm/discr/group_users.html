@@ -1,0 +1,60 @@
+
+%{if $users_array_len>0}%
+<strong>В группе:</strong><br />
+%{/if}%
+
+%{section name=usersec loop=$users_array}%
+    <label>
+      <input class="unbord" type="checkbox" name="%{$group_id}%_%{$users_array[usersec].id}%" value="%{$users_array[usersec].id}%" id="%{$group_id}%_%{$users_array[usersec].id}%">
+      %{$users_array[usersec].login}%</label>
+    <br>  
+	
+%{/section}%
+%{if $users_array_len>0}%
+<input name="" type="button" value="-" title="Удалить отмеченных пользователей из группы" onClick=" 
+  glued1='';
+ 	
+  for(i=0; i<%{$users_array_len}%; i++){
+      mn=document.getElementById(window.in_marked_%{$group_id}%[i]);
+      
+      if(mn.checked){
+          if(glued1.length!=0) glued1=glued1+','+mn.value;
+          else glued1=mn.value;
+      }
+     
+  }
+  xajax_DelUsersFromGroup(%{$group_id}%, glued1); 
+  return false;">
+<p />
+%{/if}%
+
+%{if $not_users_array_len>0}%
+<strong>Добавить в группу:</strong><br />
+%{/if}%
+
+
+%{section name=notusersec loop=$not_users_array}%
+    <label>
+      <input class="unbord" type="checkbox" name="%{$group_id}%_not_%{$not_users_array[notusersec].id}%" value="%{$not_users_array[notusersec].id}%" id="%{$group_id}%_not_%{$not_users_array[notusersec].id}%">
+      %{$not_users_array[notusersec].login}%</label>
+    <br>  
+   
+%{/section}%
+ 
+%{if $not_users_array_len>0}% 
+<input name=""  type="button" value="+" title="Добавить отмеченных пользователей в группу" onClick=" 
+  glued='';
+ 	
+  for(i=0; i<%{$not_users_array_len}%; i++){
+      mn=document.getElementById(window.not_in_marked_%{$group_id}%[i]);
+     
+      if(mn.checked){
+          if(glued.length!=0) glued=glued+','+mn.value;
+          else glued=mn.value;
+      }
+     
+  }
+ 
+   xajax_AddUsersToGroup(%{$group_id}%, glued); 
+  return false;">
+%{/if}%

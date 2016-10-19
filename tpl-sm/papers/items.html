@@ -1,0 +1,37 @@
+
+ 
+<!-- список статей на странице-->
+ 
+
+%{section name=itemsec loop=$items}%
+ 
+%{section name=cellsec loop=$items[itemsec].cells}%
+
+
+<!-- €чейка стать€ -->
+<div class="papers"> 
+ 
+			<div class="paper_head">
+			<a href="%{$items[itemsec].cells[cellsec].page_url}%" title="%{$items[itemsec].cells[cellsec].altname}%">%{$items[itemsec].cells[cellsec].name}%</a>
+			</div>
+			
+			<div class="paper_annot">
+            %{if $items[itemsec].cells[cellsec].image_src!="img/no.gif"}%
+            <a href="%{$items[itemsec].cells[cellsec].page_url}%" title="%{$items[itemsec].cells[cellsec].altname}%">
+           <!-- <img src="/%{$items[itemsec].cells[cellsec].image_src}%" alt="%{$items[itemsec].cells[cellsec].altname}%" border="0" width="%{$items[itemsec].cells[cellsec].image_w}%" height="%{$items[itemsec].cells[cellsec].image_h}%" align="left" vspace="0" hspace="5">--></a>
+            %{/if}%
+            
+%{$items[itemsec].cells[cellsec].annot}%</div>
+
+			 
+            <a href="%{$items[itemsec].cells[cellsec].page_url}%" class="news_more" >”знать больше</a>
+             
+			
+		<!--endof block -->		
+</div> 
+%{/section}%
+ 
+%{/section}%
+
+ 
+%{$pages}%

@@ -1,0 +1,164 @@
+
+<script type="text/javascript">
+function ReviewDelete(id){
+	if(window.confirm("Вы действительно хотите удалить комментарий?")){
+		$("#review_"+id).remove();
+		$.ajax({
+					  async: true,
+					  url: "js/comments.php",
+					  type: "POST",
+					  data:{
+						  "action":"delete",
+						  "id":id
+					  },
+					  beforeSend: function(){
+						//alert("Загрузка реквизитов.");
+					  },
+					  success: function(data){
+						//$("#positions_dialog_table").html(data);  
+					  },
+					  error: function(xhr, status, n){
+						 //alert("Ошибка удаления файла."+status+n);	
+					  }	 
+					});	
+	}
+}
+$(function(){
+	$("div[id^=review_] input").bind("change", function(){
+		$(this).addClass("changed");
+	});
+	$("div[id^=review_] textarea").bind("change", function(){
+		$(this).addClass("changed");
+	});
+	$("input[id^=review_isnew_]").bind("change", function(){
+		id=$(this).attr("id").replace(/^review_isnew_/, '');
+		if($(this).prop("checked")) $("#span_is_new_"+id).show();
+		else $("#span_is_new_"+id).hide(); 
+	});
+	$("#saveComments").bind("click", function(){
+		var changed_ids=new Array();
+		
+		function SaveComm(){
+			var id=	changed_ids.pop();
+			if(id!=undefined){
+				//alert(id);
+				if($("#review_isactive_"+id).prop("checked")) is_active=1; else is_active=0;
+				if($("#review_isnew_"+id).prop("checked")) is_new=1; else is_new=0;
+				$.ajax({
+					  async: true,
+					  url: "js/comments.php",
+					  type: "POST",
+					  data:{
+						  "action":"update",
+						  "id":id,
+						  "name":$("#review_name_"+id).val(),
+						  "email":$("#review_email_"+id).val(),
+						  "txt":$("#review_txt_"+id).val(),
+						  "is_active":is_active,
+						  "is_new":is_new
+					  },
+					  beforeSend: function(){
+						//alert("Загрузка реквизитов.");
+					  },
+					  success: function(data){
+						//$("#positions_dialog_table").html(data); 
+						$("div[id=review_"+id+"] input").removeClass("changed");
+						$("div[id=review_"+id+"] textarea").removeClass("changed");
+						
+						 SaveComm(); 
+					  },
+					  error: function(xhr, status, n){
+						 //alert("Ошибка удаления файла."+status+n);	
+					  }	 
+					});	
+			}else {alert("Изменения внесены!"); $("#f_comments").prop("disabled", false); $("#doApply").trigger("click"); }
+		}
+		
+		$("#f_comments").prop("disabled", true);
+		
+		$("div[id^=review_] input.changed").each(function(index, element) {
+            id=$(element).attr("id").replace(/^review_[a-zA-Z]+_/, '');
+			
+			 
+			if($.inArray(id, changed_ids)==-1) changed_ids.push(id);
+			
+        });
+		$("div[id^=review_] textarea.changed").each(function(index, element) {
+            id=$(element).attr("id").replace(/^review_[a-zA-Z]+_/, '');
+			 
+			if($.inArray(id, changed_ids)==-1) changed_ids.push(id);
+			
+        });
+		//alert (changed_ids);
+		
+		SaveComm();
+		
+	});
+});
+</script>
+
+<input type="button" value="Применить изменения" id="saveComments" />
+
+
+<div style="border:1px solid silver; width:auto; height:300px; overflow:auto;">
+<fieldset id="f_comments">
+
+
+
+%{section name=rowsec loop=$items}%
+<div id="review_%{$items[rowsec].id}%" class="%{if $items[rowsec].is_active==1}%review_block%{else}%review_block_in%{/if}%">
+	
+    <div style="float:left; margin-right:10px;">
+    <a name="comment_%{$items[rowsec].id}%"></a> 
+    %{$items[rowsec].pdate}% <br />
+	<input type="checkbox" id="review_isnew_%{$items[rowsec].id}%" %{if $items[rowsec].is_new==1}% checked="checked"%{/if}% /><label for="review_isnew_%{$items[rowsec].id}%"><span id="span_is_new_%{$items[rowsec].id}%" style="%{if $items[rowsec].is_new==0}% display:none;%{/if}%"><img src="/img/new_message.gif" /></span>Новый комментарий</label><br />
+	</div>
+    
+    <div style="float:left; margin-right:10px;">
+    <label for="review_name_%{$items[rowsec].id}%">Имя:</label><br />
+    <input type="text" id="review_name_%{$items[rowsec].id}%" value="%{$items[rowsec].name|escape:"html"}%" size="20" maxlength="255" />
+    </div>
+
+	<div style="float:left; margin-right:10px;">
+    <label for="review_email_%{$items[rowsec].id}%">Эл. почта:</label><br />
+    <input type="text" id="review_email_%{$items[rowsec].id}%" value="%{$items[rowsec].email|escape:"html"}%"  size="20" maxlength="255"  />
+   </div>
+   
+   <br clear="all"/>
+   <div style="float:left; margin-right:10px;">
+    <label for="review_txt_%{$items[rowsec].id}%">Комментарий:</label><br />
+
+    <textarea cols="60" rows="4" id="review_txt_%{$items[rowsec].id}%" >%{$items[rowsec].txt|escape:"html"}%</textarea>
+    
+     <script>
+  /*
+			 	editor%{$items[rowsec].id}% = $('#review_txt_%{$items[rowsec].id}%').ckeditor( {
+						 customConfig : '/ckeditor/config_custom_client.js'
+    				  }).editor;
+				*/
+			 </script>
+    
+    </div>
+	<div style="float:left; margin-right:10px;">
+    <br />
+<input type="checkbox" id="review_isactive_%{$items[rowsec].id}%" %{if $items[rowsec].is_active==1}% checked="checked"%{/if}% /><label for="review_isactive_%{$items[rowsec].id}%">Виден</label><br />
+
+    
+	 
+    <div class="review_controls">
+    	<!--<div class="offer_rubric"><a href="#" onclick="ReviewEdit('%{$items[rowsec].id}%'); return false;">Правка</a></div>-->
+        <div class="offer_rubric"><a href="#" onclick="ReviewDelete('%{$items[rowsec].id}%'); return false;">Удалить</a></div>
+        
+    	<div class="clr"></div>
+    </div>
+    </div>
+    <br clear="all"/>
+    
+</div>
+
+%{sectionelse}%
+
+
+%{/section}%
+</fieldset>
+</div>

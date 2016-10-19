@@ -1,0 +1,81 @@
+	%{foreach name=rn from=$items item=item}%%{/foreach}%
+    %{if $smarty.foreach.rn.total>3}%
+    <div class="rn-controls">
+        <div class="recent-news-cycle-next"></div>
+        <div class="recent-news-cycle-prev"></div>
+    </div>
+    %{/if}%
+    <div class="clr"></div>
+    
+    
+    <div id="recent_news_slider"  class="cycle-slideshow"
+                 
+                data-cycle-slides="> div.recent_news_slide"
+                data-cycle-fx="carousel"
+                data-cycle-timeout="10000"
+                data-cycle-carousel-visible="3"
+                  %{if $smarty.foreach.rn.total>3}%
+                data-cycle-prev=".rn-controls .recent-news-cycle-prev"
+                data-cycle-next=".rn-controls .recent-news-cycle-next"
+                 %{/if}%
+                data-allow-wrap="false"
+       >
+     %{foreach name=rn from=$items item=item}%  
+        <div class="recent_news_slide">
+            <div class="news_controls">
+                %{if $item.has_images}%
+                <a href="%{$item.path}%#pictures"><img src="/images/ico-photo.png" alt="к новости прикрепленны изображения" width="48" height="47" /></a>
+                %{/if}%
+                %{if $item.has_files}%
+                <a href="%{$item.path}%#files"><img src="/images/ico_files.png" alt="к новости прикрепленны файлы" width="48" height="47" /></a>
+                %{/if}%
+            	 
+            </div>
+            <div class="news_preview">
+                
+                %{if $item.has_images}%
+                <div id="news_preview_slider" class="cycle-slideshow"
+                    data-cycle-fx="scrollHorz"
+                    data-cycle-timeout="2000"
+                    data-cycle-speed="500"
+                    data-cycle-slides="> div.news_preview_slide"
+                    data-cycle-pager="> .npc-pager"
+                    data-cycle-pager-template=" <a href='#' class='npc-pager-button'>&nbsp;</a> ">
+                    
+                    <div class="npc-pager"></div>
+                    
+                    <div class="news_preview_slide" style="background-image:url(/%{$item.photo_small}%)"></div>
+                    %{foreach from=$item.images item=image}%
+                    <div class="news_preview_slide" style="background-image:url(%{$image.small_url}%)"></div>
+                    %{/foreach}%
+                    
+                    
+                </div>
+                %{else}%
+                <div class="news_preview_slide" style="background-image:url(/%{$item.photo_small}%)"></div>
+                %{/if}%
+                
+                
+            </div>
+            <div class="news_meta">
+                <div class="news_meta_data">Дата: <span class="news_meta_value">%{$item.newsdate}%</span></div>
+                
+                
+            </div>
+            
+            <div class="news_title">
+                <h3>%{$item.name}%</h3>
+            </div>
+            
+            <div class="news_anons">
+                %{$item.small_txt}%
+            </div>
+            <a href="%{$item.path}%" class="news_more">Узнать больше</a>
+            
+        </div>
+        %{/foreach}%
+        
+         
+         
+
+    </div>

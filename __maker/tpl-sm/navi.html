@@ -1,0 +1,9 @@
+<div>
+
+%{section name=itemsec loop=$items}%
+<a href="%{$items[itemsec].filepath}%">%{$items[itemsec].itemname}%</a>
+%{if $items[itemsec].has_symb}%%{$symb}%%{/if}%
+%{/section}%
+
+%{$aftertext}%
+</div>

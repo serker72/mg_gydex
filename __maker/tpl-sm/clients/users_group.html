@@ -1,0 +1,47 @@
+<!-- таблица групп покупателей в или вне заданной группы -->
+
+<script language="JavaScript" type="text/javascript">
+formcnt%{$tabno}%=0; formarr%{$tabno}%=new Array();
+</script>
+
+<table width="90%" border="0" cellspacing="1" cellpadding="5">
+<tr align="left" valign="top">
+	<td width="20%" class="itemshead"><strong>Логин/Имя</strong></td>
+	<td width="75%" class="itemshead"><strong>Параметры</strong></td>
+	<td width="5%" class="itemshead">&nbsp;</td>
+</tr>
+
+%{section name=rowsec loop=$items}%
+
+
+
+<!-- покупатель в таблице разбивки по группам -->
+
+<tr align="left" valign="top">
+	<td width="20%" class="itemscell"><a name="%{$items[rowsec].itemno}%"></a>
+	<a href="%{$filename}%?action=1&id=%{$items[rowsec].itemno}%" target="_blank">%{$items[rowsec].login}%</a><br>
+	%{$items[rowsec].name}%<br>
+	Телефон: %{$items[rowsec].phone}%<br>
+	<a href="vieworders.php?clid=%{$items[rowsec].itemno}%&sortmode=4" target="_blank">заказы...</a><p>	
+	</td>
+
+	<td width="75%" class="itemscell"><a href="mailto:%{$items[rowsec].email}%">%{$items[rowsec].email}%</a><br>%{$items[rowsec].is_mailed}%	
+	<nobr>скидка,%:%{$items[rowsec].skidka}%</nobr>
+	%{$items[rowsec].banned}%
+	</td>
+
+	<td width="5%" class="itemscell">
+		<input class="unbord" type="checkbox" name="%{$items[rowsec].itemno}%_do_process_%{$tabno}%" id="%{$items[rowsec].itemno}%_do_process_%{$tabno}%" value="%{$items[rowsec].itemno}%">
+		<script language="JavaScript" type="text/javascript"> formarr%{$tabno}%[formcnt%{$tabno}%]="%{$items[rowsec].itemno}%_do_process_%{$tabno}%"; formcnt%{$tabno}%++;</script>
+	</td>
+</tr>
+
+
+
+%{/section}%
+</table>
+
+
+<input type="button" name="selAll" id="selAll" value="Выбрать все" onclick="for(i=0;i<formcnt%{$tabno}%;i++){s=document.getElementById(formarr%{$tabno}%[i]); s.checked=true;}"> 
+
+<input type="button" name="selAll" id="selAll" value="Отменить все" onclick="for(i=0;i<formcnt%{$tabno}%;i++){s=document.getElementById(formarr%{$tabno}%[i]); s.checked=false;}"> 

@@ -1,0 +1,144 @@
+<!-- список подразделов в разделе -->
+
+<a href="%{$filename}%?action=0&from=%{$fromno}%&to_page=%{$topage}%&parent_id=%{$itemno}%"><img src="/img/plus.gif" alt="" width="7" height="7" border="0">Добавить раздел</a>
+
+<!-- форма разбивки списка итемов по Х штук на страницу -->
+
+	<form action="%{$listpagename}%" name="topa" id="topa">
+		<input type="hidden" name="id" value="%{$itemno}%">
+		<input type="hidden" name="from" value="0">
+		
+		<strong>Разбивать по:</strong> 
+		<select name="to_page" id="to_page" onChange="document.forms.topa.submit();">
+			<option value="10"%{if $topage==10}% SELECTED %{/if}%>10</option>
+			<option value="1"%{if $topage==1}% SELECTED %{/if}%>1</option>
+			<option value="30"%{if $topage==30}% SELECTED %{/if}%>30</option>
+			<option value="50"%{if $topage==50}% SELECTED %{/if}%>50</option>
+			<option value="100"%{if $topage==100}% SELECTED %{/if}%>100</option>			
+			<option value="9999"%{if $topage==9999}% SELECTED %{/if}%>9999</option>						
+		</select> <strong>позиций на страницу.</strong>
+		
+		</form>	
+
+<form action="%{$listpagename}%" method="post" name="updater" id="updater">
+<div align="right">
+<input type="submit" name="Update1" id="Update1" value="Внести изменения!" onclick="return window.confirm('ВНИМАНИЕ!!! Вы уверены, что хотите произвести выбранное действие над группой записей?');"></div>
+<input type="hidden" name="id" id="id" value="%{$itemno}%">
+<input type="hidden" name="from" id="from" value="%{$fromno}%">
+<input type="hidden" name="to_page" id="to_page" value="%{$topage}%">
+<script language="JavaScript" type="text/javascript">
+formcnt=0; formarr=new Array();
+</script>
+
+
+%{$pages}%
+<table width="90%" border="0" cellspacing="1" cellpadding="5">
+<tr align="left" valign="top">
+	<td width="15%" class="itemshead"><strong>Имя</strong></td>
+	<td width="60%" class="itemshead"><strong>Параметры</strong></td>	
+	<td width="10%" class="itemshead"><strong>URL</strong></td>
+	<td width="10%" class="itemshead"><strong>Дополнительно</strong></td>	
+	<td width="5%" class="itemshead"><strong>Отметить</strong></td>
+</tr>
+%{section name=rowsec loop=$items}%
+	
+	<!-- подраздел в разделе -->
+	
+	<tr align="left" valign="top">
+		<td width="15%" class="itemscell"><a name="%{$items[rowsec].id}%"></a>
+		%{section name=namesec loop=$items[rowsec].nameitems}%
+		
+
+		%{if $items[rowsec].nameitems[namesec].is_exist==1}%
+		<!-- существует -->
+			%{if $items[rowsec].nameitems[namesec].is_vloj==1}%
+			<!-- открываемые подразделы -->
+				<a href="razds.php?id=%{$items[rowsec].id}%">%{$items[rowsec].nameitems[namesec].name}%&nbsp;(%{$items[rowsec].nameitems[namesec].sub_count}%)</a> <br>
+			%{else}%
+			<!-- блокированное название -->
+				<b>%{$items[rowsec].nameitems[namesec].name}%</b><br>	
+			%{/if}%
+			
+			<nobr>	
+			&nbsp;	
+			<a href="ed_razd.php?doLang=1&action=1&id=%{$items[rowsec].id}%&from=%{$fromno}%&to_page=%{$topage}%&lang_id=%{$items[rowsec].nameitems[namesec].lang_id}%"><img src="/%{$items[rowsec].nameitems[namesec].lang_flag}%" alt="правка на языке %{$items[rowsec].nameitems[namesec].lang_name}%" title="правка на языке %{$items[rowsec].nameitems[namesec].lang_name}%" border="0"></a> 
+			
+
+			<a href="ed_razd.php?doLang=1&nonvisual=1&action=1&id=%{$items[rowsec].id}%&from=%{$fromno}%&to_page=%{$topage}%&lang_id=%{$items[rowsec].nameitems[namesec].lang_id}%"><img src="/%{$items[rowsec].nameitems[namesec].lang_flag}%" alt="правка на языке %{$items[rowsec].nameitems[namesec].lang_name}%" title="правка на языке %{$items[rowsec].nameitems[namesec].lang_name}%" border="0"></a>
+			&nbsp;
+
+			<!-- видимость раздела на языке -->
+
+			<input class="unbord" type="checkbox" name="%{$items[rowsec].id}%_%{$items[rowsec].nameitems[namesec].lang_id}%_is_shown" value="%{$items[rowsec].nameitems[namesec].lang_shown}%" %{if $items[rowsec].nameitems[namesec].lang_shown==1}%checked%{/if}% onclick="m=document.getElementById('%{$items[rowsec].id}%_do_process'); m.checked=true;">видим
+			</nobr>
+			<p>
+
+		%{else}%
+		<!-- не создано -->
+			
+			%{if $items[rowsec].nameitems[namesec].is_vloj==1}%
+			<!-- открываемые подразделы -->
+				<a href="razds.php?id=%{$items[rowsec].id}%">не создано</a><br> 
+			%{else}%
+			<!-- блокированное название -->
+				<b><em>не создано</em></b><br>	
+			%{/if}%
+			
+			<nobr>
+			&nbsp;
+			<a href="ed_razd.php?doLang=1&action=1&id=%{$items[rowsec].id}%&from=%{$fromno}%&to_page=%{$topage}%&lang_id=%{$items[rowsec].nameitems[namesec].lang_id}%"><img src="/%{$items[rowsec].nameitems[namesec].lang_flag}%" alt="правка на языке %{$items[rowsec].nameitems[namesec].lang_name}%" title="правка на языке %{$items[rowsec].nameitems[namesec].lang_name}%" border="0"></a> 
+			
+
+			<a href="ed_razd.php?doLang=1&nonvisual=1&action=1&id=%{$items[rowsec].id}%&from=%{$fromno}%&to_page=%{$topage}%&lang_id=%{$items[rowsec].nameitems[namesec].lang_id}%"><img src="/%{$items[rowsec].nameitems[namesec].lang_flag}%" alt="правка на языке %{$items[rowsec].nameitems[namesec].lang_name}%" title="правка на языке %{$items[rowsec].nameitems[namesec].lang_name}%" border="0"></a>
+			</nobr>
+			<p>
+		%{/if}%
+		
+		
+		
+		%{/section}%
+		
+		</td>
+		<td width="60%" class="itemscell">
+		<!-- параметры раздела -->
+		%{$items[rowsec].itemdescr}%
+		
+		
+		</td>	
+		<td width="10%" class="itemscell">
+		%{$items[rowsec].url}%
+		</td>
+		<td width="10%" class="itemscell">
+			<a href="%{$filename}%?action=1&id=%{$items[rowsec].id}%&from=%{$fromno}%&to_page=%{$topage}%&changeOrd=0"><img src="/img/arrowup.gif" alt="увеличить порядок показа" width="13" height="13" border="0"></a>
+			<a href="%{$filename}%?action=1&id=%{$items[rowsec].id}%&from=%{$fromno}%&to_page=%{$topage}%&changeOrd=1"><img src="/img/arrowdown.gif" alt="уменьшить порядок показа" width="13" height="13" border="0"></a>
+			<a href="ed_razd.php?action=2&id=%{$items[rowsec].id}%&from=%{$fromno}%&to_page=%{$topage}%" onclick="return window.confirm('ВНИМАНИЕ!!! Вы действительно хотите удалить данную запись из списка?');"><img src="/img/delete.jpg" alt="Удалить раздел" width="16" height="16" border="0"></a>
+		</td>
+		<td width="5%" class="itemscell">
+			<input class="unbord" type="checkbox" name="%{$items[rowsec].id}%_do_process" id="%{$items[rowsec].id}%_do_process" value="%{$items[rowsec].id}%">
+			<script language="JavaScript" type="text/javascript"> formarr[formcnt]="%{$items[rowsec].id}%_do_process"; formcnt++;</script>
+		</td>
+	</tr>
+	
+%{/section}%
+</table>
+
+%{$pages}%
+
+
+
+<p>Выберите желаемое действие над выбранными позициями:<br>
+		<select name="kind" id="kind">
+	<option value="1" SELECTED>Внести изменения</option>
+	
+	<option value="2">Удалить из базы</option>
+	<option value="4">Сделать отображаемыми на сайте</option>
+	<option value="5">Сделать невидимыми на сайте</option>
+	
+</select>&nbsp;&nbsp;&nbsp;
+
+
+<input type="button" name="selAll" id="selAll" value="Выбрать все" onclick="for(i=0;i<formcnt;i++){s=document.getElementById(formarr[i]); s.checked=true;}"> 
+
+<input type="button" name="selAll" id="selAll" value="Отменить все" onclick="for(i=0;i<formcnt;i++){s=document.getElementById(formarr[i]); s.checked=false;}"> 
+<P><input type="submit" name="Update" id="Update" value="Внести изменения!" onclick="return window.confirm('ВНИМАНИЕ!!! Вы уверены, что хотите произвести выбранное действие над группой записей?');">
+</form>

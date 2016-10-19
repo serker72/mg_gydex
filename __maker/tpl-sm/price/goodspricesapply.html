@@ -1,0 +1,29 @@
+<!--таблица цен на товар -->	
+	<table width="98%" border="0" cellspacing="1" cellpadding="1">
+	%{section name=pricesec loop=$prices}%	
+
+<!-- вид цены итем -->
+<tr align="left" valign="top">
+	<td width="*" class="itemscell"><a name="{itemno}"></a>
+	
+	<a href="#" onclick="winop('ed_pr_compact.php?action=1&id=%{$prices[pricesec].itemno}%&mode=%{$mode}%','500','400', 'edprice');">%{$prices[pricesec].itemname}%</a>
+	%{if $prices[pricesec].is_base}%
+	<div style="color: #ff0000; font-weight: bold;">базовая цена</div>	
+	%{else}%
+		<nobr>
+		<input class="unbord" type="checkbox" value="" %{if $prices[pricesec].is_formula}%checked%{/if}%> 
+		%{$prices[pricesec].formula}%</nobr>
+	%{/if}%
+	</td>
+	
+	<td width="*" class="itemscell">
+		%{$prices[pricesec].used}%<br>
+		<input type="button" value="Редактировать..." onclick="winop('viewconds.php?price_id1=%{$prices[pricesec].itemno}%','500','350', 'conditions');"><p>
+		
+		%{if $prices[pricesec].has_cond}%
+		<input type="submit" name="doDelCond_%{$prices[pricesec].itemno}%" id="doDelCond_%{$prices[pricesec].itemno}%" value="Удалить условие" onclick="return window.confirm('ВНИМАНИЕ!!! Вы действительно хотите удалить данное условие?');">
+		%{/if}%
+	</td>
+</tr>
+	%{/section}%
+	</table>

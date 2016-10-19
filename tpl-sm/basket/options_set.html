@@ -1,0 +1,12 @@
+		<tr  valign="top">
+			<td align="right">
+				<em>%{$title}%</em> 
+			</td>
+			<td>
+				<select name="%{$prename}%%{$set_name}%" id="%{$prename}%%{$set_name}%" style="width: 200px;" onChange="try{m=document.getElementById('%{$number}%_do_process'); m.checked=true;}catch(e){}">
+				%{html_options values=$ids output=$names selected="$itsel"}%
+				</select>
+				
+			</td>
+		</tr>
+			

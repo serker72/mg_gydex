@@ -1,0 +1,49 @@
+
+%{$pages}%
+<!-- список foto на странице-->
+<table width="98%" border="0" cellspacing="1" cellpadding="0" align="center">
+
+%{section name=itemsec loop=$items}%
+<tr align="left" valign="top">
+%{section name=cellsec loop=$items[itemsec].cells}%
+
+
+<!-- €чейка с фото -->
+<td width="%{$items[itemsec].cells[cellsec].td_width}%%">
+
+<!-- block -->
+		<table width="98%" border="0" cellspacing="0" cellpadding="0">
+		<tr align="left" valign="top">
+			<td width="12" style="background-image: url(/img/block/left-fon.gif); background-position: top left; background-repeat: repeat-y;"><img src="/img/block/left-ugol.gif" alt="" width="12" height="19" border="0"></td>
+			<td width="*" valign="middle" style="background-image: url(/img/block/up-fon.gif); background-position: top left; background-repeat: repeat-x;">&nbsp;
+			</td>
+			<td width="12" align="right" style="background-image: url(/img/block/right-fon.gif); background-position: top right; background-repeat: repeat-y;"><img src="/img/block/right-ugol.gif" alt="" width="12" height="19" border="0"></td>
+		</tr>
+		<tr align="left" valign="top">
+			<td width="12" valign="bottom" style="background-image: url(/img/block/left-fon.gif); background-position: top left; background-repeat: repeat-y;"><img src="/img/block/left-grad.gif" alt="" width="12" height="55" border="0"></td>
+			<td width="*" align="center" valign="middle" style="background-image: url(/img/block/fon.gif); background-position: bottom left; background-repeat: repeat-x;">
+			
+			<a href="%{$items[itemsec].cells[cellsec].page_url}%" title="%{$items[itemsec].cells[cellsec].altname}%"><img src="/%{$items[itemsec].cells[cellsec].image_src}%" alt="%{$items[itemsec].cells[cellsec].altname}%" border="0" width="%{$items[itemsec].cells[cellsec].image_w}%" height="%{$items[itemsec].cells[cellsec].image_h}%"></a><br>
+			%{$items[itemsec].cells[cellsec].name}%
+			
+			
+			</td>
+			<td width="12" align="right" valign="bottom" style="background-image: url(/img/block/right-fon.gif); background-position: top right; background-repeat: repeat-y;"><img src="/img/block/right-grad.gif" alt="" width="12" height="55" border="0"></td>
+		</tr>
+		<tr align="left" valign="top">
+			<td width="12" style="background-image: url(/img/block/left-fon.gif); background-position: top left; background-repeat: repeat-y;"><img src="/img/block/left-down.gif" alt="" width="12" height="15" border="0"></td>
+			<td width="*" style="background-image: url(/img/block/down-fon.gif); background-position: bottom left; background-repeat: repeat-x;"><img src="img/block/down-fon.gif" alt="" width="1" height="14" border="0"></td>
+			<td width="12" align="right" style="background-image: url(/img/block/right-fon.gif); background-position: top right; background-repeat: repeat-y;"><img src="/img/block/right-down.gif" alt="" width="12" height="15" border="0"></td>
+		</tr>
+		</table>
+		<!--endof block -->		
+
+
+
+</td>
+%{/section}%
+</tr>
+%{/section}%
+
+</table>
+%{$pages}%

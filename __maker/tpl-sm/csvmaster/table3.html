@@ -1,0 +1,93 @@
+%{if $glob_error!=true}%
+<style>
+.greenish{
+	background-color: #ccffcc;
+}
+.redish{
+	background-color: #ffcccc;
+}
+</style>
+
+<strong>Обработка csv-файла окончена!<br>
+Вы можете:<br>
+</strong>
+
+<form action="csvmaster.php"  method="post">
+	<input type="hidden" name="step" value="1">
+	<input type="submit" name="doAnother" id="doAnother" value="&lt;- Обработать другой файл">
+	<input type="button" name="doCancel" id="doCancel" value="Закрыть мастер синхронизации" onClick="window.close();">
+</form>
+
+
+<table width="95%" border="0" cellspacing="1" cellpadding="4" style="background-color:#9a9a9a;">
+<tr align="left" valign="bottom">
+	<td width="*"  class="itemscell_unbord" colspan="6">
+	<div align="center"><h2>Результат обновления:</h2></div>
+	</td>
+</tr>
+<tr align="left" valign="top">
+	<td class="itemshead"><strong>Артикул</strong></td>
+	<td class="itemshead"><strong>Название</strong></td>
+	<td class="itemshead"><strong>Остаток</strong></td>	
+	<td class="itemshead"><strong>Товарная группа</strong></td>
+	<td class="itemshead"><strong>Действие</strong></td>
+	<td class="itemshead"><strong>Результат</strong></td>
+</tr>	
+%{section name=recsec loop=$records}%
+%{if $records[recsec].time_to_strike}%
+<tr align="left" valign="top">
+	<td class="itemshead"><strong>Артикул</strong></td>
+	<td class="itemshead"><strong>Название</strong></td>
+	<td class="itemshead"><strong>Остаток</strong></td>	
+	<td class="itemshead"><strong>Товарная группа</strong></td>
+	<td class="itemshead"><strong>Действие</strong></td>
+	<td class="itemshead"><strong>Результат</strong></td>
+</tr>
+%{/if}%
+
+<tr align="left" valign="top">
+<td class="itemscell_unbord%{if $records[recsec].bflag}%_white%{/if}%">
+	%{$records[recsec].csv_art}%
+</td>
+<td class="itemscell_unbord%{if $records[recsec].bflag}%_white%{/if}%">
+	%{$records[recsec].csv_name}%
+</td>
+<td class="itemscell_unbord%{if $records[recsec].bflag}%_white%{/if}%">
+	%{$records[recsec].csv_ost}%
+</td>
+<td class="itemscell_unbord%{if $records[recsec].bflag}%_white%{/if}%">
+	%{$records[recsec].group}%	
+</td>
+<td class="itemscell_unbord%{if $records[recsec].bflag}%_white%{/if}%">
+		%{if $records[recsec].action==1}%Добавить товар
+		%{else}%
+		%{if $records[recsec].action==2}%Редактировать товар
+		%{else}%
+		%{if $records[recsec].action==3}%Ничего не делать
+		%{else}%
+		Действие не определено
+		%{/if}%>
+		%{/if}%
+		%{/if}%
+</td>
+<td class="itemscell_unbord%{if $records[recsec].bflag}%_white%{/if}%">
+	%{if $records[recsec].result==true}%
+	<span class="greenish"><strong>ОК</strong></span>
+	%{else}%
+	<span class="redish"><strong>ОШИБКА</strong></span>
+	%{/if}%
+</td>
+</tr>
+%{/section}%
+</table><p>
+
+%{else}%
+
+<h3>Ошибка обработки файлов!</h3>
+<form action="csvmaster.php"  method="post">
+	<input type="hidden" name="step" value="1">
+	<input type="submit" name="doAnother" id="doAnother" value="&lt;- Выбрать другой файл">
+	<input type="button" name="doCancel" id="doCancel" value="Отмена" onClick="window.close();">
+</form>
+
+%{/if}%

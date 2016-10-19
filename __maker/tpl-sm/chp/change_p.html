@@ -1,0 +1,26 @@
+<form action="chp.html" method="post" id="change_p_form">
+<h1>Смена пароля</h1>
+
+<label for="new_password">Введите Ваш новый пароль:</label><br />
+<small>минимальная длина 4 символа</small><br />
+<input type="text" name="new_password" id="new_password" size="40" maxlen="255" />
+
+<input type="submit" name="doNew" value="Сменить пароль" />
+
+
+
+</form>
+<script type="text/javascript">
+$(function(){
+	$("#change_p_form").bind("submit", function(){
+		ret=true;
+		if($("#new_password").attr("value").length<4){
+			ret=ret&&false;
+			alert("Пароль должен быть длиной 4 символа или больше!");
+			$("#new_password").focus();
+		}
+		
+		return ret;
+	});
+});
+</script>

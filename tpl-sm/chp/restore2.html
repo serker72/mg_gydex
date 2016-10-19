@@ -1,0 +1,100 @@
+ 
+
+ 
+%{foreach name=pr from=$matched item=item}%%{/foreach}%
+%{if $smarty.foreach.pr.total==0}%
+<div class="wrong">Неверное сочетание логина и пароля.</div>
+%{else}% 
+ 
+
+ 
+<form action="/restore.php" method="post" id="restore_form"  autocomplete="off"> 
+
+<h2>Выберите программу, в которой Вы желаете восстановить пароль:</h2>  
+
+%{foreach name=pr from=$matched item=item}%%{/foreach}% 
+
+%{if $smarty.foreach.pr.total>0}%
+	<input type="checkbox" id="program_all"  value="1" /><label for="program_all"><strong>Все программы</strong></label><br>
+
+%{/if}%
+
+%{foreach name=pr from=$matched item=item}%
+
+	<input type="checkbox" id="program_id_%{$item.id}%" name="program_id_%{$item.id}%" value="%{$item.id}%" %{if $smarty.foreach.pr.first}%  %{/if}% %{if !$item.program_is_active}% disabled  %{/if}% /><label for="program_id_%{$item.id}%">%{$item.name}%%{$item.orgs}%</label>%{if !$item.program_is_active}%: <span class="wrong">%{$item.inactive_reason}%</span>%{/if}%<br />
+ 
+ 
+
+%{/foreach}%
+ 
+ 
+ 
+<input type="hidden" name="email" value="%{$email}%" />
+<h3>Введите новый пароль:</h3>
+ 
+        <label for="password">Новый пароль</label><br />
+		<small>минимальная длина 6 символов; допустимые символы - латинские буквы и цифры</small><br />
+	
+    	 <input style="display:none" name="fakePassword" type="password">
+
+    
+         <input type="password" size="20" maxlength="20" name="new_password" id="new_password"  autocomplete="off" value=""  />
+       <br />
+<br />
+
+    
+        <input type="submit" value="Восстановить пароль" name="doRestore" />
+         
+
+</form>
+ <script type="text/javascript">
+	$(function(){
+		$("#program_all").bind("change", function(){
+			$.each($("input[id^=program_id_]"), function(k,v){
+				if(!$(v).prop("disabled")) $(v).prop("checked", $("#program_all").prop("checked"));
+			});
+		});
+		
+		$("input[id^=program_id_]").bind("change", function(){
+			state=$(this).prop("checked");
+			total=0; checked=0;
+			
+			$.each($("input[id^=program_id_]"), function(k,v){
+				if(!$(v).prop("disabled")) total++;
+			});
+			
+			checked=$("input[id^=program_id_]:checked").length;
+			if((total>0)&&(total==checked)) $("#program_all").prop("checked",true);
+			else if((total>0)&&(total>checked)) $("#program_all").prop("checked",false);
+			
+		});
+		
+		$("#restore_form").bind("submit",function(){
+			can_submit=true;
+			if($("#new_password").val().length<6) can_submit=can_submit&&false;
+		  
+		  reg1=new RegExp("[A-Za-z]+");
+		  reg2=new RegExp("[0-9]+");
+		  
+		  if($("#new_password").val().search(reg1)==-1) can_submit=can_submit&&false;
+		  if($("#new_password").val().search(reg2)==-1) can_submit=can_submit&&false;
+		  
+		  
+		  if(!can_submit){
+			  alert("Пароль должен быть 6 символов и длиннее и состоять только из латинских букв и цифр!");	
+			  $("#new_password").focus();
+		  }
+		  
+		   
+		  //должна быть отмечена хотя бы 1 галочка
+		   if(can_submit&&(	$("input[id^=program_id_]:checked").length==0)){
+		   		alert("Выберите программу для восстановления пароля!");	
+			    can_submit=can_submit&&false;
+		   }
+		
+			return  can_submit;
+		});
+		 
+	});
+	</script>
+%{/if}%    

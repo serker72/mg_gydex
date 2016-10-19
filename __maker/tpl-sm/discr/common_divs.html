@@ -1,0 +1,315 @@
+<style>
+div.wait_window_vis{
+	position: absolute;
+	width: 200px;
+	height: 100px;
+	
+	border: 1px solid black;
+	background-color: white;
+	overflow: hidden;
+	padding: 10px 10px 10px 10px;
+	text-align: center;
+	vertical-align: middle;
+	display: block;
+	z-index:1000 !important;
+}
+div.wait_window_invis{
+	position: absolute;
+	width: 200px;
+	height: 100px;
+	
+	top: 100px;
+	left: 100px;
+
+	border: 1px solid black;
+	background-color: white;
+	overflow: hidden;
+	padding: 10px 10px 10px 10px;
+
+	text-align: center;
+	vertical-align: middle;
+	
+	display: none;
+}
+.err_msg{
+	color:Red;
+}
+</style>
+
+<!-- Окно ожидания -->
+<div id="wait_win" class="wait_window_invis">
+<br>
+<br>
+<strong><em>подождите...</em></strong>
+</div>
+
+<!-- Окно правки группы -->
+<div id="user_edit" style="width:320px; height:500px; border: 1px solid black; background-color:white; display:none; position:absolute; top:0px; left:0px; padding: 10px 10px 10px 10px; overflow:auto; 	z-index:1000 !important;">
+	<h3>Правка пользователя</h3>
+    <input name="id_user" type="hidden" id="id_user" value="" />
+    
+    <strong>Логин:</strong><br />
+    <input name="" type="text" id="login_user" size="20" maxlength="255" />
+        <span id="err_login" class="err_msg"></span>
+  <p />
+    
+    
+    <div id="user_passw_section"><strong>Пароль:</strong><br />
+      <input name="passw_user" type="password" id="passw_user" size="20" maxlength="255" />
+      <span id="err_passw" class="err_msg"></span>
+      <p />
+      
+      <strong>Подтверждение пароля:</strong><br />
+      <input name="confirm_passw_user" type="password" id="confirm_passw_user" size="20" maxlength="255" />
+      <p />
+    </div>
+    <div id="ch_passw_section" style="display:none;">
+    	<a href="#" onclick="
+         n=document.getElementById('user_passw_section'); 
+         n.style.display='block';
+         
+         n=document.getElementById('ch_passw_section'); 
+         n.style.display='none';
+         return false;
+        ">сменить пароль</a><p />
+    </div>
+    
+    
+    <strong>Имя:</strong><br />
+    <input name="" type="text" id="name_user" size="40" maxlength="255" />
+    <p />
+       
+    
+    <strong>Адрес:</strong><br />
+    <textarea name="" cols="40" rows="5" id="address_user" style=" height:100px;"></textarea>
+    <p />
+    
+    
+    <strong>Email:</strong><br />
+    <input name="" type="text" id="email_user" size="20" maxlength="255" />
+    <p />
+    
+    <strong>Телефон:</strong><br />
+    <input name="" type="text" id="phone_user" size="20" maxlength="255" />
+    <p />
+    
+    
+<strong>Активен:</strong> <input name="" class="unbord" type="checkbox" id="user_is_active" value="" />
+    <p />
+    
+    <input name="" type="button" id="new_user" value="Добавить" onClick="
+    
+    loginuser=document.getElementById('login_user'); 
+    
+    if(loginuser.value.length<1) {alert('Заполните Логин!'); loginuser.focus(); return false;} 
+    
+    iduser=document.getElementById('id_user');
+    
+    passwuser=document.getElementById('passw_user'); if(passwuser.value.length<1) {alert('Заполните Пароль!'); passwuser.focus(); return false;} 
+    confirmpasswuser=document.getElementById('confirm_passw_user'); if(confirmpasswuser.value.length<1) {alert('Заполните Подтверждение пароля!'); confirmpasswuser.focus(); return false;} 
+    if(confirmpasswuser.value!=passwuser.value){
+    	alert('Пароль и Подтверждение не совпадают!'); passwuser.focus(); return false;
+    }
+    
+    
+    nameuser=document.getElementById('name_user');
+    
+    addressuser=document.getElementById('address_user');
+    
+    emailuser=document.getElementById('email_user');
+    
+    phoneuser=document.getElementById('phone_user');
+    
+    userisactive=document.getElementById('user_is_active');
+    
+   %{$COORDFUNC}%
+    mn=document.getElementById('wait_win'); 
+    $('#wait_win').css('top', coord[1]);
+	$('#wait_win').css('left', coord[0]);
+ 	mn.className='wait_window_vis';
+    
+    
+    
+    xajax_AddUser(loginuser.value, passwuser.value, confirmpasswuser.value, nameuser.value, addressuser.value, emailuser.value, phoneuser.value, userisactive.checked, %{$gfrom}%, %{$ofrom}%, %{$per_page}%);
+    
+    return false; 
+    " />
+    <input name="" type="button" id="ed_user" value="Сохранить" onclick="
+     loginuser=document.getElementById('login_user'); if(loginuser.value.length<1) {alert('Заполните Логин!'); loginuser.focus(); return false;} 
+    
+    
+    oc=document.getElementById('user_passw_section');
+    //user_passw_section
+    if(oc.style.display=='block'){
+      passwuser=document.getElementById('passw_user'); if(passwuser.value.length<1) {alert('Заполните Пароль!'); passwuser.focus(); return false;} 
+      confirmpasswuser=document.getElementById('confirm_passw_user'); if(confirmpasswuser.value.length<1) {alert('Заполните Подтверждение пароля!'); confirmpasswuser.focus(); return false;} 
+      if(confirmpasswuser.value!=passwuser.value){
+          alert('Пароль и Подтверждение не совпадают!'); passwuser.focus(); return false;
+      }
+      pv=passwuser.value;
+      cpv=confirmpasswuser.value;
+    }else{
+    	pv='';
+      cpv='';      
+    }
+
+    nameuser=document.getElementById('name_user');
+    
+    iduser=document.getElementById('id_user');
+    
+    addressuser=document.getElementById('address_user');
+    
+    emailuser=document.getElementById('email_user');
+    
+    phoneuser=document.getElementById('phone_user');
+    
+    userisactive=document.getElementById('user_is_active');
+    
+    %{$COORDFUNC}%
+    mn=document.getElementById('wait_win'); 
+    $('#wait_win').css('top', coord[1]);
+$('#wait_win').css('left', coord[0]);
+
+    
+    mn.className='wait_window_vis';
+    
+       
+    xajax_EditUser(iduser.value, loginuser.value, oc.style.display, pv, cpv, nameuser.value, addressuser.value, emailuser.value, phoneuser.value, userisactive.checked, %{$gfrom}%, %{$ofrom}%, %{$per_page}%);
+    
+    return false; 
+    
+    " />
+    
+    <input name="" type="button" onClick="mn=document.getElementById('user_edit'); mn.style.display='none'; return false;" value="Отмена" />
+</div>
+
+
+<!-- Окно правки группы -->
+<div id="group_edit" style="width:320px; height:300px; border: 1px solid black; background-color:white; display:none; position:absolute; top:0px; left:0px; padding: 10px 10px 10px 10px; overflow:auto; 	z-index:1000 !important;">
+	<h3>Правка группы</h3>
+    <input name="id_group" type="hidden" id="id_group" value="" />
+    <strong>Название группы:</strong><br />
+    <input name="" type="text" id="name_group" size="40" maxlength="255">
+    <p />
+    
+    <strong>Описание:</strong><br />
+    <textarea name="" cols="40" rows="5" id="info_group" style="height:100px;"></textarea>
+    <p />
+    
+    <strong>Активна:</strong> <input name="" class="unbord" type="checkbox" id="group_is_active" value="">
+    <p />
+    
+    <input name="" type="button" id="new_group" value="Добавить" onClick="
+    m=document.getElementById('name_group'); if(m.value.length<1) {alert('Заполните Название группы!'); return false;} 
+    n=document.getElementById('info_group'); 
+    oo=document.getElementById('group_is_active'); 
+    
+    mn=document.getElementById('group_edit'); mn.style.display='none'; 
+    %{$EVENT}%
+    mn=document.getElementById('wait_win'); mn.style.top=coord[1]; mn.style.left=coord[0]; mn.className='wait_window_vis'; 
+    
+    xajax_AddGroup(m.value, n.value, oo.checked, %{$gfrom}%, %{$ofrom}%, %{$per_page}%);
+    return false; 
+    ">
+    <input name="" type="button" id="ed_group" value="Сохранить" onclick="
+     m=document.getElementById('name_group'); if(m.value.length<1) {alert('Заполните Название группы!'); return false;} 
+    n=document.getElementById('info_group'); 
+    oo=document.getElementById('group_is_active'); 
+    ooo=document.getElementById('id_group'); 
+    
+    
+    mn=document.getElementById('group_edit'); mn.style.display='none'; 
+     %{$COORDFUNC}%
+    mn=document.getElementById('wait_win'); 
+    $('#wait_win').css('top', coord[1]);
+$('#wait_win').css('left', coord[0]);
+    
+    mn.className='wait_window_vis'; 
+    
+    xajax_EditGroup(ooo.value, m.value, n.value, oo.checked);
+    return false; 
+    
+    ">
+    
+    <input name="" type="button" onClick="mn=document.getElementById('group_edit'); mn.style.display='none';" value="Отмена">
+</div>
+
+
+<!-- Окно правки объекта -->
+<div id="obj_edit" style="width:320px; height:300px; border: 1px solid black; background-color:white; display:none; position:absolute; top:0px; left:0px; padding: 10px 10px 10px 10px; overflow:auto; 	z-index:1000 !important;">
+	<h3>Правка объекта</h3>
+    
+    <input name="id_obj" type="hidden" id="id_obj" value="" />
+    <strong>Название объекта:</strong><br />
+    <input name="" type="text" id="name_obj" size="40" maxlength="255" />
+    <p />
+    
+    <strong>Описание:</strong><br />
+    <textarea name="" cols="40" rows="5" id="info_obj" style="height:100px;"></textarea>
+    <p />
+        
+    <input name="" type="button" id="new_obj" value="Добавить" onClick="
+    m=document.getElementById('name_obj'); if(m.value.length<1) {alert('Заполните Название объекта!'); return false;} 
+    n=document.getElementById('info_obj'); 
+    
+    mn=document.getElementById('obj_edit'); mn.style.display='none'; 
+    %{$EVENT}%
+    mn=document.getElementById('wait_win'); 
+    $('#wait_win').css('top', coord[1]);
+$('#wait_win').css('left', coord[0]);
+    
+    
+     mn.className='wait_window_vis'; 
+    
+    xajax_AddObj(m.value, n.value, %{$gfrom}%, %{$ofrom}%, %{$per_page}%); 
+    return false;
+    " />
+    <input name="" type="button" id="ed_obj" value="Сохранить" onclick="
+    
+    m=document.getElementById('name_obj'); if(m.value.length<1) {alert('Заполните Название объекта!'); return false;} 
+    n=document.getElementById('info_obj'); 
+    o=document.getElementById('id_obj'); 
+    
+    mn=document.getElementById('obj_edit'); mn.style.display='none'; 
+    %{$COORDFUNC}%
+    mn=document.getElementById('wait_win'); 
+    $('#wait_win').css('top', coord[1]);
+$('#wait_win').css('left', coord[0]);
+    mn.className='wait_window_vis'; 
+    
+    xajax_EdObj(o.value, m.value, n.value); 
+    return false;
+    " />
+    
+    <input name="" type="button" onClick="mn=document.getElementById('obj_edit'); mn.style.display='none'; return false;" value="Отмена" />
+</div>
+
+<!-- окно ошибки -->
+<div id="error_window" style="width:200px; height:100px; border: 1px solid Red; background-color: #FFEAEB; display:none; position:absolute; top:0px; left:0px; padding: 20px 10px 10px 10px;  text-align:center; vertical-align:middle; color:red; font-weight:bold; 	z-index:1000 !important;">
+  <div id="error_window_text"></div><p />
+  <input name="" type="button" value="ОК" onClick="
+  	mn=document.getElementById('error_window'); mn.style.display='none';
+    return false;
+  " />
+</div>
+
+
+
+<!-- Окно правки пол-ля -->
+<div id="user_rights_edit" style="width:320px; height:300px; border: 1px solid black; background-color:white; display:none; position:absolute; top:0px; left:0px; padding: 10px 10px 10px 10px; overflow:auto; 	z-index:1000 !important;">
+	
+    <div id="user_rights_edit_inner" ></div>
+    
+    
+    <input name="" type="button" onClick="mn=document.getElementById('user_rights_edit'); mn.style.display='none'; location.reload();" value="Закрыть">
+</div>
+
+
+<!-- Окно правки пол-ля -->
+<div id="group_users_edit" style="width:320px; height:300px; border: 1px solid black; background-color:white; display:none; position:absolute; top:0px; left:0px; padding: 10px 10px 10px 10px; overflow:auto; 	z-index:1000 !important;">
+	
+    <div id="group_users_edit_inner" ></div>
+    
+    
+    <input name="" type="button" onClick="mn=document.getElementById('group_users_edit'); mn.style.display='none'; location.reload();" value="Закрыть">
+</div>

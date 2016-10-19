@@ -1,0 +1,40 @@
+ <table class="gydex_table" >
+           
+          <tbody>
+
+%{section name=langsec loop=$langs}%
+		<tr align="left" valign="top">
+			<td width="*" class="itemscellwhite">
+			
+			<a href="#file_id=%{$fileno}%&res_id=%{$resno}%&lang_id=%{$langs[langsec].langno}%" name="file_id=%{$fileno}%&res_id=%{$resno}%&lang_id=%{$langs[langsec].langno}%" title="править html значение" onclick="
+ 
+%{$COORDFUNC}% 
+n=document.getElementById('doEdVal'); n.style.display='inline'; 
+n=document.getElementById('doInpVal'); n.style.display='none'; 
+ 
+m=document.getElementById('val_add_win'); 
+$('#val_add_win').css('top', coord[1]);
+$('#val_add_win').css('left', coord[0]);
+
+
+aa=document.getElementById('val_file_id'); aa.value='%{$fileno_}%';
+
+cc=document.getElementById('val_lang_id'); cc.value='%{$langs[langsec].langno}%';
+dd=document.getElementById('val_res_id'); dd.value='%{$resno_}%';
+
+bb=document.getElementById('res_value'); bb.value='%{$langs[langsec].value_}%';  
+m.className='val_window_vis';
+return false;
+
+"><img src="/%{$langs[langsec].lang_flag}%" alt="" border="0"></a>
+			
+			<strong>%{$langs[langsec].value}%</strong>
+			
+
+			<a href="#file_id=%{$fileno}%&res_id=%{$resno}%" title="удалить значение" onclick="if(window.confirm('ВНИМАНИЕ!!! Вы действительно хотите удалить данное значение из списка?')){  /*m=document.getElementById('%{$fileno}%_resoures'); m.innerHTML='<em>подождите...</em>';*/ xajax_DelVal('%{$fileno}%', '%{$resno}%', '%{$langs[langsec].langno}%'); return false; }"><img src="/img/delete.jpg" alt="удалить значение" width="16" height="16" border="0"></a>
+			
+			</td>
+		</tr>
+%{/section}%		
+</tbody>
+</table>

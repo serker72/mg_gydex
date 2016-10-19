@@ -1,0 +1,48 @@
+	<script type="text/javascript" src="/js/faq.js"></script>
+    <div id="faq_total1">
+
+       
+       %{if $solution_id!=-1 and $group_id!=-1}%
+        <h2> <a name="faq_title"></a> %{$sol.name}% </h2> 
+       %{/if}% 
+       
+        <div class="faq_gr_q">
+            %{foreach from=$gr item=g}%
+            <div class="faq_tab" id="faq_gr_%{$g.id}%" %{if $group_id==$g.id or ($group_id==-1 and $g.id==0)}% style="display:block;"%{/if}%>
+            
+                 
+                <ul>
+                    %{foreach from=$g.qs item=q}%
+                    <li id="faq_ref_%{$q.id}%"  ><a href="#faq">%{$q.question}%</a></li>
+                    %{/foreach}%
+                </ul>
+                
+            </div>
+            %{/foreach}%
+        </div>
+       
+       
+    
+    </div>
+    <div class="clr"></div>
+    
+    
+     <!-- вопросы - ответы -->
+        %{if $solution_id!=-1 and $group_id!=-1}%
+        <div class="qas">
+          <a name="faq"></a>
+            %{foreach from=$qs item=q}%
+            <div id="faq_qa_%{$q.id}%" %{if $q.is_opened}% style="display:block;"%{else}% style="display:none;"%{/if}%>
+                    <div class="question"><a name="question_%{$q.id}%"></a>%{$q.question}%</div>
+                    <div class="answer simple_text">%{$q.answer}%</div>
+                     
+			</div>                    
+           %{/foreach}%
+        </div>
+        %{/if}%
+    
+    
+    
+    
+    
+    

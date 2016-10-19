@@ -1,0 +1,67 @@
+	<script type="text/javascript" src="/js/faq.js"></script>
+    <div id="faq_total1">
+        <h2><a name="faq"></a>FAQ</h2>
+    
+        <!-- список продуктов -->
+        <div class="faq_prod1">
+            <label for="solution_id1">Выберите продукт:</label><br />
+    
+            <select id="solution_id1">
+                %{foreach from=$sols item=item}%
+                <option value="%{$item.id}%" %{if $solution_id==$item.id}% selected="selected"%{/if}%>%{$item.name}%</option>
+                %{/foreach}%
+            </select>
+        </div>
+        
+        
+      
+        <!--  меню по группам -->
+        <div class="faq_grs">
+            %{foreach from=$gr item=g}%
+            <div >
+            <a href="#" id="faq_grtab_%{$g.id}%">%{$g.name}%</a>
+            
+            </div>
+            %{/foreach}%
+        </div>
+        
+        <div class="faq_gr_q">
+            %{foreach from=$gr item=g}%
+            <div class="faq_tab" id="faq_gr_%{$g.id}%" %{if $group_id==$g.id or ($group_id==-1 and $g.id==0)}% style="display:block;"%{/if}%>
+            
+                <h3>%{$g.name}%</h3>
+                <ul>
+                    %{foreach from=$g.qs item=q}%
+                    <li id="faq_ref_%{$q.id}%"  ><a href="#" onClick="return false;">%{$q.question}%</a></li>
+                    %{/foreach}%
+                </ul>
+                
+            </div>
+            %{/foreach}%
+        </div>
+       
+       
+    
+    </div>
+    <div class="clr"></div>
+    
+    
+     <!-- вопросы - ответы -->
+        %{if $solution_id!=-1 and $group_id!=-1}%
+        <div class="qas">
+        <!--    <h2>%{$sol.name}%, %{$group.name}%</h2>-->
+            %{foreach from=$qs item=q}%
+            <div id="faq_qa_%{$q.id}%" %{if $q.is_opened}% style="display:block;"%{else}% style="display:none;"%{/if}%>
+                    <div class="question"><a name="question_%{$q.id}%"></a>%{$q.question}%</div>
+                    <div class="answer simple_text">%{$q.answer}%</div>
+                     
+			</div>                    
+           %{/foreach}%
+        </div>
+        %{/if}%
+    
+    
+    
+    
+    
+    

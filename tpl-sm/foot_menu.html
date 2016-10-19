@@ -1,0 +1,28 @@
+
+<!-- foot menu -->
+<table width="*" border="0" cellspacing="10" cellpadding="0">
+<tr align="right" valign="top">
+
+%{section name=itemsec loop=$items}%
+<td width="*">
+	<a href="%{$items[itemsec].item_url}%" class="dmenulink" %{if $items[itemsec].is_new}%target="_blank"%{/if}%><img src="/%{$items[itemsec].image_src}%" alt="%{$items[itemsec].name}%" border=0>%{$items[itemsec].name}%</a>&nbsp;
+</td>
+%{/section}%
+
+
+</tr>
+<tr align="right" valign="top">
+
+%{section name=itemsec loop=$items}%
+<td width="*">
+	
+	%{section name=subitemsec loop=$items[itemsec].subitems}%
+	<a href="%{$items[itemsec].subitems[subitemsec].item_url}%" class="dmenulink_sub" %{if $items[itemsec].subitems[subitemsec].is_new}%target="_blank"%{/if}%><img src="/%{$items[itemsec].subitems[subitemsec].image_src}%" alt="%{$items[itemsec].subitems[subitemsec].name}%" border=0>%{$items[itemsec].subitems[subitemsec].name}%</a>&nbsp;
+	%{/section}%
+	
+</td>
+%{/section}%
+
+</tr>
+</table>
+

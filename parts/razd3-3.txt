@@ -1,0 +1,1 @@
+<h1 style=\"color: white; font-weight: normal;\"><strong>CMS BlackCat</strong> demo-site</h1>

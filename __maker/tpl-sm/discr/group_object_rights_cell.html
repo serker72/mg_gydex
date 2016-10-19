@@ -1,0 +1,64 @@
+<div align="center">
+    	<!-- код объекта %{$selected_object.id}%<br/>
+        код группы %{$group_id}% <br /> -->
+        
+      
+            	%{if $selected_object.active_rights_len>0}%
+             	 
+                    %{section name=activesec loop=$selected_object.active_rights}%
+                      
+                     <span title="%{$selected_object.active_rights[activesec].info_esc}%"><strong>%{$selected_object.active_rights[activesec].name}%</strong></span> 
+                    
+                
+                     <a href="#" title="удалить права на %{$selected_object.active_rights[activesec].info_esc}%" onClick="
+                   if(window.confirm('Вы уверены?')){
+                      %{$EVENT}%
+                      mn=document.getElementById('wait_win'); 
+                      mn.style.top=coord[1]; 
+                      mn.style.left=coord[0];	
+  
+                      mn.style.display='block';
+                                            xajax_RevokeFromObjectToGroup(%{$selected_object.active_rights[activesec].id}%, %{$selected_object.id}%, %{$group_id}%); 
+                                            
+                   }
+                   return false;
+                 ">-</a> 
+                  
+                    %{/section}%
+                 
+                %{else}%
+                	<em>прав нет!</em>
+                %{/if}%
+            
+            
+         
+           		%{if $selected_object.inactive_rights_len>0}%
+              	Добавьте права&nbsp;на:<br>
+                <select name="%{$group_id}%_%{$selected_object.id}%_inactive_rights"  id="%{$group_id}%_%{$selected_object.id}%_inactive_rights" style="width:105px;">
+                     %{section name=inactivesec loop=$selected_object.inactive_rights}%	
+                        <option value="%{$selected_object.inactive_rights[inactivesec].id}%">%{$selected_object.inactive_rights[inactivesec].name}%=%{$selected_object.inactive_rights[inactivesec].info_esc}%</option>
+                        
+                      %{/section}%
+                 </select>
+                
+                 <input name="" type="button" value="+" title="добавить выбранное право" onClick="
+                 if(window.confirm('Вы уверены?')){
+                 	%{$EVENT}%
+                    mn=document.getElementById('wait_win'); 
+                    mn.style.top=coord[1]; 
+                    mn.style.left=coord[0];	
+                    mm=document.getElementById('%{$group_id}%_%{$selected_object.id}%_inactive_rights'); 
+                    
+                    mn.style.display='block';
+                    
+                    xajax_GrantOnObjectToGroup(mm.value , %{$selected_object.id}%, %{$group_id}%); 
+                 	
+                 }
+                 return false;
+                 " />
+                
+                 %{/if}%
+          
+           
+ 
+    </div>

@@ -1,0 +1,31 @@
+<!-- элемент дерева -->
+
+
+<div class="accordion">
+
+ 
+	%{section name=rowsec loop=$items}%
+	
+	 <h3>%{section name=langsec loop=$items[rowsec].langs}%%{if $items[rowsec].langs[langsec].id==LANG_CODE}%%{$items[rowsec].langs[langsec].name}%%{/if}%%{/section}%</h3>
+	 <div>
+	<a href="%{$items[rowsec].url_into}%" %{if $in_new}%target="_blank"%{/if}%  >%{$items[rowsec].obst_name}%</a>
+	%{$items[rowsec].defs}%
+	<br>
+	
+	%{section name=langsec loop=$items[rowsec].langs}%
+		
+	<a href="%{$items[rowsec].langs[langsec].url}%" %{if $in_new}%target="_blank"%{/if}% ><img src="/%{$items[rowsec].langs[langsec].lang_flag}%" border=0 vspace=0 hspace=2 >%{$items[rowsec].langs[langsec].name}%</a> 
+	
+	%{/section}%	
+	
+	
+	%{if $items[rowsec].sub_count>0}% 
+	%{$items[rowsec].subs}%
+    %{/if}%
+	 
+	</div>
+	
+	%{/section}%	
+ 
+
+</div>

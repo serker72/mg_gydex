@@ -1,0 +1,41 @@
+%{section name=itemsec loop=$items}%
+
+
+%{if $items[itemsec].has_root}%
+<div class="treeitem1">
+	<a href="%{$items[itemsec].url}%"><img src="%{$items[itemsec].pict}%" border=0 vspace=0 hspace=0>&nbsp;%{$items[itemsec].name}%</a>
+
+	%{if $items[itemsec].has_controls}%
+	<span style="font-size: 8pt;">&nbsp;&nbsp; <a class="photolink" href="#%{$items[itemsec].url}%" onmousedown="" onClick="
+	%{$items[itemsec].COORDFUNC}% 
+	pt=document.getElementById('foldername'); pt.value='%{$items[itemsec].name}%';
+	pt=document.getElementById('oldname'); pt.value='%{$items[itemsec].name}%';
+	
+	pt=document.getElementById('CreateBttn'); pt.style.display='none';
+	pt=document.getElementById('RenameBttn'); pt.style.display='inline';
+	
+	 pt=document.getElementById('mode'); pt.value='%{$mode}%'; 
+	 pt=document.getElementById('folderpath'); pt.value='%{$items[itemsec].prev_folder}%';  
+	 pt=document.getElementById('action'); pt.value='1'; 
+	 m=document.getElementById('dir_ed_win'); m.style.top=coord[1]; m.style.left=coord[0];  
+	 m.className='work_window_vis'; return false;
+	
+	
+	">переименовать</a> &nbsp;&nbsp;&nbsp;&nbsp; 
+
+	<a class="photolink" href="#del_%{$items[itemsec].url}%" onClick="ct=window.confirm('ВНИМАНИЕ!!! Вы действительно хотите удалить данный каталог?'); if(ct) {}">&nbsp;&nbsp;удалить</a></span>
+	%{/if}%
+	
+</div>
+%{/if}%
+
+%{if $items[itemsec].has_files}%
+%{section name=filesec loop=$items[itemsec].files}%
+<div class="treeitem1">
+	%{$items[itemsec].files[filesec].name}%
+</div>
+%{/section}%
+%{/if}%
+
+%{$items[itemsec].subs}%
+%{/section}%

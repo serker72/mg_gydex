@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="windows-1251">
+<title>%{$SITETITLE}%</title>
+
+<link href="newstyle.css?v=1.4" rel="stylesheet" type="text/css" />
+<link href="menu.css?v=1.1" rel="stylesheet" type="text/css" />
+
+<link rel="stylesheet" href="swfuploader.css" type="text/css">
+<script type="text/javascript" src="/js/jquery-1.10.2.min.js"></script>
+<script src="js/gen_validatorv4.js" type="text/javascript"></script>
+<script src="js/common.js" type="text/javascript"></script>
+<script src="js/funcs.js" type="text/javascript"></script>
+<script src="js/menu.js" type="text/javascript"></script>
+%{$xajax_scripts}%
+
+<link href="/js/ui/jquery-ui.css" rel="stylesheet" type="text/css" />
+<script src="/js/ui/jquery-ui.min.js"></script>
+<link rel="icon" href="/favicon3.ico" type="image/x-icon" />
+</head>
+
+<body>
+
+<div id="gydex_wrapper">
+
+<!-- header here -->
+	
+    <div id="gydex_header">
+    	<div id="gydex_logo">
+   	    	<a href="/__maker/"><img src="/img/newdis/logo.jpg" width="204" height="75" /></a> 
+        </div>
+         %{$HMENU1}% 
+        
+        <div class="clr"></div>
+        
+
+   </div>
+	
+    
+    
+    
+    
+<!-- main here -->    
+    
+  <div id="gydex_main_wrapper">
+    	<div id="gydex_left_col">
+        	%{$VMENU1}%
+         
+	  	</div>
+        <div id="gydex_main">
+        	
+            
+          <div id="dialog_help" title="Справка" style="display:none;">
+          		<div id="dialog_help_inner"></div>
+          </div>  
+          
+          %{$MODULE_HMENU}%
+          
+          
+          
+          %{foreach name=cont from=$context item=item}%%{/foreach}%
+          %{if $smarty.foreach.cont.total>0}%
+          <div id="gydex_context_wrapper">
+          	
+          
+              <div id="gydex_context_left">
+              
+              Доступные команды
+              </div>
+              
+              <div id="gydex_context">
+          	  <!-- context here -->	  
+                   %{foreach name=cont from=$context item=item}%
+                  <div class="gydex_context">	
+                  	<a %{if !$item.item.is_help}%href="%{$item.item.url}%"%{else}%href="#" onClick=" OpenHelp('%{$item.item.url}%'); return false;"%{/if}%>%{$item.item.name}%</a>
+                  </div>
+                  %{/foreach}%
+                   
+          		</div>
+         	 <!-- context -->
+          	</div>
+            %{/if}%
+                
+        
+          	<div id="gydex_breadcrumbs">
+            	%{foreach name=bc from=$bc item=item}%
+                %{if !$smarty.foreach.bc.last}%
+                <a href="%{$item.item.url}%">%{$item.item.name}%</a> > 
+                %{else}%
+                %{$item.item.name}%
+                %{/if}%
+                
+                %{/foreach}%
+                 
+          	</div>
+          
+          
+          	<div id="gydex_content">
+
+
+
+    
+
+     

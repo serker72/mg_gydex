@@ -1,0 +1,205 @@
+<!-- список подразделов в разделе -->
+
+ 
+
+<!-- форма разбивки списка итемов по Х штук на страницу -->
+
+	<form action="%{$listpagename}%" name="topa" id="topa">
+		<input type="hidden" name="id" value="%{$itemno}%">
+		<input type="hidden" name="from" value="0">
+		
+		<strong>Разбивать по:</strong> 
+		<select name="to_page" id="to_page" onChange="document.forms.topa.submit();">
+			<option value="10"%{if $topage==10}% SELECTED %{/if}%>10</option>
+			<option value="1"%{if $topage==1}% SELECTED %{/if}%>1</option>
+			<option value="30"%{if $topage==30}% SELECTED %{/if}%>30</option>
+			<option value="50"%{if $topage==50}% SELECTED %{/if}%>50</option>
+			<option value="100"%{if $topage==100}% SELECTED %{/if}%>100</option>			
+			<option value="9999"%{if $topage==9999}% SELECTED %{/if}%>9999</option>						
+		</select> <strong>позиций на страницу.</strong>
+		
+		</form>	
+
+<form action="%{$listpagename}%" method="post" name="updater" id="updater">
+<div align="right">
+<input type="submit" name="Update1" id="Update1" value="Внести изменения!" onclick="return window.confirm('ВНИМАНИЕ!!! Вы уверены, что хотите произвести выбранное действие над группой записей?');"></div>
+<input type="hidden" name="id" id="id" value="%{$itemno}%">
+<input type="hidden" name="from" id="from" value="%{$fromno}%">
+<input type="hidden" name="to_page" id="to_page" value="%{$topage}%">
+ 
+
+%{$pages}%
+
+
+          <table class="gydex_table" >
+          <thead>
+          <tr align="left" valign="top">
+              <th width="15%"> Имя </th>
+              <th width="*"> Параметры </th>	
+              <th width="*"> URL </th>
+              <th width="80"> Дополнительно </th>	
+              <th width="24"> <input id="check_all" type="checkbox" value="1" /> </th>
+          </tr>
+          </thead>
+          <tbody>
+
+
+%{section name=rowsec loop=$items}%
+		  
+	<!-- подраздел в разделе -->
+	
+	<tr align="left" valign="top">
+		<td width="15%">
+        <a name="%{$items[rowsec].id}%"></a>
+		%{section name=namesec loop=$items[rowsec].nameitems}%
+		
+
+		%{if $items[rowsec].nameitems[namesec].is_exist==1}%
+		<!-- существует -->
+			%{if $items[rowsec].nameitems[namesec].is_vloj==1}%
+			<!-- открываемые подразделы -->
+				<a href="razds.php?id=%{$items[rowsec].id}%">%{$items[rowsec].nameitems[namesec].name}%&nbsp;(%{$items[rowsec].nameitems[namesec].sub_count}%)</a> <br>
+			%{else}%
+			<!-- блокированное название -->
+				<b>%{$items[rowsec].nameitems[namesec].name}%</b><br>	
+			%{/if}%
+			
+			<a class="gydex_edit_lang" title="правка на языке %{$items[rowsec].nameitems[namesec].lang_name}%" href="ed_razd.php?doLang=1&action=1&id=%{$items[rowsec].id}%&from=%{$fromno}%&to_page=%{$topage}%&lang_id=%{$items[rowsec].nameitems[namesec].lang_id}%"><img src="/%{$items[rowsec].nameitems[namesec].lang_flag}%" alt="правка на языке %{$items[rowsec].nameitems[namesec].lang_name}%" title="правка на языке %{$items[rowsec].nameitems[namesec].lang_name}%" border="0"></a> 
+			 
+
+			      <a class="gydex_edit_html"  href="ed_razd.php?doLang=1&nonvisual=1&action=1&id=%{$items[rowsec].id}%&from=%{$fromno}%&to_page=%{$topage}%&lang_id=%{$items[rowsec].nameitems[namesec].lang_id}%"><img src="/%{$items[rowsec].nameitems[namesec].lang_flag}%" alt="правка на языке %{$items[rowsec].nameitems[namesec].lang_name}%" title="правка на языке %{$items[rowsec].nameitems[namesec].lang_name}%" border="0"></a>
+					
+                  <br>
+                    
+                  <input class="gydex_control" type="checkbox" name="%{$items[rowsec].id}%_%{$items[rowsec].nameitems[namesec].lang_id}%_is_shown" id="%{$items[rowsec].id}%_%{$items[rowsec].nameitems[namesec].lang_id}%_is_shown" value="%{$items[rowsec].nameitems[namesec].lang_shown}%" %{if $items[rowsec].nameitems[namesec].lang_shown==1}%checked%{/if}% ><label for="%{$items[rowsec].id}%_%{$items[rowsec].nameitems[namesec].lang_id}%_is_shown">видим</label>
+                  
+                  <br>
+
+		%{else}%
+		<!-- не создано -->
+			
+			%{if $items[rowsec].nameitems[namesec].is_vloj==1}%
+			<!-- открываемые подразделы -->
+				<a href="razds.php?id=%{$items[rowsec].id}%">не создано</a><br> 
+			%{else}%
+			<!-- блокированное название -->
+				<b><em>не создано</em></b><br>	
+			%{/if}%
+			
+			<a class="gydex_edit_lang" title="правка на языке %{$items[rowsec].nameitems[namesec].lang_name}%" href="ed_razd.php?doLang=1&action=1&id=%{$items[rowsec].id}%&from=%{$fromno}%&to_page=%{$topage}%&lang_id=%{$items[rowsec].nameitems[namesec].lang_id}%"><img src="/%{$items[rowsec].nameitems[namesec].lang_flag}%" alt="правка на языке %{$items[rowsec].nameitems[namesec].lang_name}%" title="правка на языке %{$items[rowsec].nameitems[namesec].lang_name}%" border="0"></a> 
+			
+
+			      <a class="gydex_edit_html"  href="ed_razd.php?doLang=1&nonvisual=1&action=1&id=%{$items[rowsec].id}%&from=%{$fromno}%&to_page=%{$topage}%&lang_id=%{$items[rowsec].nameitems[namesec].lang_id}%"><img src="/%{$items[rowsec].nameitems[namesec].lang_flag}%" alt="правка на языке %{$items[rowsec].nameitems[namesec].lang_name}%" title="правка на языке %{$items[rowsec].nameitems[namesec].lang_name}%" border="0"></a>
+					
+                  <br>
+                    
+		%{/if}%
+		
+		
+		
+		%{/section}%
+		
+		</td>
+		<td width="*">
+		<!-- параметры раздела -->
+		%{*$items[rowsec].itemdescr*}%
+             
+             
+             
+        	<input class="gydex_control" type="radio" name="%{$items[rowsec].id}%_usl" value="0" id="%{$items[rowsec].id}%_0_usl" %{if $items[rowsec].data.is_price==0 and  $items[rowsec].data.is_news==0 and $items[rowsec].data.is_links==0}% checked="checked" %{/if}% /><label for="%{$items[rowsec].id}%_0_usl"><img src="/img/newdis/modules/simple18.png" width="18" height="18" />обычный раздел</label><br>
+            	
+             %{if $HAS_PRICE}%
+             <input class="gydex_control" type="radio" name="%{$items[rowsec].id}%_usl" value="1" id="%{$items[rowsec].id}%_1_usl"  %{if $items[rowsec].data.is_price==1}% checked="checked" %{/if}% /><label for="%{$items[rowsec].id}%_1_usl"><img src="/img/newdis/modules/price18.png" width="18" height="18" />содержит <a href="viewpriceitems.php?id=%{$items[rowsec].id}%" class="gydex_link">товары (%{$items[rowsec].count_of_goods}%)</a></label><br>  
+              	 <div class="indent">
+                 %{if $HAS_BASKET}% 
+                 
+                 	<input class="gydex_control" type="checkbox" name="%{$items[rowsec].id}%_is_basket" value="1" id="%{$items[rowsec].id}%_is_basket" %{if $items[rowsec].data.is_basket==1}% checked="checked" %{/if}% /><label for="%{$items[rowsec].id}%_is_basket"><img src="/img/newdis/modules/basket18.png" width="18" height="18" />можно заказывать товар</label><br>
+                    
+                    
+                 %{/if}% 
+                 
+                 
+                 
+                  <a href="eddicts.php?kind=1&id=%{$items[rowsec].id}%&mode=1" target="_blank" class="gydex_link gydex_link_link"><img src="/img/newdis/modules/props18.png" width="18" height="18" /> Словари свойств раздела</a> <br>
+                  
+                  
+                  <a href="pricestogood.php?value_id=%{$items[rowsec].id}%&mode=1" target="_blank" class="gydex_link gydex_link_link"><img src="/img/newdis/modules/prices18.png" width="18" height="18" /> Цены, применяемые в разделе</a> <br>
+                 
+                 
+                 
+                 </div>
+            
+             %{/if}%
+             
+              %{if $HAS_NEWS}%
+             <input class="gydex_control" type="radio" name="%{$items[rowsec].id}%_usl" value="2" id="%{$items[rowsec].id}%_2_usl" %{if $items[rowsec].data.is_news==1}% checked="checked" %{/if}% /><label for="%{$items[rowsec].id}%_2_usl"><img src="/img/newdis/modules/links18.png" width="18" height="18" />содержит <a href="viewnews.php?id=%{$items[rowsec].id}%" class="gydex_link">новости (%{$items[rowsec].count_of_news}%)</a></label><br>
+             %{/if}%
+             
+             
+             %{if $HAS_LINKS}%
+             <input class="gydex_control" type="radio" name="%{$items[rowsec].id}%_usl" value="3" id="%{$items[rowsec].id}%_3_usl" %{if $items[rowsec].data.is_links==1}% checked="checked" %{/if}% /><label for="%{$items[rowsec].id}%_3_usl"><img src="/img/newdis/modules/news18.png" width="18" height="18" />содержит <a href="viewlinks.php?id=%{$items[rowsec].id}%" class="gydex_link">каталог ссылок (%{$items[rowsec].count_of_links}%)</a></label><br>
+             %{/if}%
+             
+             
+ 
+                %{if $HAS_PAPERS}%        
+               <input class="gydex_control" type="checkbox" name="%{$items[rowsec].id}%_is_papers" value="1" id="%{$items[rowsec].id}%_is_papers" %{if $items[rowsec].data.is_papers==1}% checked="checked" %{/if}% /><label for="%{$items[rowsec].id}%_is_papers"><img src="/img/newdis/modules/papers18.png" width="18" height="18" />содержит <a href="viewpapers.php?id=%{$items[rowsec].id}%" class="gydex_link">статьи (%{$items[rowsec].count_of_papers}%)</a></label><br>
+               %{/if}%
+               
+               
+                %{if $HAS_GALLERY}%        
+               <input class="gydex_control" type="checkbox" name="%{$items[rowsec].id}%_is_gallery" value="1" id="%{$items[rowsec].id}%_is_gallery" %{if $items[rowsec].data.is_gallery==1}% checked="checked" %{/if}% /><label for="%{$items[rowsec].id}%_is_gallery"><img src="/img/newdis/modules/photos18.png" width="18" height="18" />содержит <a href="viewphotos.php?id=%{$items[rowsec].id}%" class="gydex_link">фотогалерею (%{$items[rowsec].count_of_photos}%)</a></label><br>
+               %{/if}%
+               
+                  %{if $HAS_FEEDBACK_FORMS}% 
+                    <input class="gydex_control" type="checkbox" name="%{$items[rowsec].id}%_is_feedback_forms" value="1" id="%{$items[rowsec].id}%_is_feedback_forms" %{if $items[rowsec].data.is_feedback_forms==1}% checked="checked" %{/if}% /><label for="%{$items[rowsec].id}%_is_otzyv"><img src="/img/newdis/modules/feedback18.png" width="18" height="18" />содержит форму заказа</label><br>
+                  
+                    <input class="gydex_control" type="checkbox" name="%{$items[rowsec].id}%_is_feedback_service" value="1" id="%{$items[rowsec].id}%_is_feedback_service" %{if $items[rowsec].data.is_feedback_service==1}% checked="checked" %{/if}% /><label for="%{$items[rowsec].id}%_is_otzyv"><img src="/img/newdis/modules/feedback18.png" width="18" height="18" />содержит форму заявки на сервис</label><br>
+                  
+                           
+                <input class="gydex_control" type="checkbox" name="%{$items[rowsec].id}%_is_otzyv" value="1" id="%{$items[rowsec].id}%_is_otzyv" %{if $items[rowsec].data.is_otzyv==1}% checked="checked" %{/if}% /><label for="%{$items[rowsec].id}%_is_otzyv"><img src="/img/newdis/modules/feedback18.png" width="18" height="18" />содержит <a href="viewotzyv.php" class="gydex_link">отзывы</a></label><br>
+
+					%{/if}%
+		
+		</td>	
+		<td width="*">
+		%{$items[rowsec].url}%
+		</td>
+		<td width="80" >
+        
+        	
+           <a class="gydex_up" title="увеличить порядок показа" href="%{$filename}%?action=1&id=%{$items[rowsec].id}%&from=%{$fromno}%&to_page=%{$topage}%&changeOrd=0"></a>
+          <a class="gydex_down" title="уменьшить порядок показа" href="%{$filename}%?action=1&id=%{$items[rowsec].id}%&from=%{$fromno}%&to_page=%{$topage}%&changeOrd=1"></a>
+          
+          
+          <a class="gydex_del" title="удалить запись" href="ed_razd.php?action=2&id=%{$items[rowsec].id}%&from=%{$fromno}%&to_page=%{$topage}%" onclick="return window.confirm('ВНИМАНИЕ!!! Вы действительно хотите удалить данную запись из списка?');"></a>
+                      
+           
+		</td>
+		 <td width="24" align="center" >
+			<input name="%{$items[rowsec].id}%_do_process" id="do_process_%{$items[rowsec].id}%" type="checkbox"  value="%{$items[rowsec].id}%" />
+		</td>
+	</tr>
+	
+%{/section}%
+	 </tbody>
+     </table>
+
+%{$pages}%
+
+
+
+ <p>Выберите желаемое действие над выбранными позициями:<br>
+          <select name="kind" id="kind">
+              <option value="1" SELECTED>Внести изменения</option>
+              
+              <option value="2">Удалить из базы</option>
+              <option value="4">Сделать отображаемыми на сайте</option>
+              <option value="5">Сделать невидимыми на сайте</option>
+              
+          </select>&nbsp;&nbsp;&nbsp;
+          
+          
+          
+          <p><input type="submit" name="Update" id="Update" value="Внести изменения!" onclick="return window.confirm('ВНИМАНИЕ!!! Вы уверены, что хотите произвести выбранное действие над группой записей?');">
+          </form>

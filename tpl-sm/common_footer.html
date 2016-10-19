@@ -1,0 +1,109 @@
+
+  
+    
+    <div id="footer">
+    	<div id="footer_menu_wrapper">
+            <div id="footer_menu">
+                <ul>
+                
+                 %{section name=hmenusec loop=$hmenu}%
+                %{section name=hmenusec1 loop=$hmenu[hmenusec].subs}%%{/section}%
+                 <!-- hmenu item -->
+                    <li class="%{if $hmenu[hmenusec].is_current}%current%{/if}%"><a href="%{$hmenu[hmenusec].item_url}%" class="%{if $hmenu[hmenusec].is_current}%current%{/if}%">%{$hmenu[hmenusec].name}%</a>
+                        %{if $smarty.section.hmenusec1.total>0}%
+                        <ul>
+                         %{foreach from=$hmenu[hmenusec].subs item=itm}%
+                            <li class="%{if $itm.is_current}%current%{/if}%"><a href="%{$itm.item_url}%" class="%{if $itm.is_current}%current%{/if}%">%{$itm.name}%</a></li>
+                         %{/foreach}%
+                        </ul>
+                        %{/if}%
+                        %{if $smarty.section.hmenusec.last}%
+                            %{$footer1}%
+                    
+                        %{/if}%
+                    </li>
+                <!-- endof hmenu item -->
+                %{/section}%
+                </ul>
+            
+            </div>
+        </div>
+        <div id="copyrights">
+        	<div class="colleft">
+                <div class="col1"><a href="/">GYDEX</a>   </div>
+                %{foreach name=m2 from=$mmenu4 item=item}%
+                <div class="col1">
+                    <a href="%{$item.url}%" class="%{if $item.is_current}%current%{/if}%">%{$item.name}%</a>
+                </div>
+                %{/foreach}%
+                <div class="col1">
+                    <a href="/map.php"  >Карта сайта</a>
+                </div>
+               
+            </div> 
+            
+            <div class="colright">
+		<div class="col2">
+<!--LiveInternet counter--><script type="text/javascript"><!--
+document.write("<a href='//www.liveinternet.ru/click' "+
+"target=_blank><img src='//counter.yadro.ru/hit?t45.1;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";"+Math.random()+
+"' alt='' title='LiveInternet' "+
+"border='0' width='31' height='31'><\/a>")
+//--></script><!--/LiveInternet-->
+
+
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+(function (d, w, c) {
+    (w[c] = w[c] || []).push(function() {
+        try {
+            w.yaCounter27996717 = new Ya.Metrika({id:27996717,
+                    webvisor:true,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true});
+        } catch(e) { }
+    });
+
+    var n = d.getElementsByTagName("script")[0],
+        s = d.createElement("script"),
+        f = function () { n.parentNode.insertBefore(s, n); };
+    s.type = "text/javascript";
+    s.async = true;
+    s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
+
+    if (w.opera == "[object Opera]") {
+        d.addEventListener("DOMContentLoaded", f, false);
+    } else { f(); }
+})(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="//mc.yandex.ru/watch/27996717" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+
+<br>
+<a href="https://plus.google.com/103416938788627533084" rel="publisher">Google+</a> 
+
+		</div>
+
+            	 <div class="col2">
+	  GYDEX 2010-%{php}%
+echo date('Y');
+%{/php}%
+				</div>
+                <div class="col2">
+	 
+                  
+                  %{$footer2}% 
+
+
+            	 </div> 
+            	
+            </div>
+            <div class="clr"></div>
+        </div>
+    </div>
+

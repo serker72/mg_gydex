@@ -1,0 +1,65 @@
+
+
+%{$pages}%
+<noindex>
+<!-- список ссылок на странице-->
+<table width="*" border="0" cellspacing="0" cellpadding="6">
+
+%{section name=itemsec loop=$items}%
+%{if $smarty.section.itemsec.index is div by $max}%
+<tr align="left" valign="top">
+%{/if}%
+
+%{if $items[itemsec].is_code}%
+
+<td width="%{$items[itemsec].td_width}%%"  class="itemscell">
+%{$items[itemsec].code}%
+</td>
+
+%{else}%
+
+<td width="%{$items[itemsec].td_width}%%" class="itemscell" align="left" valign="top" style="text-indent:0px;">
+
+
+<h4>%{$items[itemsec].name}%</h4>
+%{if $items[itemsec].page_url!="" and $items[itemsec].page_url!="#"}%<br />%{$items[itemsec].page_url}%%{/if}%
+%{if $items[itemsec].page_url!="" and $items[itemsec].page_url!="#"}%
+</a>&nbsp;
+%{/if}%
+
+
+
+
+%{if $items[itemsec].page_url!="" and $items[itemsec].page_url!="#"}%
+<!-- <a id="li%{$items[itemsec].id}%" href="/%{$items[itemsec].image_big}%" title=""> -->
+%{/if}%
+<img src="/%{$items[itemsec].image_src}%" alt="%{$items[itemsec].altname|escape}%" border="0" width="%{$items[itemsec].image_w}%" height="%{$items[itemsec].image_h}%" align="absmiddle" />
+%{if $items[itemsec].page_url!="" and $items[itemsec].page_url!="#"}%
+<!-- /a> -->
+%{/if}%
+
+%{if $items[itemsec].page_url!="" and $items[itemsec].page_url!="#"}%
+<a href="%{$items[itemsec].page_url}%" title="%{$items[itemsec].altname}%" target="_blank" rel="nofollow">
+%{else}%
+
+%{/if}%
+
+
+
+<div align="left">%{$items[itemsec].annot}%</div>
+
+</td>
+%{/if}%
+
+
+%{if $smarty.section.itemsec.index_next is div by $max}%
+</tr>
+%{/if}%
+
+%{/section}%
+
+</table>
+</noindex>
+%{$pages}%
+
+

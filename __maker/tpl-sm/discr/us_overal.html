@@ -1,0 +1,150 @@
+  <script type="text/javascript" src="js/jquery.fixedheadertable.js?i=5"></script> 
+ 
+<link href="css/css/defaultTheme.css?i=5" rel="stylesheet" media="screen" />
+<link href="css/css/myTheme.css?i=5" rel="stylesheet" media="screen" />
+       
+<link href="css/css/960.css?i=5" rel="stylesheet" media="screen" />
+<script type="text/javascript">
+ $(function(){
+		wb=1000;
+		hb=550;
+		
+		
+		 do_it=($('#g1').width()>wb)||($('#g1').height()>hb);
+		 
+		 if($('#g1').width()>wb){
+			 w=wb;
+		 }else w=parseInt($('#g1').width());//+20
+		 
+		 if($('#g1').height()>hb){
+			h=hb; 
+		 }else h=$('#g1').height()+25;
+		 
+		 if(do_it){ 
+		   //alert(''+w+''+';'+h+'');
+		   $('#g1').fixedHeaderTable({
+	   
+			  width:          ''+w+'',
+			  height:         ''+h+'',
+			  themeClass:     'fht-default',
+			  borderCollapse:  true,
+			  fixedColumns:    1, // fixed first columns
+			  fixedColumn:     true, // For backward-compatibility
+			  sortable:        false,
+			  autoShow:        true, // hide table after its created
+			  footer:          false, // show footer
+			  cloneHeadToFoot: false, // clone head and use as footer
+			  autoResize:      false, // resize table if its parent wrapper changes size
+			  create:          null // callback after plugin completes
+ 			});	
+			
+		 }
+ 
+ 
+});
+</script>
+
+
+%{include file=discr/common_divs.html}%
+
+
+
+ 
+    %{$navi_objects}%
+    
+   
+    %{$navi_groups}%
+    
+   
+    
+    <!-- <div class="gydex_rights_scroll" style="">
+     -->
+    
+    
+     <table class="gydex_rights" id="g1">
+     <thead>
+      <tr align="left" valign="top">
+        <th  >
+        Объекты (<a href="#" title="добавить объект" onClick="
+            %{$EVENT}%
+            mn=document.getElementById('obj_edit'); 
+              $('#obj_edit').css('top', coord[1]);
+		$('#obj_edit').css('left', coord[0]);
+            mm=document.getElementById('ed_obj'); mm.style.display='none';
+            mm=document.getElementById('new_obj'); mm.style.display='inline';
+            mm=document.getElementById('name_obj'); mm.value='';
+            mm=document.getElementById('info_obj'); mm.value='';
+            mn.style.display='block';
+            mm=document.getElementById('name_obj'); mm.focus();
+            
+            return false;
+        ">+</a>)
+        /<br />Пользователи 
+        (<a href="#" title="добавить пользователя" onClick="
+            %{$EVENT}%
+            mn=document.getElementById('user_edit'); 
+            $('#user_edit').css('top', coord[1]);
+		$('#user_edit').css('left', coord[0]);
+            
+            mm=document.getElementById('ed_user'); mm.style.display='none';
+            mm=document.getElementById('new_user'); mm.style.display='inline';
+            mm=document.getElementById('login_user'); mm.value='';
+            mm=document.getElementById('passw_user'); mm.value='';
+            mm=document.getElementById('confirm_passw_user'); mm.value='';
+            mm=document.getElementById('name_user'); mm.value='';
+            mm=document.getElementById('address_user'); mm.value='';
+            mm=document.getElementById('email_user'); mm.value='';
+            mm=document.getElementById('phone_user'); mm.value='';
+            mm=document.getElementById('user_passw_section'); mm.style.display='block';
+            mm=document.getElementById('ch_passw_section'); mm.style.display='none';
+            
+            
+            mm=document.getElementById('user_is_active'); mm.checked=false;
+            
+            mn.style.display='block';
+            mm=document.getElementById('login_user'); 
+            mm.focus();
+            return false;
+        
+        ">+</a>)</th>
+        
+        %{section name=obsec loop=$objects}%
+          <th  id="object_title_cell_%{$objects[obsec].id}%">
+            
+           %{include file="discr/object_title_cell.html" selected_item=$objects[obsec]}%
+            
+        </th> 
+        %{/section}%
+        
+      </tr>
+      </thead>
+      <tbody>
+      %{section name=groupsec loop=$groups}%
+       <tr align="left" valign="top" id="user_%{$groups[groupsec].id}%_row">
+        %{include file="discr/user_row.html" selected_user=$groups[groupsec]}%
+        
+         
+         
+      </tr>	
+      %{/section}%
+      
+        
+        
+      </tbody>
+    </table>
+    
+    
+  <!--  </div>
+    
+     -->
+    
+    
+    
+ 
+    %{$navi_groups}%
+   
+    <!-- navi objects here -->
+    %{$navi_objects}%
+ 
+
+

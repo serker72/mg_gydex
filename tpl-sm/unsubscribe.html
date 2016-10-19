@@ -1,0 +1,146 @@
+<h1>GYDEX.Форма отписки</h1>
+
+<div class="simple_text">
+ 
+
+
+ 	<div id="unsub_step1">
+    	<br>
+        <table width="800" border="0" cellpadding="1" cellspacing="1">
+					<tbody>
+						<tr align="center">
+							<td width="50%" align="left">
+								  <a href="#" id="unsub_b_1" class="unsub_button">Вы решили отписаться <br>
+от рассылки</a>
+        
+                            </td>
+							<td width="50%" align="left">
+								<a href="#"  id="unsub_b_2" class="unsub_button">Я случайно нажал кнопку<br>
+ «отписаться»</a>	
+                                
+                            </td>
+						</tr>
+					</tbody>
+				</table>
+    
+    </div>        
+    
+    <div id="unsub_step2">
+    	<h2>Вы решили отписаться от рассылки</h2>
+    	<input type="radio" value="1" name="unsub_reason" id="unsub_reason_1" /><label for="unsub_reason_1">да, но я хочу получать письма 1 раз в месяц</label><br>
+
+
+        <input type="radio" value="2" name="unsub_reason" id="unsub_reason_2" /><label for="unsub_reason_2">да, но я хочу получать письма 1 раз в полгода</label><br>
+
+        <input type="radio" value="3" name="unsub_reason" id="unsub_reason_3" /><label for="unsub_reason_3">да, я не хочу получать больше писем</label><br>
+
+        <input type="radio" value="4" name="unsub_reason" id="unsub_reason_4" /><label for="unsub_reason_4">укажите, пожалуйста, причину отказа от рыссылки</label>
+        <br>
+
+		<fieldset id="unsub_reason_set">
+        <textarea cols="100" rows="7" id="unsub_reason_txt"></textarea>
+        </fieldset>
+    	<br>
+
+         <a href="#" id="unsub_b_3" class="button">Отписаться от рассылки</a>
+    </div> 
+    
+    <div id="unsub_step3">
+    	<h2>Вы отписаны!<br> Мы всегда вас рады видеть на www.gydex.ru!</h2>
+        
+    </div>             
+    
+
+ <br>
+<br>
+
+
+</div>
+
+
+ 
+ 
+<script type="text/javascript">
+$(function(){
+	$("input[name=unsub_reason]").bind("change", function(){
+		if($(this).val()==4){
+			$("#unsub_reason_set").show(100);
+			$("#unsub_reason_txt").focus();	
+		}else{
+			$("#unsub_reason_set").hide(100);	
+		}
+		
+	});
+	
+	
+	$("#unsub_b_2").bind('click', function(){
+		location.href='/';
+		return false;
+	});
+	
+	$("#unsub_b_1").bind('click', function(){
+		$("#unsub_step1").hide(100); $("#unsub_step2").show(100);
+		return false;
+	});
+	
+	
+	$("#unsub_b_3").bind('click', function(){
+		//
+		can_go=true;
+		
+		if(can_go&&(($("input[name=unsub_reason]:checked").val()==null)||($("input[name=unsub_reason]:checked").val()==undefined))){
+			can_go&=false;	
+			alert("Выберите вариант отписки!");
+		}
+		
+		if(can_go&&($("input[name=unsub_reason]:checked").val()==4)&&($.trim($("#unsub_reason_txt").val()).length<10)){
+			can_go&=false;
+			alert("Просьба указать причину отписки (мин. длина 10 символов)!");	
+			$("#unsub_reason_txt").focus();
+		}
+		
+		
+		
+		if(can_go){
+			reason_txt='';
+			if($("input[name=unsub_reason]:checked").val()==4){
+				reason_txt=$("#unsub_reason_txt").val();
+			}
+			
+			$.ajax({
+				async: false,
+				url: "/js/delivery_unsubscribe.php",
+				type: "POST",
+				data:{
+					"action":"unsubscribe",
+					"id":"%{$id}%",
+					"list_id":"%{$list_id}%",
+					"delivery_id":"%{$delivery_id}%",
+				 	"reason":$("label[for="+$("input[name=unsub_reason]:checked").attr("id")+"]").text(),
+					"reason_txt":reason_txt
+					 
+				},
+				beforeSend: function(){
+				 
+				},
+				success: function(data){
+				
+				 	$("#unsub_step2").hide(100); $("#unsub_step3").show(100);
+				},
+				error: function(xhr, status){
+					alert("Ошибка при отписке от рассылки. Просьба повторить последнее действие.");
+					
+				}	 
+			});
+			
+		}
+		
+		return false;
+	});
+	
+	 
+	
+});
+</script>
+
+

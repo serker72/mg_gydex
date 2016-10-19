@@ -1,0 +1,12 @@
+<ul>
+               
+                <li class=\"address\"><div class=\"address\">Москва, Россия</div></li>
+                <li class=\"phone\"><div class=\"phone\">+7 (495) 768 45 34</div></li>
+                
+                <li class=\"email\"><div class=\"email\"><a href=\"mailto:support@gydex.ru\">support@gydex.ru</a></div>
+                </ul>
+                
+                <a href=\"\" class=\"soc\"><img src=\"/images/icon-fb.png\" width=\"18\" height=\"18\" /></a>
+                <a href=\"\" class=\"soc\"><img src=\"/images/icon-tw.png\"   /></a>
+                <a href=\"\" class=\"soc\"><img src=\"/images/icon-gp.png\"   /></a>
+                <div class=\"clr\"></div>

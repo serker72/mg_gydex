@@ -1,0 +1,116 @@
+%{if $glob_error!=true}%
+<style>
+.greenish{
+	background-color: #ccffcc;
+}
+.redish{
+	background-color: #ffcccc;
+}
+</style>
+
+<form action="csvmaster.php"  method="post" name="table2" id="table2">
+
+	<input type="hidden" name="step" id="step" value="%{$step}%">
+	<input type="hidden" name="from" id="from" value="%{$from}%">
+	
+	
+	<input type="submit" name="doPrev1" id="doPrev1" value="&lt;&lt;предыдущие %{$per_page}%" %{if $from==0}%disabled onclick="return false;"%{/if}%>
+
+	<input type="submit" name="doNext1" id="doNext1" %{if ($from+$per_this_page)>=$totalreccount}%value="перейти к следующему шагу -&gt;"%{else}%value="следующие %{$per_page}% &gt;&gt;"%{/if}%><p>
+	
+	<strong>Текущая позиция: записи %{$from+1}%-%{$from+$per_this_page}% из %{$totalreccount}%</strong><p>
+	
+<table width="95%" border="0" cellspacing="1" cellpadding="4" style="background-color:#9a9a9a;">
+<tr align="left" valign="bottom">
+	<td width="*"  class="itemscell_unbord" colspan="6">
+	<div align="center"><h2>Обновления в базу данных сайта:</h2></div>
+	</td>
+</tr>
+<tr align="left" valign="top">
+	<td class="itemshead"><strong>Артикул</strong></td>
+	<td class="itemshead"><strong>Название</strong></td>
+	<td class="itemshead"><strong>Новый остаток</strong></td>	
+	<td class="itemshead"><strong>Старый остаток</strong></td>
+	<td class="itemshead"><strong>Товарная группа</strong></td>
+	<td class="itemshead"><strong>Действие</strong></td>
+</tr>	
+%{section name=recsec loop=$records}%
+%{if $records[recsec].time_to_strike}%
+<tr align="left" valign="top">
+	<td class="itemshead"><strong>Артикул</strong></td>
+	<td class="itemshead"><strong>Название</strong></td>
+	<td class="itemshead"><strong>Новый остаток</strong></td>	
+	<td class="itemshead"><strong>Старый остаток</strong></td>
+	<td class="itemshead"><strong>Товарная группа</strong></td>
+	<td class="itemshead"><strong>Действие</strong></td>
+</tr>
+%{/if}%
+<tr align="left" valign="top">
+	<td class="itemscell_unbord%{if $records[recsec].bflag}%_white%{/if}%">
+	<strong>%{$records[recsec].csv_art}%</strong>
+	<input type="hidden" name="%{$records[recsec].csv_hash}%_art" id="%{$records[recsec].csv_hash}%_art" value="%{$records[recsec].csv_art}%">
+	</td>
+	<td class="itemscell_unbord%{if $records[recsec].bflag}%_white%{/if}%">
+	<strong>%{$records[recsec].csv_name}%</strong>
+		<input type="hidden" name="%{$records[recsec].csv_hash}%_name" id="%{$records[recsec].csv_hash}%_name" value="%{$records[recsec].csv_name}%">
+	</td>
+	<td class="itemscell_unbord%{if $records[recsec].bflag}%_white%{/if}%">
+	<input type="text" name="%{$records[recsec].csv_hash}%_ost" id="%{$records[recsec].csv_hash}%_ost" size="5" maxlength="5" value="%{$records[recsec].csv_ost}%">
+	</td>
+	<!--base -->
+	<td class="%{if $records[recsec].base_green}%greenish%{else}%redish%{/if}%">%{$records[recsec].base_ost}%</td>
+	<td class="%{if $records[recsec].base_green}%greenish%{else}%redish%{/if}%">
+	<SELECT name="%{$records[recsec].csv_hash}%_mid" id="%{$records[recsec].csv_hash}%_mid" style="width: 250px;">
+	%{html_options values=$records[recsec].mids selected=$records[recsec].selected_mid output=$records[recsec].mid_names}%
+	</SELECT>
+	</td>
+	<td class="%{if $records[recsec].base_green}%greenish%{else}%redish%{/if}%">
+	<select name="%{$records[recsec].csv_hash}%_action" id="%{$records[recsec].csv_hash}%_action" style="width: 150px;">
+		<option value="0" %{if $records[recsec].action==0}%selected%{/if}%>Выберите...</option>
+		%{if $records[recsec].base_green==false}%
+		<option value="1" %{if $records[recsec].action==1}%selected%{/if}%>Добавить товар</option>
+		%{/if}%
+		%{if $records[recsec].base_green}%
+		<option value="2" %{if $records[recsec].action==2}%selected%{/if}%>Редактировать товар</option>
+		%{/if}%
+		<option value="3" %{if $records[recsec].action==3}%selected%{/if}%>Ничего не делать</option>
+	</select>
+	</td>		
+</tr>
+%{/section}%
+</table><p>
+	
+	<script  language="JavaScript">  
+	function ClSubm(){
+		return true;
+	}
+	</script> 
+
+	<input type="submit" name="BackToStep2" id="BackToStep2" value="&lt;- Назад к сравнению данных файла и базы" onclick="m=document.getElementById('table2'); m.onsubmit=ClSubm;">
+	
+	
+	<input type="submit" name="doUpdateIt" id="doUpdateIt" value="Данные проверены, обновить базу данных -&gt;" onclick="return window.confirm('Вы уверены, что закончили проверку записей? Все указанные изменения будут внесены в базу.');"><p>
+
+<input type="button" name="doCancel" id="doCancel" value="Отмена" onClick="m=document.getElementById('table2'); m.onsubmit=ClSubm; window.close();">
+	
+	
+</form>
+
+<script  language="JavaScript">  
+  var  frmvalidator    =  new  Validator("table2");  
+  %{section name=rulsec loop=$rules}%
+  frmvalidator.addValidation("%{$rules[rulsec].fname}%","%{$rules[rulsec].kind}%","%{$rules[rulsec].caption}%");    
+ %{/section}% 
+  
+</script>  
+
+%{else}%
+
+<h3>Ошибка обработки файлов!</h3>
+<form action="csvmaster.php"  method="post">
+	<input type="hidden" name="step" value="1">
+	<input type="submit" name="doAnother" id="doAnother" value="&lt;- Выбрать другой файл">
+	<input type="button" name="doCancel" id="doCancel" value="Отмена" onClick="window.close();">
+</form>
+
+%{/if}%

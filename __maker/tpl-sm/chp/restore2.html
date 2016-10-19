@@ -1,0 +1,42 @@
+<h1>Восстановление забытого пароля</h1>
+<form action="forgot.php" method="post" id="restore_form">
+<input type="hidden" name="login" value="%{$login}%" />
+<input type="hidden" name="email" value="%{$email}%" />
+<h3>Введите новый пароль:</h3>
+<table width="*" border="0" cellpadding="2" cellspacing="2">
+    <tr align="left" valign="top">
+    	<td width="100" align="right" valign="middle">
+        <label for="password">Новый пароль</label><br />
+		<small>минимальная длина 4 символа</small>
+        </td>
+        <td width="100"><input type="password" size="20" maxlength="20" name="password" id="password" value="" />
+        </td>
+    </tr>
+   
+    <tr align="left" valign="top">
+    	<td width="100" align="right" valign="middle">&nbsp;
+        
+        </td>
+        <td width="100">
+        <input type="submit" value="Восстановить пароль" name="doRestore" />
+        </td>
+    </tr>
+   
+    </table>
+
+</form>
+ <script type="text/javascript">
+	$(function(){
+		$("#restore_form").bind("submit",function(){
+			
+			if($("#password").val().length<4){
+				$("#password").focus();
+				return false;
+				//can=can||true;
+			}
+			
+			return true;
+		});
+		 
+	});
+	</script>

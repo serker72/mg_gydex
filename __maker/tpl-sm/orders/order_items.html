@@ -1,0 +1,116 @@
+<!-- таблица список товаров заказа -->
+
+<!-- форма разбивки списка итемов по Х штук на страницу -->
+	<form action="%{$listpagename}%" name="topa" id="topa">
+		<input type="hidden" name="id" value="%{$orderno}%">
+		<input type="hidden" name="from" value="0">
+		
+		<strong>Разбивать по:</strong> 
+		<select name="to_page" id="to_page" onChange="document.forms.topa.submit();">
+			
+			<option value="10"%{if $topage==10}% SELECTED %{/if}%>10</option>
+			<option value="1"%{if $topage==1}% SELECTED %{/if}%>1</option>
+			<option value="30"%{if $topage==30}% SELECTED %{/if}%>30</option>
+			<option value="50"%{if $topage==50}% SELECTED %{/if}%>50</option>
+			<option value="100"%{if $topage==100}% SELECTED %{/if}%>100</option>			
+			<option value="9999"%{if $topage==9999}% SELECTED %{/if}%>9999</option>							
+		</select> <strong>позиций на страницу.</strong>
+		
+		</form>	
+
+
+<form action="%{$listpagename}%" method="post" name="updater" id="updater">
+<div align="right">
+<input type="submit" name="Update1" id="Update1" value="Внести изменения!" onclick="return window.confirm('ВНИМАНИЕ!!! Вы уверены, что хотите произвести выбранное действие над группой записей?');"></div>
+<input type="hidden" name="id" value="%{$orderno}%">
+<input type="hidden" name="from" id="from" value="%{$fromno}%">
+<input type="hidden" name="to_page" id="to_page" value="%{$topage}%">
+ 
+
+
+
+%{$pages}%
+
+ <table class="gydex_table" >
+          <thead>
+          <tr align="left" valign="top">
+              <th width="*"> Товар/опции </th>
+              <th width="*"> Стоимость на момент заказ </th>
+              <th width="*"> Стоимость актуальная </th>	
+             
+            
+              <th width="*"> Количество </th>	
+              <th width="24"> <input id="check_all" type="checkbox" value="1" /> </th>
+          </tr>
+          </thead>
+          <tbody>
+
+ 
+%{section name=rowsec loop=$items}%
+	
+<!-- Товар в заказе итем -->
+
+<tr align="left" valign="top">
+	<td width="30%" ><a name="%{$items[rowsec].itemno}%"></a>	
+	<a href="ed_price.php?id=%{$items[rowsec].goodid}%&action=1" target="_blank">%{$items[rowsec].goodname}%</a>
+	<table border="0" cellpadding="2" cellspacing="0">	
+	
+	%{$items[rowsec].options}%
+	
+	</table>
+	<input type="text"  class="gydex_control"  name="%{$items[rowsec].itemno}%_comment" id="%{$items[rowsec].itemno}%_comment" value="%{$items[rowsec].comment}%" size="40" maxlength="255" >
+	</td>
+	
+	<td width="25%" >
+	<input type="text"  class="gydex_control"  name="%{$items[rowsec].itemno}%_price_value" id="%{$items[rowsec].itemno}%_price_value" value="%{$items[rowsec].price_by_positions_value}%" size="10" maxlength="17" >
+	
+	<select  class="gydex_control"  name="%{$items[rowsec].itemno}%_currency_id" id="%{$items[rowsec].itemno}%_currency_id"  style="width: 50px;">
+	%{$items[rowsec].currs}%
+	</select>
+	
+	%{$items[rowsec].price_by_positions}%<br>
+
+	<input type="button" value="&lt;&ltактуальная цена" onclick="m=document.getElementById('%{$items[rowsec].itemno}%_price_value'); m.value='%{$items[rowsec].price_by_base_value}%'; m=document.getElementById('%{$items[rowsec].itemno}%_currency_id'); m.value='%{$items[rowsec].price_by_base_curr_id}%'; m=document.getElementById('%{$items[rowsec].itemno}%_do_process'); m.checked=true;"><br>
+	<input type="button" value="восстановить" onclick="m=document.getElementById('%{$items[rowsec].itemno}%_price_value'); m.value='%{$items[rowsec].price_by_positions_value}%'; m=document.getElementById('%{$items[rowsec].itemno}%_currency_id'); m.value='%{$items[rowsec].price_by_positions_curr_id}%'; m=document.getElementById('%{$items[rowsec].itemno}%_do_process'); m.checked=true;">
+
+
+	
+	
+
+	
+	
+	</td>
+	
+	<td width="20%" >
+	%{$items[rowsec].price_by_base}%
+	</td>
+
+	<td width="20%" >
+	<input type="text"  class="gydex_control" name="%{$items[rowsec].itemno}%_quantity" id="%{$items[rowsec].itemno}%_quantity" value="%{$items[rowsec].quantity}%" size="3" maxlength="3"  >
+	</td>
+	
+	<td width="5%" >
+			  <input name="%{$items[rowsec].itemno}%_do_process" id="do_process_%{$items[rowsec].itemno}%" type="checkbox"  value="%{$items[rowsec].itemno}%" />
+		 
+	</td>
+</tr>
+
+	
+%{/section}%
+</table>
+
+%{$pages}%
+
+<b>%{$itogo}%</b>
+
+<p>Выберите желаемое действие над выбранными позициями:<br>
+		<select name="kind" id="kind">
+	<option value="1" SELECTED>Внести изменения</option>
+	<option value="2" >Удалить из базы</option>
+
+</select>&nbsp;&nbsp;&nbsp;
+
+
+ 
+<P><input type="submit" name="Update" id="Update" value="Внести изменения!" onclick="return window.confirm('ВНИМАНИЕ!!! Вы уверены, что хотите произвести выбранное действие над группой записей?');">
+</form>

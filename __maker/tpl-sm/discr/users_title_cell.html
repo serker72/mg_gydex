@@ -1,0 +1,68 @@
+<div align="left"><a href="#" id="group_link_%{$selected_item.id}%" title="редактировать покупателя" onclick="
+    	
+        %{$COORDFUNC}%
+        mn=document.getElementById('user_edit'); 
+         
+        
+        $('#user_edit').css('top', coord[1]);
+		$('#user_edit').css('left', coord[0]);
+        
+        
+        mm=document.getElementById('ed_user'); mm.style.display='inline';
+        mm=document.getElementById('new_user'); mm.style.display='none';
+        mm=document.getElementById('login_user'); mm.value='%{$selected_item.login_esc}%';
+        mm=document.getElementById('id_user'); mm.value='%{$selected_item.id}%';
+        mm=document.getElementById('passw_user'); mm.value='';
+        mm=document.getElementById('confirm_passw_user'); mm.value='';
+        mm=document.getElementById('name_user'); mm.value='%{$selected_item.username_esc}%';
+        mm=document.getElementById('address_user'); mm.value='%{$selected_item.address_esc}%';
+        mm=document.getElementById('email_user'); mm.value='%{$selected_item.email_esc}%';
+        mm=document.getElementById('phone_user'); mm.value='%{$selected_item.phone_esc}%';
+        mm=document.getElementById('user_passw_section'); mm.style.display='none';
+        mm=document.getElementById('ch_passw_section'); mm.style.display='block';
+        
+        mm=document.getElementById('user_is_active'); 
+        
+        
+        mm.checked=%{if $selected_item.is_blocked}%false%{else}%true%{/if}%;
+        
+        mn.style.display='block';
+        mm=document.getElementById('login_user'); mm.focus();
+        return false;
+    
+    ">%{$selected_item.login}%</a> 
+    
+    <a href="#" title="показать/скрыть группы пользователя" onclick="
+    	mn=document.getElementById('user_rights_edit'); 
+        if(mn.style.display=='block'){
+        	mn.style.display='none';
+        }else{
+        	%{$EVENT}%
+            $(mn).css('top',coord[1]); 
+    	    $(mn).css('left',coord[0]);	
+	        $('#user_rights_edit_inner').html('<em>подождите...</em>');
+    	    mn.style.display='block';
+            
+            xajax_ShowGroups(%{$selected_item.id}%, %{$gfrom}%, %{$ofrom}%, %{$per_page}%);
+              
+            
+        }
+        
+        
+        
+    	return false;
+    "><img src="/img/newdis/down.png" border="0" alt="показать/скрыть группы пользователя"  /></a>&nbsp;(<a href="#" title="Удалить покупателя" onclick="
+	    if(window.confirm('Вы уверены, что хотите удалить данного покупателя из матрицы доступа?')){
+        	%{$EVENT}%
+      		mn=document.getElementById('wait_win'); 
+	        mn.style.top=coord[1]; 
+    	    mn.style.left=coord[0];	
+            mn.style.display='block';
+            xajax_DelUser(%{$selected_item.id}%); 
+        }
+        return false;
+    ">-</a>)
+    	<br /><em>%{$selected_item.username}%</em>
+        
+        <div id="user_%{$selected_item.id}%_groups" style="display: none;"></div>
+    </div>

@@ -1,0 +1,28 @@
+ 
+            
+               
+                 %{foreach from=$items item=item}% 
+                 <div class="our_clients_slide">
+                   
+                   <div class="clients_logo"><a href="%{$item.page_url}%" target="_blank"><img src="/%{$item.image_big}%" width="%{$item.image_w}%" height="%{$item.image_h}%" alt="%{$item.altname}%" title="%{$item.altname}%" /></a></div>                  	
+                   
+                   	<div class="clients_name simple_text">
+                    <strong>Название:</strong> %{$item.name}%
+                    </div>
+                    
+                    <div class="clients_name simple_text">
+                    <strong>Отрасль:</strong> %{$item.otrasl}%
+                    </div>
+                    
+                    <div class="clients_name simple_text">
+                    <strong>Описание задачи: </strong>%{$item.small_txt}%
+                    </div>
+                    
+                    <div class="clients_name simple_text">
+                    <strong>Внедрение:</strong> %{$item.vnedr}%
+                    </div>
+                   
+                 </div>
+                 %{/foreach}%
+                  
+         

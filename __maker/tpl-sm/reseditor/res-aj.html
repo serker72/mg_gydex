@@ -1,0 +1,80 @@
+<!-- библиотека яз ресурсов -->
+<div id="library_total">
+
+
+ <table class="gydex_table" >
+      
+          <tbody>
+ 
+
+%{section name=filesec loop=$files}%
+<!-- файлы -->
+<tr align="left" valign="top">
+	<td width="150" class="itemshead">
+	<div align="left">
+		
+		
+		<a href="#file_id=%{$files[filesec].fileno}%" name="file_id=%{$files[filesec].fileno}%" class="maxi" title="править файл" onclick="
+
+%{$COORDFUNC}% 
+n=document.getElementById('doEdFile'); n.style.display='inline'; 
+n=document.getElementById('doInpFile'); n.style.display='none'; 
+m=document.getElementById('file_add_win'); 
+
+$('#file_add_win').css('top', coord[1]);
+$('#file_add_win').css('left', coord[0]);
+
+aa=document.getElementById('file_id'); aa.value='%{$files[filesec].filename_}%';
+cc=document.getElementById('old_file_id'); cc.value='%{$files[filesec].filename_}%';
+bb=document.getElementById('descr'); bb.value='%{$files[filesec].filedescr_}%';  
+m.className='work_window_vis';
+return false;
+
+ ">%{$files[filesec].filename}%</a>
+		
+		<a href="#" title="удалить файл" onclick="if(window.confirm('ВНИМАНИЕ!!! Вы действительно хотите удалить данный файл из списка?')){ xajax_DelFile('%{$files[filesec].fileno}%'); return false;}"><img src="/img/delete.jpg" alt="удалить файл" width="16" height="16" border="0"></a><br>
+
+		
+		
+		&nbsp;&nbsp;<a href="#file_id=%{$files[filesec].fileno}%addres" name="file_id=%{$files[filesec].fileno}%addres" class="mini" title="добавить ресурс" onclick="
+%{$COORDFUNC}% 
+n=document.getElementById('doInpRes'); n.style.display='inline'; 
+n=document.getElementById('doEdRes'); n.style.display='none'; 
+m=document.getElementById('res_add_win'); 
+
+$('#res_add_win').css('top', coord[1]);
+$('#res_add_win').css('left', coord[0]);
+
+ 
+aa=document.getElementById('res_file_id'); aa.value='%{$files[filesec].filename_}%';
+
+cc=document.getElementById('old_res_id'); cc.value='';
+dd=document.getElementById('res_id'); dd.value='';
+
+bb=document.getElementById('res_descr'); bb.value='';  
+m.className='work_window_vis';
+return false;
+/*winop('res_ed_res.php?action=0&file_id=%{$files[filesec].fileno}%','500','350', 'edfile');*/
+
+"><img src="../img/doc.gif" alt="добавить ресурс" width="13" height="13" border="0">добавить ресурс...</a><br>
+		
+		
+		<em>%{$files[filesec].filedescr}%</em>
+			
+	</div>
+	</td>
+	<td width="*" class="itemshead" valign="middle">
+	
+	<div id="%{$files[filesec].fileno}%_resoures"></div>
+	
+	
+	<div id="%{$files[filesec].fileno}%_blo" style="display: block;"><a href="#file_id=%{$files[filesec].fileno}%" onclick="m=document.getElementById('%{$files[filesec].fileno}%_resoures'); m.innerHTML='<em>подождите...</em>'; xajax_DrawRes('%{$files[filesec].fileno}%'); return false;">кликните для просмотра ресурсов</a></div>
+	
+	<div id="%{$files[filesec].fileno}%_hid" style="display: none;"><a href="#file_id=%{$files[filesec].fileno}%" onclick="m=document.getElementById('%{$files[filesec].fileno}%_resoures'); m.innerHTML=''; m.style.display='none'; m=document.getElementById('%{$files[filesec].fileno}%_blo'); m.style.display='block'; m=document.getElementById('%{$files[filesec].fileno}%_hid'); m.style.display='none'; return false;">скрыть ресурсы</a></div>
+	
+	</td>
+</tr>
+%{/section}%
+</tbody>
+</table>
+</div>

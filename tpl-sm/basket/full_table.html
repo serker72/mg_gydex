@@ -1,0 +1,87 @@
+
+<form id="basketform" name="basketform" action="/addtobasket.php">
+<script language="JavaScript" type="text/javascript">
+formcnt=0; formarr=new Array();
+</script>
+<table width="90%" border="0" cellspacing="1" cellpadding="5">
+<tr align="left" valign="top">
+	<td width="5%" class="itemshead"><strong>%{$numbername}%</strong></td>
+	<td width="20%" class="itemshead"><strong>%{$titlename}%</strong></td>	
+	<td width="50%" class="itemshead"><strong>%{$paramsname}%</strong></td>
+	<td width="10%" class="itemshead"><b>%{$quantname}%</b></td>
+	<td width="10%" class="itemshead"><b>%{$pricename}%</b></td>
+	<td width="5%" class="itemshead">&nbsp;</td>
+</tr>
+
+%{section name=rowsec loop=$rows}%
+<tr align="left" valign="top">
+	<td width="5%" class="itemscell"><b>%{$rows[rowsec].number}%</b></td>
+	<td width="30%" class="itemscell">%{$rows[rowsec].name}%</td>	
+	<td width="40%" class="itemscell">
+		<table width="90%" border="0" cellspacing="0" cellpadding="2">
+		%{$rows[rowsec].params}%
+		</table>
+		<b>%{$rows[rowsec].commentname}%</b>: <br>
+		<input type="text" name="%{$rows[rowsec].number}%_comment" id="%{$rows[rowsec].number}%_comment" value="%{$rows[rowsec].commentplace}%" size="40" maxlength="255" onKeyPress="m=document.getElementById('%{$rows[rowsec].number}%_do_process'); m.checked=true;">
+	</td>
+	<td width="10%" class="itemscell" align="center" valign="middle"><input type="text" name="%{$rows[rowsec].number}%_quant" id="%{$rows[rowsec].number}%_quant" value="%{$rows[rowsec].quant}%" size="3" maxlength="2" onKeyPress="m=document.getElementById('%{$rows[rowsec].number}%_do_process'); m.checked=true;"></td>
+	<td width="10%" class="itemscell" align="center" valign="middle">%{$rows[rowsec].price}%</td>
+	<td width="5%" class="itemscell" align="center" valign="middle"><input type="checkbox" name="%{$rows[rowsec].number}%_do_process" id="%{$rows[rowsec].number}%_do_process" value="%{$rows[rowsec].prefix}%">
+		<script language="JavaScript" type="text/javascript"> formarr[formcnt]="%{$rows[rowsec].number}%_do_process"; formcnt++;</script></td>
+</tr>
+%{/section}%
+
+</table>
+
+<p>
+
+<b>%{$overalname}%: %{$overalvalue}%</b><p>
+%{$withskidka}%
+<input type="submit" name="applyChanges" id="applyChanges" value="%{$do_apply}%">
+<input type="submit" name="deleteMarked" id="deleteMarked" value="%{$do_delete}%">
+<input type="submit" name="clearBasket" id="clearBasket" value="%{$do_clear}%">
+
+
+</form>
+
+<!-- валидатор формы -->
+<script  language="JavaScript">  
+  var  frmvalidator    =  new  Validator("basketform");  
+ 
+  %{$formrules}%
+ 
+</script>  
+
+<form action="/addtobasket.php" method="post" name="sorderform" id="sorderform">
+%{if $auth}%
+	<!-- поля формы для отправки заказа -->
+	<h4>%{$send_order_title}%</h4>
+	
+	<strong><em>%{$greetings}%</em></strong><p>
+	
+	<strong>%{$phone_prompt}%</strong><br>
+	<input type="text" name="phone" id="phone" value="%{$phone_value}%" size="40" maxlength="40"><p>
+	
+	<strong>%{$email_prompt}%</strong><br>
+	<input type="text" name="email" id="email" value="%{$email_value}%" size="40" maxlength="40"><p>
+	
+	<strong>%{$addr_prompt}%<br></strong>
+	<textarea cols="40" rows="15" name="address" id="address">%{$addr_value}%</textarea>
+					<p>
+					
+	<input type="submit" name="sendOrder" id="sendOrder" value="%{$send_order_caption}%">
+%{else}%
+	<!-- юзер не зарегистрирован, предлагаем регистрацию -->
+	<h4>%{$not_reg_msg}%</h4>
+	
+	<input type="button" name="doRegister" value="%{$do_reg_msg}%" onclick="location.href='/profile.php';"><p>
+%{/if}%
+</form>
+
+<!-- валидатор формы -->
+<script  language="JavaScript">  
+  var  frmvalidatorr    =  new  Validator("sorderform");  
+ 
+  %{$formrules2}%
+ 
+</script>  

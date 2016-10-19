@@ -1,0 +1,13 @@
+
+%{section name=itemsec loop=$items}%
+		<!-- контейнер для многовложенного подменю-->		
+		<ul type="disc">
+		<!-- итем многовложенного подменю-->
+		
+		<li class="item_container%{if $items[itemsec].is_sub}%_sub%{/if}%">
+		<a href="%{$items[itemsec].item_url}%" %{if $items[itemsec].is_new}%target="_blank"%{/if}% class="vmenulink%{if $items[itemsec].is_sub}%_sub%{/if}%"><img src="/%{$items[itemsec].image_src}%" alt="%{$items[itemsec].name}%" border=0 align="middle">%{$items[itemsec].name}%</a>
+		</li>
+		
+		%{$items[itemsec].subitems}%
+		</ul>	
+		%{/section}%

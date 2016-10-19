@@ -1,0 +1,26 @@
+	<div id="clients_opinion">
+    	<div id="clients_opinion_inner"
+        
+         class="cycle-slideshow"
+        data-cycle-fx="scrollHorz"
+  	data-cycle-timeout="10000"
+    data-cycle-speed="500"
+  	data-cycle-slides="> div.slide_clients_opinion"
+    data-cycle-pager=".co-pager"
+    data-cycle-pager-template=" <a href='#' class='co-pager-button'>&nbsp;</a> ">
+        	 
+             <div class="co-pager"></div>
+        	 %{foreach from=$items item=item}%
+             <div class="slide_clients_opinion">
+            	<h2> лиенты о нас</h2>
+                
+                <div class="opinion">%{$item.txt}%</div>
+                <div class="sign">%{$item.name}%</div>
+             
+             </div>
+             %{/foreach}%
+             
+              
+        
+    	</div>
+    </div>

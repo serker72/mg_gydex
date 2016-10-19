@@ -1,0 +1,24 @@
+<!-- элемент дерева -->
+<div class="treelevel">
+	%{section name=rowsec loop=$items}%
+	
+	
+	<div class="treeitem">
+	<a href="%{$items[rowsec].url_into}%" %{if $in_new}%target="_blank"%{/if}% class="maxi"><img src="/img/folder.gif" border=0 vspace=0 hspace=0 width=16 height=16 style="border: 1px solid #ebebeb;">&nbsp;%{$items[rowsec].obst_name}%</a>
+	%{$items[rowsec].defs}%
+	<br>
+	
+	%{section name=langsec loop=$items[rowsec].langs}%
+		
+	<nobr>&nbsp;&nbsp;<a href="%{$items[rowsec].langs[langsec].url}%" %{if $in_new}%target="_blank"%{/if}% class="mini"><img src="/%{$items[rowsec].langs[langsec].lang_flag}%" border=0 vspace=0 hspace=2 style="border: 1px solid #ebebeb;">%{$items[rowsec].langs[langsec].name}%</a></nobr>
+	
+	%{/section}%	
+	
+	
+	</div>
+	
+	%{$items[rowsec].subs}%
+	
+	
+	%{/section}%	
+</div>

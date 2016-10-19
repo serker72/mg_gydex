@@ -1,0 +1,20 @@
+
+ 			<ul>
+            	%{foreach from=$menu item=item}%
+        	    <li><a href="%{$item.item.url}%" %{if $item.item.is_active==true}%class="opened"%{/if}%>%{$item.item.name}%</a>
+               		
+                   %{foreach name=sub from=$item.subs item=sub}%%{/foreach}% 
+                   %{if $smarty.foreach.sub.total>0}%
+                   <ul>
+                   %{foreach name=sub from=$item.subs item=sub}%
+                    <li>
+                        <a %{if $sub.item.is_active==true}%class="active"%{/if}% href="%{$sub.item.url}%" >%{$sub.item.name}%</a>
+                    </li>
+                   %{/foreach}%  
+                      
+                   </ul>
+                   %{/if}% 
+                 </li>
+                  %{/foreach}%
+             </ul>    
+ 

@@ -1,0 +1,32 @@
+%{foreach name=pr from=$matched item=item}%%{/foreach}%
+%{if $smarty.foreach.pr.total==0}%
+<div class="wrong">Неверное сочетание логина и пароля.</div>
+%{else}%
+
+%{if $smarty.foreach.pr.total==1}%
+<script type="text/javascript">
+%{foreach name=pr from=$matched item=item}%
+location.href="/redir_program.php?program_id=%{$item.id}%&login="+$("#login").val()+"&password="+$("#password").val()+'&org_id=%{$item.org_id}%';
+%{/foreach}%
+</script>
+%{/if}%
+
+ 
+<div id="services_inner">
+<h3>Вам доступны следующие программы:</h3><br clear="all">
+
+
+<small><em>(для перехода в программу кликните по ее названию)</em></small>
+<ul>
+%{foreach name=pr from=$matched item=item}%
+
+%{if $item.org_id==0}%
+<li><a href="#" onclick="location.href='/redir_program.php?program_id=%{$item.id}%&login='+$('#login').val()+'&password='+$('#password').val(); return false;">%{$item.name}%</a></li>
+%{else}%
+<li><a href="#" onclick="location.href='/redir_program.php?program_id=%{$item.id}%&login='+$('#login').val()+'&password='+$('#password').val()+'&org_id=%{$item.org_id}%'; return false;">%{$item.name}%: %{$item.opf_name}% %{$item.full_name}%</a></li>
+%{/if}%
+
+%{/foreach}%
+</ul>
+</div>
+%{/if}%

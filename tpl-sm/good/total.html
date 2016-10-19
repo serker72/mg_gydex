@@ -1,0 +1,149 @@
+
+<!-- страница с подробным выводом товара -->
+<table width="95%" border="0" cellspacing="0" cellpadding="2">
+<tr align="left" valign="top">
+	<td width="*">
+		<h2>%{$good_name}%</h2>
+		
+		%{if $has_firm}%
+		%{$firm}%
+		
+		<strong>%{$firm_caption}%</strong> <a href="/firm.php?id=%{$firm_id}%" target="_blank">%{$firm_name}%</a><br>
+		
+		%{/if}%
+		
+		
+		
+		<!--таблица цен на товар -->	
+		%{$prices_error}%
+		
+		<table width="*" border="0" cellspacing="1" cellpadding="8">
+		%{section name=prowsec loop=$prows}%
+		<tr align="center" valign="middle">
+			%{section name=pcellsec loop=$prows[prowsec].pcells}%
+			<td width="*" align="%{$prows[prowsec].pcells[pcellsec].align}%" valign="%{$prows[prowsec].pcells[pcellsec].valign}%" class="%{$prows[prowsec].pcells[pcellsec].class}%">
+			%{$prows[prowsec].pcells[pcellsec].textplace}%
+			%{$prows[prowsec].pcells[pcellsec].buttonplace}%
+			</td>
+			%{/section}%
+		</tr>
+		%{/section}%
+		</table>
+		<p>
+		
+		
+		
+		%{if $has_order_form}%
+		<!-- форма заказа -->
+		
+		<div class="order_zone">
+		<form action="/addtobasket.php" name="orderer" id="orderer" >
+			<input type="hidden" name="good_id" value="%{$good_id}%">
+				
+			<strong><img src="/img/basket_impr.gif" alt="" width="24" height="24" hspace="5" vspace="2" border="0" align="absmiddle">%{$prompt_text}%</strong><br clear="all">
+			
+			<table cellspacing="0" cellpadding="2" border="0">
+			%{$OPTIONS}%
+			<tr  valign="top">
+			    <td align="right" >
+				<em>%{$quant_name}% </em>
+				</td>
+			    <td>
+				<input type="text" name="qty" id="qty" value="1" size="3" maxlength="2"> %{$quant_units}% <br>
+				</td>
+			</tr>
+			</table>
+			<br>
+			
+			<input type="submit" name="doOrder" id="doOrder" value="%{$capt_make_order}%">
+		</form></div>
+		<script  language="JavaScript">  
+		  var  frmvalidator    =  new  Validator("orderer");  
+		  frmvalidator.addValidation("qty","req","%{$err_quant_name}%");    
+		    frmvalidator.addValidation("qty","num","%{$err_quant_name0}%");    
+		   frmvalidator.addValidation("qty","gt=0","%{$err_quant_name0}%");    
+		</script>  
+		
+		
+		%{/if}%
+		<p>
+		
+		<!-- форма сравнения -->
+		<div class="order_zone">
+		<form action="/compare.php" name="compform%{$itemno}%" id="compform%{$itemno}%">
+			<b><img src="/img/compare.gif" alt="%{$to_compare}%" width="24" height="24" hspace="5" vspace="2" border="0" align="absmiddle">%{$compare_caption}%</b><br>
+			<input type="hidden" name="id" value="%{$itemno}%">
+			<input type="submit" name="doAdd" id="doAdd" value="%{$to_compare}%">
+			<br>
+			<i><a href="/compare.php" target="_blank">%{$all_comp}%</a></i><br>
+			<input type="submit" name="doClear" id="doClear" value="%{$to_clear}%">
+		</form>
+		</div>
+		
+		
+		
+	</td>
+	<td width="%{$image_col_w}%"><img src="/%{$image_url}%" alt="%{$good_name}%" width="%{$image_w}%" height="%{$image_h}%" border="0"></td>
+</tr>
+</table>
+
+<div class="descr">
+%{$good_descr}%
+</div>
+
+<!-- рекомендуемые товары -->
+%{if $has_rekoms}%
+<!-- таблица рекомендуемых товаров -->
+<h4>%{$rekomtitle}%</h4>
+<table width="*" border="0" cellspacing="2" cellpadding="8">
+%{section name=rowsec loop=$rekrows}%
+	<!-- рекомендуемый товар ряд -->
+	<tr align="left" valign="top">
+		%{section name=cellsec loop=$rekrows[rowsec].cells}%
+			<!-- рекомендуемый товар итем -->
+			<td width="*" class="itemscell">
+			<b>%{$rekrows[rowsec].cells[cellsec].itemname}%</b><br>
+			<a href="%{$rekrows[rowsec].cells[cellsec].item_url}%" target="_blank" title="%{$rekrows[rowsec].cells[cellsec].itemname}%"><img src="/%{$rekrows[rowsec].cells[cellsec].item_photo}%" alt="%{$rekrows[rowsec].cells[cellsec].itemname}%" border="0"></a><br>
+			<div class="basicprice">%{$rekrows[rowsec].cells[cellsec].price}%</div>
+			</td>
+		%{/section}%
+	</tr>
+%{/section}%
+</table>
+%{/if}%
+
+
+<!-- таблицы допфото -->
+
+%{section name=ssec loop=$photorows}%
+
+
+<h4>%{$photorows[ssec].addcaption}%:</h4>
+<table width="*" border="0" cellspacing="2" cellpadding="5">
+	%{section name=rowsec loop=$photorows[ssec].addrows}%
+	<tr align="center" valign="bottom">
+		%{section name=cellsec loop=$photorows[ssec].addrows[rowsec].cells}%
+		
+		%{if $photorows[ssec].addrows[rowsec].cells[cellsec].photo_exists}%
+		<td width="120" class="itemscell"><a href="#ph%{$itemno}%_%{$photorows[ssec].addrows[rowsec].cells[cellsec].photo_id}%" name="ph%{$itemno}%_%{$photorows[ssec].addrows[rowsec].cells[cellsec].photo_id}%" onclick="winop('/viewaddphoto.php?photo_id=%{$photorows[ssec].addrows[rowsec].cells[cellsec].photo_id}%', 800, 700, 'addphotos');"><img src="/%{$photorows[ssec].addrows[rowsec].cells[cellsec].item_image_s}%" alt="" width="%{$photorows[ssec].addrows[rowsec].cells[cellsec].image_s_w}%" height="%{$photorows[ssec].addrows[rowsec].cells[cellsec].image_s_h}%" border="0"><br>
+		%{$photorows[ssec].addrows[rowsec].cells[cellsec].itemname}%</a>
+		</td>
+		%{else}%
+		
+		<td width="120" class="itemscell"><img src="/img/image_missing.gif" alt="" width="100" height="100" border="0"><br>
+		%{$photorows[ssec].addrows[rowsec].cells[cellsec].itemname}%
+		</td>
+		%{/if}%
+		
+		%{/section}%
+	</tr>
+	%{/section}%
+</table>
+<p>
+
+
+%{/section}%
+
+
+<!-- таблицы свойств -->
+%{$PROPS}%

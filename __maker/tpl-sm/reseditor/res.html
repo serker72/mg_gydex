@@ -1,0 +1,101 @@
+<!-- библиотека яз ресурсов -->
+<table width="90%" border="0" cellspacing="1" cellpadding="2">
+
+
+
+
+
+
+
+%{section name=filesec loop=$files}%
+<!-- файлы -->
+<tr align="left" valign="top">
+	<td width="150" class="itemshead">
+	<div align="left">
+		<a href="#file_id=%{$files[filesec].fileno}%" name="file_id=%{$files[filesec].fileno}%" class="maxi" title="править файл" onclick="winop('res_ed_file.php?action=1&file_id=%{$files[filesec].fileno}%','500','350', 'edfile');">%{$files[filesec].filename}%</a>
+		
+		<a href="#" title="удалить файл" onclick="if(window.confirm('ВНИМАНИЕ!!! Вы действительно хотите удалить данный файл из списка?')){ winop('res_ed_file.php?action=2&file_id=%{$files[filesec].fileno}%','500','350', 'edfile');}"><img src="/img/delete.jpg" alt="удалить файл" width="16" height="16" border="0"></a><br>
+
+
+		&nbsp;&nbsp;<a href="#file_id=%{$files[filesec].fileno}%addres" name="file_id=%{$files[filesec].fileno}%addres" class="mini" title="добавить ресурс" onclick="winop('res_ed_res.php?action=0&file_id=%{$files[filesec].fileno}%','500','350', 'edfile');"><img src="../img/doc.gif" alt="добавить ресурс" width="13" height="13" border="0">добавить ресурс...</a><br>
+		
+		<em>%{$files[filesec].filedescr}%</em>
+			
+	</div>
+	</td>
+	<td width="*" class="itemshead" valign="middle">
+	
+	
+	%{if $full_tree==false}%
+	<div id="%{$files[filesec].fileno}%_hid" style="display: block;"><a href="#file_id=%{$files[filesec].fileno}%" onclick="m=document.getElementById('%{$files[filesec].fileno}%_res'); m.style.display='block'; m=document.getElementById('%{$files[filesec].fileno}%_hidit'); m.style.display='block'; m=document.getElementById('%{$files[filesec].fileno}%_hid'); m.style.display='none'; ">кликните для просмотра ресурсов</a></div>
+
+	<div id="%{$files[filesec].fileno}%_res" style="display: none;">
+	%{/if}%
+	<table width="98%" border="0" cellspacing="1" cellpadding="2">
+	%{section name=ressec loop=$files[filesec].ress}%
+	
+		<!-- Ресурсы файла -->
+		<tr align="left" valign="top">
+		<td width="150" class="itemscell">
+		<a href="#file_id=%{$files[filesec].fileno}%&res_id=%{$files[filesec].ress[ressec].resno}%" name="file_id=%{$files[filesec].fileno}%&res_id=%{$files[filesec].ress[ressec].resno}%" class="maxi" title="править ресурс" onclick="winop('res_ed_res.php?action=1&file_id=%{$files[filesec].fileno}%&res_id=%{$files[filesec].ress[ressec].resno}%','500','350', 'edfile');">%{$files[filesec].ress[ressec].resname}%</a>
+		
+		<a href="#file_id=%{$files[filesec].fileno}%" title="удалить ресурс" onclick="if(window.confirm('ВНИМАНИЕ!!! Вы действительно хотите удалить данный ресурс из списка?')){ winop('res_ed_res.php?action=2&file_id=%{$files[filesec].fileno}%&res_id=%{$files[filesec].ress[ressec].resno}%','500','350', 'edfile');}"><img src="/img/delete.jpg" alt="удалить ресурс" width="16" height="16" border="0"></a><br>
+		
+		
+		&nbsp;&nbsp;<a href="#file_id=%{$files[filesec].fileno}%&res_id=%{$files[filesec].ress[ressec].resno}%addfile" name="file_id=%{$files[filesec].fileno}%&res_id=%{$files[filesec].ress[ressec].resno}%addfile" class="mini" title="добавить значение" onclick="winop('res_ed_reslang.php?action=0&file_id=%{$files[filesec].fileno}%&res_id=%{$files[filesec].ress[ressec].resno}%&nonvisual=1','500','500', 'edfile');"><img src="../img/doc.gif" alt="добавить значение" width="13" height="13" border="0">добавить значение...</a><br>
+
+		<em>%{$files[filesec].ress[ressec].resdescr}%</em>
+		</td>
+		<td width="*" class="itemscell">
+		<table width="*" border="0" cellspacing="1" cellpadding="2">
+		
+		%{section name=langsec loop=$files[filesec].ress[ressec].langs}%
+		<!-- языковые значения ресурса -->
+		
+			<tr align="left" valign="top">
+			<td width="*" class="itemscellwhite">
+			
+			<a href="#file_id=%{$files[filesec].fileno}%&res_id=%{$files[filesec].ress[ressec].resno}%&lang_id=%{$files[filesec].ress[ressec].langs[langsec].langno}%" name="file_id=%{$files[filesec].fileno}%&res_id=%{$files[filesec].ress[ressec].resno}%&lang_id=%{$files[filesec].ress[ressec].langs[langsec].langno}%" title="править html значение" onclick="winop('res_ed_reslang.php?action=1&file_id=%{$files[filesec].fileno}%&res_id=%{$files[filesec].ress[ressec].resno}%&lang_id=%{$files[filesec].ress[ressec].langs[langsec].langno}%&nonvisual=1','500','500', 'edfile');"><img src="/%{$files[filesec].ress[ressec].langs[langsec].lang_flag}%" alt="" border="0"></a>
+
+			<a href="#file_id=%{$files[filesec].fileno}%&res_id=%{$files[filesec].ress[ressec].resno}%&lang_id=%{$files[filesec].ress[ressec].langs[langsec].langno}%" title="править значение визуально"  onclick="winop('res_ed_reslang.php?action=1&file_id=%{$files[filesec].fileno}%&res_id=%{$files[filesec].ress[ressec].resno}%&lang_id=%{$files[filesec].ress[ressec].langs[langsec].langno}%','500','500', 'edfile');"><img src="/%{$files[filesec].ress[ressec].langs[langsec].lang_flag}%" alt="" border="0"></a>
+			<strong>%{$files[filesec].ress[ressec].langs[langsec].value}%</strong>
+			
+			<a href="#file_id=%{$files[filesec].fileno}%&res_id=%{$files[filesec].ress[ressec].resno}%" title="удалить значение" onclick="if(window.confirm('ВНИМАНИЕ!!! Вы действительно хотите удалить данное значение из списка?')){ winop('res_ed_reslang.php?action=2&file_id=%{$files[filesec].fileno}%&res_id=%{$files[filesec].ress[ressec].resno}%&lang_id=%{$files[filesec].ress[ressec].langs[langsec].langno}%','500','500', 'edfile');}"><img src="/img/delete.jpg" alt="удалить значение" width="16" height="16" border="0"></a>
+			
+			</td>
+		</tr>
+		
+		%{/section}%
+		</table>
+		</td>
+	</tr>
+		
+	
+	%{/section}%
+	</table>
+	
+	%{if $full_tree==false}%
+	</div>
+	
+	<div id="%{$files[filesec].fileno}%_hidit" style="display: none;"><a href="#file_id=%{$files[filesec].fileno}%" onclick="m=document.getElementById('%{$files[filesec].fileno}%_res'); m.style.display='none'; m=document.getElementById('%{$files[filesec].fileno}%_hid'); m.style.display='block'; m=document.getElementById('%{$files[filesec].fileno}%_hidit'); m.style.display='none'; ">скрыть ресурсы</a></div>
+	
+	
+	<script language="JavaScript" type="text/javascript">
+	if(location.hash.indexOf('#file_id=%{$files[filesec].fileno}%')!=-1){
+		m=document.getElementById('%{$files[filesec].fileno}%_res'); 
+		m.style.display='block';  
+		m=document.getElementById('%{$files[filesec].fileno}%_hid'); 
+		m.style.display='none'; 
+		
+		m=document.getElementById('%{$files[filesec].fileno}%_hidit'); 
+		m.style.display='block'; 
+	}
+	</script>
+	%{/if}%
+	</td>
+</tr>
+%{/section}%
+
+
+
+</table>

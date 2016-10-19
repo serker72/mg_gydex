@@ -1,0 +1,141 @@
+<!-- таблица значений свойств -->
+
+%{$pages}%
+
+ <table class="gydex_table" >
+          <thead>
+          <tr align="left" valign="top">
+              <th width="*"> Имя </th>
+           
+            
+             <th width="*"> Значение/действия </th>
+            
+              <th width="80"> Действия над свойством </th>	
+              
+          </tr>
+          </thead>
+          <tbody>
+
+ 
+ 
+ 
+%{section name=rowsec loop=$items}%
+<tr align="left" valign="top">
+	<td width="30%"><a name="%{$items[rowsec].itemno}%"></a>
+	%{section name=namesec loop=$items[rowsec].nameitems}%
+		<!-- имя свойства в списке -->
+		<a href="%{$filename}%?doLang=1&action=1&id=%{$items[rowsec].itemno}%&lang_id=%{$items[rowsec].nameitems[namesec].lang_id}%&item_id=%{$itemid}%&from=%{$fromno}%&to_page=%{$topage}%">
+%{if $items[rowsec].nameitems[namesec].is_exist}%
+		<!-- slovar sozdan -->
+				%{$items[rowsec].nameitems[namesec].name}%
+		%{else}%
+		<!-- slovar ne sozdan -->
+		<!-- имя словаря в списке -->
+			<b><em>не создано</em></b>
+		%{/if}%
+		</a>
+	 
+      <a class="gydex_edit_lang" href="%{$filename}%?doLang=1&action=1&id=%{$items[rowsec].itemno}%&lang_id=%{$items[rowsec].nameitems[namesec].lang_id}%&item_id=%{$itemid}%&from=%{$fromno}%&to_page=%{$topage}%"><img src="/%{$items[rowsec].nameitems[namesec].lang_flag}%" alt="правка на языке %{$items[rowsec].nameitems[namesec].lang_name}%" title="правка на языке %{$items[rowsec].nameitems[namesec].lang_name}%" border="0"></a> 
+			
+
+			      <a class="gydex_edit_html"  href="%{$filename}%?doLang=1&nonvisual=1&action=1&id=%{$items[rowsec].itemno}%&lang_id=%{$items[rowsec].nameitems[namesec].lang_id}%&item_id=%{$itemid}%&from=%{$fromno}%&to_page=%{$topage}%"><img src="/%{$items[rowsec].nameitems[namesec].lang_flag}%" alt="правка на языке %{$items[rowsec].nameitems[namesec].lang_name}%" title="правка на языке %{$items[rowsec].nameitems[namesec].lang_name}%" border="0"></a>
+         <br>
+   
+     
+     
+      
+
+		%{if $items[rowsec].nameitems[namesec].is_exist}%
+			<!-- видимость словаря на языке -->
+			<input class="unbord" type="checkbox" name="%{$items[rowsec].itemno}%_%{$items[rowsec].nameitems[namesec].lang_id}%_is_shown" id="%{$items[rowsec].itemno}%_%{$items[rowsec].nameitems[namesec].lang_id}%_is_shown" value="" %{if $items[rowsec].nameitems[namesec].is_visible}%checked%{/if}%  >видим
+		%{/if}%
+	 
+		<br>
+	%{/section}%	
+	</td>
+
+	<td width="55%">
+	
+	<!-- таблица значений свойств -->
+	<table width="100%" border="0" cellspacing="1" cellpadding="3">
+	%{if $items[rowsec].can_add_value}%
+	<!--  ряд с командой добавки значения -->
+	<tr align="left" valign="top">
+		<td width="*" class="itemshead" colspan="2">
+			%{if $items[rowsec].no_values}%
+			<em>не создано</em>
+			<br>
+			%{/if}%
+			<a href="%{$val_filename}%?action=0&name_id=%{$items[rowsec].itemno}%&item_id=%{$itemid}%&from=%{$fromno}%&to_page=%{$topage}%">добавить значение</a>	
+		</td>
+	</tr>
+	%{/if}%
+	
+	%{section name=valsec loop=$items[rowsec].valitems}%
+	<!--  значение свойства -->
+	<tr align="left" valign="top">
+		<td width="80%" class="itemshead">
+		%{if $items[rowsec].valitems[valsec].is_photo}%
+		
+		<img src="/%{$items[rowsec].valitems[valsec].photo}%" align="left" hspace="5" alt="" border="0">
+		
+		%{/if}%
+		
+		%{section name=valnamesec loop=$items[rowsec].valitems[valsec].valnameitems}%
+		<!-- zna4 в списке -->
+		<a href="%{$val_filename}%?doLang=1&action=1&id=%{$items[rowsec].valitems[valsec].itemno}%&lang_id=%{$items[rowsec].valitems[valsec].valnameitems[valnamesec].lang_id}%&from=%{$fromno}%&to_page=%{$topage}%">
+%{if $items[rowsec].valitems[valsec].valnameitems[valnamesec].is_exist}%
+		<!-- zna4 sozdan -->
+				%{$items[rowsec].valitems[valsec].valnameitems[valnamesec].name}%
+		%{else}%
+		<!-- zna4 ne sozdan -->
+		<!-- имя zna4 в списке -->
+			<b><em>не создано</em></b>
+		%{/if}%
+		</a>
+		<nobr>
+        
+        
+		 <a href="%{$val_filename}%?doLang=1&action=1&id=%{$items[rowsec].valitems[valsec].itemno}%&lang_id=%{$items[rowsec].valitems[valsec].valnameitems[valnamesec].lang_id}%&from=%{$fromno}%&to_page=%{$topage}%"><img src="/%{$items[rowsec].valitems[valsec].valnameitems[valnamesec].lang_flag}%" alt="правка на языке %{$items[rowsec].valitems[valsec].valnameitems[valnamesec].lang_name}%" title="правка на языке %{$items[rowsec].valitems[valsec].valnameitems[valnamesec].lang_name}%" border="0"></a> 
+		<a href="%{$val_filename}%?doLang=1&nonvisual=1&action=1&id=%{$items[rowsec].valitems[valsec].itemno}%&lang_id=%{$items[rowsec].valitems[valsec].valnameitems[valnamesec].lang_id}%&from=%{$fromno}%&to_page=%{$topage}%"><img src="/%{$items[rowsec].valitems[valsec].valnameitems[valnamesec].lang_flag}%" alt="правка на языке %{$items[rowsec].valitems[valsec].valnameitems[valnamesec].lang_name}%" title="правка на языке %{$items[rowsec].valitems[valsec].valnameitems[valnamesec].lang_name}%" border="0"></a>
+        
+        
+        
+
+		%{if $items[rowsec].valitems[valsec].valnameitems[valnamesec].is_exist}%
+			<!-- видимость zna4eniya на языке -->
+			<input class="unbord" type="checkbox"  value="" %{if $items[rowsec].valitems[valsec].valnameitems[valnamesec].is_visible}%checked%{/if}%  >в.
+		%{/if}%
+		</nobr>
+		<br>
+		%{/section}%
+		</td>
+		
+		<td width="20%" class="itemshead">
+			<a href="%{$val_filename}%?action=1&id=%{$items[rowsec].valitems[valsec].itemno}%&from=%{$fromno}%&to_page=%{$topage}%"><img src="/img/edit.jpg" alt="правка" width="16" height="16" border="0"></a>	
+	
+		<a href="%{$val_filename}%?action=2&id=%{$items[rowsec].valitems[valsec].itemno}%&from=%{$fromno}%&to_page=%{$topage}%" onclick="return window.confirm('ВНИМАНИЕ!!! Вы действительно хотите удалить данную запись из списка?');"><img src="/img/delete.jpg" alt="Удалить значение свойства" width="16" height="16" border="0"></a>
+		</td>
+	</tr>
+	%{/section}%
+	</table>
+	</td>
+	
+	<td width="15%">
+    	 <a class="gydex_up" title="увеличить порядок показа" href="%{$filename}%?action=1&id=%{$items[rowsec].itemno}%&changeOrd=0&item_id=%{$itemid}%&from=%{$fromno}%&to_page=%{$topage}%"></a>
+          <a class="gydex_down" title="уменьшить порядок показа"  href="%{$filename}%?action=1&id=%{$items[rowsec].itemno}%&changeOrd=1&item_id=%{$itemid}%&from=%{$fromno}%&to_page=%{$topage}%"></a>
+          
+          
+          <a class="gydex_del" title="удалить запись" href="%{$filename}%?action=2&id=%{$items[rowsec].itemno}%&item_id=%{$itemid}%" onclick="return window.confirm('ВНИМАНИЕ!!! Вы действительно хотите удалить данную запись из списка?');"></a>
+
+    
+    
+     
+	</td>
+	
+</tr>
+%{/section}%
+</tbody>
+</table>
+
+

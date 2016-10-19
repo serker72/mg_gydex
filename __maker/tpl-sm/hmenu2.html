@@ -1,0 +1,50 @@
+	<div id="gydex_menu">
+        	<ul class="gydex_menu">
+            	<li>
+                <a href="/" target="_blank"><img src="/img/newdis/home.jpg" width="27" height="27" /></a>
+                </li>
+            	
+                
+                %{foreach from=$menu item=item}%
+                <li>
+                	 %{foreach name=sub from=$item.subs item=sub}%%{/foreach}%
+                	<a href="%{$item.item.url}%" %{if $smarty.foreach.sub.total>0}% class="nested"%{/if}%>%{$item.item.name}%</a>
+                    
+                   
+                    %{if $smarty.foreach.sub.total>0}%
+                    <ul>
+                    %{foreach name=sub from=$item.subs item=sub}%
+                    <li>
+                        <a href="%{$sub.item.url}%">%{$sub.item.name}%</a>
+                    </li>
+                    %{/foreach}%
+                    </ul>
+                    %{/if}%
+                </li>
+                %{/foreach}%
+               
+                
+            </ul>
+        </div>
+        <div id="gydex_login">
+        	
+            <div class="gydex_user">
+            %{$username}%
+            </div>
+            
+            <a class="gydex_signout" href="usereffects.php?doOut">
+            выйти
+            </a>
+            
+            <br />
+
+            
+            <div class="gydex_login">
+            Логин: %{$login}%
+            </div>
+            
+            
+            
+            
+            
+        </div>

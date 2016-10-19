@@ -1,0 +1,85 @@
+<!-- таблица прикреплений словарей -->
+
+ <table class="gydex_table" >
+          <thead>
+          <tr align="left" valign="top">
+              <th width="*"> Редактировать/Показ </th>
+           
+              <th width="80"> Наслед </th>	
+            
+              <th width="80"> Действия </th>	
+             
+          </tr>
+          </thead>
+          <tbody>
+
+ 
+
+
+ 
+%{section name=namesec loop=$items}%
+
+<!-- прикрепление словаря итем -->
+<tr align="left" valign="top">
+	<td width="*"><a name="%{$items[namesec].itemno}%"></a>
+	%{section name=valsec loop=$items[namesec].valitems}%
+
+	<a href="#%{$items[namesec].itemno}%" onclick="parent.viewnames.location.href='viewnames.php?dict_id=%{$items[namesec].dictno}%&id=%{$parentid}%';" title="Щелкните для просмотра списка свойств">
+	%{if $items[namesec].valitems[valsec].is_exist}%
+		<!-- slovar sozdan -->
+				%{$items[namesec].valitems[valsec].name}%
+		%{else}%
+		<!-- slovar ne sozdan -->
+		<!-- имя словаря в списке -->
+			<b><em>не создано</em></b>
+		%{/if}%
+		</a>
+        
+        
+        <br>
+
+			
+          <a class="gydex_edit_lang" href="#%{$items[namesec].itemno}%" onclick="winop('ed_dict_compact.php?id=%{$items[namesec].dictno}%&lang_id=%{$items[namesec].valitems[valsec].lang_id}%&doLang=1&action=1&parent_id=%{$parentid}%&kind=%{$kk}%',800,700,'dictt')" title="Нажмите для редактирования словаря"><img src="/%{$items[namesec].valitems[valsec].lang_flag}%" alt="правка на языке %{$items[namesec].valitems[valsec].lang_name}%" title="правка на языке %{$items[namesec].valitems[valsec].lang_name}%" border="0"></a> 
+			
+
+			      <a class="gydex_edit_html" href="#%{$items[namesec].itemno}%" onclick="winop('ed_dict_compact.php?id=%{$items[namesec].dictno}%&lang_id=%{$items[namesec].valitems[valsec].lang_id}%&doLang=1&action=1&nonvisual=1&parent_id=%{$parentid}%&kind=%{$kk}%',800,700,'dictt')" title="Нажмите для редактирования словаря"><img src="/%{$items[namesec].valitems[valsec].lang_flag}%" alt="правка на языке %{$items[namesec].valitems[valsec].lang_name}%" title="правка на языке %{$items[namesec].valitems[valsec].lang_name}%" border="0"></a>
+         <br>	 
+		
+		%{if $items[namesec].valitems[valsec].is_exist}%
+			<!-- видимость словаря на языке -->
+			 
+            
+            <input class="gydex_control" type="checkbox" name="%{$items[rowsec].itemno}%_%{$items[rowsec].nameitems[namesec].lang_id}%_is_shown" id="%{$items[rowsec].itemno}%_%{$items[rowsec].nameitems[namesec].lang_id}%_is_shown" value="%{$items[rowsec].nameitems[namesec].lang_shown}%" %{if $items[rowsec].nameitems[namesec].is_visible==1}%checked%{/if}% ><label for="%{$items[rowsec].itemno}%_%{$items[rowsec].nameitems[namesec].lang_id}%_is_shown">видим</label>
+            
+		%{/if}%
+		 
+		<br>
+	
+	%{/section}%
+	</td>
+		
+	<td width="80" align="center" valign="middle">
+	<strong>%{$items[namesec].attachsymb}%</strong>
+	</td>
+	<td width="80">
+    
+     <a class="gydex_up" title="увеличить порядок показа" href="%{$filename}%?action=1&changeOrd=0&id=%{$parentid}%&parent_id=%{$items[namesec].itemno}%&kind=%{$kindno}%"></a>
+          <a class="gydex_down" title="уменьшить порядок показа" href="%{$filename}%?action=1&changeOrd=1&id=%{$parentid}%&parent_id=%{$items[namesec].itemno}%&kind=%{$kindno}%"></a>
+          
+          %{if $items[namesec].is_inherit==1}%
+          
+          <a class="gydex_edit" href="#%{$items[namesec].itemno}%" title="Редактировать прикрепление словаря" onclick="winop('ed_dict_attach.php?action=1&id=%{$items[namesec].itemno}%',400,200,'ed_attach')"> </a>
+          
+          <a class="gydex_del" title="удалить запись" href="%{$filename}%?action=2&id=%{$parentid}%&parent_id=%{$items[namesec].itemno}%&kind=%{$kindno}%" onclick="return window.confirm('ВНИМАНИЕ!!! Вы действительно хотите удалить данную запись из списка?');"></a>
+
+   			 %{/if}%
+    
+		 
+	</td>
+</tr>
+%{/section}%
+</tbody>
+</table>
+
+
+

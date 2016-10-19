@@ -1,0 +1,19 @@
+<!-- таблица рекомендуемых товаров -->
+
+<table width="*" border="0" cellspacing="1" cellpadding="5">
+%{section name=rowsec loop=$rows}%
+	<!-- рекомендуемый товар ряд -->
+	<tr align="left" valign="top">
+		%{section name=cellsec loop=$rows[rowsec].cells}%
+			<!-- рекомендуемый товар итем -->
+		<td width="*" class="itemscell">
+		
+		<a href="ed_price.php?id=%{$rows[rowsec].cells[cellsec].itemno}%&action=1" target="_blank">%{$rows[rowsec].cells[cellsec].itemname}%</a><br>
+		<a href="ed_price.php?id=%{$rows[rowsec].cells[cellsec].itemno}%&action=1" target="_blank"><img src="/%{$rows[rowsec].cells[cellsec].item_photo}%" alt="" border="0"></a><br>
+		<a href="ed_rekom.php?action=2&id=%{$rows[rowsec].cells[cellsec].link_no}%">удалить</a>
+	
+		</td>
+		%{/section}%
+	</tr>
+%{/section}%
+</table>

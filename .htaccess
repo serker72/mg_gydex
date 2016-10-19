@@ -1,0 +1,118 @@
+DirectoryIndex index.html index.htm index.php
+
+RewriteEngine on
+
+Options +FollowSymlinks
+
+ErrorDocument 404 /404.php
+
+RewriteBase /
+
+
+RewriteCond %{HTTP_HOST} ^gydex.ru
+RewriteRule (.*) http://www.gydex.ru/$1 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^gydex.org
+RewriteRule (.*) http://www.gydex.org/$1 [R=301,L]
+
+#зоны и страницы-исключения
+RewriteRule ^img/campaign_([0-9]+)_([0-9]+).png  /js/delivery_view.php?user_id=$1&delivery_id=$2 [L]
+
+
+
+RewriteCond %{REQUEST_URI} __maker/?(.*)
+RewriteRule ^__maker/?(.*) - [L]
+
+RewriteCond %{REQUEST_URI} email_support/?(.*)
+RewriteRule ^email_support/?(.*) - [L]
+
+
+RewriteCond %{REQUEST_URI} help/?(.*)
+RewriteRule ^help/?(.*) - [L]	
+
+RewriteCond %{REQUEST_URI} sxd/?(.*)
+RewriteRule ^sxd/?(.*) - [L]
+
+RewriteCond %{REQUEST_URI} static/?(.*)
+RewriteRule ^static/?(.*) - [L]
+
+RewriteCond %{REQUEST_URI} index.php(.*)
+RewriteRule ^index.php(.*) - [L]
+
+RewriteCond %{REQUEST_URI} addtobasket.php(.*)
+RewriteRule ^addtobasket.php(.*) - [L]
+
+RewriteCond %{REQUEST_URI} firm.php(.*)
+RewriteRule ^firm.php(.*) - [L]
+
+RewriteCond %{REQUEST_URI} viewaddphoto.php(.*)
+RewriteRule ^viewaddphoto.php(.*) - [L]
+
+RewriteCond %{REQUEST_URI} redir.php(.*)
+RewriteRule ^redir.php(.*) - [L]
+
+RewriteCond %{REQUEST_URI} compare.php(.*)
+RewriteRule ^compare.php(.*) - [L]
+
+
+#миграция старых адресов
+RewriteRule ^o_kompanii/section_o_Gydex.html /o_kompanii/o_Gydex/ [R=301,L]
+RewriteRule ^o_kompanii/section_novosti.html /o_kompanii/novosti/ [R=301,L]
+RewriteRule ^o_kompanii/section_podderzhka.html /o_kompanii/podderzhka/ [R=301,L]
+RewriteRule ^o_kompanii/section_stoimost_.html /o_kompanii/stoimost_/ [R=301,L]
+RewriteRule ^o_kompanii/section_poleznaya_informatciya.html /o_kompanii/poleznaya_informatciya/ [R=301,L]
+RewriteRule ^produkty/section_dilerskiy_kabinet.html /produkty/dilerskiy_kabinet/ [R=301,L]
+RewriteRule ^produkty/section_elektronnoe_snabzhenie.html /produkty/elektronnoe_snabzhenie/ [R=301,L]
+RewriteRule ^produkty/section_intellektual_nye_prodazhi.html /produkty/intellektual_nye_prodazhi/ [R=301,L]
+RewriteRule ^produkty/section_mobil_nyy_ofis_i_buhgalteriya.html /produkty/mobil_nyy_ofis_i_buhgalteriya/ [R=301,L]
+RewriteRule ^produkty/section_GYDEX__FOR_YOU_.html /produkty/GYDEX__FOR_YOU_/ [R=301,L]
+RewriteRule ^produkty/section_GYDEX_marketing_i_analitika.html /produkty/GYDEX_marketing_i_analitika/ [R=301,L]
+RewriteRule ^produkty/section_GYDEX_proekty_pod_klyuch.html /produkty/GYDEX_proekty_pod_klyuch/ [R=301,L]
+RewriteRule ^solutions/section_podklyuchenie_k_CRM_Gydex.html /solutions/podklyuchenie_k_CRM_Gydex/ [R=301,L]
+RewriteRule ^solutions/section_individual_noe_po.html /solutions/individual_noe_po/ [R=301,L]
+RewriteRule ^solutions/section_testovyy_dostup.html /solutions/testovyy_dostup/ [R=301,L]
+ 
+
+
+
+#строка для раздела со многими параметрами (в том числе и from)
+#RewriteRule ^(([0-9a-zA-Z_]+))/section_([0-9a-zA-Z_]+)\.html$ /razds.php?name=$3&%{QUERY_STRING} [L]
+#RewriteRule ^((([0-9a-zA-Z_]+)[/])+)$ /razds.php?name=$3&%{QUERY_STRING} [L]
+
+
+#строки для обработки урла при бесконечно возможной вложенности раздела
+#RewriteRule ^section_([0-9a-zA-Z_]+)\.html$ /razds.php?name=$1 [L]
+
+
+RewriteRule ^sitemap.xml /sitemap.php [L]
+
+
+RewriteRule ^news_file.html /news_files.php [L]
+RewriteRule ^news_file_view.html /news_files_view.php [L]
+
+RewriteRule ^sol_file.html /sol_files.php [L]
+RewriteRule ^sol_file_view.html /sol_files_view.php [L]
+
+
+#RewriteRule ^photo_([0-9]+).html$ /photo.php?id=$1 [L]
+#RewriteRule ^item_([0-9]+)\.html$ /good.php?id=$1 [L]
+#RewriteRule ^paper_([0-9]+)\.html$ /paper.php?id=$1 [L]
+#RewriteRule ^news_([0-9]+).html$ /readnews.php?id=$1 [L]
+#RewriteRule ^news_([0-9]+).html$ /readnews.php?id=$1 [L]
+
+
+RewriteRule ^((([0-9a-zA-Z_]+)[/])+)(photos_([0-9]+)\.html)$ /photo.php?id=$5&name=$1&%{QUERY_STRING} [L]
+RewriteRule ^((([0-9a-zA-Z_]+)[/])+)(goods_([0-9]+)\.html)$ /good.php?id=$5&name=$1&%{QUERY_STRING} [L]
+RewriteRule ^((([0-9a-zA-Z_]+)[/])+)(paper_([0-9]+)\.html)$ /paper.php?id=$5&name=$1&%{QUERY_STRING} [L]
+RewriteRule ^((([0-9a-zA-Z_]+)[/])+)(news_([0-9]+)\.html)$ /readnews.php?id=$5&name=$1&%{QUERY_STRING} [L]
+RewriteRule ^(photos_([0-9]+)\.html)$ /photo.php?id=$2&%{QUERY_STRING} [L]
+RewriteRule ^(goods_([0-9]+)\.html)$ /good.php?id=$2&%{QUERY_STRING} [L]
+RewriteRule ^(paper_([0-9]+)\.html)$ /paper.php?id=$2&%{QUERY_STRING} [L]
+RewriteRule ^(news_([0-9]+)\.html)$ /readnews.php?id=$2&%{QUERY_STRING} [L]
+
+
+
+#строки для обработки урла при бесконечно возможной вложенности раздела
+RewriteRule ^((([0-9a-zA-Z_]+)[/])+)$ /razds.php?name=$1&%{QUERY_STRING} [L]
+
+

@@ -1,0 +1,81 @@
+<?php /* Smarty version 2.6.22, created on 2016-10-19 18:21:43
+         compiled from index_benefits.html */ ?>
+	<div id="benefits">
+    	<div id="benefits-inner">
+			<h1>Преимущества CRM-систем GYDEX</h1>
+            <div align="center">С нашей помощью Вы сделаете свой бизнес до 10 раз прибыльнее!</div>
+            
+            <div id="benefits-slides"
+            class="cycle-slideshow"
+           			 
+                    data-cycle-slides="> div.benefits_block"
+                    data-cycle-fx="carousel"
+    				data-cycle-timeout="5000"
+            >
+            <div class="benefits_block0 benefits_block">
+            	
+                <a href="/solutions/section_individual_noe_po.html" class="ben_title">Индивидуальный <br />
+подход</a>
+                
+                Разработаем прогаммное обеспечение с учетом всех особенностей вашего бизнеса.
+                
+                <a href="/solutions/section_individual_noe_po.html" class="ben_more">Узнать больше</a>
+            
+            </div>
+            
+            <div class="benefits_block1 benefits_block">
+            	
+                <a href="/24_7/" class="ben_title">Доступность <br />
+
+24 часа</a>
+                
+                Вы можете проверить любые документы с любого устройства!
+                
+                <a href="/24_7/" class="ben_more">Узнать больше</a>
+            
+            </div>
+            
+            <div class="benefits_block2 benefits_block">
+            	
+                <a href="/besplatnaya_razrabotka___vnedrenie__obuchenie/" class="ben_title">Бесплатная разработка, 
+<br />
+ 
+внедрение, обучение</a>
+                
+                Наши специалисты специально для Вас настроят CRM GYDEX, внедрят ее "под ключ", научат Ваш персонал полноценно работать в CRM GYDEX.
+                
+                <a href="/besplatnaya_razrabotka___vnedrenie__obuchenie/" class="ben_more">Узнать больше</a>
+            
+            </div>
+            
+            <div class="benefits_block3 benefits_block">
+            	
+                <a href="/o_kompanii/section_podderzhka.html" class="ben_title">Бесплатная техническая и консультационная поддержка</a>
+                
+               Наши специалисты оперативно ответят на все Ваши вопросы по CRM GYDEX!
+                
+               <a href="/o_kompanii/section_podderzhka.html" class="ben_more">Узнать больше</a>
+            
+            </div>
+            
+            <div class="benefits_block4 benefits_block">
+            	
+                <a href="/GYDEX__security/" class="ben_title">Защита  <br />
+
+информации</a>
+                
+               Сохранность данных – приоритетная задача.
+                
+               <a href="/GYDEX__security/" class="ben_more">Узнать больше</a>
+            
+            </div>
+            
+            
+            <div class="clr"></div>
+            </div>
+            
+    	</div>
+    </div>
+    
+    
+    

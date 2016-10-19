@@ -1,0 +1,108 @@
+.gydex_menu { /*убиваем стандартные отступы браузера для списка */
+margin: 0;
+padding: 0;
+}
+.gydex_menu li, .gydex_menu li.last { /*пункты меню */
+float: left;
+position: relative;
+ 
+text-align:right;
+margin-left: -1px;
+padding-top:1px;
+list-style: none;
+}
+ 
+.gydex_menu a, .gydex_menu div { /* стилизация ссылок */
+color: #62a1d4;
+font-size:14px; 
+text-decoration: none;
+display: block;
+padding:  14px 10px 0px 0px;
+
+margin-left:22px;
+outline: none;
+/* border:1px solid green;*/
+
+}
+.gydex_menu a:hover{
+	color:#105fa6 !important;
+}
+.gydex_menu li:first-child a, .gydex_menu li:first-child div{
+	padding-top:7px;
+	margin-right:0px;
+   
+}
+.gydex_menu li:last-child a, .gydex_menu li:last-child div{
+	margin-right:0px;
+}
+.gydex_menu a.current{
+	color: #105fa6;
+	border-bottom:2px solid #105fa6;
+}
+.gydex_menu a.nested{
+	background-image:url(/img/newdis/h-down.png);
+	background-repeat:no-repeat;
+	background-position:right 20px;
+}
+
+.gydex_menu a.is_red, .gydex_menu div.is_red { /* стилизация ссылок */
+color: red;
+}
+.gydex_menu a.current{
+	color: #105fa6;
+}
+
+.gydex_menu li ul { /* параметры для первого подуровня */
+position: absolute; /* что бы подвинуть объект прямо под пункт меню */
+ 
+margin: 0px 0 0 0px;
+ 
+ 
+background-color:white;
+
+padding: 14px 0px 14px 0px;
+z-index:1000;
+display:none;
+/*border:1px solid red;*/
+}
+.gydex_menu li ul li, .gydex_menu li ul li.rower{ 
+	text-align:left;
+	padding-top:0px;
+	padding-bottom:0px;
+	
+	 
+	
+}
+
+.gydex_menu li ul li:hover{
+	 
+}
+.gydex_menu li ul li.rower{
+	background-image:none !important;
+}
+.gydex_menu li ul li a, .gydex_menu li ul li a.rower, .gydex_menu li ul li div{ 
+	font-size:14px;
+ 
+	padding: 2px 5px 2px 15px;
+	color:#62a2d4;
+	height:19px;
+	
+}
+.gydex_menu li ul li a.rower, .gydex_menu li ul li div{
+	 
+}
+.gydex_menu li ul li a:hover, .gydex_menu li ul li a.rower:hover{
+	color:#105fa6;
+}
+
+/* убираем лишние параметры от .gydex_menu li для подуровней */
+.gydex_menu li li { border: none; width: 290px; margin: 0; }
+.gydex_menu li li ul { /* начиная со второго подуровня идет вертикальное меню, потому нужно подвинуть его влево на ширину родителя */
+width: 290px;
+margin: -1px 0 0 290px; /*двинем на ширину родителя */
+top: 0px; /*что бы элемент был на одной линии с родителем */
+
+}
+/* jquery классы */
+.active {/*background: #dadada;*/}
+.arrow {/*background: url(arrow.png) right no-repeat;*/}

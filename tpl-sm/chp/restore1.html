@@ -1,0 +1,46 @@
+ 
+<form action="/restore.php" method="post" id="restore_form"  autocomplete="off" >
+<h3>Введите Ваш логин (логин - это адрес электронной почты):</h3>
+<table width="*" border="0" cellpadding="2" cellspacing="2">
+    
+    <tr align="left" valign="top">
+    	<td width="70" align="right" valign="middle">
+        <label for="email">E-mail</label>
+        </td>
+        <td width="100"><input type="text" size="40" maxlength="255" name="email" id="email_restore" autocomplete="off" />
+        </td>
+    </tr>
+    <tr align="left" valign="top">
+    	<td width="70" align="right" valign="middle">&nbsp;
+        
+        </td>
+        <td width="100">
+        <input type="submit" value="Восстановить пароль" name="doFind" />
+        </td>
+    </tr>
+   
+    </table>
+
+</form>
+ <script type="text/javascript">
+	$(function(){
+		$("#restore_form").bind("submit",function(){
+			can=true;
+			 
+			 
+			regexp=/^([a-zA-Z0-9_-]+\.)*[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)*\.[a-zA-Z]{2,9}$/;
+			if(!regexp.test($("#email_restore").val())){
+				can=can&&false;
+			}
+
+			 
+			if(!can) {
+				
+				alert("Для восстановления пароля корректно укажите Ваш логин - адрес электронной почты!");
+				$("#email").focus();
+			}
+			return can;
+		});
+		 
+	});
+	</script>

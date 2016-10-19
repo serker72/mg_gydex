@@ -1,0 +1,26 @@
+<div align="left">	 <strong>Код:</strong> %{$selected_item.id}%<br />
+    	<strong>Название:</strong> <a href="#" title="редактировать объект" onclick="
+        %{$EVENT}%
+        mn=document.getElementById('obj_edit'); 
+       $('#obj_edit').css('top', coord[1]);
+$('#obj_edit').css('left', coord[0]);
+        mm=document.getElementById('new_obj'); mm.style.display='none';
+        mm=document.getElementById('ed_obj'); mm.style.display='inline';        
+        mm=document.getElementById('name_obj'); mm.value='%{$selected_item.name_esc}%';
+        mm=document.getElementById('info_obj'); mm.value='%{$selected_item.info_esc}%';
+        mm=document.getElementById('id_obj'); mm.value='%{$selected_item.id}%';
+        mn.style.display='block';
+        mm=document.getElementById('name_obj'); mm.focus();
+    
+    	return false;
+        ">%{$selected_item.name}%</a> (<a href="#" title="Удалить объект" onclick="
+        if(window.confirm('Вы уверены, что хотите удалить данный объект из матрицы доступа?')){
+        	%{$EVENT}%
+      		mn=document.getElementById('wait_win'); 
+	        mn.style.top=coord[1]; 
+    	    mn.style.left=coord[0];	
+            mn.style.display='block';
+            xajax_DelObj(%{$selected_item.id}%); 
+        }
+        return false;
+        ">-</a>)</div>

@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /404.php
+Host: www.gydex.ru
+Sitemap: http://www.gydex.ru/sitemap.xml
+

@@ -1,0 +1,8 @@
+<!-- подменю списком вверху подраздела -->
+<ul>
+%{section name=itemsec loop=$items}%
+
+<li><a href="%{$items[itemsec].item_url}%" %{if $items[itemsec].is_new}%target="_blank"%{/if}% title="%{$items[itemsec].altname}%">%{$items[itemsec].name}%</a></li> 
+
+%{/section}%
+</ul>

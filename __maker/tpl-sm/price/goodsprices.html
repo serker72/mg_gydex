@@ -1,0 +1,39 @@
+<!--таблица цен на товар -->	
+	<table width="*" border="0" cellspacing="1" cellpadding="8">
+		
+		
+		<tr align="left" valign="top">
+			<td width="*" class="itemshead">
+			<input type="button" value="Валюты..." onclick="winop('viewcurrs.php','900','600', 'currs');">
+				<input type="button" value="Цены..." onclick="winop('pricestogood.php?value_id=%{$goodid}%','800','600', 'pricestogood');"><br>
+			
+			
+			</td>
+			%{section name=currsec loop=$currs}%
+			<td width="*" align="center" valign="middle" class="itemshead">
+			%{$currs[currsec].curr_info}%
+			</td>
+			%{/section}%
+		</tr>
+
+		%{section name=pricesec loop=$prices}%
+		<tr align="center" valign="middle">
+			%{section name=valsec loop=$prices[pricesec].vals}%
+				<td width="*" align="%{$prices[pricesec].vals[valsec].align}%" valign="%{$prices[pricesec].vals[valsec].valign}%" class="%{$prices[pricesec].vals[valsec].class}%">
+				%{$prices[pricesec].vals[valsec].textplace}%
+				
+				%{if $prices[pricesec].vals[valsec].has_button}%
+				<br>
+				<input type="button" name="makePrice" id="makePrice" value="задать..." onclick="winop('makeprice.php?good_id=%{$goodid}%&price_id=%{$prices[pricesec].vals[valsec].priceid}%','350','170', 'makeprice');">
+				%{else}%
+				<br>
+				<br>
+				%{/if}%
+				</td>
+			%{/section}%
+		</tr>
+		%{/section}%
+		
+
+
+	</table>

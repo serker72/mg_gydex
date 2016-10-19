@@ -1,0 +1,128 @@
+.menu { /*убиваем стандартные отступы браузера для списка */
+margin: 0;
+padding: 0;
+}
+.menu li, .menu li.last { /*пункты меню */
+float: left;
+position: relative;
+ 
+text-align:right;
+margin-left: -1px;
+padding-top:1px;
+list-style: none;
+}
+.menu li.last{
+   background-image:none;
+}
+.menu a, .menu div { /* стилизация ссылок */
+color: #62a2d4;
+font-size:14px; 
+text-decoration: none;
+display: block;
+padding:  14px 0px 0px 0px;
+height:49px;
+margin-left:22px;
+outline: none; 
+ 
+
+}
+.menu a.current{
+	color: #e9510f;
+	border-bottom:2px solid #e9510f;
+}
+.menu a.nested{
+ 
+	padding-right:12px;
+	background-image:url(/images/menu_arrow.png);
+	background-position:right 22px;
+	background-repeat:no-repeat;
+}
+.menu li.current a.nested{
+	background-image:url(/images/menu_arrow_current.png);
+}
+
+.menu a.is_red, .menu div.is_red { /* стилизация ссылок */
+color: red;
+}
+
+
+.menu li ul { /* параметры для первого подуровня */
+position: absolute; /* что бы подвинуть объект прямо под пункт меню */
+ 
+margin: -20px 0 0 0px;
+ 
+ 
+background-color:white;
+
+padding: 0px 0px 0px 0px;
+z-index:1000;
+display:none;
+width:auto;
+ 
+ 
+}
+.menu li ul li, .menu li ul li.rower{ 
+	text-align:left;
+	padding-top:0px;
+	padding-bottom:0px;
+	
+	 
+	
+}
+.menu li ul li{
+	
+	display:block;
+	box-sizing:border-box;
+	width:100%;
+	 
+	padding: 2px 15px 2px 22px;
+	height:auto;
+	margin-left:0px;
+ 
+	white-space:nowrap;
+	 
+	 
+}
+.menu li ul li.current{
+	background-color:#ededed;
+}
+
+.menu li ul li:hover{
+	 
+}
+.menu li ul li.rower{
+	background-image:none !important;
+}
+.menu li ul li a, .menu li ul li a.rower, .menu li ul li div{ 
+	font-size:14px;
+ 
+	
+	color:#62a2d4;
+	display:inline !important;
+	margin-left:0px !important;
+	
+	
+}
+.menu li ul li a.rower, .menu li ul li div{
+	 
+}
+.menu li ul li a:hover, .menu li ul li a.rower:hover{
+	color:#105fa6;
+}
+
+.menu li ul li a.current{
+	border:none;
+	 
+}
+
+/* убираем лишние параметры от .menu li для подуровней */
+.menu li li { border: none; width: auto; margin: 0; }
+.menu li li ul { /* начиная со второго подуровня идет вертикальное меню, потому нужно подвинуть его влево на ширину родителя */
+width: 290px;
+margin: -1px 0 0 290px; /*двинем на ширину родителя */
+top: 0px; /*что бы элемент был на одной линии с родителем */
+
+}
+/* jquery классы */
+.active {/*background: #dadada;*/}
+.arrow {/*background: url(arrow.png) right no-repeat;*/}

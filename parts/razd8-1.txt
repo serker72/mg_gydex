@@ -1,0 +1,7 @@
+<div class=\"icontest_descr\">
+            <span style=\"color:#42b3e5;\">Gydex</span> &mdash; прекрасное решение для автоматизации бизнес-процессов!<br />
+
+            <div style=\"color:#8e97ac; font-size:20px;\">Протестируйте наш сервис уже сегодня!</div>
+            </div>
+            
+            <a href=\"/contacts/#callback\" class=\"icontest_button\">ПРОТЕСТИРОВАТЬ</a>

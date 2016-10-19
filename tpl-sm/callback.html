@@ -1,0 +1,235 @@
+
+
+<div id="claim_form" style=" ">
+
+<h1><a name="callback"></a>Заказать обратный звонок</h1>
+
+<div style="float:left; margin-right:20px;">
+ <label for="claim_fio">Имя: <span class="dis_orange">*</span></label><br />
+<input type="text" id="claim_fio" size="40" maxlength="255" value="" class="dis_feedback" />
+<br /><br />
+
+<label for="claim_city">Город: <span class="dis_orange">*</span></label><br />
+<input type="text" id="claim_city" size="40" maxlength="255" value="" class="dis_feedback" />
+<br /><br />
+
+
+<label for="claim_phone">Телефон: <span class="dis_orange">*</span></label><br />
+<input type="text" id="claim_phone" size="40" maxlength="255" value="" class="dis_feedback" />
+<br /><br />
+  
+
+<label for="claim_email">Электронная почта: <span class="dis_orange">*</span></label><br />
+<input type="text" id="claim_email" size="40" maxlength="255" value="" class="dis_feedback" />
+<br /> <br>
+
+</div>  
+
+
+<div style="float:left;">
+<label for="claim_message">Комментарий: <span class="dis_orange">*</span></label><br /> 
+<textarea cols="50" rows="7" id="claim_message" class="dis_feedback" ></textarea>
+<br /> 
+
+
+</div>
+
+<br clear="all" />
+
+
+
+
+<div style="float:left; margin-right:20px;"> 
+<label>Защитный код: <span class="dis_orange">*</span></label><br />
+ 
+ <img src="/js/captcha.php" id="captcha_img" />
+<input type="text" size="5" maxlength="25" id="claim_captcha" class="dis_feedback" value="" style="width:175px !important;" />
+</div>
+
+<div style="float:left; margin-right:20px;"> <br>
+
+<input id="claim_mess" type="button" value="Отправить заявку" />
+</div>
+<br clear="all" />
+
+<small><em>Поля, отмеченные <span class="dis_orange">*</span>, обязательны для заполнения.</em></small>
+<br /> <br>
+
+
+
+ 
+<p id="callback_complete" style="display:none;">Ваша заявка отправлена. <br>
+В ближайшее время с Вами свяжется менеджер. <br>
+Спасибо за проявленный интерес.<br></p>
+
+
+
+
+
+
+</div>
+
+ 
+<script type="text/javascript">
+$(function(){
+	 $("#claim_city").select2(
+	 
+	 {
+    
+	multiple: false,
+	
+	minimumInputLength:2,
+	width:"resolve",
+	 
+    ajax: {
+            url: "/js/city_select.php",
+            dataType: 'json',
+            quietMillis: 100,
+            data: function (term, page) {
+                return {
+                    term: term, //search term
+                    page_limit: 10 // page size
+                };
+            },
+            results: function (data, page) {
+                return { results: data.results };
+            }
+
+        },
+        
+	 }
+	 ); 
+	  
+	
+	
+	$("#claim_mess").bind("click", function(){
+		var can_send=true;
+		
+		if(can_send&&$("#claim_email").val().length<5){
+			can_send=can_send&&false;
+			alert("Заполните поле Электронная почта!");
+			$("#claim_email").focus();				
+		}
+		
+		if(can_send&&$("#claim_phone").val().length<3){
+			can_send=can_send&&false;
+			alert("Заполните поле Телефон!");
+			$("#claim_phone").focus();				
+		}
+		
+		if(can_send&&$("#claim_fio").val().length<3){
+			can_send=can_send&&false;
+			alert("Заполните поле Имя!");
+			$("#claim_fio").focus();				
+		}
+		
+		if(can_send&&$("#claim_city").val().length<3){
+			can_send=can_send&&false;
+			alert("Заполните поле Город!");
+			$("#claim_city").focus();				
+		}
+		
+		 
+		if(can_send&&$("#claim_message").val().length<5){
+			can_send=can_send&&false;
+			alert("Заполните поле Комментарий!");
+			$("#claim_message").focus();				
+		}
+		
+		if(can_send&&$("#claim_captcha").val().length<3){
+			can_send=can_send&&false;
+			alert("Заполните поле Защитный код!");
+			$("#claim_captcha").focus();				
+		}
+		
+		
+		if(can_send){
+			$.ajax({
+				async: false,
+				url: "/js/send_claim.php",
+				type: "POST",
+				data:{
+					"action":"test_captcha_simple",
+					"captcha":$("#claim_captcha").val()
+					 
+					/*"recaptcha_challenge_field": $('#recaptcha_challenge_field').val(),
+					"recaptcha_response_field": $('#recaptcha_response_field').val()*/
+					 
+				},
+				beforeSend: function(){
+				 
+				},
+				success: function(data){
+				
+				  if(data!=0){
+					 
+					 
+					   alert("Неверно введен Защитный код!");	
+					  //  Recaptcha.reload();
+				  	 	can_send=can_send&&false;
+				  } 
+				},
+				error: function(xhr, status){
+				
+					
+				}	 
+			});
+				
+			
+		}
+		
+		
+		if(can_send) $.ajax({
+				async: true,
+				url: "/js/send_claim.php",
+				type: "POST",
+				data:{
+					"action":"send_callback",
+					"message": $('#claim_message').val(),
+					"fio": $('#claim_fio').val(),
+					 
+					"phone": $('#claim_phone').val(),
+					"email": $('#claim_email').val() ,
+					"city": $('#claim_city').val()  
+					 
+				},
+				beforeSend: function(){
+				 	$("#claim_form input").prop("disabled", true);
+					$("#claim_form select").prop("disabled", true);
+					$("#claim_form textarea").prop("disabled", true);
+				},
+				success: function(data){
+				 // $("#is_confirmed_confirmer").html(data);
+				 	$("#claim_form input[type=text]").val('');
+					$("#claim_form textarea").val('');
+					
+					$("#claim_city").select2("val", "");
+					
+					
+				 	$("#claim_form input").prop("disabled", false);
+					$("#claim_form select").prop("disabled", false);
+					$("#claim_form textarea").prop("disabled", false);
+					
+					$('#callback_complete').show(); 
+					 
+				 	 
+					window.setTimeout("$('#callback_complete').toggle('display'); $('a.close_callback').trigger('click')",7000);
+					
+					//Recaptcha.reload();
+				  
+				},
+				error: function(xhr, status){
+					$("#claim_form input").prop("disabled", false);
+					$("#claim_form textarea").prop("disabled", false);
+					$("#claim_form select").prop("disabled", false);
+					
+				}	 
+			});
+			
+		
+		
+	});
+	
+});
+</script>
+<br />

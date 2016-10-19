@@ -1,0 +1,36 @@
+
+%{$pages}%
+<!-- список новостей на странице-->
+ 
+
+%{section name=itemsec loop=$items}%
+ 
+
+
+		<div class="news"> 
+        	<div class="news_date"> 
+			%{$items[itemsec].newsdate}% 
+            </div>
+            
+            
+            
+            <div class="news_title">
+
+			<a href="/%{$items[itemsec].page_url}%">%{$items[itemsec].name}%</a>
+			</div>
+		 
+			
+			<div class="paper_annot">
+			%{$items[itemsec].annot}%
+			
+            <div class="news_more">
+            <a href="/%{$items[itemsec].page_url}%" >%{$items[itemsec].more}%</a>
+            </div>
+			</div>
+		
+        </div>	
+			 
+%{/section}%
+
+ 
+%{$pages}%

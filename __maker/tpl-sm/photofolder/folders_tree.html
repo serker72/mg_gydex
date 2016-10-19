@@ -1,0 +1,11 @@
+
+%{if $has_border_div}%
+<div class="treelevel"  id="sub_%{$rel_path}%" style="border: 1px solid blue; margin: 0px 0px -1px 10px;">
+%{/if}%
+
+%{$rel_path}%
+%{include file="photofolder/folders.html"}%
+
+%{if $has_border_div}%
+</div>
+%{/if}%

@@ -1,0 +1,51 @@
+<div align="left"><a href="#" id="group_link_%{$selected_item.id}%" title="редактировать группу" onclick="
+    	%{$EVENT}%
+        mn=document.getElementById('group_edit'); 
+        mn.style.top=coord[1]; 
+        mn.style.left=coord[0];
+        
+        $(mn).css('top', coord[1]);
+		$(mn).css('left', coord[0]);
+        
+        mm=document.getElementById('ed_group'); mm.style.display='inline';
+        mm=document.getElementById('new_group'); mm.style.display='none';
+        mm=document.getElementById('name_group'); mm.value='%{$selected_item.name_esc}%';
+        mm=document.getElementById('info_group'); mm.value='%{$selected_item.info_esc}%';
+        mm=document.getElementById('id_group'); mm.value='%{$selected_item.id}%';
+        mm=document.getElementById('group_is_active'); mm.checked=%{if $selected_item.is_blocked}%false%{else}%true%{/if}%;
+        mn.style.display='block';
+       	mm=document.getElementById('name_group'); mm.focus();
+        
+        return false;
+    
+    ">%{$selected_item.name}%</a> 
+    
+    <a href="#" title="показать/скрыть состав группы" onclick="
+    	mn=document.getElementById('group_users_edit'); 
+        if(mn.style.display=='block'){
+        	mn.style.display='none';
+        }else{
+	        %{$EVENT}%
+            $(mn).css('top',coord[1]); 
+    	    $(mn).css('left',coord[0]);	
+	        $('#group_users_edit_inner').html('<em>подождите...</em>');
+    	    mn.style.display='block';
+            
+            xajax_ShowUsers(%{$selected_item.id}%);
+        }
+        
+    	return false;
+    "><img src="/img/newdis/down.png" border="0" alt="показать/скрыть состав группы"  /></a>&nbsp;(<a href="#" title="Удалить группу" onclick="
+	    if(window.confirm('Вы уверены, что хотите удалить данную группу из матрицы доступа?')){
+        	%{$EVENT}%
+      		mn=document.getElementById('wait_win'); 
+	        $(mn).css('top', coord[1]);
+		$(mn).css('left', coord[0]);
+            mn.style.display='block';
+            xajax_DelGroup(%{$selected_item.id}%); 
+        }
+        return false;
+    ">-</a>)
+	
+	<div id="group_%{$selected_item.id}%_users" style="display: none;"></div>
+</div>

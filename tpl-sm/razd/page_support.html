@@ -1,0 +1,90 @@
+
+<div id="page_slider-wrapper">   
+	<div id="page_slider"> 
+        <div class="heading">
+        %{$mm.name}%
+        </div>
+    
+        <div class="navi">
+        %{$navi}%
+        </div>
+    
+    </div>
+
+</div>
+
+
+%{$clients}%
+
+
+<div id="page_text">
+	
+    <div style="float:left;  width:400px; margin-right:50px;">
+        <div class="simple_text">%{$mm.txt}%</div>
+        
+          %{if $has_feedback_form}%
+          %{if $do_feedback}%
+          <script type="text/javascript">
+		  $(function(){
+			 $("#feedback_caller").trigger("click"); 
+		  });
+		  </script>
+          %{/if}%	
+            <table width="100%" align="center" border="0">
+            <tr align="center">
+            <td align="center">
+            
+            <table align="center" border="0">
+             <tr align="center">
+            <td align="center">
+            <a class="button" id="feedback_caller" href="#" >GYDEX.знает</a> 
+            </td>
+            </tr>
+            </table>
+            
+            
+            </td>
+            </tr>
+            </table>
+          %{/if}%
+       <div class="simple_text"> %{$mm.txt2}%</div>
+        
+         
+        <div class="simple_text">    
+        %{$mm.txt3}%
+        </div>
+        
+         
+         
+      
+        
+	</div>
+	
+  	
+    <div style="float:left; width:550px; ">
+      %{if $has_feedback_form}%
+        
+     <!--   <a class="button" id="feedback_caller" href="#">отправить заявку</a> -->
+       %{*include file="feedback.html"*}%
+        %{/if}%
+        
+            %{$faq1}% 
+
+    
+    </div>
+
+	<div class="clr"></div>
+   
+   
+    
+   %{$content}%
+   %{$faq2}%
+   
+   <br />
+    <br />
+
+
+
+</div>
+
+ 

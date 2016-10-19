@@ -1,0 +1,141 @@
+
+<div id="page_slider-wrapper">   
+	<div id="page_slider"> 
+        <div class="heading">
+        %{*$mm.name*}%
+        </div>
+    
+        <div class="navi">
+        %{$navi}%
+        </div>
+    
+    </div>
+
+</div>
+
+
+%{$clients}%
+
+
+<div id="page_text">
+	%{$content}%
+    
+     <div class="simple_text">%{$mm.txt}%
+     </div>
+    
+     %{if $has_solution}%
+     %{section name=picsec loop=$pictures}%%{/section}% 
+      %{if $smarty.section.picsec.total>0}%     
+     <div style="float:left; width:500px; margin-right:50px;">
+      %{/if}%
+     	
+        <div itemscope itemtype="http://schema.org/WebApplication">
+        
+            <span itemprop="name">
+            <h1>%{$sol.name}%</h1>
+            </span>
+            
+            <div class="simple_text">%{$sol.txt}%</div>
+            
+            
+            <meta itemprop="applicationCategory" content="CRM-система" />
+            <meta itemprop="applicationSubCategory" content="Облачная CRM-система" />
+            
+            <meta itemprop="operatingSystem" content="Windows 7, 8, 8.1, 10, XP, Vista|Linux|Android|iOs|iPhone|iPad " />
+            
+            %{if $sol.otrasl!="" and $sol.otrasl!="<br />"}%
+            <h2 style="display:inline !important;">Отрасль:</h2>
+            %{$sol.otrasl}%<br>
+    <br>
+    
+            %{/if}%
+            
+            %{if $sol.num_users!="" and $sol.num_users!="<br />"}%
+            <h2 style="display:inline !important;">Количество пользователей:</h2>
+           %{$sol.num_users}%<br>
+    <br>
+    
+            %{/if}%
+            
+            
+            %{if $sol.char_company!="" and $sol.char_company!="<br />"}%
+            <h2 style="display:inline !important;">Характеристики компании:</h2>
+             %{$sol.char_company}% <br>
+    <br>
+    
+            %{/if}%
+            
+            
+            %{if $sol.ability!="" and $sol.ability!="<br />"}%
+            <h2>Возможности</h2>
+            <div class="simple_text">%{$sol.ability}%</div>
+            %{/if}%
+            
+        </div>
+    %{if $smarty.section.picsec.total>0}%     
+        
+   </div>
+    <div style="float:left; width:450px; margin-right:00px;">
+   
+   
+        
+       
+        <h2>Интерфейс</h2>
+		%{section name=picsec loop=$pictures}%
+        <div class="sol_screen">
+        <a class="fancybox" rel="group" href="%{$pictures[picsec].full_url}%.jpg"><img src="/images/mac-monitor450g.png" style="background-image:url(%{$pictures[picsec].small_url}%); background-position:15px 15px; background-repeat:no-repeat; " width="450" height="343"  /></a>
+        </div>
+        %{/section}%  
+       
+        
+        
+        <div class="clr"></div>
+    </div>
+    <div class="clr"></div>
+     %{/if}%    
+    
+    %{/if}%
+    
+    <div class="simple_text">
+    
+    %{$mm.txt2}%
+    </div>
+    
+     
+    <div class="simple_text">    
+    %{$mm.txt3}%
+    </div>
+
+	
+   
+
+	<div class="clr"></div>
+    
+    <div class="gydex_works">GYDEX. Просто. Работает!</div>
+    
+   <table border="0" cellpadding="1" cellspacing="1" style="width:100%">
+	<tbody>
+		<tr align="center">
+			<td align="center">
+				<table border="0" cellpadding="1" cellspacing="1">
+					<tbody>
+						<tr align="center">
+							<td align="center">
+								<a class="button" href="/test_access.php">Протестировать CRM GYDEX</a></td>
+							<td align="center">
+								<a class="button" href="/o_kompanii/">Выбери свой GYDEX</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</td>
+		</tr>
+	</tbody>
+</table>
+    
+    
+    
+     %{$faq}%
+
+</div>
+
+ 

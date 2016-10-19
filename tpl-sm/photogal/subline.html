@@ -1,0 +1,42 @@
+<!-- таблица превьюшек для страницы полного просмотра фото -->
+
+<table width="*" border="0" cellspacing="2" cellpadding="8" align="center">
+<tr align="center" valign="middle">
+	
+	%{if $has_prev}%
+	<!-- arrow -->
+	<td width="*" class="itemscell" valign="middle">
+		<a href="%{$prev_item_url}%"><img src="/img/arrow-l.gif" alt="" border="0"></a>
+	</td>
+	%{else}%
+
+<!-- arrow -->
+	<td width="*" class="itemscell" valign="middle">
+		<img src="/img/arrow-l-dis.gif" alt="" border="0">
+	</td>
+	%{/if}%
+	
+
+	%{section name=itemsec loop=$items}%
+	<!-- превью из таблицы для страницы полного просмотра фото -->
+	<td width="*" class="itemscell%{if $items[itemsec].is_active}%_active%{/if}%">
+		<a href="%{$items[itemsec].item_url}%"><img src="/%{$items[itemsec].item_src}%" alt="%{$items[itemsec].item_name}%" border="0"></a><br>
+		<a href="%{$items[itemsec].item_url}%">%{$items[itemsec].item_txt}%</a>
+	</td>
+	%{/section}%
+
+
+	%{if $has_next}%
+	<!-- arrow -->
+	<td width="*" class="itemscell" valign="middle">
+		<a href="%{$next_item_url}%"><img src="/img/arrow-r.gif" alt="" border="0"></a>
+	</td>
+	%{else}%
+	<!-- arrow -->
+	<td width="*" class="itemscell" valign="middle">
+		<img src="/img/arrow-r-dis.gif" alt="" border="0">
+	</td>
+	%{/if}%
+	
+</tr>
+</table>

@@ -1,0 +1,19 @@
+<div class="right_container">
+
+<div class="right_top"></div>
+	<div class="right_item_container">
+	<img src="/img/basket_right.gif" alt="" width="16" height="16" hspace="2" vspace="0" border="0" align="absmiddle">%{$yourorder}%:
+	</div>
+	<div class="right_bottom"></div>
+	
+<div class="right_text">	
+%{if $has_items}%
+
+	<a href="/basket.php">
+	<b>%{$goods}%: %{$count}% %{$on}% %{$cost}%</b></a>
+%{else}%
+	<i>%{$empty}%</i>
+%{/if}%
+</div>
+
+</div>
