@@ -218,14 +218,14 @@ img{border:none;}
 	z-index:100 !important;
 }
 
-.slide{
+/*.slide{
 	/*border:1px solid green;*/
 	width:1000px !important;
 	height:350px;
  	overflow:hidden;
 	z-index:0 !important;
 	margin:0px 0px;
-}
+}*/
 
 .slide1{
 	width:1000px !important;
@@ -2344,7 +2344,7 @@ a.news_more:hover{
     padding-right: 0px;
     padding-left: 0px;
     width: 1200px;
-    font-family: MyriadProRegular;
+    /*font-family: MyriadProRegular;*/
 }
 
 .logo {
@@ -2503,6 +2503,107 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
     display: block;
 }
 
+/*  Carousel  */
+.carousel-indicators {
+    display: none;
+}
+
+#slider1 .carousel-caption {
+    width: 500px;
+    height: 450px;
+    top: 0;
+    left: 598px;
+    padding: 120px 40px 25px 35px;
+    background: url('img/slider/caption_background.png') no-repeat;
+    font-size: 40px;
+    font-weight: bold;
+    text-align: left;
+    text-transform: uppercase;
+}
+
+.carousel-caption-advanced-info {
+    background-color: #eb3844;
+    border-radius: 8px;
+      -moz-border-radius: 8px;
+      -webkit-border-radius: 8px;
+    bottom: 25px;
+    font-size: 20px;
+    height: 40px;
+    padding-top: 5px;
+    position: absolute;
+    text-align: center;
+    text-transform: uppercase;
+    width: 300px;
+}
+
+.carousel-caption-advanced-info a {
+    color: #fce8e9;
+    font-weight: normal;
+    text-decoration: none;
+}
+
+.carousel-caption-advanced-info a:hover,
+.carousel-caption-advanced-info a:focus
+{
+    color: #2b2a29;
+    text-decoration: none;
+}
+
+.carousel-control.left {
+    background: url('img/slider/left.png') no-repeat left 20% top 50%;
+}
+
+.carousel-control.right {
+    background: url('img/slider/right.png') no-repeat right 20% top 50%;
+}
+
+/*  Ñaption title  */
+.caption_title {
+    padding: 10px 0 5px 0;
+    background: url('img/caption_bottom.png') no-repeat bottom;
+    color: #313331;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+    /*width: 100%;*/
+}
+
+.caption_title a {
+    color: #313331;
+    text-decoration: none;
+}
+
+.caption_title a:hover,
+.caption_title a:focus {
+    color: #c73741;
+    text-decoration: none;
+}
+
+/*  Services  */
+.services_wrapper {
+    padding: 0px 0 20px 0px;
+    margin: 0 auto;
+    height: 270px;
+    /*width: 100%;*/
+}
+
+.services_small_wrapper {
+    font-size: 16px;
+    height: 220px;
+    padding-top: 15px;
+    text-align: center;
+    width: 200px;
+}
+
+.service_image {
+}
+
+.service_text {
+    padding: 20px 10px;
+    white-space: normal;
+}
+
 
 /************************************
  * #ID - Ýëåìåíòû
@@ -2520,4 +2621,9 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
     clear: both;
     /*padding: 0 100px;*/
     padding-left: 100px;
+}
+
+#our_clients_slider{
+	width:1200px;
+	/*height:200px;*/
 }

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Окт 19 2016 г., 18:50
+-- Время создания: Окт 20 2016 г., 18:55
 -- Версия сервера: 5.5.44-log
 -- Версия PHP: 5.3.29
 
@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- База данных: `gydex_site`
 --
+CREATE DATABASE IF NOT EXISTS `gydex_site` DEFAULT CHARACTER SET cp1251 COLLATE cp1251_general_ci;
+USE `gydex_site`;
 
 -- --------------------------------------------------------
 
@@ -26,6 +28,7 @@ SET time_zone = "+00:00";
 -- Структура таблицы `allmenu`
 --
 
+DROP TABLE IF EXISTS `allmenu`;
 CREATE TABLE IF NOT EXISTS `allmenu` (
   `id` bigint(20) unsigned NOT NULL,
   `parent_id` bigint(20) unsigned DEFAULT '0',
@@ -63,27 +66,29 @@ CREATE TABLE IF NOT EXISTS `allmenu` (
   `is_faq` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `priority` double(2,1) unsigned NOT NULL DEFAULT '0.5',
   `changefreq` enum('always','hourly','daily','weekly','monthly','yearly','never') DEFAULT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=43 DEFAULT CHARSET=cp1251;
+) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=cp1251;
 
 --
 -- Дамп данных таблицы `allmenu`
 --
 
 INSERT INTO `allmenu` (`id`, `parent_id`, `path`, `ord`, `ord_2`, `ord_3`, `is_new_window`, `is_pics_list`, `is_hor`, `is_hor2`, `is_v_active`, `is_right`, `is_price`, `is_news`, `is_links`, `is_gallery`, `is_papers`, `is_feedback_forms`, `is_callback`, `is_basket`, `is_otzyv`, `show_first`, `is_to_another_url`, `another_path`, `is_orange`, `is_menu_1`, `is_menu_2`, `is_menu_3`, `is_menu_4`, `template_id`, `is_solutions`, `is_products`, `is_claim`, `is_faq`, `priority`, `changefreq`) VALUES
-(39, 31, 'gal_vanika', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0.5, NULL),
-(38, 31, 'listoobrabotka', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0.5, NULL),
-(34, 31, 'tokarnye_tcentry', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0.5, NULL),
-(35, 31, 'frezernye_tcentry', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0.5, NULL),
-(36, 31, 'sverlil_nye_stanki', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0.5, NULL),
-(37, 31, 'shlifoval_nye_stanki', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0.5, NULL),
-(42, 31, 'izmeritel_noe_oborudovanie', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0.5, NULL),
-(40, 31, 'oborudovanie_dlya_lit_ya', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0.5, NULL),
-(41, 31, 'termicheskaya_obrabotka', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0.5, NULL),
-(31, 0, 'katalog', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0.5, NULL),
-(29, 0, 'o_kompanii', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0.5, NULL),
-(30, 0, 'uslugi', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0.5, NULL),
-(32, 0, 'novosti', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0.5, ''),
-(33, 0, 'kontakty', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0.5, NULL);
+(11, 3, 'gal_vanika', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0.5, NULL),
+(10, 3, 'listoobrabotka', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0.5, NULL),
+(6, 3, 'tokarnye_tcentry', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0.5, NULL),
+(7, 3, 'frezernye_tcentry', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0.5, NULL),
+(8, 3, 'sverlil_nye_stanki', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0.5, NULL),
+(9, 3, 'shlifoval_nye_stanki', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0.5, NULL),
+(14, 3, 'izmeritel_noe_oborudovanie', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0.5, NULL),
+(12, 3, 'oborudovanie_dlya_lit_ya', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0.5, NULL),
+(13, 3, 'termicheskaya_obrabotka', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0.5, NULL),
+(16, 0, 'spisok_uslug', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0.5, NULL),
+(15, 0, 'nam_doveryayut', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0.5, NULL),
+(3, 0, 'katalog', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0.5, NULL),
+(1, 0, 'o_kompanii', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0.5, NULL),
+(2, 0, 'uslugi', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0.5, NULL),
+(4, 0, 'novosti', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0.5, ''),
+(5, 0, 'kontakty', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0.5, NULL);
 
 -- --------------------------------------------------------
 
@@ -91,6 +96,7 @@ INSERT INTO `allmenu` (`id`, `parent_id`, `path`, `ord`, `ord_2`, `ord_3`, `is_n
 -- Структура таблицы `allmenu_template`
 --
 
+DROP TABLE IF EXISTS `allmenu_template`;
 CREATE TABLE IF NOT EXISTS `allmenu_template` (
   `id` bigint(20) unsigned NOT NULL,
   `name` varchar(255) NOT NULL DEFAULT '',
@@ -117,6 +123,7 @@ INSERT INTO `allmenu_template` (`id`, `name`, `template`, `preview`) VALUES
 -- Структура таблицы `area_cond_price`
 --
 
+DROP TABLE IF EXISTS `area_cond_price`;
 CREATE TABLE IF NOT EXISTS `area_cond_price` (
   `id` bigint(20) unsigned NOT NULL,
   `key_name` varchar(255) DEFAULT NULL,
@@ -138,6 +145,7 @@ INSERT INTO `area_cond_price` (`id`, `key_name`, `name`) VALUES
 -- Структура таблицы `attach_d`
 --
 
+DROP TABLE IF EXISTS `attach_d`;
 CREATE TABLE IF NOT EXISTS `attach_d` (
   `id` bigint(20) unsigned NOT NULL,
   `key_name` varchar(255) DEFAULT NULL,
@@ -160,6 +168,7 @@ INSERT INTO `attach_d` (`id`, `key_name`, `name`, `short_name`) VALUES
 -- Структура таблицы `banners`
 --
 
+DROP TABLE IF EXISTS `banners`;
 CREATE TABLE IF NOT EXISTS `banners` (
   `id` bigint(20) unsigned NOT NULL,
   `ord` tinyint(3) unsigned DEFAULT '0',
@@ -175,11 +184,8 @@ CREATE TABLE IF NOT EXISTS `banners` (
 
 INSERT INTO `banners` (`id`, `ord`, `url`, `kind`, `align_mode`, `break_after`) VALUES
 (1, 1, '', 1, 0, 0),
-(3, 1, '', 1, 0, 0),
-(4, 1, '', 1, 0, 0),
-(5, 1, '', 1, 0, 0),
-(6, 1, '', 1, 0, 0),
-(7, 1, '', 1, 1, 0);
+(2, 1, '', 1, 0, 0),
+(3, 1, '', 1, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -187,6 +193,7 @@ INSERT INTO `banners` (`id`, `ord`, `url`, `kind`, `align_mode`, `break_after`) 
 -- Структура таблицы `banners_lang`
 --
 
+DROP TABLE IF EXISTS `banners_lang`;
 CREATE TABLE IF NOT EXISTS `banners_lang` (
   `plid` bigint(20) unsigned NOT NULL,
   `lang_id` bigint(20) unsigned DEFAULT '0',
@@ -204,12 +211,9 @@ CREATE TABLE IF NOT EXISTS `banners_lang` (
 --
 
 INSERT INTO `banners_lang` (`plid`, `lang_id`, `ban_id`, `small_txt`, `photo_small`, `is_shown`, `is_flash`, `flash_width`, `flash_height`) VALUES
-(1, 1, 1, '<div class="inslide1">\r\n	Центр управления<br />\r\n	Вашим бизнесом</div>\r\n<div class="inslide2">\r\n	24 часа в сутки в любой<br />\r\n	точке мира, где есть<br />\r\n	Интернет</div>\r\n<p>\r\n	<a class="inslide_button" href="/test_access.php">ПРОТЕСТИРОВАТЬ CRM GYDEX</a></p>', 'userfiles/image/slide1-mini-1409744216.png', 1, 0, 0, 0),
-(4, 1, 4, '<br />\r\n<div class="inslide1" style="margin-left:530px;">\r\n	Защита информации</div>\r\n<div class="inslide2" style="margin-left:530px;">\r\n	- конфиденциально, надежно</div>\r\n<p>\r\n	<br />\r\n	<a class="inslide_button" href="/test_access.php" style="margin-left:530px;">ПРОТЕСТИРОВАТЬ CRM GYDEX</a></p>', 'userfiles/image/m3-1416815999.png', 0, 0, 0, 0),
-(3, 1, 3, '<div class="inslide1" style="margin-left:570px; ">\r\n	Контролируйте<br />\r\n	бизнес</div>\r\n<div class="inslide2" style="margin-left:570px;">\r\n	- экспресс отчеты<br />\r\n	- наглядная статистика</div>\r\n<p>\r\n	<a class="inslide_button" href="/test_access.php" style="margin-left:570px;">ПРОТЕСТИРОВАТЬ CRM GYDEX</a></p>', 'userfiles/image/control1-1416298516.png', 0, 0, 0, 0),
-(5, 1, 5, '<div class="inslide1" style="margin-left:570px; ">Контролируйте<br />\r\nбизнес</div>\r\n\r\n<div class="inslide2" style="margin-left:570px;">- 24 часа из любой точки<br />\r\n- экспресс отчеты<br />\r\n- наглядная статистика</div>\r\n\r\n<p><a class="inslide_button" href="/test_access.php" style="margin-left:570px;">ПРОТЕСТИРОВАТЬ CRM GYDEX</a></p>', 'userfiles/image/001-1444126888.png', 1, 0, 0, 0),
-(6, 1, 6, '', 'userfiles/image/002-1444131499.png', 1, 0, 0, 0),
-(7, 1, 7, '<div class="inslide1" style="margin-left:570px; "><br />\r\nОсновные модули<br />\r\nCRM GYDEX</div>\r\n\r\n<div class="inslide2" style="margin-left:570px;">- закупки<br />\r\n- продажи<br />\r\n- маркетинг<br />\r\n- управление проектами</div>', 'userfiles/image/003-1444127460.png', 1, 0, 0, 0);
+(1, 1, 1, '<div class="carousel-caption">                     <div>Реализация проектов любого уровня сложности</div>\n                            <div class="carousel-caption-advanced-info">\n                                <a href="/uslugi">Узнать больше</a>\n                            </div>\n                   </div>', 'userfiles/image/img_1-1476901339.jpg', 1, 0, 0, 0),
+(2, 1, 2, '                        <div class="carousel-caption">\n                            Строительство промышленных объектов под "ключ"\n                            <div class="carousel-caption-advanced-info">\n                                <a href="/uslugi">Узнать больше</a>\n                            </div>\n                        </div>', 'userfiles/image/img_2-1476903013.jpg', 1, 0, 0, 0),
+(3, 1, 3, '                        <div class="carousel-caption">\n                            Полное соответствие<br>Ф3 223, Ф3 444\n                            <div class="carousel-caption-advanced-info">\n                                <a href="/uslugi">Узнать больше</a>\n                            </div>\n                        </div>', 'userfiles/image/img_3-1476903064.jpg', 1, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -217,6 +221,7 @@ INSERT INTO `banners_lang` (`plid`, `lang_id`, `ban_id`, `small_txt`, `photo_sma
 -- Структура таблицы `claim`
 --
 
+DROP TABLE IF EXISTS `claim`;
 CREATE TABLE IF NOT EXISTS `claim` (
   `id` bigint(20) unsigned NOT NULL,
   `code` char(9) NOT NULL DEFAULT '',
@@ -235,6 +240,7 @@ CREATE TABLE IF NOT EXISTS `claim` (
 -- Структура таблицы `claim_creation_session`
 --
 
+DROP TABLE IF EXISTS `claim_creation_session`;
 CREATE TABLE IF NOT EXISTS `claim_creation_session` (
   `id` bigint(20) unsigned NOT NULL,
   `login` varchar(9) NOT NULL DEFAULT '',
@@ -249,6 +255,7 @@ CREATE TABLE IF NOT EXISTS `claim_creation_session` (
 -- Структура таблицы `clients`
 --
 
+DROP TABLE IF EXISTS `clients`;
 CREATE TABLE IF NOT EXISTS `clients` (
   `id` bigint(20) unsigned NOT NULL,
   `lang_id` bigint(20) unsigned DEFAULT '0',
@@ -270,6 +277,7 @@ CREATE TABLE IF NOT EXISTS `clients` (
 -- Структура таблицы `cl_by_groups`
 --
 
+DROP TABLE IF EXISTS `cl_by_groups`;
 CREATE TABLE IF NOT EXISTS `cl_by_groups` (
   `id` bigint(20) unsigned NOT NULL,
   `clid` bigint(20) unsigned DEFAULT '0',
@@ -282,6 +290,7 @@ CREATE TABLE IF NOT EXISTS `cl_by_groups` (
 -- Структура таблицы `cl_groups`
 --
 
+DROP TABLE IF EXISTS `cl_groups`;
 CREATE TABLE IF NOT EXISTS `cl_groups` (
   `id` bigint(20) unsigned NOT NULL,
   `name` varchar(255) DEFAULT '',
@@ -294,6 +303,7 @@ CREATE TABLE IF NOT EXISTS `cl_groups` (
 -- Структура таблицы `comment`
 --
 
+DROP TABLE IF EXISTS `comment`;
 CREATE TABLE IF NOT EXISTS `comment` (
   `id` bigint(20) unsigned NOT NULL,
   `tablename` varchar(255) NOT NULL DEFAULT '',
@@ -312,6 +322,7 @@ CREATE TABLE IF NOT EXISTS `comment` (
 -- Структура таблицы `cond_price`
 --
 
+DROP TABLE IF EXISTS `cond_price`;
 CREATE TABLE IF NOT EXISTS `cond_price` (
   `id` bigint(20) unsigned NOT NULL,
   `area_id` bigint(20) unsigned DEFAULT NULL,
@@ -326,6 +337,7 @@ CREATE TABLE IF NOT EXISTS `cond_price` (
 -- Структура таблицы `cond_price_lang`
 --
 
+DROP TABLE IF EXISTS `cond_price_lang`;
 CREATE TABLE IF NOT EXISTS `cond_price_lang` (
   `plid` bigint(20) unsigned NOT NULL,
   `lang_id` bigint(20) unsigned DEFAULT '0',
@@ -339,6 +351,7 @@ CREATE TABLE IF NOT EXISTS `cond_price_lang` (
 -- Структура таблицы `currency`
 --
 
+DROP TABLE IF EXISTS `currency`;
 CREATE TABLE IF NOT EXISTS `currency` (
   `id` bigint(20) unsigned NOT NULL,
   `is_base_shop` tinyint(3) unsigned DEFAULT '0',
@@ -359,6 +372,7 @@ INSERT INTO `currency` (`id`, `is_base_shop`, `is_base_rate`, `rate`) VALUES
 -- Структура таблицы `currency_lang`
 --
 
+DROP TABLE IF EXISTS `currency_lang`;
 CREATE TABLE IF NOT EXISTS `currency_lang` (
   `plid` bigint(20) unsigned NOT NULL,
   `lang_id` bigint(20) unsigned DEFAULT '0',
@@ -380,6 +394,7 @@ INSERT INTO `currency_lang` (`plid`, `lang_id`, `value_id`, `name`, `signat`) VA
 -- Структура таблицы `currency_use_lang`
 --
 
+DROP TABLE IF EXISTS `currency_use_lang`;
 CREATE TABLE IF NOT EXISTS `currency_use_lang` (
   `plid` bigint(20) unsigned NOT NULL,
   `lang_id` bigint(20) unsigned DEFAULT '0',
@@ -392,6 +407,7 @@ CREATE TABLE IF NOT EXISTS `currency_use_lang` (
 -- Структура таблицы `delivery`
 --
 
+DROP TABLE IF EXISTS `delivery`;
 CREATE TABLE IF NOT EXISTS `delivery` (
   `id` bigint(20) NOT NULL COMMENT 'id рассылки',
   `name` varchar(255) NOT NULL DEFAULT '' COMMENT 'название рассылки',
@@ -420,6 +436,7 @@ CREATE TABLE IF NOT EXISTS `delivery` (
 -- Структура таблицы `delivery_link`
 --
 
+DROP TABLE IF EXISTS `delivery_link`;
 CREATE TABLE IF NOT EXISTS `delivery_link` (
   `id` bigint(20) NOT NULL,
   `delivery_id` bigint(20) NOT NULL DEFAULT '0',
@@ -432,6 +449,7 @@ CREATE TABLE IF NOT EXISTS `delivery_link` (
 -- Структура таблицы `delivery_link_hits`
 --
 
+DROP TABLE IF EXISTS `delivery_link_hits`;
 CREATE TABLE IF NOT EXISTS `delivery_link_hits` (
   `id` bigint(20) NOT NULL,
   `link_id` bigint(20) NOT NULL DEFAULT '0',
@@ -448,6 +466,7 @@ CREATE TABLE IF NOT EXISTS `delivery_link_hits` (
 -- Структура таблицы `delivery_list`
 --
 
+DROP TABLE IF EXISTS `delivery_list`;
 CREATE TABLE IF NOT EXISTS `delivery_list` (
   `id` bigint(20) NOT NULL,
   `name` varchar(255) NOT NULL DEFAULT '' COMMENT 'Название',
@@ -462,6 +481,7 @@ CREATE TABLE IF NOT EXISTS `delivery_list` (
 -- Структура таблицы `delivery_segment`
 --
 
+DROP TABLE IF EXISTS `delivery_segment`;
 CREATE TABLE IF NOT EXISTS `delivery_segment` (
   `id` bigint(20) NOT NULL,
   `name` varchar(255) NOT NULL DEFAULT '' COMMENT 'название',
@@ -485,6 +505,7 @@ INSERT INTO `delivery_segment` (`id`, `name`, `comment`, `pdate`, `pdate_change`
 -- Структура таблицы `delivery_status`
 --
 
+DROP TABLE IF EXISTS `delivery_status`;
 CREATE TABLE IF NOT EXISTS `delivery_status` (
   `id` bigint(20) NOT NULL,
   `name` varchar(255) NOT NULL DEFAULT ''
@@ -506,6 +527,7 @@ INSERT INTO `delivery_status` (`id`, `name`) VALUES
 -- Структура таблицы `delivery_subscriber`
 --
 
+DROP TABLE IF EXISTS `delivery_subscriber`;
 CREATE TABLE IF NOT EXISTS `delivery_subscriber` (
   `id` bigint(20) NOT NULL,
   `user_id` bigint(20) NOT NULL DEFAULT '0',
@@ -521,6 +543,7 @@ CREATE TABLE IF NOT EXISTS `delivery_subscriber` (
 -- Структура таблицы `delivery_subscriber_hits`
 --
 
+DROP TABLE IF EXISTS `delivery_subscriber_hits`;
 CREATE TABLE IF NOT EXISTS `delivery_subscriber_hits` (
   `id` bigint(20) NOT NULL,
   `subscriber_id` bigint(20) NOT NULL DEFAULT '0',
@@ -537,6 +560,7 @@ CREATE TABLE IF NOT EXISTS `delivery_subscriber_hits` (
 -- Структура таблицы `delivery_template`
 --
 
+DROP TABLE IF EXISTS `delivery_template`;
 CREATE TABLE IF NOT EXISTS `delivery_template` (
   `id` bigint(20) NOT NULL,
   `name` varchar(255) NOT NULL DEFAULT '',
@@ -563,6 +587,7 @@ INSERT INTO `delivery_template` (`id`, `name`, `html_content`, `pdate`, `pdate_c
 -- Структура таблицы `delivery_user`
 --
 
+DROP TABLE IF EXISTS `delivery_user`;
 CREATE TABLE IF NOT EXISTS `delivery_user` (
   `id` bigint(20) NOT NULL,
   `email` varchar(255) NOT NULL DEFAULT '' COMMENT 'email',
@@ -585,6 +610,7 @@ CREATE TABLE IF NOT EXISTS `delivery_user` (
 -- Структура таблицы `delivery_user_segment`
 --
 
+DROP TABLE IF EXISTS `delivery_user_segment`;
 CREATE TABLE IF NOT EXISTS `delivery_user_segment` (
   `id` bigint(20) NOT NULL,
   `user_id` bigint(20) NOT NULL DEFAULT '0',
@@ -606,6 +632,7 @@ INSERT INTO `delivery_user_segment` (`id`, `user_id`, `segment_id`) VALUES
 -- Структура таблицы `dict`
 --
 
+DROP TABLE IF EXISTS `dict`;
 CREATE TABLE IF NOT EXISTS `dict` (
   `id` bigint(20) unsigned NOT NULL,
   `kind_id` bigint(20) unsigned NOT NULL DEFAULT '1',
@@ -618,6 +645,7 @@ CREATE TABLE IF NOT EXISTS `dict` (
 -- Структура таблицы `dict_attach_d`
 --
 
+DROP TABLE IF EXISTS `dict_attach_d`;
 CREATE TABLE IF NOT EXISTS `dict_attach_d` (
   `id` bigint(20) unsigned NOT NULL,
   `ord` tinyint(3) unsigned DEFAULT '0',
@@ -632,6 +660,7 @@ CREATE TABLE IF NOT EXISTS `dict_attach_d` (
 -- Структура таблицы `dict_kind`
 --
 
+DROP TABLE IF EXISTS `dict_kind`;
 CREATE TABLE IF NOT EXISTS `dict_kind` (
   `id` bigint(20) unsigned NOT NULL,
   `name` varchar(255) DEFAULT ''
@@ -652,6 +681,7 @@ INSERT INTO `dict_kind` (`id`, `name`) VALUES
 -- Структура таблицы `dict_lang`
 --
 
+DROP TABLE IF EXISTS `dict_lang`;
 CREATE TABLE IF NOT EXISTS `dict_lang` (
   `plid` bigint(20) unsigned NOT NULL,
   `lang_id` bigint(20) unsigned DEFAULT '0',
@@ -667,6 +697,7 @@ CREATE TABLE IF NOT EXISTS `dict_lang` (
 -- Структура таблицы `discr_groups`
 --
 
+DROP TABLE IF EXISTS `discr_groups`;
 CREATE TABLE IF NOT EXISTS `discr_groups` (
   `id` bigint(20) unsigned NOT NULL,
   `name` varchar(255) DEFAULT NULL,
@@ -690,6 +721,7 @@ INSERT INTO `discr_groups` (`id`, `name`, `info`, `is_blocked`) VALUES
 -- Структура таблицы `discr_group_rights`
 --
 
+DROP TABLE IF EXISTS `discr_group_rights`;
 CREATE TABLE IF NOT EXISTS `discr_group_rights` (
   `id` bigint(20) unsigned NOT NULL,
   `group_id` bigint(20) unsigned DEFAULT NULL,
@@ -840,6 +872,7 @@ INSERT INTO `discr_group_rights` (`id`, `group_id`, `right_id`, `object_id`) VAL
 -- Структура таблицы `discr_objects`
 --
 
+DROP TABLE IF EXISTS `discr_objects`;
 CREATE TABLE IF NOT EXISTS `discr_objects` (
   `id` bigint(20) unsigned NOT NULL,
   `name` varchar(255) DEFAULT NULL,
@@ -882,6 +915,7 @@ INSERT INTO `discr_objects` (`id`, `name`, `info`) VALUES
 -- Структура таблицы `discr_rights`
 --
 
+DROP TABLE IF EXISTS `discr_rights`;
 CREATE TABLE IF NOT EXISTS `discr_rights` (
   `id` bigint(20) unsigned NOT NULL,
   `name` varchar(255) DEFAULT NULL,
@@ -904,6 +938,7 @@ INSERT INTO `discr_rights` (`id`, `name`, `info`) VALUES
 -- Структура таблицы `discr_users`
 --
 
+DROP TABLE IF EXISTS `discr_users`;
 CREATE TABLE IF NOT EXISTS `discr_users` (
   `id` bigint(20) unsigned NOT NULL,
   `login` varchar(255) DEFAULT NULL,
@@ -934,6 +969,7 @@ INSERT INTO `discr_users` (`id`, `login`, `passw`, `change_password_confirm`, `n
 -- Структура таблицы `discr_users_by_groups`
 --
 
+DROP TABLE IF EXISTS `discr_users_by_groups`;
 CREATE TABLE IF NOT EXISTS `discr_users_by_groups` (
   `id` bigint(20) unsigned NOT NULL,
   `user_id` bigint(20) unsigned DEFAULT NULL,
@@ -956,6 +992,7 @@ INSERT INTO `discr_users_by_groups` (`id`, `user_id`, `group_id`) VALUES
 -- Структура таблицы `discr_user_rights`
 --
 
+DROP TABLE IF EXISTS `discr_user_rights`;
 CREATE TABLE IF NOT EXISTS `discr_user_rights` (
   `id` bigint(20) unsigned NOT NULL,
   `user_id` bigint(20) unsigned DEFAULT NULL,
@@ -969,6 +1006,7 @@ CREATE TABLE IF NOT EXISTS `discr_user_rights` (
 -- Структура таблицы `faq_group`
 --
 
+DROP TABLE IF EXISTS `faq_group`;
 CREATE TABLE IF NOT EXISTS `faq_group` (
   `id` bigint(20) unsigned NOT NULL,
   `name` varchar(255) NOT NULL DEFAULT '',
@@ -989,6 +1027,7 @@ INSERT INTO `faq_group` (`id`, `name`, `ord`) VALUES
 -- Структура таблицы `faq_question`
 --
 
+DROP TABLE IF EXISTS `faq_question`;
 CREATE TABLE IF NOT EXISTS `faq_question` (
   `id` bigint(20) NOT NULL,
   `question` text NOT NULL,
@@ -1088,6 +1127,7 @@ INSERT INTO `faq_question` (`id`, `question`, `answer`, `ord`, `is_shown`, `grou
 -- Структура таблицы `firms`
 --
 
+DROP TABLE IF EXISTS `firms`;
 CREATE TABLE IF NOT EXISTS `firms` (
   `id` int(10) unsigned NOT NULL,
   `photo_small` varchar(255) DEFAULT 'img/no.gif',
@@ -1101,6 +1141,7 @@ CREATE TABLE IF NOT EXISTS `firms` (
 -- Структура таблицы `firms_lang`
 --
 
+DROP TABLE IF EXISTS `firms_lang`;
 CREATE TABLE IF NOT EXISTS `firms_lang` (
   `plid` bigint(20) unsigned NOT NULL,
   `lang_id` bigint(20) unsigned DEFAULT '0',
@@ -1116,6 +1157,7 @@ CREATE TABLE IF NOT EXISTS `firms_lang` (
 -- Структура таблицы `goods_rekommend`
 --
 
+DROP TABLE IF EXISTS `goods_rekommend`;
 CREATE TABLE IF NOT EXISTS `goods_rekommend` (
   `id` int(10) unsigned NOT NULL,
   `pri_lid` int(10) unsigned DEFAULT NULL,
@@ -1128,6 +1170,7 @@ CREATE TABLE IF NOT EXISTS `goods_rekommend` (
 -- Структура таблицы `good_price`
 --
 
+DROP TABLE IF EXISTS `good_price`;
 CREATE TABLE IF NOT EXISTS `good_price` (
   `id` bigint(20) unsigned NOT NULL,
   `good_id` bigint(20) unsigned DEFAULT NULL,
@@ -1143,12 +1186,85 @@ CREATE TABLE IF NOT EXISTS `good_price` (
 -- Структура таблицы `gydex_hits`
 --
 
+DROP TABLE IF EXISTS `gydex_hits`;
 CREATE TABLE IF NOT EXISTS `gydex_hits` (
   `id` bigint(20) unsigned NOT NULL,
   `pdate` datetime NOT NULL,
   `ip` varchar(80) NOT NULL DEFAULT '',
   `uri` varchar(255) NOT NULL DEFAULT ''
-) ENGINE=MyISAM DEFAULT CHARSET=cp1251;
+) ENGINE=MyISAM AUTO_INCREMENT=67 DEFAULT CHARSET=cp1251;
+
+--
+-- Дамп данных таблицы `gydex_hits`
+--
+
+INSERT INTO `gydex_hits` (`id`, `pdate`, `ip`, `uri`) VALUES
+(1, '2016-10-20 11:29:18', '', '/katalog/'),
+(2, '2016-10-20 11:29:41', '', '/'),
+(3, '2016-10-20 11:29:48', '', '/'),
+(4, '2016-10-20 11:40:46', '', '/'),
+(5, '2016-10-20 11:41:29', '', '/'),
+(6, '2016-10-20 11:41:36', '', '/uslugi/'),
+(7, '2016-10-20 11:42:02', '', '/uslugi/'),
+(8, '2016-10-20 11:42:13', '', '/'),
+(9, '2016-10-20 11:57:47', '', '/'),
+(10, '2016-10-20 11:59:08', '', '/'),
+(11, '2016-10-20 13:56:26', '', '/'),
+(12, '2016-10-20 14:04:42', '', '/'),
+(13, '2016-10-20 14:04:47', '', '/'),
+(14, '2016-10-20 14:05:59', '', '/uslugi/'),
+(15, '2016-10-20 14:26:27', '', '/'),
+(16, '2016-10-20 14:31:24', '', '/'),
+(17, '2016-10-20 14:38:20', '', '/'),
+(18, '2016-10-20 14:45:09', '', '/'),
+(19, '2016-10-20 14:46:20', '', '/'),
+(20, '2016-10-20 15:00:12', '', '/'),
+(21, '2016-10-20 15:02:28', '', '/'),
+(22, '2016-10-20 15:03:29', '', '/'),
+(23, '2016-10-20 15:25:48', '', '/'),
+(24, '2016-10-20 15:28:58', '', '/'),
+(25, '2016-10-20 16:56:26', '', '/'),
+(26, '2016-10-20 17:13:55', '', '/'),
+(27, '2016-10-20 17:15:33', '', '/'),
+(28, '2016-10-20 17:26:28', '', '/'),
+(29, '2016-10-20 17:28:31', '', '/'),
+(30, '2016-10-20 17:28:38', '', '/'),
+(31, '2016-10-20 17:33:19', '', '/'),
+(32, '2016-10-20 17:35:11', '', '/'),
+(33, '2016-10-20 17:38:09', '', '/'),
+(34, '2016-10-20 17:43:04', '', '/'),
+(35, '2016-10-20 17:47:59', '', '/'),
+(36, '2016-10-20 18:09:44', '', '/'),
+(37, '2016-10-20 18:10:51', '', '/'),
+(38, '2016-10-20 18:11:48', '', '/'),
+(39, '2016-10-20 18:12:39', '', '/'),
+(40, '2016-10-20 18:14:06', '', '/'),
+(41, '2016-10-20 18:21:08', '', '/'),
+(42, '2016-10-20 18:21:57', '', '/'),
+(43, '2016-10-20 18:24:14', '', '/'),
+(44, '2016-10-20 18:24:57', '', '/'),
+(45, '2016-10-20 18:26:43', '', '/'),
+(46, '2016-10-20 18:28:34', '', '/'),
+(47, '2016-10-20 18:29:46', '', '/'),
+(48, '2016-10-20 18:35:29', '', '/'),
+(49, '2016-10-20 18:36:03', '', '/'),
+(50, '2016-10-20 18:37:55', '', '/'),
+(51, '2016-10-20 18:39:33', '', '/'),
+(52, '2016-10-20 18:40:35', '', '/'),
+(53, '2016-10-20 18:40:55', '', '/'),
+(54, '2016-10-20 18:41:59', '', '/'),
+(55, '2016-10-20 18:42:49', '', '/'),
+(56, '2016-10-20 18:43:45', '', '/'),
+(57, '2016-10-20 18:44:25', '', '/'),
+(58, '2016-10-20 18:45:04', '', '/'),
+(59, '2016-10-20 18:46:29', '', '/'),
+(60, '2016-10-20 18:46:59', '', '/'),
+(61, '2016-10-20 18:47:06', '', '/'),
+(62, '2016-10-20 18:47:30', '', '/'),
+(63, '2016-10-20 18:47:56', '', '/'),
+(64, '2016-10-20 18:48:24', '', '/'),
+(65, '2016-10-20 18:48:47', '', '/'),
+(66, '2016-10-20 18:49:35', '', '/');
 
 -- --------------------------------------------------------
 
@@ -1156,6 +1272,7 @@ CREATE TABLE IF NOT EXISTS `gydex_hits` (
 -- Структура таблицы `gydex_menu`
 --
 
+DROP TABLE IF EXISTS `gydex_menu`;
 CREATE TABLE IF NOT EXISTS `gydex_menu` (
   `id` bigint(20) unsigned NOT NULL,
   `parent_id` bigint(20) unsigned NOT NULL DEFAULT '0',
@@ -1232,12 +1349,13 @@ INSERT INTO `gydex_menu` (`id`, `parent_id`, `object_id`, `place_kind`, `module_
 -- Структура таблицы `gydex_stats`
 --
 
+DROP TABLE IF EXISTS `gydex_stats`;
 CREATE TABLE IF NOT EXISTS `gydex_stats` (
   `id` bigint(20) NOT NULL,
   `pdate` date NOT NULL,
   `ip` varchar(80) NOT NULL DEFAULT '',
   `total` bigint(20) NOT NULL DEFAULT '0'
-) ENGINE=MyISAM AUTO_INCREMENT=78148 DEFAULT CHARSET=cp1251;
+) ENGINE=MyISAM AUTO_INCREMENT=78149 DEFAULT CHARSET=cp1251;
 
 --
 -- Дамп данных таблицы `gydex_stats`
@@ -79454,7 +79572,8 @@ INSERT INTO `gydex_stats` (`id`, `pdate`, `ip`, `total`) VALUES
 (78144, '2016-10-03', '109.188.125.136', 1),
 (78145, '2016-10-03', '46.4.32.75', 5),
 (78146, '2016-10-18', '', 2),
-(78147, '2016-10-19', '', 26);
+(78147, '2016-10-19', '', 26),
+(78148, '2016-10-20', '', 66);
 
 -- --------------------------------------------------------
 
@@ -79462,6 +79581,7 @@ INSERT INTO `gydex_stats` (`id`, `pdate`, `ip`, `total`) VALUES
 -- Структура таблицы `langs`
 --
 
+DROP TABLE IF EXISTS `langs`;
 CREATE TABLE IF NOT EXISTS `langs` (
   `id` bigint(20) unsigned NOT NULL,
   `lang_name` varchar(255) DEFAULT '',
@@ -79484,13 +79604,30 @@ INSERT INTO `langs` (`id`, `lang_name`, `lang_flag`, `lang_flag_bigger`, `lang_m
 -- Структура таблицы `link_item`
 --
 
+DROP TABLE IF EXISTS `link_item`;
 CREATE TABLE IF NOT EXISTS `link_item` (
   `id` bigint(20) unsigned NOT NULL,
   `mid` bigint(20) unsigned DEFAULT '0',
   `ord` tinyint(3) unsigned DEFAULT '0',
   `url` varchar(255) DEFAULT '',
   `use_simple_code` tinyint(3) unsigned DEFAULT '0'
-) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=cp1251;
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=cp1251;
+
+--
+-- Дамп данных таблицы `link_item`
+--
+
+INSERT INTO `link_item` (`id`, `mid`, `ord`, `url`, `use_simple_code`) VALUES
+(4, 15, 1, '', 0),
+(3, 15, 1, '', 0),
+(2, 15, 1, '', 0),
+(1, 15, 1, '', 0),
+(5, 15, 1, '', 0),
+(6, 15, 1, '', 0),
+(7, 16, 4, '', 0),
+(8, 16, 3, '', 0),
+(9, 16, 2, '', 0),
+(10, 16, 1, '', 0);
 
 -- --------------------------------------------------------
 
@@ -79498,6 +79635,7 @@ CREATE TABLE IF NOT EXISTS `link_item` (
 -- Структура таблицы `link_lang`
 --
 
+DROP TABLE IF EXISTS `link_lang`;
 CREATE TABLE IF NOT EXISTS `link_lang` (
   `plid` bigint(20) unsigned NOT NULL,
   `lang_id` bigint(20) unsigned DEFAULT '0',
@@ -79511,14 +79649,24 @@ CREATE TABLE IF NOT EXISTS `link_lang` (
   `simple_code` text,
   `is_shown` tinyint(3) unsigned DEFAULT '0',
   `photo_big` varchar(255) NOT NULL DEFAULT ''
-) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=cp1251;
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=cp1251;
 
 --
 -- Дамп данных таблицы `link_lang`
 --
 
 INSERT INTO `link_lang` (`plid`, `lang_id`, `link_id`, `name`, `short_name`, `photo_small`, `small_txt`, `otrasl`, `vnedr`, `simple_code`, `is_shown`, `photo_big`) VALUES
-(10, 1, 0, NULL, '', 'img/no.gif', NULL, '', '', NULL, 0, '');
+(1, 1, 0, NULL, '', 'img/no.gif', NULL, '', '', NULL, 0, 'img/no.gif'),
+(5, 1, 4, '', '', 'userfiles/image/tnimg_4-1476899479.png', '', '', '', '', 1, 'userfiles/image/img_4-1476899479.png'),
+(2, 1, 1, '', '', 'userfiles/image/tnimg_1-1476899391.png', '', '', '', '', 1, 'userfiles/image/img_1-1476899391.png'),
+(3, 1, 2, '', '', 'userfiles/image/tnimg_2-1476899438.png', '', '', '', '', 1, 'userfiles/image/img_2-1476899438.png'),
+(4, 1, 3, '', '', 'userfiles/image/tnimg_3-1476899457.png', '', '', '', '', 1, 'userfiles/image/img_3-1476899457.png'),
+(6, 1, 5, '', '', 'userfiles/image/tnimg_5-1476899511.png', '', '', '', '', 1, 'userfiles/image/img_5-1476899511.png'),
+(7, 1, 6, '', '', 'userfiles/image/tnimg_6-1476899526.png', '', '', '', '', 1, 'userfiles/image/img_6-1476899526.png'),
+(8, 1, 7, 'Поставка всех типов технологического оборудования', '', 'userfiles/image/tnservice1-1476967627.png', '', '', '', '', 1, 'userfiles/image/service1-1476967627.png'),
+(9, 1, 8, 'Строительство промышленных объектов «под ключ»', '', 'userfiles/image/tnservice2-1476967731.png', '', '', '', '', 1, 'userfiles/image/service2-1476967731.png'),
+(10, 1, 9, 'Транспортные и логистические услуги', '', 'userfiles/image/tnservice3-1476967785.png', '', '', '', '', 1, 'userfiles/image/service3-1476967785.png'),
+(11, 1, 10, 'Финансовые продукты и услуги', '', 'userfiles/image/tnservice4-1476967817.png', '', '', '', '', 1, 'userfiles/image/service4-1476967817.png');
 
 -- --------------------------------------------------------
 
@@ -79526,6 +79674,7 @@ INSERT INTO `link_lang` (`plid`, `lang_id`, `link_id`, `name`, `short_name`, `ph
 -- Структура таблицы `menu_lang`
 --
 
+DROP TABLE IF EXISTS `menu_lang`;
 CREATE TABLE IF NOT EXISTS `menu_lang` (
   `mlid` bigint(20) unsigned NOT NULL,
   `lang_id` bigint(20) unsigned DEFAULT '0',
@@ -79543,27 +79692,29 @@ CREATE TABLE IF NOT EXISTS `menu_lang` (
   `meta_description` text NOT NULL,
   `do_index` tinyint(3) unsigned NOT NULL DEFAULT '1',
   `do_follow` tinyint(3) unsigned NOT NULL DEFAULT '1'
-) ENGINE=MyISAM AUTO_INCREMENT=43 DEFAULT CHARSET=cp1251;
+) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=cp1251;
 
 --
 -- Дамп данных таблицы `menu_lang`
 --
 
 INSERT INTO `menu_lang` (`mlid`, `lang_id`, `mid`, `name`, `name_2`, `txt`, `txt2`, `txt3`, `title`, `is_shown`, `photo_small`, `photo_for_goods`, `meta_keywords`, `meta_description`, `do_index`, `do_follow`) VALUES
-(31, 1, 31, 'Каталог', '', '', '', '', 'Каталог', 1, 'img/no.gif', '', '', '', 1, 1),
-(29, 1, 29, 'О компании', '', '', '', '', 'О компании', 1, 'img/no.gif', '', '', '', 1, 1),
-(30, 1, 30, 'Услуги', '', '', '', '', 'Услуги', 1, 'img/no.gif', '', '', '', 1, 1),
-(32, 1, 32, 'Новости', '', '', '', '', 'Новости', 1, 'img/no.gif', '', '', '', 1, 1),
-(33, 1, 33, 'Контакты', '', '', '', '', 'Контакты', 1, 'img/no.gif', '', '', '', 1, 1),
-(34, 1, 34, 'Токарные центры', '', '', '', '', 'Токарные центры', 1, 'img/no.gif', '', '', '', 1, 1),
-(35, 1, 35, 'Фрезерные центры', '', '', '', '', 'Фрезерные центры', 1, 'img/no.gif', '', '', '', 1, 1),
-(36, 1, 36, 'Сверлильные станки', '', '', '', '', 'Сверлильные станки', 1, 'img/no.gif', '', '', '', 1, 1),
-(37, 1, 37, 'Шлифовальные станки', '', '', '', '', 'Шлифовальные станки', 1, 'img/no.gif', '', '', '', 1, 1),
-(38, 1, 38, 'Листообработка', '', '', '', '', 'Листообработка', 1, 'img/no.gif', '', '', '', 1, 1),
-(39, 1, 39, 'Гальваника', '', '', '', '', 'Гальваника', 1, 'img/no.gif', '', '', '', 1, 1),
-(40, 1, 40, 'Оборудование для литья', '', '', '', '', 'Оборудование для литья', 1, 'img/no.gif', '', '', '', 1, 1),
-(41, 1, 41, 'Термическая обработка', '', '', '', '', 'Термическая обработка', 1, 'img/no.gif', '', '', '', 1, 1),
-(42, 1, 42, 'Измерительное оборудование', '', '', '', '', 'Измерительное оборудование', 1, 'img/no.gif', '', '', '', 1, 1);
+(3, 1, 3, 'Каталог', '', '', '', '', 'Каталог', 1, 'img/no.gif', '', '', '', 1, 1),
+(1, 1, 1, 'О компании', '', '', '', '', 'О компании', 1, 'img/no.gif', '', '', '', 1, 1),
+(2, 1, 2, 'Услуги', '', '', '', '', 'Услуги', 1, 'img/no.gif', '', '', '', 1, 1),
+(4, 1, 4, 'Новости', '', '', '', '', 'Новости', 1, 'img/no.gif', '', '', '', 1, 1),
+(5, 1, 5, 'Контакты', '', '', '', '', 'Контакты', 1, 'img/no.gif', '', '', '', 1, 1),
+(6, 1, 6, 'Токарные центры', '', '', '', '', 'Токарные центры', 1, 'img/no.gif', '', '', '', 1, 1),
+(7, 1, 7, 'Фрезерные центры', '', '', '', '', 'Фрезерные центры', 1, 'img/no.gif', '', '', '', 1, 1),
+(8, 1, 8, 'Сверлильные станки', '', '', '', '', 'Сверлильные станки', 1, 'img/no.gif', '', '', '', 1, 1),
+(9, 1, 9, 'Шлифовальные станки', '', '', '', '', 'Шлифовальные станки', 1, 'img/no.gif', '', '', '', 1, 1),
+(10, 1, 10, 'Листообработка', '', '', '', '', 'Листообработка', 1, 'img/no.gif', '', '', '', 1, 1),
+(11, 1, 11, 'Гальваника', '', '', '', '', 'Гальваника', 1, 'img/no.gif', '', '', '', 1, 1),
+(12, 1, 12, 'Оборудование для литья', '', '', '', '', 'Оборудование для литья', 1, 'img/no.gif', '', '', '', 1, 1),
+(13, 1, 13, 'Термическая обработка', '', '', '', '', 'Термическая обработка', 1, 'img/no.gif', '', '', '', 1, 1),
+(14, 1, 14, 'Измерительное оборудование', '', '', '', '', 'Измерительное оборудование', 1, 'img/no.gif', '', '', '', 1, 1),
+(15, 1, 15, 'Нам доверяют', '', '', '', '', 'Нам доверяют', 0, 'img/no.gif', '', '', '', 1, 1),
+(16, 1, 16, 'Список услуг', '', '', '', '', 'Список услуг', 0, 'img/no.gif', '', '', '', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -79571,6 +79722,7 @@ INSERT INTO `menu_lang` (`mlid`, `lang_id`, `mid`, `name`, `name_2`, `txt`, `txt
 -- Структура таблицы `news_file`
 --
 
+DROP TABLE IF EXISTS `news_file`;
 CREATE TABLE IF NOT EXISTS `news_file` (
   `id` bigint(20) unsigned NOT NULL,
   `news_id` bigint(20) unsigned NOT NULL DEFAULT '0',
@@ -79584,6 +79736,7 @@ CREATE TABLE IF NOT EXISTS `news_file` (
 -- Структура таблицы `news_item`
 --
 
+DROP TABLE IF EXISTS `news_item`;
 CREATE TABLE IF NOT EXISTS `news_item` (
   `id` bigint(20) unsigned NOT NULL,
   `mid` bigint(20) unsigned DEFAULT '0',
@@ -79600,6 +79753,7 @@ CREATE TABLE IF NOT EXISTS `news_item` (
 -- Структура таблицы `news_lang`
 --
 
+DROP TABLE IF EXISTS `news_lang`;
 CREATE TABLE IF NOT EXISTS `news_lang` (
   `plid` bigint(20) unsigned NOT NULL,
   `lang_id` bigint(20) unsigned DEFAULT '0',
@@ -79620,6 +79774,7 @@ CREATE TABLE IF NOT EXISTS `news_lang` (
 -- Структура таблицы `numbers`
 --
 
+DROP TABLE IF EXISTS `numbers`;
 CREATE TABLE IF NOT EXISTS `numbers` (
   `id` bigint(20) unsigned NOT NULL,
   `number` varchar(20) NOT NULL DEFAULT '',
@@ -79675,6 +79830,7 @@ INSERT INTO `numbers` (`id`, `number`, `name`, `txt`, `is_shown`) VALUES
 -- Структура таблицы `orders`
 --
 
+DROP TABLE IF EXISTS `orders`;
 CREATE TABLE IF NOT EXISTS `orders` (
   `id` bigint(20) unsigned NOT NULL,
   `lang_id` bigint(20) unsigned DEFAULT '0',
@@ -79694,6 +79850,7 @@ CREATE TABLE IF NOT EXISTS `orders` (
 -- Структура таблицы `order_item`
 --
 
+DROP TABLE IF EXISTS `order_item`;
 CREATE TABLE IF NOT EXISTS `order_item` (
   `id` bigint(20) unsigned NOT NULL,
   `order_id` bigint(20) unsigned DEFAULT '0',
@@ -79710,6 +79867,7 @@ CREATE TABLE IF NOT EXISTS `order_item` (
 -- Структура таблицы `order_item_option`
 --
 
+DROP TABLE IF EXISTS `order_item_option`;
 CREATE TABLE IF NOT EXISTS `order_item_option` (
   `id` bigint(20) unsigned NOT NULL,
   `item_id` bigint(20) unsigned DEFAULT '0',
@@ -79722,6 +79880,7 @@ CREATE TABLE IF NOT EXISTS `order_item_option` (
 -- Структура таблицы `order_status`
 --
 
+DROP TABLE IF EXISTS `order_status`;
 CREATE TABLE IF NOT EXISTS `order_status` (
   `id` bigint(20) unsigned NOT NULL,
   `is_changeable` tinyint(3) unsigned DEFAULT '0'
@@ -79744,6 +79903,7 @@ INSERT INTO `order_status` (`id`, `is_changeable`) VALUES
 -- Структура таблицы `order_status_lang`
 --
 
+DROP TABLE IF EXISTS `order_status_lang`;
 CREATE TABLE IF NOT EXISTS `order_status_lang` (
   `plid` bigint(20) unsigned NOT NULL,
   `lang_id` bigint(20) unsigned DEFAULT '0',
@@ -79769,6 +79929,7 @@ INSERT INTO `order_status_lang` (`plid`, `lang_id`, `status_id`, `name`, `descr`
 -- Структура таблицы `otzyv`
 --
 
+DROP TABLE IF EXISTS `otzyv`;
 CREATE TABLE IF NOT EXISTS `otzyv` (
   `id` bigint(20) unsigned NOT NULL,
   `name` text NOT NULL,
@@ -79799,6 +79960,7 @@ INSERT INTO `otzyv` (`id`, `name`, `txt`, `is_on_site`, `ord`) VALUES
 -- Структура таблицы `paper_item`
 --
 
+DROP TABLE IF EXISTS `paper_item`;
 CREATE TABLE IF NOT EXISTS `paper_item` (
   `id` bigint(20) unsigned NOT NULL,
   `mid` bigint(20) unsigned DEFAULT '0',
@@ -79816,6 +79978,7 @@ CREATE TABLE IF NOT EXISTS `paper_item` (
 -- Структура таблицы `paper_lang`
 --
 
+DROP TABLE IF EXISTS `paper_lang`;
 CREATE TABLE IF NOT EXISTS `paper_lang` (
   `plid` bigint(20) unsigned NOT NULL,
   `lang_id` bigint(20) unsigned DEFAULT '0',
@@ -79844,6 +80007,7 @@ INSERT INTO `paper_lang` (`plid`, `lang_id`, `paper_id`, `name`, `small_txt`, `b
 -- Структура таблицы `photo_item`
 --
 
+DROP TABLE IF EXISTS `photo_item`;
 CREATE TABLE IF NOT EXISTS `photo_item` (
   `id` bigint(20) unsigned NOT NULL,
   `mid` bigint(20) unsigned DEFAULT '0',
@@ -79858,6 +80022,7 @@ CREATE TABLE IF NOT EXISTS `photo_item` (
 -- Структура таблицы `photo_lang`
 --
 
+DROP TABLE IF EXISTS `photo_lang`;
 CREATE TABLE IF NOT EXISTS `photo_lang` (
   `plid` bigint(20) unsigned NOT NULL,
   `lang_id` bigint(20) unsigned DEFAULT '0',
@@ -79875,6 +80040,7 @@ CREATE TABLE IF NOT EXISTS `photo_lang` (
 -- Структура таблицы `price`
 --
 
+DROP TABLE IF EXISTS `price`;
 CREATE TABLE IF NOT EXISTS `price` (
   `id` bigint(20) unsigned NOT NULL,
   `cond_id` bigint(20) unsigned DEFAULT '0',
@@ -79891,6 +80057,7 @@ CREATE TABLE IF NOT EXISTS `price` (
 -- Структура таблицы `price_item`
 --
 
+DROP TABLE IF EXISTS `price_item`;
 CREATE TABLE IF NOT EXISTS `price_item` (
   `id` bigint(20) unsigned NOT NULL,
   `mid` bigint(20) unsigned DEFAULT '0',
@@ -79910,6 +80077,7 @@ CREATE TABLE IF NOT EXISTS `price_item` (
 -- Структура таблицы `price_lang`
 --
 
+DROP TABLE IF EXISTS `price_lang`;
 CREATE TABLE IF NOT EXISTS `price_lang` (
   `plid` bigint(20) unsigned NOT NULL,
   `lang_id` bigint(20) unsigned DEFAULT '0',
@@ -79927,6 +80095,7 @@ CREATE TABLE IF NOT EXISTS `price_lang` (
 -- Структура таблицы `price_ost`
 --
 
+DROP TABLE IF EXISTS `price_ost`;
 CREATE TABLE IF NOT EXISTS `price_ost` (
   `id` bigint(20) unsigned NOT NULL,
   `price_id` bigint(20) unsigned DEFAULT '0',
@@ -79939,6 +80108,7 @@ CREATE TABLE IF NOT EXISTS `price_ost` (
 -- Структура таблицы `price__lang`
 --
 
+DROP TABLE IF EXISTS `price__lang`;
 CREATE TABLE IF NOT EXISTS `price__lang` (
   `plid` bigint(20) unsigned NOT NULL,
   `lang_id` bigint(20) unsigned DEFAULT '0',
@@ -79953,6 +80123,7 @@ CREATE TABLE IF NOT EXISTS `price__lang` (
 -- Структура таблицы `program`
 --
 
+DROP TABLE IF EXISTS `program`;
 CREATE TABLE IF NOT EXISTS `program` (
   `id` bigint(20) unsigned NOT NULL,
   `name` varchar(255) NOT NULL DEFAULT '',
@@ -79990,6 +80161,7 @@ INSERT INTO `program` (`id`, `name`, `url`, `debug_url`, `database_name`, `debug
 -- Структура таблицы `prop_name`
 --
 
+DROP TABLE IF EXISTS `prop_name`;
 CREATE TABLE IF NOT EXISTS `prop_name` (
   `id` bigint(20) unsigned NOT NULL,
   `dict_id` bigint(20) unsigned DEFAULT '0',
@@ -80003,6 +80175,7 @@ CREATE TABLE IF NOT EXISTS `prop_name` (
 -- Структура таблицы `prop_name_lang`
 --
 
+DROP TABLE IF EXISTS `prop_name_lang`;
 CREATE TABLE IF NOT EXISTS `prop_name_lang` (
   `plid` bigint(20) unsigned NOT NULL,
   `lang_id` bigint(20) unsigned DEFAULT '0',
@@ -80018,6 +80191,7 @@ CREATE TABLE IF NOT EXISTS `prop_name_lang` (
 -- Структура таблицы `prop_value`
 --
 
+DROP TABLE IF EXISTS `prop_value`;
 CREATE TABLE IF NOT EXISTS `prop_value` (
   `id` bigint(20) unsigned NOT NULL,
   `name_id` bigint(20) unsigned DEFAULT '0',
@@ -80033,6 +80207,7 @@ CREATE TABLE IF NOT EXISTS `prop_value` (
 -- Структура таблицы `prop_value_lang`
 --
 
+DROP TABLE IF EXISTS `prop_value_lang`;
 CREATE TABLE IF NOT EXISTS `prop_value_lang` (
   `plid` bigint(20) unsigned NOT NULL,
   `lang_id` bigint(20) unsigned DEFAULT '0',
@@ -80047,6 +80222,7 @@ CREATE TABLE IF NOT EXISTS `prop_value_lang` (
 -- Структура таблицы `reg_kind`
 --
 
+DROP TABLE IF EXISTS `reg_kind`;
 CREATE TABLE IF NOT EXISTS `reg_kind` (
   `id` bigint(20) unsigned NOT NULL,
   `name` varchar(255) DEFAULT NULL
@@ -80066,6 +80242,7 @@ INSERT INTO `reg_kind` (`id`, `name`) VALUES
 -- Структура таблицы `solution`
 --
 
+DROP TABLE IF EXISTS `solution`;
 CREATE TABLE IF NOT EXISTS `solution` (
   `id` bigint(20) unsigned NOT NULL,
   `parent_id` bigint(20) unsigned NOT NULL DEFAULT '0',
@@ -80099,6 +80276,7 @@ INSERT INTO `solution` (`id`, `parent_id`, `name`, `txt`, `task`, `otrasl`, `num
 -- Структура таблицы `solution_file`
 --
 
+DROP TABLE IF EXISTS `solution_file`;
 CREATE TABLE IF NOT EXISTS `solution_file` (
   `id` bigint(20) unsigned NOT NULL,
   `solution_id` bigint(20) unsigned NOT NULL DEFAULT '0',
@@ -80120,6 +80298,7 @@ INSERT INTO `solution_file` (`id`, `solution_id`, `filename`, `orig_name`) VALUE
 -- Структура таблицы `sprav_city`
 --
 
+DROP TABLE IF EXISTS `sprav_city`;
 CREATE TABLE IF NOT EXISTS `sprav_city` (
   `id` bigint(20) unsigned NOT NULL,
   `country_id` bigint(20) unsigned NOT NULL DEFAULT '1',
@@ -84850,6 +85029,7 @@ INSERT INTO `sprav_city` (`id`, `country_id`, `district_id`, `region_id`, `name`
 -- Структура таблицы `sprav_country`
 --
 
+DROP TABLE IF EXISTS `sprav_country`;
 CREATE TABLE IF NOT EXISTS `sprav_country` (
   `id` bigint(20) NOT NULL,
   `name` varchar(255) NOT NULL DEFAULT ''
@@ -84882,6 +85062,7 @@ INSERT INTO `sprav_country` (`id`, `name`) VALUES
 -- Структура таблицы `sprav_district`
 --
 
+DROP TABLE IF EXISTS `sprav_district`;
 CREATE TABLE IF NOT EXISTS `sprav_district` (
   `id` bigint(20) unsigned NOT NULL,
   `country_id` bigint(20) unsigned NOT NULL DEFAULT '1',
@@ -84963,6 +85144,7 @@ INSERT INTO `sprav_district` (`id`, `country_id`, `name`) VALUES
 -- Структура таблицы `sprav_region`
 --
 
+DROP TABLE IF EXISTS `sprav_region`;
 CREATE TABLE IF NOT EXISTS `sprav_region` (
   `id` bigint(20) unsigned NOT NULL,
   `country_id` bigint(20) unsigned NOT NULL DEFAULT '1',
@@ -86302,7 +86484,7 @@ ALTER TABLE `sprav_region`
 -- AUTO_INCREMENT для таблицы `allmenu`
 --
 ALTER TABLE `allmenu`
-  MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=43;
+  MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT для таблицы `allmenu_template`
 --
@@ -86527,7 +86709,7 @@ ALTER TABLE `good_price`
 -- AUTO_INCREMENT для таблицы `gydex_hits`
 --
 ALTER TABLE `gydex_hits`
-  MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=67;
 --
 -- AUTO_INCREMENT для таблицы `gydex_menu`
 --
@@ -86537,7 +86719,7 @@ ALTER TABLE `gydex_menu`
 -- AUTO_INCREMENT для таблицы `gydex_stats`
 --
 ALTER TABLE `gydex_stats`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=78148;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=78149;
 --
 -- AUTO_INCREMENT для таблицы `langs`
 --
@@ -86547,17 +86729,17 @@ ALTER TABLE `langs`
 -- AUTO_INCREMENT для таблицы `link_item`
 --
 ALTER TABLE `link_item`
-  MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
+  MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT для таблицы `link_lang`
 --
 ALTER TABLE `link_lang`
-  MODIFY `plid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
+  MODIFY `plid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT для таблицы `menu_lang`
 --
 ALTER TABLE `menu_lang`
-  MODIFY `mlid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=43;
+  MODIFY `mlid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT для таблицы `news_file`
 --

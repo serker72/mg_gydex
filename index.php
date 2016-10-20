@@ -122,7 +122,9 @@ $smarty->assign('numbers', $smarty1->fetch('index_numbers.html'));
 //клиенты
 
 $og=new LinksGroup;
-$smarty->assign('clients', $og->GetItemsCli('index_clients.html'));
+//$smarty->assign('clients', $og->GetItemsCli('index_clients.html'));
+$smarty->assign('clients', $og->GetItemsByIdCli('index_clients.html', '', '', '', 15));
+$smarty->assign('services', $og->GetItemsByIdCli('index_services.html', '', '', '', 16));
 
 
 //новости на главной

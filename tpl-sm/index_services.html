@@ -1,0 +1,23 @@
+            <!-- Блок "Услуги" -->
+            <div class="row-fluid services_wrapper">
+                <div class="col-lg-12 caption_title"><a href="/services.html">Услуги</a></div>
+                
+                <div class="col-lg-12">
+                    
+                <div id="our_services_slider"  class="cycle-slideshow"
+                    data-cycle-slides="> div.services_small_wrapper"
+                    data-cycle-fx="carousel"
+                    data-cycle-timeout="%{if count($items) > 4}%5000%{else}%0%{/if}%"
+                    data-cycle-pager=".oc-pager"
+                    data-cycle-pager-template="<a href='#' class='oc-pager-button'>&nbsp;</a>"
+                >
+                    %{foreach from=$items item=item}% 
+                        <div class="services_small_wrapper">
+                            <div class="service_image"><img src="%{$item.image_big}%"></div>
+                            <div class="service_text">%{$item.name}%</div>
+                        </div>
+                    %{/foreach}%
+                </div>
+                <!--div class="oc-pager"></div-->
+                </div>
+            </div>

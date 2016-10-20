@@ -1,6 +1,23 @@
 %{if $has_slider}%
+    <div id="slider1" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner" role="listbox">
+            %{foreach from=$upbanners item=ban name=f_upbanners}%
+            <div class="item %{if $smarty.foreach.f_upbanners.index == 0}% active%{/if}%">
+                <img src="%{$ban.photo_small}%" alt="Слайд #%{$smarty.foreach.f_upbanners.index + 1}%">
+                <!-- Текст поверх изображения -->
+                <!-- Если текст не нужен следует оставить этот блок пустым, но не удалять его -->
+                %{$ban.small_txt}%
+            </div>
+            %{/foreach}%
+            <!-- Кнопки управления слайдщоу (стрелки влево и вправо) -->
+            <!-- Значение href у ссылки должно соответствовать идентификатору(id) блока со слайдшоу(первая строчка) -->
+            <a class="left carousel-control" href="#slider1" data-slide="prev"></a>
+            <!-- Значение href у ссылки должно соответствовать идентификатору(id) блока со слайдшоу(первая строчка) -->
+            <a class="right carousel-control" href="#slider1" data-slide="next"></a>                
+        </div>
+    </div>
 
-	<div id="slider-wrapper">    	 
+	<!--div id="slider-wrapper">    	 
         <div id="slider" class="cycle-slideshow"
         data-cycle-fx="scrollHorz"
   	data-cycle-timeout="10000"
@@ -25,7 +42,7 @@
             
             
         </div>        
-    </div>
+    </div-->
 %{/if}%
  
     
