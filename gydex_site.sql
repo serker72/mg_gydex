@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Окт 20 2016 г., 18:55
+-- Время создания: Окт 21 2016 г., 17:38
 -- Версия сервера: 5.5.44-log
 -- Версия PHP: 5.3.29
 
@@ -19,8 +19,6 @@ SET time_zone = "+00:00";
 --
 -- База данных: `gydex_site`
 --
-CREATE DATABASE IF NOT EXISTS `gydex_site` DEFAULT CHARACTER SET cp1251 COLLATE cp1251_general_ci;
-USE `gydex_site`;
 
 -- --------------------------------------------------------
 
@@ -28,7 +26,6 @@ USE `gydex_site`;
 -- Структура таблицы `allmenu`
 --
 
-DROP TABLE IF EXISTS `allmenu`;
 CREATE TABLE IF NOT EXISTS `allmenu` (
   `id` bigint(20) unsigned NOT NULL,
   `parent_id` bigint(20) unsigned DEFAULT '0',
@@ -69,6 +66,11 @@ CREATE TABLE IF NOT EXISTS `allmenu` (
 ) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=cp1251;
 
 --
+-- Очистить таблицу перед добавлением данных `allmenu`
+--
+
+TRUNCATE TABLE `allmenu`;
+--
 -- Дамп данных таблицы `allmenu`
 --
 
@@ -96,7 +98,6 @@ INSERT INTO `allmenu` (`id`, `parent_id`, `path`, `ord`, `ord_2`, `ord_3`, `is_n
 -- Структура таблицы `allmenu_template`
 --
 
-DROP TABLE IF EXISTS `allmenu_template`;
 CREATE TABLE IF NOT EXISTS `allmenu_template` (
   `id` bigint(20) unsigned NOT NULL,
   `name` varchar(255) NOT NULL DEFAULT '',
@@ -104,6 +105,11 @@ CREATE TABLE IF NOT EXISTS `allmenu_template` (
   `preview` varchar(255) NOT NULL DEFAULT ''
 ) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=cp1251;
 
+--
+-- Очистить таблицу перед добавлением данных `allmenu_template`
+--
+
+TRUNCATE TABLE `allmenu_template`;
 --
 -- Дамп данных таблицы `allmenu_template`
 --
@@ -123,13 +129,17 @@ INSERT INTO `allmenu_template` (`id`, `name`, `template`, `preview`) VALUES
 -- Структура таблицы `area_cond_price`
 --
 
-DROP TABLE IF EXISTS `area_cond_price`;
 CREATE TABLE IF NOT EXISTS `area_cond_price` (
   `id` bigint(20) unsigned NOT NULL,
   `key_name` varchar(255) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=cp1251;
 
+--
+-- Очистить таблицу перед добавлением данных `area_cond_price`
+--
+
+TRUNCATE TABLE `area_cond_price`;
 --
 -- Дамп данных таблицы `area_cond_price`
 --
@@ -145,7 +155,6 @@ INSERT INTO `area_cond_price` (`id`, `key_name`, `name`) VALUES
 -- Структура таблицы `attach_d`
 --
 
-DROP TABLE IF EXISTS `attach_d`;
 CREATE TABLE IF NOT EXISTS `attach_d` (
   `id` bigint(20) unsigned NOT NULL,
   `key_name` varchar(255) DEFAULT NULL,
@@ -153,6 +162,11 @@ CREATE TABLE IF NOT EXISTS `attach_d` (
   `short_name` varchar(255) DEFAULT NULL
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=cp1251;
 
+--
+-- Очистить таблицу перед добавлением данных `attach_d`
+--
+
+TRUNCATE TABLE `attach_d`;
 --
 -- Дамп данных таблицы `attach_d`
 --
@@ -168,7 +182,6 @@ INSERT INTO `attach_d` (`id`, `key_name`, `name`, `short_name`) VALUES
 -- Структура таблицы `banners`
 --
 
-DROP TABLE IF EXISTS `banners`;
 CREATE TABLE IF NOT EXISTS `banners` (
   `id` bigint(20) unsigned NOT NULL,
   `ord` tinyint(3) unsigned DEFAULT '0',
@@ -178,6 +191,11 @@ CREATE TABLE IF NOT EXISTS `banners` (
   `break_after` tinyint(3) unsigned NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=cp1251;
 
+--
+-- Очистить таблицу перед добавлением данных `banners`
+--
+
+TRUNCATE TABLE `banners`;
 --
 -- Дамп данных таблицы `banners`
 --
@@ -193,7 +211,6 @@ INSERT INTO `banners` (`id`, `ord`, `url`, `kind`, `align_mode`, `break_after`) 
 -- Структура таблицы `banners_lang`
 --
 
-DROP TABLE IF EXISTS `banners_lang`;
 CREATE TABLE IF NOT EXISTS `banners_lang` (
   `plid` bigint(20) unsigned NOT NULL,
   `lang_id` bigint(20) unsigned DEFAULT '0',
@@ -206,6 +223,11 @@ CREATE TABLE IF NOT EXISTS `banners_lang` (
   `flash_height` int(10) unsigned NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=cp1251;
 
+--
+-- Очистить таблицу перед добавлением данных `banners_lang`
+--
+
+TRUNCATE TABLE `banners_lang`;
 --
 -- Дамп данных таблицы `banners_lang`
 --
@@ -221,7 +243,6 @@ INSERT INTO `banners_lang` (`plid`, `lang_id`, `ban_id`, `small_txt`, `photo_sma
 -- Структура таблицы `claim`
 --
 
-DROP TABLE IF EXISTS `claim`;
 CREATE TABLE IF NOT EXISTS `claim` (
   `id` bigint(20) unsigned NOT NULL,
   `code` char(9) NOT NULL DEFAULT '',
@@ -234,13 +255,17 @@ CREATE TABLE IF NOT EXISTS `claim` (
   `txt` text NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=cp1251;
 
+--
+-- Очистить таблицу перед добавлением данных `claim`
+--
+
+TRUNCATE TABLE `claim`;
 -- --------------------------------------------------------
 
 --
 -- Структура таблицы `claim_creation_session`
 --
 
-DROP TABLE IF EXISTS `claim_creation_session`;
 CREATE TABLE IF NOT EXISTS `claim_creation_session` (
   `id` bigint(20) unsigned NOT NULL,
   `login` varchar(9) NOT NULL DEFAULT '',
@@ -249,13 +274,17 @@ CREATE TABLE IF NOT EXISTS `claim_creation_session` (
   `ip` varchar(255) NOT NULL DEFAULT ''
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=cp1251;
 
+--
+-- Очистить таблицу перед добавлением данных `claim_creation_session`
+--
+
+TRUNCATE TABLE `claim_creation_session`;
 -- --------------------------------------------------------
 
 --
 -- Структура таблицы `clients`
 --
 
-DROP TABLE IF EXISTS `clients`;
 CREATE TABLE IF NOT EXISTS `clients` (
   `id` bigint(20) unsigned NOT NULL,
   `lang_id` bigint(20) unsigned DEFAULT '0',
@@ -271,39 +300,51 @@ CREATE TABLE IF NOT EXISTS `clients` (
   `skidka` float(4,2) DEFAULT '0.00'
 ) ENGINE=MyISAM DEFAULT CHARSET=cp1251;
 
+--
+-- Очистить таблицу перед добавлением данных `clients`
+--
+
+TRUNCATE TABLE `clients`;
 -- --------------------------------------------------------
 
 --
 -- Структура таблицы `cl_by_groups`
 --
 
-DROP TABLE IF EXISTS `cl_by_groups`;
 CREATE TABLE IF NOT EXISTS `cl_by_groups` (
   `id` bigint(20) unsigned NOT NULL,
   `clid` bigint(20) unsigned DEFAULT '0',
   `gr_id` bigint(20) unsigned DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=cp1251;
 
+--
+-- Очистить таблицу перед добавлением данных `cl_by_groups`
+--
+
+TRUNCATE TABLE `cl_by_groups`;
 -- --------------------------------------------------------
 
 --
 -- Структура таблицы `cl_groups`
 --
 
-DROP TABLE IF EXISTS `cl_groups`;
 CREATE TABLE IF NOT EXISTS `cl_groups` (
   `id` bigint(20) unsigned NOT NULL,
   `name` varchar(255) DEFAULT '',
   `descr` text
 ) ENGINE=MyISAM DEFAULT CHARSET=cp1251;
 
+--
+-- Очистить таблицу перед добавлением данных `cl_groups`
+--
+
+TRUNCATE TABLE `cl_groups`;
 -- --------------------------------------------------------
 
 --
 -- Структура таблицы `comment`
 --
 
-DROP TABLE IF EXISTS `comment`;
 CREATE TABLE IF NOT EXISTS `comment` (
   `id` bigint(20) unsigned NOT NULL,
   `tablename` varchar(255) NOT NULL DEFAULT '',
@@ -316,13 +357,17 @@ CREATE TABLE IF NOT EXISTS `comment` (
   `is_new` tinyint(3) unsigned NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=cp1251;
 
+--
+-- Очистить таблицу перед добавлением данных `comment`
+--
+
+TRUNCATE TABLE `comment`;
 -- --------------------------------------------------------
 
 --
 -- Структура таблицы `cond_price`
 --
 
-DROP TABLE IF EXISTS `cond_price`;
 CREATE TABLE IF NOT EXISTS `cond_price` (
   `id` bigint(20) unsigned NOT NULL,
   `area_id` bigint(20) unsigned DEFAULT NULL,
@@ -331,13 +376,17 @@ CREATE TABLE IF NOT EXISTS `cond_price` (
   `key_value` bigint(20) unsigned DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=cp1251;
 
+--
+-- Очистить таблицу перед добавлением данных `cond_price`
+--
+
+TRUNCATE TABLE `cond_price`;
 -- --------------------------------------------------------
 
 --
 -- Структура таблицы `cond_price_lang`
 --
 
-DROP TABLE IF EXISTS `cond_price_lang`;
 CREATE TABLE IF NOT EXISTS `cond_price_lang` (
   `plid` bigint(20) unsigned NOT NULL,
   `lang_id` bigint(20) unsigned DEFAULT '0',
@@ -345,13 +394,17 @@ CREATE TABLE IF NOT EXISTS `cond_price_lang` (
   `name` varchar(255) DEFAULT ''
 ) ENGINE=MyISAM DEFAULT CHARSET=cp1251;
 
+--
+-- Очистить таблицу перед добавлением данных `cond_price_lang`
+--
+
+TRUNCATE TABLE `cond_price_lang`;
 -- --------------------------------------------------------
 
 --
 -- Структура таблицы `currency`
 --
 
-DROP TABLE IF EXISTS `currency`;
 CREATE TABLE IF NOT EXISTS `currency` (
   `id` bigint(20) unsigned NOT NULL,
   `is_base_shop` tinyint(3) unsigned DEFAULT '0',
@@ -359,6 +412,11 @@ CREATE TABLE IF NOT EXISTS `currency` (
   `rate` float DEFAULT NULL
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=cp1251;
 
+--
+-- Очистить таблицу перед добавлением данных `currency`
+--
+
+TRUNCATE TABLE `currency`;
 --
 -- Дамп данных таблицы `currency`
 --
@@ -372,7 +430,6 @@ INSERT INTO `currency` (`id`, `is_base_shop`, `is_base_rate`, `rate`) VALUES
 -- Структура таблицы `currency_lang`
 --
 
-DROP TABLE IF EXISTS `currency_lang`;
 CREATE TABLE IF NOT EXISTS `currency_lang` (
   `plid` bigint(20) unsigned NOT NULL,
   `lang_id` bigint(20) unsigned DEFAULT '0',
@@ -381,6 +438,11 @@ CREATE TABLE IF NOT EXISTS `currency_lang` (
   `signat` varchar(255) DEFAULT ''
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=cp1251;
 
+--
+-- Очистить таблицу перед добавлением данных `currency_lang`
+--
+
+TRUNCATE TABLE `currency_lang`;
 --
 -- Дамп данных таблицы `currency_lang`
 --
@@ -394,20 +456,23 @@ INSERT INTO `currency_lang` (`plid`, `lang_id`, `value_id`, `name`, `signat`) VA
 -- Структура таблицы `currency_use_lang`
 --
 
-DROP TABLE IF EXISTS `currency_use_lang`;
 CREATE TABLE IF NOT EXISTS `currency_use_lang` (
   `plid` bigint(20) unsigned NOT NULL,
   `lang_id` bigint(20) unsigned DEFAULT '0',
   `value_id` bigint(20) unsigned DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=cp1251;
 
+--
+-- Очистить таблицу перед добавлением данных `currency_use_lang`
+--
+
+TRUNCATE TABLE `currency_use_lang`;
 -- --------------------------------------------------------
 
 --
 -- Структура таблицы `delivery`
 --
 
-DROP TABLE IF EXISTS `delivery`;
 CREATE TABLE IF NOT EXISTS `delivery` (
   `id` bigint(20) NOT NULL COMMENT 'id рассылки',
   `name` varchar(255) NOT NULL DEFAULT '' COMMENT 'название рассылки',
@@ -430,26 +495,34 @@ CREATE TABLE IF NOT EXISTS `delivery` (
   `segment_id` bigint(20) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=cp1251;
 
+--
+-- Очистить таблицу перед добавлением данных `delivery`
+--
+
+TRUNCATE TABLE `delivery`;
 -- --------------------------------------------------------
 
 --
 -- Структура таблицы `delivery_link`
 --
 
-DROP TABLE IF EXISTS `delivery_link`;
 CREATE TABLE IF NOT EXISTS `delivery_link` (
   `id` bigint(20) NOT NULL,
   `delivery_id` bigint(20) NOT NULL DEFAULT '0',
   `url` text NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=cp1251;
 
+--
+-- Очистить таблицу перед добавлением данных `delivery_link`
+--
+
+TRUNCATE TABLE `delivery_link`;
 -- --------------------------------------------------------
 
 --
 -- Структура таблицы `delivery_link_hits`
 --
 
-DROP TABLE IF EXISTS `delivery_link_hits`;
 CREATE TABLE IF NOT EXISTS `delivery_link_hits` (
   `id` bigint(20) NOT NULL,
   `link_id` bigint(20) NOT NULL DEFAULT '0',
@@ -460,13 +533,17 @@ CREATE TABLE IF NOT EXISTS `delivery_link_hits` (
   `pdate` bigint(20) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=cp1251;
 
+--
+-- Очистить таблицу перед добавлением данных `delivery_link_hits`
+--
+
+TRUNCATE TABLE `delivery_link_hits`;
 -- --------------------------------------------------------
 
 --
 -- Структура таблицы `delivery_list`
 --
 
-DROP TABLE IF EXISTS `delivery_list`;
 CREATE TABLE IF NOT EXISTS `delivery_list` (
   `id` bigint(20) NOT NULL,
   `name` varchar(255) NOT NULL DEFAULT '' COMMENT 'Название',
@@ -475,13 +552,17 @@ CREATE TABLE IF NOT EXISTS `delivery_list` (
   `pdate_change` bigint(20) NOT NULL DEFAULT '0' COMMENT 'дата изменения'
 ) ENGINE=MyISAM DEFAULT CHARSET=cp1251 COMMENT='список подписки';
 
+--
+-- Очистить таблицу перед добавлением данных `delivery_list`
+--
+
+TRUNCATE TABLE `delivery_list`;
 -- --------------------------------------------------------
 
 --
 -- Структура таблицы `delivery_segment`
 --
 
-DROP TABLE IF EXISTS `delivery_segment`;
 CREATE TABLE IF NOT EXISTS `delivery_segment` (
   `id` bigint(20) NOT NULL,
   `name` varchar(255) NOT NULL DEFAULT '' COMMENT 'название',
@@ -491,6 +572,11 @@ CREATE TABLE IF NOT EXISTS `delivery_segment` (
   `list_id` bigint(20) NOT NULL DEFAULT '0' COMMENT 'id списка'
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=cp1251;
 
+--
+-- Очистить таблицу перед добавлением данных `delivery_segment`
+--
+
+TRUNCATE TABLE `delivery_segment`;
 --
 -- Дамп данных таблицы `delivery_segment`
 --
@@ -505,12 +591,16 @@ INSERT INTO `delivery_segment` (`id`, `name`, `comment`, `pdate`, `pdate_change`
 -- Структура таблицы `delivery_status`
 --
 
-DROP TABLE IF EXISTS `delivery_status`;
 CREATE TABLE IF NOT EXISTS `delivery_status` (
   `id` bigint(20) NOT NULL,
   `name` varchar(255) NOT NULL DEFAULT ''
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=cp1251;
 
+--
+-- Очистить таблицу перед добавлением данных `delivery_status`
+--
+
+TRUNCATE TABLE `delivery_status`;
 --
 -- Дамп данных таблицы `delivery_status`
 --
@@ -527,7 +617,6 @@ INSERT INTO `delivery_status` (`id`, `name`) VALUES
 -- Структура таблицы `delivery_subscriber`
 --
 
-DROP TABLE IF EXISTS `delivery_subscriber`;
 CREATE TABLE IF NOT EXISTS `delivery_subscriber` (
   `id` bigint(20) NOT NULL,
   `user_id` bigint(20) NOT NULL DEFAULT '0',
@@ -537,13 +626,17 @@ CREATE TABLE IF NOT EXISTS `delivery_subscriber` (
   `pdate` bigint(20) DEFAULT NULL COMMENT 'дата отправки'
 ) ENGINE=MyISAM DEFAULT CHARSET=cp1251 COMMENT='Получатель рассылки';
 
+--
+-- Очистить таблицу перед добавлением данных `delivery_subscriber`
+--
+
+TRUNCATE TABLE `delivery_subscriber`;
 -- --------------------------------------------------------
 
 --
 -- Структура таблицы `delivery_subscriber_hits`
 --
 
-DROP TABLE IF EXISTS `delivery_subscriber_hits`;
 CREATE TABLE IF NOT EXISTS `delivery_subscriber_hits` (
   `id` bigint(20) NOT NULL,
   `subscriber_id` bigint(20) NOT NULL DEFAULT '0',
@@ -554,13 +647,17 @@ CREATE TABLE IF NOT EXISTS `delivery_subscriber_hits` (
   `pdate` bigint(20) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=cp1251;
 
+--
+-- Очистить таблицу перед добавлением данных `delivery_subscriber_hits`
+--
+
+TRUNCATE TABLE `delivery_subscriber_hits`;
 -- --------------------------------------------------------
 
 --
 -- Структура таблицы `delivery_template`
 --
 
-DROP TABLE IF EXISTS `delivery_template`;
 CREATE TABLE IF NOT EXISTS `delivery_template` (
   `id` bigint(20) NOT NULL,
   `name` varchar(255) NOT NULL DEFAULT '',
@@ -569,6 +666,11 @@ CREATE TABLE IF NOT EXISTS `delivery_template` (
   `pdate_change` bigint(20) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=cp1251 COMMENT='шаблон письма';
 
+--
+-- Очистить таблицу перед добавлением данных `delivery_template`
+--
+
+TRUNCATE TABLE `delivery_template`;
 --
 -- Дамп данных таблицы `delivery_template`
 --
@@ -587,7 +689,6 @@ INSERT INTO `delivery_template` (`id`, `name`, `html_content`, `pdate`, `pdate_c
 -- Структура таблицы `delivery_user`
 --
 
-DROP TABLE IF EXISTS `delivery_user`;
 CREATE TABLE IF NOT EXISTS `delivery_user` (
   `id` bigint(20) NOT NULL,
   `email` varchar(255) NOT NULL DEFAULT '' COMMENT 'email',
@@ -604,19 +705,28 @@ CREATE TABLE IF NOT EXISTS `delivery_user` (
   `list_id` bigint(20) NOT NULL DEFAULT '0' COMMENT 'id списка'
 ) ENGINE=MyISAM DEFAULT CHARSET=cp1251 COMMENT='подписчик';
 
+--
+-- Очистить таблицу перед добавлением данных `delivery_user`
+--
+
+TRUNCATE TABLE `delivery_user`;
 -- --------------------------------------------------------
 
 --
 -- Структура таблицы `delivery_user_segment`
 --
 
-DROP TABLE IF EXISTS `delivery_user_segment`;
 CREATE TABLE IF NOT EXISTS `delivery_user_segment` (
   `id` bigint(20) NOT NULL,
   `user_id` bigint(20) NOT NULL DEFAULT '0',
   `segment_id` bigint(20) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=cp1251 COMMENT='Подписчик в сегменте';
 
+--
+-- Очистить таблицу перед добавлением данных `delivery_user_segment`
+--
+
+TRUNCATE TABLE `delivery_user_segment`;
 --
 -- Дамп данных таблицы `delivery_user_segment`
 --
@@ -632,20 +742,23 @@ INSERT INTO `delivery_user_segment` (`id`, `user_id`, `segment_id`) VALUES
 -- Структура таблицы `dict`
 --
 
-DROP TABLE IF EXISTS `dict`;
 CREATE TABLE IF NOT EXISTS `dict` (
   `id` bigint(20) unsigned NOT NULL,
   `kind_id` bigint(20) unsigned NOT NULL DEFAULT '1',
   `ord` tinyint(3) unsigned DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=cp1251;
 
+--
+-- Очистить таблицу перед добавлением данных `dict`
+--
+
+TRUNCATE TABLE `dict`;
 -- --------------------------------------------------------
 
 --
 -- Структура таблицы `dict_attach_d`
 --
 
-DROP TABLE IF EXISTS `dict_attach_d`;
 CREATE TABLE IF NOT EXISTS `dict_attach_d` (
   `id` bigint(20) unsigned NOT NULL,
   `ord` tinyint(3) unsigned DEFAULT '0',
@@ -654,18 +767,27 @@ CREATE TABLE IF NOT EXISTS `dict_attach_d` (
   `key_value` bigint(20) unsigned DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=cp1251;
 
+--
+-- Очистить таблицу перед добавлением данных `dict_attach_d`
+--
+
+TRUNCATE TABLE `dict_attach_d`;
 -- --------------------------------------------------------
 
 --
 -- Структура таблицы `dict_kind`
 --
 
-DROP TABLE IF EXISTS `dict_kind`;
 CREATE TABLE IF NOT EXISTS `dict_kind` (
   `id` bigint(20) unsigned NOT NULL,
   `name` varchar(255) DEFAULT ''
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=cp1251;
 
+--
+-- Очистить таблицу перед добавлением данных `dict_kind`
+--
+
+TRUNCATE TABLE `dict_kind`;
 --
 -- Дамп данных таблицы `dict_kind`
 --
@@ -681,7 +803,6 @@ INSERT INTO `dict_kind` (`id`, `name`) VALUES
 -- Структура таблицы `dict_lang`
 --
 
-DROP TABLE IF EXISTS `dict_lang`;
 CREATE TABLE IF NOT EXISTS `dict_lang` (
   `plid` bigint(20) unsigned NOT NULL,
   `lang_id` bigint(20) unsigned DEFAULT '0',
@@ -691,13 +812,17 @@ CREATE TABLE IF NOT EXISTS `dict_lang` (
   `is_shown` tinyint(3) unsigned DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=cp1251;
 
+--
+-- Очистить таблицу перед добавлением данных `dict_lang`
+--
+
+TRUNCATE TABLE `dict_lang`;
 -- --------------------------------------------------------
 
 --
 -- Структура таблицы `discr_groups`
 --
 
-DROP TABLE IF EXISTS `discr_groups`;
 CREATE TABLE IF NOT EXISTS `discr_groups` (
   `id` bigint(20) unsigned NOT NULL,
   `name` varchar(255) DEFAULT NULL,
@@ -705,6 +830,11 @@ CREATE TABLE IF NOT EXISTS `discr_groups` (
   `is_blocked` tinyint(3) unsigned DEFAULT '0'
 ) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=cp1251;
 
+--
+-- Очистить таблицу перед добавлением данных `discr_groups`
+--
+
+TRUNCATE TABLE `discr_groups`;
 --
 -- Дамп данных таблицы `discr_groups`
 --
@@ -721,7 +851,6 @@ INSERT INTO `discr_groups` (`id`, `name`, `info`, `is_blocked`) VALUES
 -- Структура таблицы `discr_group_rights`
 --
 
-DROP TABLE IF EXISTS `discr_group_rights`;
 CREATE TABLE IF NOT EXISTS `discr_group_rights` (
   `id` bigint(20) unsigned NOT NULL,
   `group_id` bigint(20) unsigned DEFAULT NULL,
@@ -729,6 +858,11 @@ CREATE TABLE IF NOT EXISTS `discr_group_rights` (
   `object_id` bigint(20) unsigned DEFAULT NULL
 ) ENGINE=MyISAM AUTO_INCREMENT=217 DEFAULT CHARSET=cp1251;
 
+--
+-- Очистить таблицу перед добавлением данных `discr_group_rights`
+--
+
+TRUNCATE TABLE `discr_group_rights`;
 --
 -- Дамп данных таблицы `discr_group_rights`
 --
@@ -872,13 +1006,17 @@ INSERT INTO `discr_group_rights` (`id`, `group_id`, `right_id`, `object_id`) VAL
 -- Структура таблицы `discr_objects`
 --
 
-DROP TABLE IF EXISTS `discr_objects`;
 CREATE TABLE IF NOT EXISTS `discr_objects` (
   `id` bigint(20) unsigned NOT NULL,
   `name` varchar(255) DEFAULT NULL,
   `info` text
 ) ENGINE=MyISAM AUTO_INCREMENT=27 DEFAULT CHARSET=cp1251;
 
+--
+-- Очистить таблицу перед добавлением данных `discr_objects`
+--
+
+TRUNCATE TABLE `discr_objects`;
 --
 -- Дамп данных таблицы `discr_objects`
 --
@@ -915,13 +1053,17 @@ INSERT INTO `discr_objects` (`id`, `name`, `info`) VALUES
 -- Структура таблицы `discr_rights`
 --
 
-DROP TABLE IF EXISTS `discr_rights`;
 CREATE TABLE IF NOT EXISTS `discr_rights` (
   `id` bigint(20) unsigned NOT NULL,
   `name` varchar(255) DEFAULT NULL,
   `info` text
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=cp1251;
 
+--
+-- Очистить таблицу перед добавлением данных `discr_rights`
+--
+
+TRUNCATE TABLE `discr_rights`;
 --
 -- Дамп данных таблицы `discr_rights`
 --
@@ -938,7 +1080,6 @@ INSERT INTO `discr_rights` (`id`, `name`, `info`) VALUES
 -- Структура таблицы `discr_users`
 --
 
-DROP TABLE IF EXISTS `discr_users`;
 CREATE TABLE IF NOT EXISTS `discr_users` (
   `id` bigint(20) unsigned NOT NULL,
   `login` varchar(255) DEFAULT NULL,
@@ -953,6 +1094,11 @@ CREATE TABLE IF NOT EXISTS `discr_users` (
   `is_blocked` tinyint(3) unsigned DEFAULT '0'
 ) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=cp1251;
 
+--
+-- Очистить таблицу перед добавлением данных `discr_users`
+--
+
+TRUNCATE TABLE `discr_users`;
 --
 -- Дамп данных таблицы `discr_users`
 --
@@ -969,13 +1115,17 @@ INSERT INTO `discr_users` (`id`, `login`, `passw`, `change_password_confirm`, `n
 -- Структура таблицы `discr_users_by_groups`
 --
 
-DROP TABLE IF EXISTS `discr_users_by_groups`;
 CREATE TABLE IF NOT EXISTS `discr_users_by_groups` (
   `id` bigint(20) unsigned NOT NULL,
   `user_id` bigint(20) unsigned DEFAULT NULL,
   `group_id` bigint(20) unsigned DEFAULT NULL
 ) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=cp1251;
 
+--
+-- Очистить таблицу перед добавлением данных `discr_users_by_groups`
+--
+
+TRUNCATE TABLE `discr_users_by_groups`;
 --
 -- Дамп данных таблицы `discr_users_by_groups`
 --
@@ -992,7 +1142,6 @@ INSERT INTO `discr_users_by_groups` (`id`, `user_id`, `group_id`) VALUES
 -- Структура таблицы `discr_user_rights`
 --
 
-DROP TABLE IF EXISTS `discr_user_rights`;
 CREATE TABLE IF NOT EXISTS `discr_user_rights` (
   `id` bigint(20) unsigned NOT NULL,
   `user_id` bigint(20) unsigned DEFAULT NULL,
@@ -1000,19 +1149,28 @@ CREATE TABLE IF NOT EXISTS `discr_user_rights` (
   `object_id` bigint(20) unsigned DEFAULT NULL
 ) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=cp1251;
 
+--
+-- Очистить таблицу перед добавлением данных `discr_user_rights`
+--
+
+TRUNCATE TABLE `discr_user_rights`;
 -- --------------------------------------------------------
 
 --
 -- Структура таблицы `faq_group`
 --
 
-DROP TABLE IF EXISTS `faq_group`;
 CREATE TABLE IF NOT EXISTS `faq_group` (
   `id` bigint(20) unsigned NOT NULL,
   `name` varchar(255) NOT NULL DEFAULT '',
   `ord` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=cp1251;
 
+--
+-- Очистить таблицу перед добавлением данных `faq_group`
+--
+
+TRUNCATE TABLE `faq_group`;
 --
 -- Дамп данных таблицы `faq_group`
 --
@@ -1027,7 +1185,6 @@ INSERT INTO `faq_group` (`id`, `name`, `ord`) VALUES
 -- Структура таблицы `faq_question`
 --
 
-DROP TABLE IF EXISTS `faq_question`;
 CREATE TABLE IF NOT EXISTS `faq_question` (
   `id` bigint(20) NOT NULL,
   `question` text NOT NULL,
@@ -1038,6 +1195,11 @@ CREATE TABLE IF NOT EXISTS `faq_question` (
   `solution_id` bigint(20) unsigned NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM AUTO_INCREMENT=83 DEFAULT CHARSET=cp1251;
 
+--
+-- Очистить таблицу перед добавлением данных `faq_question`
+--
+
+TRUNCATE TABLE `faq_question`;
 --
 -- Дамп данных таблицы `faq_question`
 --
@@ -1127,7 +1289,6 @@ INSERT INTO `faq_question` (`id`, `question`, `answer`, `ord`, `is_shown`, `grou
 -- Структура таблицы `firms`
 --
 
-DROP TABLE IF EXISTS `firms`;
 CREATE TABLE IF NOT EXISTS `firms` (
   `id` int(10) unsigned NOT NULL,
   `photo_small` varchar(255) DEFAULT 'img/no.gif',
@@ -1135,13 +1296,17 @@ CREATE TABLE IF NOT EXISTS `firms` (
   `ord` int(10) unsigned DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=cp1251;
 
+--
+-- Очистить таблицу перед добавлением данных `firms`
+--
+
+TRUNCATE TABLE `firms`;
 -- --------------------------------------------------------
 
 --
 -- Структура таблицы `firms_lang`
 --
 
-DROP TABLE IF EXISTS `firms_lang`;
 CREATE TABLE IF NOT EXISTS `firms_lang` (
   `plid` bigint(20) unsigned NOT NULL,
   `lang_id` bigint(20) unsigned DEFAULT '0',
@@ -1151,26 +1316,34 @@ CREATE TABLE IF NOT EXISTS `firms_lang` (
   `is_shown` tinyint(3) unsigned DEFAULT '1'
 ) ENGINE=MyISAM DEFAULT CHARSET=cp1251;
 
+--
+-- Очистить таблицу перед добавлением данных `firms_lang`
+--
+
+TRUNCATE TABLE `firms_lang`;
 -- --------------------------------------------------------
 
 --
 -- Структура таблицы `goods_rekommend`
 --
 
-DROP TABLE IF EXISTS `goods_rekommend`;
 CREATE TABLE IF NOT EXISTS `goods_rekommend` (
   `id` int(10) unsigned NOT NULL,
   `pri_lid` int(10) unsigned DEFAULT NULL,
   `sec_lid` int(10) unsigned DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=cp1251;
 
+--
+-- Очистить таблицу перед добавлением данных `goods_rekommend`
+--
+
+TRUNCATE TABLE `goods_rekommend`;
 -- --------------------------------------------------------
 
 --
 -- Структура таблицы `good_price`
 --
 
-DROP TABLE IF EXISTS `good_price`;
 CREATE TABLE IF NOT EXISTS `good_price` (
   `id` bigint(20) unsigned NOT NULL,
   `good_id` bigint(20) unsigned DEFAULT NULL,
@@ -1180,20 +1353,29 @@ CREATE TABLE IF NOT EXISTS `good_price` (
   `not_use_formula` tinyint(3) unsigned DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=cp1251;
 
+--
+-- Очистить таблицу перед добавлением данных `good_price`
+--
+
+TRUNCATE TABLE `good_price`;
 -- --------------------------------------------------------
 
 --
 -- Структура таблицы `gydex_hits`
 --
 
-DROP TABLE IF EXISTS `gydex_hits`;
 CREATE TABLE IF NOT EXISTS `gydex_hits` (
   `id` bigint(20) unsigned NOT NULL,
   `pdate` datetime NOT NULL,
   `ip` varchar(80) NOT NULL DEFAULT '',
   `uri` varchar(255) NOT NULL DEFAULT ''
-) ENGINE=MyISAM AUTO_INCREMENT=67 DEFAULT CHARSET=cp1251;
+) ENGINE=MyISAM AUTO_INCREMENT=81 DEFAULT CHARSET=cp1251;
 
+--
+-- Очистить таблицу перед добавлением данных `gydex_hits`
+--
+
+TRUNCATE TABLE `gydex_hits`;
 --
 -- Дамп данных таблицы `gydex_hits`
 --
@@ -1264,7 +1446,21 @@ INSERT INTO `gydex_hits` (`id`, `pdate`, `ip`, `uri`) VALUES
 (63, '2016-10-20 18:47:56', '', '/'),
 (64, '2016-10-20 18:48:24', '', '/'),
 (65, '2016-10-20 18:48:47', '', '/'),
-(66, '2016-10-20 18:49:35', '', '/');
+(66, '2016-10-20 18:49:35', '', '/'),
+(67, '2016-10-21 12:02:44', '', '/'),
+(68, '2016-10-21 12:10:24', '', '/'),
+(69, '2016-10-21 15:58:20', '', '/'),
+(70, '2016-10-21 16:12:10', '', '/'),
+(71, '2016-10-21 16:26:41', '', '/'),
+(72, '2016-10-21 16:27:02', '', '/novosti/news_335.html'),
+(73, '2016-10-21 16:27:26', '', '/'),
+(74, '2016-10-21 16:30:39', '', '/'),
+(75, '2016-10-21 16:31:40', '', '/'),
+(76, '2016-10-21 16:33:17', '', '/'),
+(77, '2016-10-21 16:35:01', '', '/'),
+(78, '2016-10-21 16:35:47', '', '/'),
+(79, '2016-10-21 16:36:06', '', '/'),
+(80, '2016-10-21 16:38:16', '', '/');
 
 -- --------------------------------------------------------
 
@@ -1272,7 +1468,6 @@ INSERT INTO `gydex_hits` (`id`, `pdate`, `ip`, `uri`) VALUES
 -- Структура таблицы `gydex_menu`
 --
 
-DROP TABLE IF EXISTS `gydex_menu`;
 CREATE TABLE IF NOT EXISTS `gydex_menu` (
   `id` bigint(20) unsigned NOT NULL,
   `parent_id` bigint(20) unsigned NOT NULL DEFAULT '0',
@@ -1287,6 +1482,11 @@ CREATE TABLE IF NOT EXISTS `gydex_menu` (
   `pic` varchar(255) NOT NULL DEFAULT ''
 ) ENGINE=MyISAM AUTO_INCREMENT=51 DEFAULT CHARSET=cp1251;
 
+--
+-- Очистить таблицу перед добавлением данных `gydex_menu`
+--
+
+TRUNCATE TABLE `gydex_menu`;
 --
 -- Дамп данных таблицы `gydex_menu`
 --
@@ -1349,14 +1549,18 @@ INSERT INTO `gydex_menu` (`id`, `parent_id`, `object_id`, `place_kind`, `module_
 -- Структура таблицы `gydex_stats`
 --
 
-DROP TABLE IF EXISTS `gydex_stats`;
 CREATE TABLE IF NOT EXISTS `gydex_stats` (
   `id` bigint(20) NOT NULL,
   `pdate` date NOT NULL,
   `ip` varchar(80) NOT NULL DEFAULT '',
   `total` bigint(20) NOT NULL DEFAULT '0'
-) ENGINE=MyISAM AUTO_INCREMENT=78149 DEFAULT CHARSET=cp1251;
+) ENGINE=MyISAM AUTO_INCREMENT=78150 DEFAULT CHARSET=cp1251;
 
+--
+-- Очистить таблицу перед добавлением данных `gydex_stats`
+--
+
+TRUNCATE TABLE `gydex_stats`;
 --
 -- Дамп данных таблицы `gydex_stats`
 --
@@ -79573,7 +79777,8 @@ INSERT INTO `gydex_stats` (`id`, `pdate`, `ip`, `total`) VALUES
 (78145, '2016-10-03', '46.4.32.75', 5),
 (78146, '2016-10-18', '', 2),
 (78147, '2016-10-19', '', 26),
-(78148, '2016-10-20', '', 66);
+(78148, '2016-10-20', '', 66),
+(78149, '2016-10-21', '', 14);
 
 -- --------------------------------------------------------
 
@@ -79581,7 +79786,6 @@ INSERT INTO `gydex_stats` (`id`, `pdate`, `ip`, `total`) VALUES
 -- Структура таблицы `langs`
 --
 
-DROP TABLE IF EXISTS `langs`;
 CREATE TABLE IF NOT EXISTS `langs` (
   `id` bigint(20) unsigned NOT NULL,
   `lang_name` varchar(255) DEFAULT '',
@@ -79591,6 +79795,11 @@ CREATE TABLE IF NOT EXISTS `langs` (
   `is_shown` tinyint(3) unsigned DEFAULT '1'
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=cp1251;
 
+--
+-- Очистить таблицу перед добавлением данных `langs`
+--
+
+TRUNCATE TABLE `langs`;
 --
 -- Дамп данных таблицы `langs`
 --
@@ -79604,7 +79813,6 @@ INSERT INTO `langs` (`id`, `lang_name`, `lang_flag`, `lang_flag_bigger`, `lang_m
 -- Структура таблицы `link_item`
 --
 
-DROP TABLE IF EXISTS `link_item`;
 CREATE TABLE IF NOT EXISTS `link_item` (
   `id` bigint(20) unsigned NOT NULL,
   `mid` bigint(20) unsigned DEFAULT '0',
@@ -79613,6 +79821,11 @@ CREATE TABLE IF NOT EXISTS `link_item` (
   `use_simple_code` tinyint(3) unsigned DEFAULT '0'
 ) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=cp1251;
 
+--
+-- Очистить таблицу перед добавлением данных `link_item`
+--
+
+TRUNCATE TABLE `link_item`;
 --
 -- Дамп данных таблицы `link_item`
 --
@@ -79635,7 +79848,6 @@ INSERT INTO `link_item` (`id`, `mid`, `ord`, `url`, `use_simple_code`) VALUES
 -- Структура таблицы `link_lang`
 --
 
-DROP TABLE IF EXISTS `link_lang`;
 CREATE TABLE IF NOT EXISTS `link_lang` (
   `plid` bigint(20) unsigned NOT NULL,
   `lang_id` bigint(20) unsigned DEFAULT '0',
@@ -79651,6 +79863,11 @@ CREATE TABLE IF NOT EXISTS `link_lang` (
   `photo_big` varchar(255) NOT NULL DEFAULT ''
 ) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=cp1251;
 
+--
+-- Очистить таблицу перед добавлением данных `link_lang`
+--
+
+TRUNCATE TABLE `link_lang`;
 --
 -- Дамп данных таблицы `link_lang`
 --
@@ -79674,7 +79891,6 @@ INSERT INTO `link_lang` (`plid`, `lang_id`, `link_id`, `name`, `short_name`, `ph
 -- Структура таблицы `menu_lang`
 --
 
-DROP TABLE IF EXISTS `menu_lang`;
 CREATE TABLE IF NOT EXISTS `menu_lang` (
   `mlid` bigint(20) unsigned NOT NULL,
   `lang_id` bigint(20) unsigned DEFAULT '0',
@@ -79694,6 +79910,11 @@ CREATE TABLE IF NOT EXISTS `menu_lang` (
   `do_follow` tinyint(3) unsigned NOT NULL DEFAULT '1'
 ) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=cp1251;
 
+--
+-- Очистить таблицу перед добавлением данных `menu_lang`
+--
+
+TRUNCATE TABLE `menu_lang`;
 --
 -- Дамп данных таблицы `menu_lang`
 --
@@ -79722,7 +79943,6 @@ INSERT INTO `menu_lang` (`mlid`, `lang_id`, `mid`, `name`, `name_2`, `txt`, `txt
 -- Структура таблицы `news_file`
 --
 
-DROP TABLE IF EXISTS `news_file`;
 CREATE TABLE IF NOT EXISTS `news_file` (
   `id` bigint(20) unsigned NOT NULL,
   `news_id` bigint(20) unsigned NOT NULL DEFAULT '0',
@@ -79730,13 +79950,17 @@ CREATE TABLE IF NOT EXISTS `news_file` (
   `orig_name` varchar(512) NOT NULL
 ) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=cp1251;
 
+--
+-- Очистить таблицу перед добавлением данных `news_file`
+--
+
+TRUNCATE TABLE `news_file`;
 -- --------------------------------------------------------
 
 --
 -- Структура таблицы `news_item`
 --
 
-DROP TABLE IF EXISTS `news_item`;
 CREATE TABLE IF NOT EXISTS `news_item` (
   `id` bigint(20) unsigned NOT NULL,
   `mid` bigint(20) unsigned DEFAULT '0',
@@ -79745,7 +79969,21 @@ CREATE TABLE IF NOT EXISTS `news_item` (
   `photo_small` varchar(255) NOT NULL DEFAULT 'img/no.gif',
   `priority` double(2,1) unsigned NOT NULL DEFAULT '0.5',
   `changefreq` enum('always','hourly','daily','weekly','monthly','yearly','never') DEFAULT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=333 DEFAULT CHARSET=cp1251;
+) ENGINE=MyISAM AUTO_INCREMENT=336 DEFAULT CHARSET=cp1251;
+
+--
+-- Очистить таблицу перед добавлением данных `news_item`
+--
+
+TRUNCATE TABLE `news_item`;
+--
+-- Дамп данных таблицы `news_item`
+--
+
+INSERT INTO `news_item` (`id`, `mid`, `ord`, `pdate`, `photo_small`, `priority`, `changefreq`) VALUES
+(335, 4, 1, '2016-10-21', 'userfiles/image/tn08082016-1477053014.png', 0.5, ''),
+(334, 4, 1, '2016-10-11', 'userfiles/image/tn18082016-1477053069.png', 0.5, ''),
+(333, 4, 1, '2016-10-10', 'img/no.gif', 0.5, NULL);
 
 -- --------------------------------------------------------
 
@@ -79753,7 +79991,6 @@ CREATE TABLE IF NOT EXISTS `news_item` (
 -- Структура таблицы `news_lang`
 --
 
-DROP TABLE IF EXISTS `news_lang`;
 CREATE TABLE IF NOT EXISTS `news_lang` (
   `plid` bigint(20) unsigned NOT NULL,
   `lang_id` bigint(20) unsigned DEFAULT '0',
@@ -79766,7 +80003,21 @@ CREATE TABLE IF NOT EXISTS `news_lang` (
   `title` varchar(255) NOT NULL DEFAULT '',
   `meta_keywords` text NOT NULL,
   `meta_description` text NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=333 DEFAULT CHARSET=cp1251;
+) ENGINE=MyISAM AUTO_INCREMENT=336 DEFAULT CHARSET=cp1251;
+
+--
+-- Очистить таблицу перед добавлением данных `news_lang`
+--
+
+TRUNCATE TABLE `news_lang`;
+--
+-- Дамп данных таблицы `news_lang`
+--
+
+INSERT INTO `news_lang` (`plid`, `lang_id`, `news_id`, `name`, `small_txt`, `big_txt`, `txt2`, `is_shown`, `title`, `meta_keywords`, `meta_description`) VALUES
+(334, 1, 334, 'Тестовая новость #2', '<p>Если внимательно присмотреться к окружающим Вас людям, а еще лучше начать с ними разговаривать, то можно обнаружить много интересных собеседников.</p>', '<p>Если внимательно присмотреться к окружающим Вас людям, а еще лучше начать с ними разговаривать, то можно обнаружить много интересных собеседников. Одни будут разделять Ваши взгляды на жизнь, другие же будут иметь диаметрально противоположные взгляды.</p>', '', 1, 'Тестовая новость #2', '', ''),
+(335, 1, 335, 'Тестовая новость #3', '<p><strong>Lorem Ipsum</strong> - это текст-&quot;рыба&quot;, часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной &quot;рыбой&quot; для текстов на латинице с начала XVI века.</p>', '<p>Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться. Lorem Ipsum используют потому, что тот обеспечивает более или менее стандартное заполнение шаблона, а также реальное распределение букв и пробелов в абзацах, которое не получается при простой дубликации &quot;Здесь ваш текст.. Здесь ваш текст.. Здесь ваш текст..&quot; Многие программы электронной вёрстки и редакторы HTML используют Lorem Ipsum в качестве текста по умолчанию, так что поиск по ключевым словам &quot;lorem ipsum&quot; сразу показывает, как много веб-страниц всё ещё дожидаются своего настоящего рождения. За прошедшие годы текст Lorem Ipsum получил много версий. Некоторые версии появились по ошибке, некоторые - намеренно (например, юмористические варианты).</p>', '', 1, 'Тестовая новость #3', '', ''),
+(333, 1, 333, 'Тестовая новость #1', '<p>Краснопресненскую набережную решено продлить вверх по течению Москвы-реки до улицы Шеногина, соединив ее с Шелепихинской набережной.</p>', '<div class="col-lg-7 news_page_text">\r\n<p><strong>&laquo;Маркировка товаров должна быть распространена на широкий номенклатурный ряд в рамках создания единой системы маркировки промышленной продукции. Об этом заявил Министр промышленности и торговли РФ Денис Мантуров на заседании Государственной комиссии по противодействию незаконному обороту промышленной продукции, которое он провел сегодня, 28 сентября 2016 года, в Федеральной налоговой службе&raquo;.</strong></p>\r\n\r\n<p>Глава Минпромторга России напомнил, что 12 августа 2016 года стартовал пилотный проект по обязательной маркировке меховых изделий. Это первый случай, когда в борьбе с незаконным оборотом продукции на наднациональном уровне была использована такая технологичная мера противодействия.</p>\r\n\r\n<p>&laquo;Под системой маркировки понимается не просто идентификация товара, а прежде всего система прослеживаемости на всех этапах: от производства или ввоза на территорию страны до продажи потребителю. Это позволяет выявлять и пресекать существующие схемы уклонения от уплаты таможенных и налоговых платежей. Кроме того, мы получаем уникальный аналитический инструмент рынка маркируемых товаров, что позволит принимать более эффективные решения по развитию отраслей&raquo;, &ndash; отметил Денис Мантуров.</p>\r\n\r\n<p>Говоря об ожидаемых налоговых поступлениях от маркировки меховых изделий, Денис Мантуров сообщил, что в настоящее время говорить о результатах еще рано. Сейчас реализуется этап получения заявок на изготовление контрольных знаков и внесения информации в систему.</p>\r\n</div>', '', 1, 'Тестовая новость #1', '', '');
 
 -- --------------------------------------------------------
 
@@ -79774,7 +80025,6 @@ CREATE TABLE IF NOT EXISTS `news_lang` (
 -- Структура таблицы `numbers`
 --
 
-DROP TABLE IF EXISTS `numbers`;
 CREATE TABLE IF NOT EXISTS `numbers` (
   `id` bigint(20) unsigned NOT NULL,
   `number` varchar(20) NOT NULL DEFAULT '',
@@ -79783,6 +80033,11 @@ CREATE TABLE IF NOT EXISTS `numbers` (
   `is_shown` tinyint(4) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM AUTO_INCREMENT=37 DEFAULT CHARSET=cp1251;
 
+--
+-- Очистить таблицу перед добавлением данных `numbers`
+--
+
+TRUNCATE TABLE `numbers`;
 --
 -- Дамп данных таблицы `numbers`
 --
@@ -79830,7 +80085,6 @@ INSERT INTO `numbers` (`id`, `number`, `name`, `txt`, `is_shown`) VALUES
 -- Структура таблицы `orders`
 --
 
-DROP TABLE IF EXISTS `orders`;
 CREATE TABLE IF NOT EXISTS `orders` (
   `id` bigint(20) unsigned NOT NULL,
   `lang_id` bigint(20) unsigned DEFAULT '0',
@@ -79844,13 +80098,17 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `comment` text
 ) ENGINE=MyISAM DEFAULT CHARSET=cp1251;
 
+--
+-- Очистить таблицу перед добавлением данных `orders`
+--
+
+TRUNCATE TABLE `orders`;
 -- --------------------------------------------------------
 
 --
 -- Структура таблицы `order_item`
 --
 
-DROP TABLE IF EXISTS `order_item`;
 CREATE TABLE IF NOT EXISTS `order_item` (
   `id` bigint(20) unsigned NOT NULL,
   `order_id` bigint(20) unsigned DEFAULT '0',
@@ -79861,31 +80119,44 @@ CREATE TABLE IF NOT EXISTS `order_item` (
   `comment` text
 ) ENGINE=MyISAM DEFAULT CHARSET=cp1251;
 
+--
+-- Очистить таблицу перед добавлением данных `order_item`
+--
+
+TRUNCATE TABLE `order_item`;
 -- --------------------------------------------------------
 
 --
 -- Структура таблицы `order_item_option`
 --
 
-DROP TABLE IF EXISTS `order_item_option`;
 CREATE TABLE IF NOT EXISTS `order_item_option` (
   `id` bigint(20) unsigned NOT NULL,
   `item_id` bigint(20) unsigned DEFAULT '0',
   `value_id` bigint(20) unsigned DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=cp1251;
 
+--
+-- Очистить таблицу перед добавлением данных `order_item_option`
+--
+
+TRUNCATE TABLE `order_item_option`;
 -- --------------------------------------------------------
 
 --
 -- Структура таблицы `order_status`
 --
 
-DROP TABLE IF EXISTS `order_status`;
 CREATE TABLE IF NOT EXISTS `order_status` (
   `id` bigint(20) unsigned NOT NULL,
   `is_changeable` tinyint(3) unsigned DEFAULT '0'
 ) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=cp1251;
 
+--
+-- Очистить таблицу перед добавлением данных `order_status`
+--
+
+TRUNCATE TABLE `order_status`;
 --
 -- Дамп данных таблицы `order_status`
 --
@@ -79903,7 +80174,6 @@ INSERT INTO `order_status` (`id`, `is_changeable`) VALUES
 -- Структура таблицы `order_status_lang`
 --
 
-DROP TABLE IF EXISTS `order_status_lang`;
 CREATE TABLE IF NOT EXISTS `order_status_lang` (
   `plid` bigint(20) unsigned NOT NULL,
   `lang_id` bigint(20) unsigned DEFAULT '0',
@@ -79912,6 +80182,11 @@ CREATE TABLE IF NOT EXISTS `order_status_lang` (
   `descr` text
 ) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=cp1251;
 
+--
+-- Очистить таблицу перед добавлением данных `order_status_lang`
+--
+
+TRUNCATE TABLE `order_status_lang`;
 --
 -- Дамп данных таблицы `order_status_lang`
 --
@@ -79929,7 +80204,6 @@ INSERT INTO `order_status_lang` (`plid`, `lang_id`, `status_id`, `name`, `descr`
 -- Структура таблицы `otzyv`
 --
 
-DROP TABLE IF EXISTS `otzyv`;
 CREATE TABLE IF NOT EXISTS `otzyv` (
   `id` bigint(20) unsigned NOT NULL,
   `name` text NOT NULL,
@@ -79938,6 +80212,11 @@ CREATE TABLE IF NOT EXISTS `otzyv` (
   `ord` tinyint(3) unsigned NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=cp1251;
 
+--
+-- Очистить таблицу перед добавлением данных `otzyv`
+--
+
+TRUNCATE TABLE `otzyv`;
 --
 -- Дамп данных таблицы `otzyv`
 --
@@ -79960,7 +80239,6 @@ INSERT INTO `otzyv` (`id`, `name`, `txt`, `is_on_site`, `ord`) VALUES
 -- Структура таблицы `paper_item`
 --
 
-DROP TABLE IF EXISTS `paper_item`;
 CREATE TABLE IF NOT EXISTS `paper_item` (
   `id` bigint(20) unsigned NOT NULL,
   `mid` bigint(20) unsigned DEFAULT '0',
@@ -79972,13 +80250,17 @@ CREATE TABLE IF NOT EXISTS `paper_item` (
   `changefreq` enum('always','hourly','daily','weekly','monthly','yearly','never') DEFAULT NULL
 ) ENGINE=MyISAM AUTO_INCREMENT=64 DEFAULT CHARSET=cp1251;
 
+--
+-- Очистить таблицу перед добавлением данных `paper_item`
+--
+
+TRUNCATE TABLE `paper_item`;
 -- --------------------------------------------------------
 
 --
 -- Структура таблицы `paper_lang`
 --
 
-DROP TABLE IF EXISTS `paper_lang`;
 CREATE TABLE IF NOT EXISTS `paper_lang` (
   `plid` bigint(20) unsigned NOT NULL,
   `lang_id` bigint(20) unsigned DEFAULT '0',
@@ -79995,6 +80277,11 @@ CREATE TABLE IF NOT EXISTS `paper_lang` (
 ) ENGINE=MyISAM AUTO_INCREMENT=65 DEFAULT CHARSET=cp1251;
 
 --
+-- Очистить таблицу перед добавлением данных `paper_lang`
+--
+
+TRUNCATE TABLE `paper_lang`;
+--
 -- Дамп данных таблицы `paper_lang`
 --
 
@@ -80007,7 +80294,6 @@ INSERT INTO `paper_lang` (`plid`, `lang_id`, `paper_id`, `name`, `small_txt`, `b
 -- Структура таблицы `photo_item`
 --
 
-DROP TABLE IF EXISTS `photo_item`;
 CREATE TABLE IF NOT EXISTS `photo_item` (
   `id` bigint(20) unsigned NOT NULL,
   `mid` bigint(20) unsigned DEFAULT '0',
@@ -80016,13 +80302,17 @@ CREATE TABLE IF NOT EXISTS `photo_item` (
   `photo_big` varchar(255) DEFAULT 'img/no.gif'
 ) ENGINE=MyISAM AUTO_INCREMENT=49 DEFAULT CHARSET=cp1251;
 
+--
+-- Очистить таблицу перед добавлением данных `photo_item`
+--
+
+TRUNCATE TABLE `photo_item`;
 -- --------------------------------------------------------
 
 --
 -- Структура таблицы `photo_lang`
 --
 
-DROP TABLE IF EXISTS `photo_lang`;
 CREATE TABLE IF NOT EXISTS `photo_lang` (
   `plid` bigint(20) unsigned NOT NULL,
   `lang_id` bigint(20) unsigned DEFAULT '0',
@@ -80034,13 +80324,17 @@ CREATE TABLE IF NOT EXISTS `photo_lang` (
   `is_shown` tinyint(3) unsigned DEFAULT '0'
 ) ENGINE=MyISAM AUTO_INCREMENT=33 DEFAULT CHARSET=cp1251;
 
+--
+-- Очистить таблицу перед добавлением данных `photo_lang`
+--
+
+TRUNCATE TABLE `photo_lang`;
 -- --------------------------------------------------------
 
 --
 -- Структура таблицы `price`
 --
 
-DROP TABLE IF EXISTS `price`;
 CREATE TABLE IF NOT EXISTS `price` (
   `id` bigint(20) unsigned NOT NULL,
   `cond_id` bigint(20) unsigned DEFAULT '0',
@@ -80051,13 +80345,17 @@ CREATE TABLE IF NOT EXISTS `price` (
   `ord` tinyint(3) unsigned DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=cp1251;
 
+--
+-- Очистить таблицу перед добавлением данных `price`
+--
+
+TRUNCATE TABLE `price`;
 -- --------------------------------------------------------
 
 --
 -- Структура таблицы `price_item`
 --
 
-DROP TABLE IF EXISTS `price_item`;
 CREATE TABLE IF NOT EXISTS `price_item` (
   `id` bigint(20) unsigned NOT NULL,
   `mid` bigint(20) unsigned DEFAULT '0',
@@ -80071,13 +80369,17 @@ CREATE TABLE IF NOT EXISTS `price_item` (
   `changefreq` enum('always','hourly','daily','weekly','monthly','yearly','never') DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=cp1251;
 
+--
+-- Очистить таблицу перед добавлением данных `price_item`
+--
+
+TRUNCATE TABLE `price_item`;
 -- --------------------------------------------------------
 
 --
 -- Структура таблицы `price_lang`
 --
 
-DROP TABLE IF EXISTS `price_lang`;
 CREATE TABLE IF NOT EXISTS `price_lang` (
   `plid` bigint(20) unsigned NOT NULL,
   `lang_id` bigint(20) unsigned DEFAULT '0',
@@ -80089,26 +80391,34 @@ CREATE TABLE IF NOT EXISTS `price_lang` (
   `is_shown` tinyint(3) unsigned DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=cp1251;
 
+--
+-- Очистить таблицу перед добавлением данных `price_lang`
+--
+
+TRUNCATE TABLE `price_lang`;
 -- --------------------------------------------------------
 
 --
 -- Структура таблицы `price_ost`
 --
 
-DROP TABLE IF EXISTS `price_ost`;
 CREATE TABLE IF NOT EXISTS `price_ost` (
   `id` bigint(20) unsigned NOT NULL,
   `price_id` bigint(20) unsigned DEFAULT '0',
   `ostatok` int(10) unsigned DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=cp1251;
 
+--
+-- Очистить таблицу перед добавлением данных `price_ost`
+--
+
+TRUNCATE TABLE `price_ost`;
 -- --------------------------------------------------------
 
 --
 -- Структура таблицы `price__lang`
 --
 
-DROP TABLE IF EXISTS `price__lang`;
 CREATE TABLE IF NOT EXISTS `price__lang` (
   `plid` bigint(20) unsigned NOT NULL,
   `lang_id` bigint(20) unsigned DEFAULT '0',
@@ -80117,13 +80427,17 @@ CREATE TABLE IF NOT EXISTS `price__lang` (
   `descr` varchar(255) DEFAULT ''
 ) ENGINE=MyISAM DEFAULT CHARSET=cp1251;
 
+--
+-- Очистить таблицу перед добавлением данных `price__lang`
+--
+
+TRUNCATE TABLE `price__lang`;
 -- --------------------------------------------------------
 
 --
 -- Структура таблицы `program`
 --
 
-DROP TABLE IF EXISTS `program`;
 CREATE TABLE IF NOT EXISTS `program` (
   `id` bigint(20) unsigned NOT NULL,
   `name` varchar(255) NOT NULL DEFAULT '',
@@ -80135,6 +80449,11 @@ CREATE TABLE IF NOT EXISTS `program` (
   `is_active` tinyint(3) unsigned NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=cp1251;
 
+--
+-- Очистить таблицу перед добавлением данных `program`
+--
+
+TRUNCATE TABLE `program`;
 --
 -- Дамп данных таблицы `program`
 --
@@ -80161,7 +80480,6 @@ INSERT INTO `program` (`id`, `name`, `url`, `debug_url`, `database_name`, `debug
 -- Структура таблицы `prop_name`
 --
 
-DROP TABLE IF EXISTS `prop_name`;
 CREATE TABLE IF NOT EXISTS `prop_name` (
   `id` bigint(20) unsigned NOT NULL,
   `dict_id` bigint(20) unsigned DEFAULT '0',
@@ -80169,13 +80487,17 @@ CREATE TABLE IF NOT EXISTS `prop_name` (
   `ord` tinyint(3) unsigned DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=cp1251;
 
+--
+-- Очистить таблицу перед добавлением данных `prop_name`
+--
+
+TRUNCATE TABLE `prop_name`;
 -- --------------------------------------------------------
 
 --
 -- Структура таблицы `prop_name_lang`
 --
 
-DROP TABLE IF EXISTS `prop_name_lang`;
 CREATE TABLE IF NOT EXISTS `prop_name_lang` (
   `plid` bigint(20) unsigned NOT NULL,
   `lang_id` bigint(20) unsigned DEFAULT '0',
@@ -80185,13 +80507,17 @@ CREATE TABLE IF NOT EXISTS `prop_name_lang` (
   `is_shown` tinyint(3) unsigned DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=cp1251;
 
+--
+-- Очистить таблицу перед добавлением данных `prop_name_lang`
+--
+
+TRUNCATE TABLE `prop_name_lang`;
 -- --------------------------------------------------------
 
 --
 -- Структура таблицы `prop_value`
 --
 
-DROP TABLE IF EXISTS `prop_value`;
 CREATE TABLE IF NOT EXISTS `prop_value` (
   `id` bigint(20) unsigned NOT NULL,
   `name_id` bigint(20) unsigned DEFAULT '0',
@@ -80201,13 +80527,17 @@ CREATE TABLE IF NOT EXISTS `prop_value` (
   `ord` tinyint(3) unsigned DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=cp1251;
 
+--
+-- Очистить таблицу перед добавлением данных `prop_value`
+--
+
+TRUNCATE TABLE `prop_value`;
 -- --------------------------------------------------------
 
 --
 -- Структура таблицы `prop_value_lang`
 --
 
-DROP TABLE IF EXISTS `prop_value_lang`;
 CREATE TABLE IF NOT EXISTS `prop_value_lang` (
   `plid` bigint(20) unsigned NOT NULL,
   `lang_id` bigint(20) unsigned DEFAULT '0',
@@ -80216,18 +80546,27 @@ CREATE TABLE IF NOT EXISTS `prop_value_lang` (
   `is_shown` tinyint(3) unsigned DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=cp1251;
 
+--
+-- Очистить таблицу перед добавлением данных `prop_value_lang`
+--
+
+TRUNCATE TABLE `prop_value_lang`;
 -- --------------------------------------------------------
 
 --
 -- Структура таблицы `reg_kind`
 --
 
-DROP TABLE IF EXISTS `reg_kind`;
 CREATE TABLE IF NOT EXISTS `reg_kind` (
   `id` bigint(20) unsigned NOT NULL,
   `name` varchar(255) DEFAULT NULL
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=cp1251;
 
+--
+-- Очистить таблицу перед добавлением данных `reg_kind`
+--
+
+TRUNCATE TABLE `reg_kind`;
 --
 -- Дамп данных таблицы `reg_kind`
 --
@@ -80242,7 +80581,6 @@ INSERT INTO `reg_kind` (`id`, `name`) VALUES
 -- Структура таблицы `solution`
 --
 
-DROP TABLE IF EXISTS `solution`;
 CREATE TABLE IF NOT EXISTS `solution` (
   `id` bigint(20) unsigned NOT NULL,
   `parent_id` bigint(20) unsigned NOT NULL DEFAULT '0',
@@ -80257,6 +80595,11 @@ CREATE TABLE IF NOT EXISTS `solution` (
   `is_shown` tinyint(3) unsigned NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=cp1251;
 
+--
+-- Очистить таблицу перед добавлением данных `solution`
+--
+
+TRUNCATE TABLE `solution`;
 --
 -- Дамп данных таблицы `solution`
 --
@@ -80276,7 +80619,6 @@ INSERT INTO `solution` (`id`, `parent_id`, `name`, `txt`, `task`, `otrasl`, `num
 -- Структура таблицы `solution_file`
 --
 
-DROP TABLE IF EXISTS `solution_file`;
 CREATE TABLE IF NOT EXISTS `solution_file` (
   `id` bigint(20) unsigned NOT NULL,
   `solution_id` bigint(20) unsigned NOT NULL DEFAULT '0',
@@ -80284,6 +80626,11 @@ CREATE TABLE IF NOT EXISTS `solution_file` (
   `orig_name` varchar(512) NOT NULL
 ) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=cp1251;
 
+--
+-- Очистить таблицу перед добавлением данных `solution_file`
+--
+
+TRUNCATE TABLE `solution_file`;
 --
 -- Дамп данных таблицы `solution_file`
 --
@@ -80298,7 +80645,6 @@ INSERT INTO `solution_file` (`id`, `solution_id`, `filename`, `orig_name`) VALUE
 -- Структура таблицы `sprav_city`
 --
 
-DROP TABLE IF EXISTS `sprav_city`;
 CREATE TABLE IF NOT EXISTS `sprav_city` (
   `id` bigint(20) unsigned NOT NULL,
   `country_id` bigint(20) unsigned NOT NULL DEFAULT '1',
@@ -80307,6 +80653,11 @@ CREATE TABLE IF NOT EXISTS `sprav_city` (
   `name` varchar(255) NOT NULL DEFAULT ''
 ) ENGINE=MyISAM AUTO_INCREMENT=4956 DEFAULT CHARSET=cp1251;
 
+--
+-- Очистить таблицу перед добавлением данных `sprav_city`
+--
+
+TRUNCATE TABLE `sprav_city`;
 --
 -- Дамп данных таблицы `sprav_city`
 --
@@ -85029,12 +85380,16 @@ INSERT INTO `sprav_city` (`id`, `country_id`, `district_id`, `region_id`, `name`
 -- Структура таблицы `sprav_country`
 --
 
-DROP TABLE IF EXISTS `sprav_country`;
 CREATE TABLE IF NOT EXISTS `sprav_country` (
   `id` bigint(20) NOT NULL,
   `name` varchar(255) NOT NULL DEFAULT ''
 ) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=cp1251;
 
+--
+-- Очистить таблицу перед добавлением данных `sprav_country`
+--
+
+TRUNCATE TABLE `sprav_country`;
 --
 -- Дамп данных таблицы `sprav_country`
 --
@@ -85062,13 +85417,17 @@ INSERT INTO `sprav_country` (`id`, `name`) VALUES
 -- Структура таблицы `sprav_district`
 --
 
-DROP TABLE IF EXISTS `sprav_district`;
 CREATE TABLE IF NOT EXISTS `sprav_district` (
   `id` bigint(20) unsigned NOT NULL,
   `country_id` bigint(20) unsigned NOT NULL DEFAULT '1',
   `name` varchar(255) NOT NULL DEFAULT ''
 ) ENGINE=MyISAM AUTO_INCREMENT=95 DEFAULT CHARSET=cp1251;
 
+--
+-- Очистить таблицу перед добавлением данных `sprav_district`
+--
+
+TRUNCATE TABLE `sprav_district`;
 --
 -- Дамп данных таблицы `sprav_district`
 --
@@ -85144,7 +85503,6 @@ INSERT INTO `sprav_district` (`id`, `country_id`, `name`) VALUES
 -- Структура таблицы `sprav_region`
 --
 
-DROP TABLE IF EXISTS `sprav_region`;
 CREATE TABLE IF NOT EXISTS `sprav_region` (
   `id` bigint(20) unsigned NOT NULL,
   `country_id` bigint(20) unsigned NOT NULL DEFAULT '1',
@@ -85152,6 +85510,11 @@ CREATE TABLE IF NOT EXISTS `sprav_region` (
   `name` varchar(255) NOT NULL DEFAULT ''
 ) ENGINE=MyISAM AUTO_INCREMENT=727 DEFAULT CHARSET=cp1251;
 
+--
+-- Очистить таблицу перед добавлением данных `sprav_region`
+--
+
+TRUNCATE TABLE `sprav_region`;
 --
 -- Дамп данных таблицы `sprav_region`
 --
@@ -86709,7 +87072,7 @@ ALTER TABLE `good_price`
 -- AUTO_INCREMENT для таблицы `gydex_hits`
 --
 ALTER TABLE `gydex_hits`
-  MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=67;
+  MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=81;
 --
 -- AUTO_INCREMENT для таблицы `gydex_menu`
 --
@@ -86719,7 +87082,7 @@ ALTER TABLE `gydex_menu`
 -- AUTO_INCREMENT для таблицы `gydex_stats`
 --
 ALTER TABLE `gydex_stats`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=78149;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=78150;
 --
 -- AUTO_INCREMENT для таблицы `langs`
 --
@@ -86749,12 +87112,12 @@ ALTER TABLE `news_file`
 -- AUTO_INCREMENT для таблицы `news_item`
 --
 ALTER TABLE `news_item`
-  MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=333;
+  MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=336;
 --
 -- AUTO_INCREMENT для таблицы `news_lang`
 --
 ALTER TABLE `news_lang`
-  MODIFY `plid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=333;
+  MODIFY `plid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=336;
 --
 -- AUTO_INCREMENT для таблицы `numbers`
 --

@@ -47,8 +47,9 @@ body{
 }
 body, p, td, input, label, textarea, select, option{
 	font-family: MyriadProRegular, IstokWeb, Tahoma, Geneva, sans-serif;
-	font-size:18px;
-	color:#959595;
+	font-size:14px;
+	/*color:#959595;*/
+        color: #333;
 }
 h1, h2, h3, h4, h5, h6{
 	color:#464646;
@@ -2602,6 +2603,106 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
 .service_text {
     padding: 20px 10px;
     white-space: normal;
+}
+
+/*  Блок "О компании"  */
+.about_wrapper {
+    background: url('img/about_bg.png') no-repeat;
+    height: 250px;
+    margin: 0 auto;
+    padding: 0px 110px 25px 110px;
+    /*width: 100%;*/
+}
+
+.about_left {
+    /*float: left;*/
+    height: 160px;
+    padding: 25px 0 0 0;
+}
+
+.about_right {
+    /*float: right;*/
+    height: 160px;
+    padding: 10px 0 0 40px;
+}
+
+/*  Блок "Новости"  */
+.news_wrapper {
+    background-color: #d9dada;
+    height: 290px;
+    margin: 0 auto;
+    /*padding: 0px 105px 20px 105px;*/
+    /*width: 100%;*/
+}
+
+.news_left {
+    /*float: left;*/
+    /*height: 160px;*/
+    padding: 10px 0 0 0;
+    /*width: 540px;*/
+}
+
+.news_right {
+    /*float: left;*/
+    /*height: 160px;*/
+    padding: 10px 0 0 50px;
+    /*width: 430px;*/
+}
+
+.news_date {
+    font-size: 15px;
+}
+
+.news_img {
+    /*float: left;*/
+    height: 140px;
+    width: 200px;
+}
+
+.news_text {
+    /*float: left;*/
+    font-size: 13px;
+    /*width: 230px;*/
+}
+
+.news_text > h5 {
+    font-weight: bold;
+    text-align: left;
+}
+
+.news_text > h5 > a {
+    color: #333;
+}
+
+.news_text > h5 > a:hover,
+.news_text > h5 > a:focus
+{
+    color: #c73741;
+}
+
+.news_advanced_info {
+    background-color: #313331;
+    border-radius: 8px;
+      -moz-border-radius: 8px;
+      -webkit-border-radius: 8px;
+    height: 30px;
+    margin-top: 15px;
+    padding-top: 5px;
+    text-align: center;
+    text-transform: uppercase;
+    width: 155px;
+}
+
+.news_advanced_info > a {
+    color: #feffff;
+    font-size: 13px;
+}
+
+.news_advanced_info > a:hover,
+.news_advanced_info > a:focus
+{
+    color: #c73741;
+    text-decoration: none;
 }
 
 

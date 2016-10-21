@@ -1,0 +1,20 @@
+            <!-- Блок "Новости" -->
+            <div class="row-fluid news_wrapper">
+                <div class="col-lg-12 caption_title"><a href="/novosti">Новости</a></div>
+                
+                %{foreach from=$items item=item name=f_news}%
+                <div class="%{if $smarty.foreach.f_news.index == 0}%col-lg-5 col-lg-offset-1 news_left %{else}%col-lg-6 news_right%{/if}%">
+                    <div class="row-fluid">
+                        <div class="col-lg-12 news_date">%{$item.newsdate}%</div>
+                        <div class="col-lg-5">
+                            <a href="%{$item.path}%"><img src="%{$item.photo_small}%"></a>
+                            <div class="news_advanced_info"><a href="%{$item.path}%">Подробнее</a></div>
+                        </div>
+                        <div class="col-lg-6 news_text">
+                            <h5><a href="%{$item.path}%">%{$item.name}%</a></h5>
+                            %{$item.small_txt}%
+                        </div>
+                    </div>
+                </div>
+                %{/foreach}%
+            </div>

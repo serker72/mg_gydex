@@ -129,9 +129,9 @@ $smarty->assign('services', $og->GetItemsByIdCli('index_services.html', '', '', 
 
 //новости на главной
 if(HAS_NEWS){
-	$ph_g=new NewsGroup();
+    $ph_g = new NewsGroup();
 //	echo $ph_g->GetItemsByIdCli('news/items.html', '','', '', 0, $lang);
-	
+    $smarty->assign('news', $ph_g->GetItemsRecent('news/main_page_items.html',  LANG_CODE, 2, $main_news));
 }
  
 //echo "<h1>$l[lang_name]</h1>";
