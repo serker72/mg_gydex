@@ -12,6 +12,7 @@ $smarty_s->assign('text1',stripslashes($tmp));
 
 
 $smarty_s->assign('FEEDBACK_PHONE',FEEDBACK_PHONE);
+$smarty_s->assign('FEEDBACK_EMAIL', FEEDBACK_EMAIL);
 
 /*
 $tmp=$fi->GetItem('parts/razd8-'.$_SESSION['lang'].'.txt');

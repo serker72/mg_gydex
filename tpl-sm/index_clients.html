@@ -1,6 +1,6 @@
             <!-- Блок "НАМ ДОВЕРЯЮТ" -->
             <div class="row-fluid trust_wrapper">
-                <div class="col-lg-12 caption_title"><a href="/about.html">Нам доверяют</a></div>
+                <div class="col-lg-12 caption_title"><a href="/o_kompanii">Нам доверяют</a></div>
 
                 <div id="our_clients_slider"  class="cycle-slideshow"
                     data-cycle-slides="> div.our_clients_slide"
@@ -11,7 +11,7 @@
                 >
                     %{foreach from=$items item=item}% 
                     <div class="our_clients_slide">
-                        <a href="%{$item.page_url}%" target="_blank" style=" display:block; width:200px; height:200px; background-image:url(/%{$item.image_big}%); background-position:center center; background-repeat:no-repeat;"></a>
+                        <a href="%{$item.page_url}%" target="_blank" style="display:block; width:150px; height:90px; background-image:url(/%{$item.image_big}%); background-position:center center; background-repeat:no-repeat;"></a>
                     </div>
                     %{/foreach}%
                 </div>

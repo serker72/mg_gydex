@@ -1,23 +1,51 @@
             <!-- Блок "Услуги" -->
             <div class="row-fluid services_wrapper">
-                <div class="col-lg-12 caption_title"><a href="/services.html">Услуги</a></div>
+                <div class="col-lg-12 caption_title"><a href="/uslugi">Услуги</a></div>
                 
-                <div class="col-lg-12">
+                <!--div class="col-lg-12"-->
                     
-                <div id="our_services_slider"  class="cycle-slideshow"
-                    data-cycle-slides="> div.services_small_wrapper"
-                    data-cycle-fx="carousel"
-                    data-cycle-timeout="%{if count($items) > 4}%5000%{else}%0%{/if}%"
-                    data-cycle-pager=".oc-pager"
-                    data-cycle-pager-template="<a href='#' class='oc-pager-button'>&nbsp;</a>"
-                >
-                    %{foreach from=$items item=item}% 
-                        <div class="services_small_wrapper">
+                <div id="our_services_slider"><!-- data-slick='{"slidesToShow": 4, "slidesToScroll": 2}'-->
+                    %{foreach from=$items item=item name=f_services}% 
+                    <div class="%{if $smarty.foreach.f_services.index == 0}%col-lg-offset-2%{/if}% col-lg-2 services_small_wrapper">
                             <div class="service_image"><img src="%{$item.image_big}%"></div>
                             <div class="service_text">%{$item.name}%</div>
                         </div>
                     %{/foreach}%
                 </div>
                 <!--div class="oc-pager"></div-->
-                </div>
+                <!--/div-->
             </div>
+            
+            <!--script>
+                $("#our_services_slider").slick({
+
+                  // normal options...
+                  //infinite: true,
+                    dots: true,
+                    speed: 500
+
+                  // the magic
+                  /*responsive: [{
+
+                      breakpoint: 1024,
+                      settings: {
+                        slidesToShow: 3,
+                        infinite: true
+                      }
+
+                    }, {
+
+                      breakpoint: 600,
+                      settings: {
+                        slidesToShow: 2,
+                        dots: true
+                      }
+
+                    }, {
+
+                      breakpoint: 300,
+                      settings: "unslick" // destroys slick
+
+                    }]*/
+                });                
+            </script-->

@@ -1,4 +1,26 @@
-<div class="navitxt" itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+            <!-- Блок "Хлебные крошки" -->
+            <div class="row-fluid">
+                <div class="col-lg-offset-1 col-lg-10 breadcrumbs">
+                    <ul>
+                        %{section name=itemsec loop=$items}%
+                        <li>
+                            %{if ($smarty.section.itemsec.last and $has_last) or !$smarty.section.itemsec.last}%
+                                <a href="%{$items[itemsec].filepath}%">
+                            %{/if}%
+                            
+                            %{$items[itemsec].itemname|strip_tags}%
+                            
+                            %{if ($smarty.section.itemsec.last and $has_last) or !$smarty.section.itemsec.last}%
+                                </a>
+                            %{/if}%
+                        </li>
+                        %{/section}%
+                    </ul>
+                </div>
+                %{$aftertext}%
+            </div>
+
+<!--div class="navitxt" itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
 %{section name=itemsec loop=$items}%
 %{if ($smarty.section.itemsec.last and $has_last) or !$smarty.section.itemsec.last}%
 <a href="%{$items[itemsec].filepath}%" class="navilink" itemprop="url">
@@ -16,4 +38,4 @@
 
 %{$aftertext}%
 
-</div>
+</div-->

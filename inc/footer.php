@@ -6,6 +6,9 @@ $smarty_s = new SmartyAdm;
 $smarty_s->debugging = DEBUG_INFO;
 
 
+$smarty_s->assign('OFFICE_ADDRESS', str_replace('ул.', '<br>ул.', OFFICE_ADDRESS));
+$smarty_s->assign('FEEDBACK_PHONE',FEEDBACK_PHONE);
+$smarty_s->assign('FEEDBACK_EMAIL', FEEDBACK_EMAIL);
 
 
 
@@ -42,6 +45,10 @@ $smarty_s->assign('hmenu',$hmenu1_res);
  
 $mmenu4=$ml->GetArr(array('is_menu_4'=>1), $lang, array(' ord desc '), 1, $current_mid) ;
 $smarty_s->assign('mmenu4',$mmenu4);
+
+// Список услуг в подвале
+$og=new LinksGroup;
+$smarty_s->assign('services_in_footer', $og->GetItemsByIdCli('index_services_in_footer.html', '', '', '', 17));
 
 $footer_res=$smarty_s->fetch('common_footer.html');
 unset($smarty_s);

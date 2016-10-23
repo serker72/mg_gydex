@@ -1,0 +1,5 @@
+                            <ul class="footer_services_list">
+                                %{foreach from=$items item=item name=f_services}% 
+                                <li><a href="%{$item.page_url}%">%{$item.name}%</a></li>
+                                %{/foreach}%
+                            </ul>

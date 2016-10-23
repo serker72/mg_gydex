@@ -315,7 +315,7 @@ if((HAS_NEWS)&&($mm['is_news']==1)){
 	if(!isset($_GET['nfrom'])) $nfrom=0;
 	else $nfrom = $_GET['nfrom'];	
 	$nfrom=abs((int)$nfrom);	
-	$nfrom=floor($nfrom/9)*9;
+	$nfrom=floor($nfrom/8)*8;
 	
 	$flt_params=NULL;
 	if(isset($pdate)&&($datesortmode==1)){
@@ -326,7 +326,7 @@ if((HAS_NEWS)&&($mm['is_news']==1)){
 	
 	$ph_g=new NewsGroup();
 	$ph_g->SetPagename('razds.php');
-	$content.= $ph_g->GetItemsByIdCli('news/items_news.html', $mm['id'], $lang,$nfrom,9,$flt_params,$datesortmode);
+	$content.= $ph_g->GetItemsByIdCli('news/items_news.html', $mm['id'], $lang, $nfrom, 8, $flt_params, $datesortmode);
 }
  
 //формы обр связи
@@ -443,6 +443,11 @@ $ph_g=new NewsGroup();
 
 $smarty_content->assign('recent_news', $ph_g->GetItemsRecent('news/recent_news.html', $lang, 6));
 
+// KSK 22.10.2016
+if (in_array($mm['path'], array('o_kompanii', 'uslugi'))) {
+    $og = new LinksGroup;
+    $content .= $og->GetItemsByIdCli('index_clients.html', '', '', '', 15);
+}
 
 $smarty_content->assign('content', $content);
 
@@ -461,6 +466,14 @@ foreach($mm as $k=>$v) $mm[$k]=stripslashes($v);
 $smarty_content->assign('mm', $mm);
 
 $smarty_content->assign('FEEDBACK_PHONE', FEEDBACK_PHONE);
+$smarty_content->assign('FEEDBACK_EMAIL', FEEDBACK_EMAIL);
+$smarty_content->assign('OFFICE_ADDRESS', str_replace('ул.', '<br>ул.', OFFICE_ADDRESS));
+$map_address_array = explode(',', OFFICE_ADDRESS);
+$map_address = '';
+for($i=1;$i<count($map_address_array);$i++) {
+    $map_address .= $map_address_array[$i] . ' ';
+}
+$smarty_content->assign('OFFICE_ADDRESS_MAP', $map_address);
 
 
 $_prt=new AllmenuTemplateItem;

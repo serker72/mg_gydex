@@ -2351,7 +2351,7 @@ a.news_more:hover{
 .logo {
     height: 145px;
     padding: 24px 0 0 100px;
-    /*background: url('img/logo.png') no-repeat top 24px left 100px;*/
+    /*background: url('/img/logo.png') no-repeat top 24px left 100px;*/
 }
 
 .contacts {
@@ -2368,13 +2368,17 @@ a.news_more:hover{
     height: 65px;
 }
 
-.contacts_mail > div > a {
+.contacts_mail > div > a,
+.contacts_phone > div > a
+{
     color: #333;
     text-decoration: none;
 }
 
 .contacts_mail > div > a:hover,
-.contacts_mail > div > a:focus
+.contacts_mail > div > a:focus,
+.contacts_phone > div > a:hover,
+.contacts_phone > div > a:focus
 {
     color: #c73741;
     text-decoration: none;
@@ -2395,7 +2399,7 @@ a.news_more:hover{
 }
 
 .search_lang ul li {
-    background: url('img/lang_splitter.png') no-repeat top 0px left 0px;
+    background: url('/img/lang_splitter.png') no-repeat top 0px left 0px;
     display: inline;
     list-style-type: none;
     font-size: 15px;
@@ -2441,11 +2445,15 @@ a.news_more:hover{
 
 .search_call_link {
     background-color: #eb3844;
-    color: #feffff;
     font-size: 17px;
     padding: 13px 50px 12px 50px;
     text-align: center;
     text-transform: uppercase;
+}
+
+a.search_call_link {
+    color: #fce8e9;
+    /*color: #feffff;*/
 }
 
 a.search_call_link:hover,
@@ -2515,7 +2523,7 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
     top: 0;
     left: 598px;
     padding: 120px 40px 25px 35px;
-    background: url('img/slider/caption_background.png') no-repeat;
+    background: url('/img/slider/caption_background.png') no-repeat;
     font-size: 40px;
     font-weight: bold;
     text-align: left;
@@ -2551,17 +2559,17 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
 }
 
 .carousel-control.left {
-    background: url('img/slider/left.png') no-repeat left 20% top 50%;
+    background: url('/img/slider/left.png') no-repeat left 20% top 50%;
 }
 
 .carousel-control.right {
-    background: url('img/slider/right.png') no-repeat right 20% top 50%;
+    background: url('/img/slider/right.png') no-repeat right 20% top 50%;
 }
 
 /*  Сaption title  */
 .caption_title {
     padding: 10px 0 5px 0;
-    background: url('img/caption_bottom.png') no-repeat bottom;
+    background: url('/img/caption_bottom.png') no-repeat bottom;
     color: #313331;
     font-size: 24px;
     font-weight: bold;
@@ -2591,10 +2599,10 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
 
 .services_small_wrapper {
     font-size: 16px;
-    height: 220px;
+    /*height: 220px;*/
     padding-top: 15px;
     text-align: center;
-    width: 200px;
+    /*width: 200px;*/
 }
 
 .service_image {
@@ -2607,7 +2615,7 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
 
 /*  Блок "О компании"  */
 .about_wrapper {
-    background: url('img/about_bg.png') no-repeat;
+    background: url('/img/about_bg.png') no-repeat;
     height: 250px;
     margin: 0 auto;
     padding: 0px 110px 25px 110px;
@@ -2703,6 +2711,575 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
 {
     color: #c73741;
     text-decoration: none;
+}
+
+
+
+.trust_wrapper {
+    height: 155px;
+}
+
+
+.footer_wrapper {
+    height: 240px;
+    width: 100%;
+}
+
+.footer_main {
+    background-color: #313331;
+    color: #fdfdfd;
+    height: 215px;
+    padding-top: 32px;
+    /*width: 100%;*/
+}
+
+.footer_main_title,
+.footer_main_title a {
+    color: #fdfdfd;
+    font-size: 15px;
+    padding-bottom: 24px;
+    text-decoration: none;
+    text-transform: uppercase
+}
+
+.footer_main_title a:hover,
+.footer_main_title a:focus
+{
+    color: #c73741;
+}
+
+.footer_main_text, .footer_main_text > p  {
+    color: #fdfdfd;
+    font-size: 13px;
+}
+
+.footer_services_list {
+    list-style-image: url('/img/services_list_marker.png');
+    padding: 0 0 0 20px;
+}
+
+.footer_services_list > li > a,
+.footer_contacts_row a
+{
+    color: #fdfdfd;
+    text-decoration: none;
+}
+
+.footer_services_list > li > a:hover,
+.footer_services_list > li > a:focus,
+.footer_contacts_row a:hover,
+.footer_contacts_row a:focus
+{
+    color: #c73741;
+    text-decoration: none;
+}
+
+.footer_contacts_row {
+    padding-bottom: 15px;
+}
+
+.footer_separator {
+    background-color: #d9dada;
+    height: 2px;
+    /*width: 100%;*/
+}
+
+.footer_copyright {
+    background-color: #313331;
+    color: #fdfdfd;
+    height: 30px;
+    /*padding: 5px 0 5px 105px;*/
+    /*width: 100%;*/
+}
+
+/*  Хлебные крошки   */
+.breadcrumbs,
+.breadcrumbs_about
+{
+    padding: 20px 0 0 0;
+}
+
+.breadcrumbs ul {
+    padding: 0 0;
+}
+
+.breadcrumbs ul li
+{
+    background: url('/img/li_splitter.png') no-repeat top 3px left 0px;
+    color: #727272;
+    display: inline;
+    font-size: 14px;
+    list-style-type: none;
+    padding: 0px 8px 0px 8px;
+    text-decoration: underline;
+}
+
+.breadcrumbs_about ul li
+{
+    background: url('/img/li_about_splitter.png') no-repeat top 3px left 0px;
+    color: #fbfbfb;
+    display: inline;
+    font-size: 14px;
+    list-style-type: none;
+    padding: 0px 8px 0px 8px;
+    text-decoration: underline;
+}
+
+.breadcrumbs ul li:first-child,
+.breadcrumbs_about ul li:first-child
+{
+    background: none;
+    padding: 0px 8px 0px 0px;
+}
+
+.breadcrumbs ul li:last-child,
+.breadcrumbs_about ul li:last-child
+{
+    padding: 0px 8px 0px 8px;
+}
+
+.breadcrumbs ul li a
+{
+    color: #727272;
+    text-decoration: underline;
+}
+
+.breadcrumbs_about ul li a
+{
+    color: #fbfbfb;
+    text-decoration: underline;
+}
+
+.breadcrumbs ul li a:hover,
+.breadcrumbs ul li a:focus,
+.breadcrumbs_about ul li a:hover,
+.breadcrumbs_about ul li a:focus
+{
+    color: #c73741;
+    text-decoration: underline;
+}
+
+/*  About page class  */
+.about_page_wrapper {
+    background: url('/img/about_page_bg.png') no-repeat;
+    height: 884px;
+}
+
+.about-text-1 {
+    /*font-family: FranklinGothicMediumCondRegular;*/
+    font-size: 22px;
+    font-weight: normal;
+    padding: 105px 70px 110px 85px;
+}
+
+.about-text-2 {
+    /*background-color: #449d44;*/
+    font-size: 17px;
+    font-weight: normal;
+    padding: 0px 0px 0px 40px;
+}
+
+.about-text-3 {
+    /*background-color: #449d44;*/
+    color: #feffff;
+    font-size: 24px;
+    font-weight: normal;
+    padding: 0px 0px 0px 85px;
+    text-transform: uppercase;
+}
+
+.about-text-4 {
+    color: #feffff;
+    font-size: 17px;
+    font-weight: normal;
+    padding: 0px 0px 0px 40px;
+}
+
+.about-text-5 {
+    color: #feffff;
+    font-size: 17px;
+    font-weight: normal;
+    padding: 0px 40px 0px 80px;
+}
+
+.about-text-6 {
+    color: #feffff;
+    font-size: 17px;
+    font-weight: normal;
+    padding: 0px 0px 0px 80px;
+}
+
+/*   Услуги   */
+.caption_services {
+    padding: 0 0 10px 0;
+}
+
+.caption_services p {
+    color: #2b2a29;
+    font-size: 17px;
+    padding-bottom: 20px;
+}
+
+.caption_services h4 {
+    font-weight: bold;
+    text-align: left;
+}
+
+.services_list_wrapper {
+    padding: 0px 0 20px 0px;
+    /*width: 100%;*/
+}
+
+/*   Новости   */
+.caption_news {
+    padding: 22px 0 0 0px;
+}
+
+.news_col {
+    color: #727272;
+    padding: 35px 15px 0 0;
+}
+
+.news_col ul {
+    padding: 0 0;
+}
+
+.news_col ul li
+{
+    background: url('/img/li_splitter.png') no-repeat top 3px left 0px;
+    display: inline;
+    font-size: 14px;
+    list-style-type: none;
+    padding: 0px 8px 0px 8px;
+}
+
+.news_col ul li:first-child
+{
+    background: none;
+    padding: 0px 8px 0px 0px;
+}
+
+.news_col ul li:last-child
+{
+    padding: 0px 8px 0px 8px;
+}
+
+.news_col ul li a
+{
+    color: #2b2a29;
+    font-weight: bold;
+}
+
+.news_col ul li a:hover,
+.news_col ul li a:focus
+{
+    color: #eb3844;
+    text-decoration: underline;
+}
+
+.news_col p {
+    color: #727272;
+    font-size: 14px;
+    min-height: 40px;
+    padding-bottom: 20px;
+}
+
+.news_paginate {
+    padding: 20px 0 70px 0;
+    text-align: right;
+}
+
+.news_paginate ul li {
+    background: none;
+    display: inline;
+    font-size: 22px;
+    list-style-type: none;
+    /*margin-right: 6px;*/
+    /*padding: 6px 8px;*/
+}
+
+.news_paginate ul li.news_page_active,
+.news_paginate ul li span.active
+{
+    background: #eb3844;
+    color: #ffffff;
+}
+
+.news_paginate ul li a,
+.news_paginate ul li span
+{
+    color: #eb3844;
+    padding: 6px 8px;
+}
+
+.news_paginate ul li.news_page_active a {
+    color: #ffffff;
+}
+
+/*   Страница одной новости   */
+.news_page_title {
+    font-size: 20px;
+    font-weight: bold;
+    padding: 30px 0 0 0;
+}
+
+.news_page_date {
+    font-size: 16px;
+    padding: 20px 0 25px 0;
+}
+
+.news_page_image {
+    padding: 0 0;
+}
+
+.news_page_text {
+    font-size: 16px;
+    margin: 0 0 0 -60px;
+    text-align: justify;
+}
+
+.news_page_text p {
+    font-size: 16px;
+    padding: 0 0 20px 0;
+}
+
+
+/*   Каталог   */
+.caption_catalog {
+    padding: 32px 0 30px 0px;
+}
+
+.catalog_category_wrapper {
+    padding: 0 50px 0 0;
+}
+
+.catalog_category_list {
+    list-style-position: inside;
+    column-count: 3;
+        -moz-column-count: 3; /* Firefox */
+        -webkit-column-count: 3; /* Safari and Chrome */
+    column-gap: 110px;
+        -moz-column-gap: 110px;
+        -webkit-column-gap: 110px;
+    margin: 0 0;
+    padding: 0 0;
+}
+
+.catalog_category_list li {
+    list-style-type: none;
+}
+
+.catalog_category_item {
+    height: 250px;
+    width: 250px;
+}
+
+.catalog_category_item_title {
+    color: #eb3844;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 0 0 15px 0;
+}
+
+.catalog_category_item_image {
+    padding: 0 0 15px 0;
+}
+
+.catalog_category_item_link {
+    background-color: #313331;
+    border-radius: 8px;
+      -moz-border-radius: 8px;
+      -webkit-border-radius: 8px;
+    /*bottom: 25px;*/
+    font-size: 14px;
+    height: 30px;
+    padding: 5px 15px;
+    /*position: absolute;*/
+    text-align: center;
+    text-transform: uppercase;
+    width: 150px;
+}
+
+.catalog_category_item_link a {
+    color: #fce8e9;
+    font-weight: normal;
+    text-decoration: none;
+}
+
+.catalog_category_item_link a:hover,
+.catalog_category_item_link a:focus
+{
+    color: #c73741;
+    text-decoration: none;
+}
+
+.catalog_text {
+    color: #2b2a29;
+    font-size: 18px;
+    padding: 65px 0 140px 0;
+}
+
+
+/*   Категория каталога   */
+.caption_category {
+    padding: 32px 0 30px 0px;
+}
+
+.category_wrapper {
+    padding: 0 0 30px 0;
+}
+
+.category_item_wrapper {
+    padding: 45px 0 35px 0;
+}
+
+.category_item_image {
+    padding: 0 0;
+}
+
+.category_item_text {
+    font-size: 16px;
+    padding: 15px 35px 0 0;
+}
+
+/*   Контакты   */
+.caption_contacts {
+    padding: 25px 0 35px 0;
+}
+
+.contacts_wrapper {
+    padding: 0 0 75px 0;
+}
+
+.contacts_left {
+    background: url('/img/i_contacts_address.png') no-repeat top 3px left 0;
+    font-size: 16px;
+    padding: 0 0 0 50px;
+}
+
+.contacts_center {
+    font-size: 16px;
+}
+
+.contacts_center a {
+    color: #2b2a29;
+    text-decoration: none;
+}
+
+
+.contacts_center a:hover,
+.contacts_center a:focus
+{
+    color: #c73741;
+    text-decoration: none;
+}
+
+.contacts_right {
+    padding: 0 10px 0 0;
+}
+
+.contacts_right > div {
+    background-color: #eb3844;
+    float: right;
+    height: 40px;
+    padding: 8px;
+    text-align: center;
+    width: 230px;
+}
+
+.contacts_right > div > a {
+    color: #fdf5f6;
+    font-size: 18px;
+    text-transform: uppercase;
+}
+
+.contacts_right > div > a:hover,
+.contacts_right > div > a:focus
+{
+    color: #2b2a29;
+    text-decoration: none;
+}
+
+.contacts_map {
+    padding: 50px 0 0px 0;
+}
+
+.callDialogModal {
+    background-color: #49494b;
+    color: #fefefe;
+    display: none;
+    font-size: 26px;
+    height: 540px;
+    margin: 0 auto;
+    position: absolute;
+    top: 0px;
+    left: 35%;
+    width: 490px;
+}
+
+.callDialogModal_title {
+    font-weight: bold;
+    padding: 10px 80px 40px 80px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.postDialogModal
+{
+    background-color: #49494b;
+    color: #fefefe;
+    display: none;
+    font-size: 28px;
+    height: 760px;
+    margin: 0 auto;
+    position: absolute;
+    top: 0px;
+    left: 35%;
+    width: 490px;
+}
+
+.postDialogModal_close span,
+.callDialogModal_close span
+{
+    cursor: pointer;
+    float: right;
+    padding: 13px 13px 0 0;
+}
+
+.postDialogModal_title {
+    padding: 10px 40px 10px 40px;
+    text-align: center;
+}
+
+.postDialogModal_form {
+    padding-left: 70px;
+}
+
+.PostDialogInput {
+    background-color: #fefefe;
+    border-radius: 8px;
+        -moz-border-radius: 8px;
+        -webkit-border-radius: 8px;
+    color: #7c7c7c;
+    margin-left: 25px;
+    width: 320px;
+}
+
+.PostDialogSubmit {
+    padding: 40px 0 0 95px;
+    text-align: center;
+    width: 320px;
+}
+
+.PostDialogSubmit a {
+    background-color: #eb3844;
+    border-radius: 8px;
+        -moz-border-radius: 8px;
+        -webkit-border-radius: 8px;
+    color: #fefefe;
+    font-size: 28px;
+    padding: 10px 88px;
+    text-transform: uppercase;
 }
 
 

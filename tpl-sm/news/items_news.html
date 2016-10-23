@@ -1,64 +1,49 @@
-    <div id="recent_news_block">
-     %{foreach name=rn from=$items item=item}%  
-        <div class="recent_news_slide">
-            <div class="news_controls">
-                %{if $item.has_images}%
-                <a href="%{$item.path}%#pictures"><img src="/images/ico-photo.png" alt="к новости прикрепленны изображения" width="48" height="47" /></a>
-                %{/if}%
-                %{if $item.has_files}%
-                <a href="%{$item.path}%#files"><img src="/images/ico_files.png" alt="к новости прикрепленны файлы" width="48" height="47" /></a>
-                %{/if}%
-            	 
-            </div>
-            <div class="news_preview">
-                
-                %{if $item.has_images}%
-                <div id="news_preview_slider" class="cycle-slideshow"
-                    data-cycle-fx="scrollHorz"
-                    data-cycle-timeout="2000"
-                    data-cycle-speed="500"
-                    data-cycle-slides="> div.news_preview_slide"
-                    data-cycle-pager="> .npc-pager"
-                    data-cycle-pager-template=" <a href='#' class='npc-pager-button'>&nbsp;</a> ">
-                    
-                    <div class="npc-pager"></div>
-                    
-                    <div class="news_preview_slide" style="background-image:url(/%{$item.photo_small}%)"></div>
-                    %{foreach from=$item.images item=image}%
-                    <div class="news_preview_slide" style="background-image:url(%{$image.small_url}%)"></div>
-                    %{/foreach}%
-                    
-                    
+            <div class="row-fluid">
+                <div class="col-lg-offset-1 col-lg-10 caption_services caption_news">
+                    <img src="/img/caption_news.png">
                 </div>
-                %{else}%
-                <div class="news_preview_slide" style="background-image:url(/%{$item.photo_small}%)"></div>
-                %{/if}%
-                
-                
             </div>
-            <div class="news_meta">
-                <div class="news_meta_data">Дата: <span class="news_meta_value">%{$item.newsdate}%</span></div>
-                
-               <!-- <div class="news_meta_data">Комментариев: <span class="news_meta_value">%{$item.num_comments}%</span></div>-->
+            <div class="row-fluid">
+                <div class="col-lg-offset-1 col-lg-10 caption_services">
+                    <div class="row-fluid">
+                        %{foreach name=rn from=$items item=item}%
+                            %{if $smarty.foreach.rn.index is div by 4}%
+                                %{if $smarty.foreach.rn.index != 0}%
+                                    </div>
+                                %{/if}%
+                                <div class="col-lg-6 news_col">
+                            %{/if}%
+                            <ul>
+                                <li>%{$item.newsdate}%</li>
+                                <li><a href="%{$item.path}%">%{$item.name}%</a></li>
+                            </ul>
+                            %{$item.small_txt|truncate:130}%
+                        %{/foreach}%
+                    </div>
+                </div>
             </div>
+            <div style="clear:both;"></div>
+            <!-- Блок пагинации новостей -->
+            <div class="row-fluid">
+                <div class="col-lg-offset-1 col-lg-10 news_paginate" id="news_paginate">
+                    <ul id="news_pages">
+%{$pages|replace:'<span':'<li><span'|replace:'</span>':'</span></li>'|replace:'<a href':'<li><a href'|replace:'</a>':'</a></li>'}%
+                    </ul>
+                </div>
+            </div>
+            <!-- Блок пагинации новостей -->
+
+<script>
+    $(document).ready(function(){
+       $("div.alblinks > li > span.inactive").each(function () {
+           if ((this.textContent !== '|<') && (this.textContent !== '<<') && (this.textContent !== '>|') && (this.textContent !== '>>')) {
+               $(this).removeClass('inactive');
+               $(this).addClass('active');
+           } else {
+               $(this).hide();
+           }
+       });
+       $("div.alblinks1").hide();
+    });
+</script>                    
             
-            <div class="news_title">
-                <h3>%{$item.name}%</h3>
-            </div>
-            
-            <div class="news_anons">
-                %{$item.small_txt}%
-            </div>
-            <a href="%{$item.path}%" class="news_more">Узнать больше</a>
-            
-        </div>
-        %{/foreach}%
-        
-         
-         
-		<div class="clr"></div>
-    </div>
-    
-    
-    
-    %{$pages}%

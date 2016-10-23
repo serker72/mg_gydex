@@ -15,6 +15,8 @@ if(isset($_POST['doInp'])||isset($_POST['doInp1'])){
 	if(isset($_POST['SITETITLE'])) $settings['SITETITLE']=SecStr($_POST['SITETITLE'],10);
 	if(isset($_POST['NO_RIGHTS'])) $settings['NO_RIGHTS']=SecStr($_POST['NO_RIGHTS'],10);
 	
+	if(isset($_POST['OFFICE_ADDRESS'])) $settings['OFFICE_ADDRESS']=SecStr($_POST['OFFICE_ADDRESS'],10);
+        
 	if(isset($_POST['FEEDBACK_EMAIL'])) $settings['FEEDBACK_EMAIL']=SecStr($_POST['FEEDBACK_EMAIL'],10);
 	
 	if(isset($_POST['FEEDBACK_PHONE'])) $settings['FEEDBACK_PHONE']=SecStr($_POST['FEEDBACK_PHONE'],10);
@@ -159,6 +161,9 @@ if($rights_man->CheckAccess($global_profile['login'], $global_profile['passw'], 
 
 		<strong>Сообщение о недостаточных правах:</strong><br>
 <input type="text" name="NO_RIGHTS" value="<?=NO_RIGHTS?>" size="60" maxlength="255"><p>
+        
+		<strong>Адрес офиса:</strong><br>
+		<input type="text" name="OFFICE_ADDRESS" value="<?=OFFICE_ADDRESS?>" size="60" maxlength="255"><p>
 		
         <strong>Контактный телефон:</strong><br>
 		<input type="text" name="FEEDBACK_PHONE" value="<?=FEEDBACK_PHONE?>" size="40" maxlength="40"><p>

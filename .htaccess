@@ -56,11 +56,11 @@ RewriteRule ^compare.php(.*) - [L]
 
 
 #миграция старых адресов
-RewriteRule ^o_kompanii/section_o_Gydex.html /o_kompanii/o_Gydex/ [R=301,L]
-RewriteRule ^o_kompanii/section_novosti.html /o_kompanii/novosti/ [R=301,L]
-RewriteRule ^o_kompanii/section_podderzhka.html /o_kompanii/podderzhka/ [R=301,L]
-RewriteRule ^o_kompanii/section_stoimost_.html /o_kompanii/stoimost_/ [R=301,L]
-RewriteRule ^o_kompanii/section_poleznaya_informatciya.html /o_kompanii/poleznaya_informatciya/ [R=301,L]
+#RewriteRule ^o_kompanii/section_o_Gydex.html /o_kompanii/o_Gydex/ [R=301,L]
+#RewriteRule ^o_kompanii/section_novosti.html /o_kompanii/novosti/ [R=301,L]
+#RewriteRule ^o_kompanii/section_podderzhka.html /o_kompanii/podderzhka/ [R=301,L]
+#RewriteRule ^o_kompanii/section_stoimost_.html /o_kompanii/stoimost_/ [R=301,L]
+#RewriteRule ^o_kompanii/section_poleznaya_informatciya.html /o_kompanii/poleznaya_informatciya/ [R=301,L]
 RewriteRule ^produkty/section_dilerskiy_kabinet.html /produkty/dilerskiy_kabinet/ [R=301,L]
 RewriteRule ^produkty/section_elektronnoe_snabzhenie.html /produkty/elektronnoe_snabzhenie/ [R=301,L]
 RewriteRule ^produkty/section_intellektual_nye_prodazhi.html /produkty/intellektual_nye_prodazhi/ [R=301,L]

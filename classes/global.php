@@ -64,6 +64,9 @@ else define("FEEDBACK_EMAIL",'info@blackcat');
 if(isset($global_settings['FEEDBACK_PHONE'])) define("FEEDBACK_PHONE",$global_settings['FEEDBACK_PHONE']);
 else define("FEEDBACK_PHONE",'');
 
+if(isset($global_settings['OFFICE_ADDRESS'])) define("OFFICE_ADDRESS",$global_settings['OFFICE_ADDRESS']);
+else define("OFFICE_ADDRESS",'');
+
 
 if(isset($global_settings['SITETITLE'])) define("SITETITLE",$global_settings['SITETITLE']);
 else define("SITETITLE",'blackcat');
