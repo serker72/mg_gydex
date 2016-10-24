@@ -285,7 +285,14 @@ if((HAS_LINKS)&&($mm['is_links']==1)){
 	
 	$ph_g=new LinksGroup();
 	$ph_g->SetPagename('razds.php');
-	$content.= $ph_g->GetItemsCli('links/clients.html'); //$ph_g->GetItemsByIdCli('links/items.html', 'tpl/links/row.html', 'tpl/links/cell.html', 'tpl/links/cell_code.html', $mm['id'], $lang,$lfrom));
+        
+        // KSK 24.10.2016 - вывод подкатегорий для каталога
+        if ($mm['parent_id'] == 3) {
+            $content.= $ph_g->GetItemsByIdCli('links/catalog_items.html', '', '', '', $mm['id'], $lang, $lfrom);
+        } else {
+            //$content.= $ph_g->GetItemsCli('links/clients.html');
+            $content.= $ph_g->GetItemsByIdCli('links/items.html', 'tpl/links/row.html', 'tpl/links/cell.html', 'tpl/links/cell_code.html', $mm['id'], $lang, $lfrom);
+        }
 }
  
 //проверка, новости ли это
@@ -449,6 +456,19 @@ if (in_array($mm['path'], array('o_kompanii', 'uslugi'))) {
     $content .= $og->GetItemsByIdCli('index_clients.html', '', '', '', 15);
 }
 
+// KSK 24.10.2016
+if ($mm['path'] == 'katalog') {
+    $ml = new MmenuList();
+    $params = array();
+    $params['parent_id'] = $mm['id'];
+    $subrazds = $ml->GetArr($params, LANG_CODE);
+    
+    $sm1=new SmartyAdm;
+
+    $sm1->assign('items', $subrazds);
+    $content .= $sm1->fetch('index_katalog.html');
+}
+
 $smarty_content->assign('content', $content);
 
 
@@ -473,6 +493,7 @@ $map_address = '';
 for($i=1;$i<count($map_address_array);$i++) {
     $map_address .= $map_address_array[$i] . ' ';
 }
+//$smarty_content->assign('OFFICE_ADDRESS_MAP', iconv('windows-1251', 'utf-8', $map_address));
 $smarty_content->assign('OFFICE_ADDRESS_MAP', $map_address);
 
 

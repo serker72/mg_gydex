@@ -3125,6 +3125,19 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
     padding: 32px 0 30px 0px;
 }
 
+.caption_category_inner {
+    border-bottom: #EAEAEA 2px solid;
+}
+
+.caption_category_text {
+    border-bottom: 28px solid #EB3844;
+    border-left: 0px solid transparent;
+    border-right: 28px solid transparent;
+    color: #FFFFFF;
+    height: 0;
+    width: 200px;
+}
+
 .category_wrapper {
     padding: 0 0 30px 0;
 }
