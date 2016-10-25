@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Окт 24 2016 г., 18:58
+-- Время создания: Окт 25 2016 г., 18:55
 -- Версия сервера: 5.5.44-log
 -- Версия PHP: 5.3.29
 
@@ -71,15 +71,15 @@ CREATE TABLE IF NOT EXISTS `allmenu` (
 --
 
 INSERT INTO `allmenu` (`id`, `parent_id`, `path`, `ord`, `ord_2`, `ord_3`, `is_new_window`, `is_pics_list`, `is_hor`, `is_hor2`, `is_v_active`, `is_right`, `is_price`, `is_news`, `is_links`, `is_gallery`, `is_papers`, `is_feedback_forms`, `is_callback`, `is_basket`, `is_otzyv`, `show_first`, `is_to_another_url`, `another_path`, `is_orange`, `is_menu_1`, `is_menu_2`, `is_menu_3`, `is_menu_4`, `template_id`, `is_solutions`, `is_products`, `is_claim`, `is_faq`, `priority`, `changefreq`) VALUES
-(11, 3, 'gal_vanika', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0.5, NULL),
-(10, 3, 'listoobrabotka', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0.5, NULL),
+(11, 3, 'gal_vanika', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0.5, NULL),
+(10, 3, 'listoobrabotka', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0.5, NULL),
 (6, 3, 'tokarnye_tcentry', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0.5, ''),
 (7, 3, 'frezernye_tcentry', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0.5, ''),
-(8, 3, 'sverlil_nye_stanki', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0.5, NULL),
-(9, 3, 'shlifoval_nye_stanki', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0.5, NULL),
-(14, 3, 'izmeritel_noe_oborudovanie', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0.5, NULL),
-(12, 3, 'oborudovanie_dlya_lit_ya', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0.5, NULL),
-(13, 3, 'termicheskaya_obrabotka', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0.5, NULL),
+(8, 3, 'sverlil_nye_stanki', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0.5, NULL),
+(9, 3, 'shlifoval_nye_stanki', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0.5, NULL),
+(14, 3, 'izmeritel_noe_oborudovanie', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0.5, NULL),
+(12, 3, 'oborudovanie_dlya_lit_ya', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0.5, NULL),
+(13, 3, 'termicheskaya_obrabotka', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0.5, NULL),
 (16, 0, 'spisok_uslug', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0.5, NULL),
 (15, 0, 'nam_doveryayut', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0.5, NULL),
 (3, 0, 'katalog', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0.5, ''),
@@ -1192,7 +1192,7 @@ CREATE TABLE IF NOT EXISTS `gydex_hits` (
   `pdate` datetime NOT NULL,
   `ip` varchar(80) NOT NULL DEFAULT '',
   `uri` varchar(255) NOT NULL DEFAULT ''
-) ENGINE=MyISAM AUTO_INCREMENT=267 DEFAULT CHARSET=cp1251;
+) ENGINE=MyISAM AUTO_INCREMENT=327 DEFAULT CHARSET=cp1251;
 
 --
 -- Дамп данных таблицы `gydex_hits`
@@ -1464,7 +1464,67 @@ INSERT INTO `gydex_hits` (`id`, `pdate`, `ip`, `uri`) VALUES
 (263, '2016-10-24 18:41:08', '', '/katalog/frezernye_tcentry/'),
 (264, '2016-10-24 18:41:56', '', '/katalog/frezernye_tcentry/'),
 (265, '2016-10-24 18:42:36', '', '/katalog/frezernye_tcentry/'),
-(266, '2016-10-24 18:43:13', '', '/katalog/frezernye_tcentry/');
+(266, '2016-10-24 18:43:13', '', '/katalog/frezernye_tcentry/'),
+(267, '2016-10-25 10:55:23', '', '/katalog/frezernye_tcentry/'),
+(268, '2016-10-25 10:55:36', '', '/katalog/frezernye_tcentry/'),
+(269, '2016-10-25 10:56:11', '', '/katalog/frezernye_tcentry/'),
+(270, '2016-10-25 11:17:20', '', '/katalog/frezernye_tcentry/'),
+(271, '2016-10-25 11:18:07', '', '/katalog/frezernye_tcentry/'),
+(272, '2016-10-25 11:18:29', '', '/katalog/frezernye_tcentry/'),
+(273, '2016-10-25 11:18:56', '', '/katalog/frezernye_tcentry/'),
+(274, '2016-10-25 11:19:21', '', '/katalog/frezernye_tcentry/'),
+(275, '2016-10-25 11:19:34', '', '/katalog/frezernye_tcentry/'),
+(276, '2016-10-25 11:19:45', '', '/katalog/frezernye_tcentry/'),
+(277, '2016-10-25 11:19:50', '', '/katalog/frezernye_tcentry/'),
+(278, '2016-10-25 11:19:59', '', '/katalog/frezernye_tcentry/'),
+(279, '2016-10-25 11:20:12', '', '/katalog/frezernye_tcentry/'),
+(280, '2016-10-25 11:21:09', '', '/katalog/frezernye_tcentry/'),
+(281, '2016-10-25 11:21:23', '', '/katalog/frezernye_tcentry/'),
+(282, '2016-10-25 11:27:30', '', '/katalog/frezernye_tcentry/'),
+(283, '2016-10-25 11:30:03', '', '/katalog/frezernye_tcentry/'),
+(284, '2016-10-25 11:33:30', '', '/katalog/frezernye_tcentry/'),
+(285, '2016-10-25 11:34:56', '', '/katalog/frezernye_tcentry/'),
+(286, '2016-10-25 11:58:29', '', '/katalog/tokarnye_tcentry/'),
+(287, '2016-10-25 12:01:43', '', '/katalog/tokarnye_tcentry/'),
+(288, '2016-10-25 12:01:51', '', '/katalog/shlifoval_nye_stanki/'),
+(289, '2016-10-25 12:04:47', '', '/katalog/shlifoval_nye_stanki/'),
+(290, '2016-10-25 12:04:56', '', '/katalog/izmeritel_noe_oborudovanie/'),
+(291, '2016-10-25 12:05:18', '', '/katalog/izmeritel_noe_oborudovanie/'),
+(292, '2016-10-25 12:05:34', '', '/katalog/oborudovanie_dlya_lit_ya/'),
+(293, '2016-10-25 12:05:44', '', '/katalog/oborudovanie_dlya_lit_ya/'),
+(294, '2016-10-25 12:05:52', '', '/katalog/oborudovanie_dlya_lit_ya/'),
+(295, '2016-10-25 13:49:10', '', '/katalog/oborudovanie_dlya_lit_ya/'),
+(296, '2016-10-25 13:49:45', '', '/katalog/oborudovanie_dlya_lit_ya/'),
+(297, '2016-10-25 13:50:47', '', '/katalog/oborudovanie_dlya_lit_ya/'),
+(298, '2016-10-25 13:51:02', '', '/katalog/oborudovanie_dlya_lit_ya/'),
+(299, '2016-10-25 15:08:25', '', '/katalog/izmeritel_noe_oborudovanie/'),
+(300, '2016-10-25 15:09:02', '', '/katalog/izmeritel_noe_oborudovanie/'),
+(301, '2016-10-25 15:09:14', '', '/katalog/izmeritel_noe_oborudovanie/'),
+(302, '2016-10-25 15:10:07', '', '/katalog/izmeritel_noe_oborudovanie/'),
+(303, '2016-10-25 15:10:25', '', '/katalog/izmeritel_noe_oborudovanie/'),
+(304, '2016-10-25 15:10:47', '', '/katalog/izmeritel_noe_oborudovanie/'),
+(305, '2016-10-25 15:11:08', '', '/katalog/izmeritel_noe_oborudovanie/'),
+(306, '2016-10-25 15:11:52', '', '/katalog/izmeritel_noe_oborudovanie/'),
+(307, '2016-10-25 15:12:18', '', '/katalog/izmeritel_noe_oborudovanie/'),
+(308, '2016-10-25 15:12:30', '', '/katalog/izmeritel_noe_oborudovanie/'),
+(309, '2016-10-25 15:12:56', '', '/katalog/termicheskaya_obrabotka/'),
+(310, '2016-10-25 15:24:29', '', '/katalog/gal_vanika/'),
+(311, '2016-10-25 15:31:25', '', '/katalog/gal_vanika/'),
+(312, '2016-10-25 15:32:46', '', '/katalog/gal_vanika/'),
+(313, '2016-10-25 16:19:31', '', '/katalog/gal_vanika/'),
+(314, '2016-10-25 18:04:52', '', '/katalog/gal_vanika/'),
+(315, '2016-10-25 18:05:18', '', '/katalog/gal_vanika/'),
+(316, '2016-10-25 18:06:38', '', '/katalog/gal_vanika/'),
+(317, '2016-10-25 18:34:08', '', '/katalog/gal_vanika/'),
+(318, '2016-10-25 18:35:41', '', '/katalog/gal_vanika/'),
+(319, '2016-10-25 18:37:03', '', '/katalog/gal_vanika/'),
+(320, '2016-10-25 18:44:19', '', '/katalog/gal_vanika/'),
+(321, '2016-10-25 18:45:09', '', '/katalog/gal_vanika/'),
+(322, '2016-10-25 18:46:34', '', '/katalog/gal_vanika/'),
+(323, '2016-10-25 18:47:17', '', '/katalog/gal_vanika/'),
+(324, '2016-10-25 18:51:46', '', '/katalog/gal_vanika/'),
+(325, '2016-10-25 18:52:50', '', '/katalog/gal_vanika/'),
+(326, '2016-10-25 18:54:18', '', '/katalog/gal_vanika/');
 
 -- --------------------------------------------------------
 
@@ -1555,7 +1615,7 @@ CREATE TABLE IF NOT EXISTS `gydex_stats` (
   `pdate` date NOT NULL,
   `ip` varchar(80) NOT NULL DEFAULT '',
   `total` bigint(20) NOT NULL DEFAULT '0'
-) ENGINE=MyISAM AUTO_INCREMENT=78153 DEFAULT CHARSET=cp1251;
+) ENGINE=MyISAM AUTO_INCREMENT=78154 DEFAULT CHARSET=cp1251;
 
 --
 -- Дамп данных таблицы `gydex_stats`
@@ -79777,7 +79837,8 @@ INSERT INTO `gydex_stats` (`id`, `pdate`, `ip`, `total`) VALUES
 (78149, '2016-10-21', '', 49),
 (78150, '2016-10-22', '', 1),
 (78151, '2016-10-23', '', 114),
-(78152, '2016-10-24', '', 36);
+(78152, '2016-10-24', '', 36),
+(78153, '2016-10-25', '', 60);
 
 -- --------------------------------------------------------
 
@@ -79884,9 +79945,9 @@ INSERT INTO `link_lang` (`plid`, `lang_id`, `link_id`, `name`, `short_name`, `ph
 (14, 1, 13, 'Поставка оборудования', 'Поставка оборудования', 'img/no.gif', '', '', '', '', 1, 'img/no.gif'),
 (15, 1, 14, 'Инжиниринг', 'Инжиниринг', 'img/no.gif', '', '', '', '', 1, 'img/no.gif'),
 (16, 1, 15, 'Лизинг', 'Лизинг', 'img/no.gif', '', '', '', '', 1, 'img/no.gif'),
-(17, 1, 16, 'Handtmann', '', 'userfiles/image/tn1-1477308534.png', '<div class="col-lg-9 category_item_text">\r\n<p>Компания &laquo;Machine Group&raquo; предлагает оборудование для металлообработки ведущих мировых производителей (Германия, Австрия, Бельгия, Италия, Ю. Корея, Тайвань и др.). В ассортименте нашей компании представлен широкий спектр высокотехнологичного оборудования.</p>\r\n</div>', '', '', '', 1, 'userfiles/image/1-1477308534.png'),
-(18, 1, 17, 'DMG MORI', '', 'userfiles/image/tn2-1477308611.png', '<div class="col-lg-9 category_item_text">\r\n<p>Компания &laquo;Machine Group&raquo; предлагает оборудование для металлообработки ведущих мировых производителей (Германия, Австрия, Бельгия, Италия, Ю. Корея, Тайвань и др.). В ассортименте нашей компании представлен широкий спектр высокотехнологичного оборудования.</p>\r\n</div>', '', '', '', 1, 'userfiles/image/2-1477308611.png'),
-(19, 1, 18, 'SIGMA', '', 'userfiles/image/tn3-1477308640.png', '<div class="col-lg-9 category_item_text">\r\n<p>Компания &laquo;Machine Group&raquo; предлагает оборудование для металлообработки ведущих мировых производителей (Германия, Австрия, Бельгия, Италия, Ю. Корея, Тайвань и др.). В ассортименте нашей компании представлен широкий спектр высокотехнологичного оборудования.</p>\r\n</div>', '', '', '', 1, 'userfiles/image/3-1477308640.png');
+(17, 1, 16, 'Handtmann', '', 'userfiles/image/tn1-1477308534.png', '<p>Компания &laquo;Machine Group&raquo; предлагает оборудование для металлообработки ведущих мировых производителей (Германия, Австрия, Бельгия, Италия, Ю. Корея, Тайвань и др.). В ассортименте нашей компании представлен широкий спектр высокотехнологичного оборудования.</p>', '', '', '', 1, 'userfiles/image/1-1477308534.png'),
+(18, 1, 17, 'DMG MORI', '', 'userfiles/image/tn2-1477308611.png', '<p>Компания &laquo;Machine Group&raquo; предлагает оборудование для металлообработки ведущих мировых производителей (Германия, Австрия, Бельгия, Италия, Ю. Корея, Тайвань и др.). В ассортименте нашей компании представлен широкий спектр высокотехнологичного оборудования.</p>', '', '', '', 1, 'userfiles/image/2-1477308611.png'),
+(19, 1, 18, 'SIGMA', '', 'userfiles/image/tn3-1477308640.png', '<p>Компания &laquo;Machine Group&raquo; предлагает оборудование для металлообработки ведущих мировых производителей (Германия, Австрия, Бельгия, Италия, Ю. Корея, Тайвань и др.). В ассортименте нашей компании представлен широкий спектр высокотехнологичного оборудования.</p>', '', '', '', 1, 'userfiles/image/3-1477308640.png');
 
 -- --------------------------------------------------------
 
@@ -86960,7 +87021,7 @@ ALTER TABLE `good_price`
 -- AUTO_INCREMENT для таблицы `gydex_hits`
 --
 ALTER TABLE `gydex_hits`
-  MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=267;
+  MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=327;
 --
 -- AUTO_INCREMENT для таблицы `gydex_menu`
 --
@@ -86970,7 +87031,7 @@ ALTER TABLE `gydex_menu`
 -- AUTO_INCREMENT для таблицы `gydex_stats`
 --
 ALTER TABLE `gydex_stats`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=78153;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=78154;
 --
 -- AUTO_INCREMENT для таблицы `langs`
 --

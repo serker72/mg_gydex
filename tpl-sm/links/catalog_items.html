@@ -1,20 +1,23 @@
             <div class="row-fluid">
                 <div class="col-lg-offset-1 col-lg-10 caption_category">
                     <div class="caption_category_inner">
-                        <div class="caption_category_text">Фрезерные центры</div>
+                        <div class="caption_category_text"><span>CATEGORY_NAME</span></div>
+                        <div style="clear: both;"></div>
                     </div>
                 </div>
             </div>
             <div class="row-fluid">
                 <div class="col-lg-offset-1 col-lg-10 category_wrapper">
+                    %{section name=itemsec loop=$items}%
                     <div class="row-fluid category_item_wrapper">
                         <div class="col-lg-3 category_item_image">
-                            <img src="img/category/1/3.png">
+                            <img src="/%{$items[itemsec].image_src}%">
                         </div>
                         <div class="col-lg-9 category_item_text">
-                            <p>Компания «Machine Group» предлагает оборудование для металлообработки ведущих мировых производителей (Германия, Австрия, Бельгия, Италия, Ю. Корея, Тайвань и др.). В ассортименте нашей компании представлен широкий спектр высокотехнологичного оборудования.</p>
+                            %{$items[itemsec].annot}%
                         </div>
                         <div style="clear: both;"></div>
                     </div>
+                    %{/section}%
                 </div>
             </div>

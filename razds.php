@@ -288,7 +288,9 @@ if((HAS_LINKS)&&($mm['is_links']==1)){
         
         // KSK 24.10.2016 - вывод подкатегорий для каталога
         if ($mm['parent_id'] == 3) {
-            $content.= $ph_g->GetItemsByIdCli('links/catalog_items.html', '', '', '', $mm['id'], $lang, $lfrom);
+            $content_category .= $ph_g->GetItemsByIdCli('links/catalog_items.html', '', '', '', $mm['id'], $lang, $lfrom);
+            $content_category = str_replace('CATEGORY_NAME', $mm['name'], $content_category);
+            $content .= $content_category;
         } else {
             //$content.= $ph_g->GetItemsCli('links/clients.html');
             $content.= $ph_g->GetItemsByIdCli('links/items.html', 'tpl/links/row.html', 'tpl/links/cell.html', 'tpl/links/cell_code.html', $mm['id'], $lang, $lfrom);

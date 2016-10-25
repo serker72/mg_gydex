@@ -34,7 +34,7 @@ function OpenCallDialog() {
         'top': h1
     });
     $("#callDialog").show();
-    return false;
+    //return false;
 }
 
 function OpenPostDialog() {

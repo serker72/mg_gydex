@@ -3130,12 +3130,17 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
 }
 
 .caption_category_text {
-    border-bottom: 28px solid #EB3844;
-    border-left: 0px solid transparent;
-    border-right: 28px solid transparent;
     color: #FFFFFF;
+    border-bottom: 30px solid #EB3844;
+    border-right: 20px solid transparent;
     height: 0;
-    width: 200px;
+    width: 250px;
+}
+
+.caption_category_text > span {
+    font-size: 16px;
+    margin: 5px 10px;
+    position: absolute;
 }
 
 .category_wrapper {
@@ -3230,11 +3235,17 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
     width: 490px;
 }
 
-.callDialogModal_title {
+.callDialogModal_title
+{
     font-weight: bold;
     padding: 10px 80px 40px 80px;
     text-align: center;
     text-transform: uppercase;
+}
+
+.callDialogModal_title > p {
+    color: #fefefe;
+    font-size: 26px;
 }
 
 .postDialogModal
@@ -3268,14 +3279,24 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
     padding-left: 70px;
 }
 
+.postDialogModal_form > form > label {
+    color: #fefefe;
+    font-size: 26px;
+}
+
 .PostDialogInput {
     background-color: #fefefe;
     border-radius: 8px;
         -moz-border-radius: 8px;
         -webkit-border-radius: 8px;
     color: #7c7c7c;
+    font-size: 26px;
     margin-left: 25px;
     width: 320px;
+}
+
+input.PostDialogInput {
+    padding: 0 10px;
 }
 
 .PostDialogSubmit {
