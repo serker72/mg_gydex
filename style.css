@@ -3271,8 +3271,13 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
 }
 
 .postDialogModal_title {
-    padding: 10px 40px 10px 40px;
+    padding: 0px 40px 10px 40px;
     text-align: center;
+}
+
+.postDialogModal_title > p {
+    color: #fefefe;
+    font-size: 28px;
 }
 
 .postDialogModal_form {
@@ -3296,7 +3301,7 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
 }
 
 input.PostDialogInput {
-    padding: 0 10px;
+    padding: 0 15px;
 }
 
 .PostDialogSubmit {
@@ -3338,4 +3343,11 @@ input.PostDialogInput {
 #our_clients_slider{
 	width:1200px;
 	/*height:200px;*/
+}
+
+#CallDialogComplete,
+#PostDialogComplete 
+{
+    padding: 40px 20px;
+    text-align: center;
 }

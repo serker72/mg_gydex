@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Окт 25 2016 г., 18:55
+-- Время создания: Окт 25 2016 г., 23:35
 -- Версия сервера: 5.5.44-log
 -- Версия PHP: 5.3.29
 
@@ -960,7 +960,7 @@ CREATE TABLE IF NOT EXISTS `discr_users` (
 INSERT INTO `discr_users` (`id`, `login`, `passw`, `change_password_confirm`, `new_password`, `change_wait`, `username`, `address`, `email`, `phone`, `is_blocked`) VALUES
 (9, 'admin', '12e086066892a311b752673a28583d3f', '', '', 0, '', '', '', '', 0),
 (11, 'gydex_mail', 'c57cf07e61436d7edcc31a2679a461fa', '', '', 0, '', '', 'marketing@gydex.ru', '', 0),
-(12, 'raskovich', 'd26d73e2d2da47ec31ab3022edf68749', '', '', 0, 'Раскович Наталья', '', '', '', 0),
+(12, 'bassan-natalya', '49c347b2ad567afc2639139254f35bce', '', '', 0, 'Басан Наталья Александровна', '', 'bassan-natalya@mail.ru', '', 0),
 (13, 'supportonline', '9b9dcd160033ba0fc9f23046c79a923a', '', '', 0, '', '', 'supportonline@gydex.ru', '', 0);
 
 -- --------------------------------------------------------
@@ -1192,7 +1192,7 @@ CREATE TABLE IF NOT EXISTS `gydex_hits` (
   `pdate` datetime NOT NULL,
   `ip` varchar(80) NOT NULL DEFAULT '',
   `uri` varchar(255) NOT NULL DEFAULT ''
-) ENGINE=MyISAM AUTO_INCREMENT=327 DEFAULT CHARSET=cp1251;
+) ENGINE=MyISAM AUTO_INCREMENT=350 DEFAULT CHARSET=cp1251;
 
 --
 -- Дамп данных таблицы `gydex_hits`
@@ -1524,7 +1524,30 @@ INSERT INTO `gydex_hits` (`id`, `pdate`, `ip`, `uri`) VALUES
 (323, '2016-10-25 18:47:17', '', '/katalog/gal_vanika/'),
 (324, '2016-10-25 18:51:46', '', '/katalog/gal_vanika/'),
 (325, '2016-10-25 18:52:50', '', '/katalog/gal_vanika/'),
-(326, '2016-10-25 18:54:18', '', '/katalog/gal_vanika/');
+(326, '2016-10-25 18:54:18', '', '/katalog/gal_vanika/'),
+(327, '2016-10-25 21:25:26', '', '/katalog/tokarnye_tcentry/'),
+(328, '2016-10-25 21:25:33', '', '/katalog/tokarnye_tcentry/'),
+(329, '2016-10-25 21:28:26', '', '/katalog/tokarnye_tcentry/'),
+(330, '2016-10-25 21:29:18', '', '/katalog/tokarnye_tcentry/'),
+(331, '2016-10-25 21:49:43', '', '/katalog/tokarnye_tcentry/'),
+(332, '2016-10-25 21:51:46', '', '/katalog/tokarnye_tcentry/'),
+(333, '2016-10-25 21:57:36', '', '/kontakty/'),
+(334, '2016-10-25 21:57:56', '', '/kontakty/'),
+(335, '2016-10-25 21:58:18', '', '/kontakty/'),
+(336, '2016-10-25 22:00:22', '', '/kontakty/'),
+(337, '2016-10-25 22:00:51', '', '/kontakty/'),
+(338, '2016-10-25 22:55:13', '', '/kontakty/'),
+(339, '2016-10-25 22:56:05', '', '/kontakty/'),
+(340, '2016-10-25 22:59:38', '', '/kontakty/'),
+(341, '2016-10-25 23:02:06', '', '/kontakty/'),
+(342, '2016-10-25 23:06:07', '', '/kontakty/'),
+(343, '2016-10-25 23:14:56', '', '/kontakty/'),
+(344, '2016-10-25 23:17:08', '', '/kontakty/'),
+(345, '2016-10-25 23:18:04', '', '/kontakty/'),
+(346, '2016-10-25 23:19:17', '', '/novosti/'),
+(347, '2016-10-25 23:19:29', '', '/novosti/news_338.html'),
+(348, '2016-10-25 23:20:56', '', '/novosti/news_338.html'),
+(349, '2016-10-25 23:21:26', '', '/katalog/tokarnye_tcentry/');
 
 -- --------------------------------------------------------
 
@@ -79838,7 +79861,7 @@ INSERT INTO `gydex_stats` (`id`, `pdate`, `ip`, `total`) VALUES
 (78150, '2016-10-22', '', 1),
 (78151, '2016-10-23', '', 114),
 (78152, '2016-10-24', '', 36),
-(78153, '2016-10-25', '', 60);
+(78153, '2016-10-25', '', 83);
 
 -- --------------------------------------------------------
 
@@ -87021,7 +87044,7 @@ ALTER TABLE `good_price`
 -- AUTO_INCREMENT для таблицы `gydex_hits`
 --
 ALTER TABLE `gydex_hits`
-  MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=327;
+  MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=350;
 --
 -- AUTO_INCREMENT для таблицы `gydex_menu`
 --

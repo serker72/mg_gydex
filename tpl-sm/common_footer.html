@@ -2,7 +2,7 @@
             <div class="row-fluid">
                 <div class="col-lg-12 footer_main">
                     <div class="col-lg-3 col-lg-offset-1">
-                        <div class="footer_main_title"><a href="/about.html">О компании</a></div>
+                        <div class="footer_main_title"><a href="/o_kompanii/">О компании</a></div>
                         <div class="footer_main_text">%{$footer1}%</div>
                     </div>
                     <div class="col-lg-3 col-lg-offset-1">
@@ -10,7 +10,7 @@
                         <div>%{$services_in_footer}%</div>
                     </div>
                     <div class="col-lg-4">
-                        <div class="footer_main_title"><a href="/contacts.html">Контакты</a></div>
+                        <div class="footer_main_title"><a href="/kontakty/">Контакты</a></div>
                         <div class="row-fluid footer_contacts_row">
                             <div class="col-lg-1"><img src="/img/i_phone_white.png"></div>
                             <div class="col-lg-11"><a href="skype:%{$FEEDBACK_PHONE}%">%{$FEEDBACK_PHONE}%</a></div>
@@ -46,8 +46,31 @@
                 <label for="CallDialogName">Имя</label><br>
                 <input type="text" class="PostDialogInput" id="CallDialogName" value="" placeholder="Ваше имя"><br>
                 <label for="CallDialogPhone">Телефон</label><br>
-                <input type="text" class="PostDialogInput" id="CallDialogPhone" value="" placeholder="+7(985)123-456-78">
+                <input type="text" class="PostDialogInput" id="CallDialogPhone" value="" placeholder="+7(985)123-45-67">
             </form>
         </div>
         <div class="PostDialogSubmit"><a id="CallDialogSubmit" href="#">Отправить</a></div>
+        <div id="CallDialogComplete" style="display: none;">Ваша заявка отправлена.<br>В ближайшее время с Вами<br>свяжется менеджер.<br>Спасибо за проявленный интерес.<br></div>
+    </div>
+    
+    <div id="postDialog" class="postDialogModal">
+        <div id="postDialogModal_close" class="postDialogModal_close">
+            <span><img src="/img/modal_close.png"></span>
+            <div style="clear: both;"></div>
+        </div>
+        <div class="postDialogModal_title"><p>Наши специалисты<br>свяжутся с Вами и ответят<br>на интересующие Вас вопросы</p></div>
+        <div class="postDialogModal_form">
+            <form id="PostDialogForm" method="post" action="">
+                <label for="PostDialogName">Имя</label><br>
+                <input type="text" class="PostDialogInput" id="PostDialogName" value="" placeholder="Ваше имя"><br>
+                <label for="PostDialogPhone">Телефон</label><br>
+                <input type="text" class="PostDialogInput" id="PostDialogPhone" value="" placeholder="+7(985)123-45-67"><br>
+                <label for="PostDialogEmail">E-mail</label><br>
+                <input type="text" class="PostDialogInput" id="PostDialogEmail" value="" placeholder="test@mail.ru"><br>
+                <label for="PostDialogQuestion">Ваш запрос</label><br>
+                <textarea class="PostDialogInput" id="PostDialogQuestion" placeholder="Текст Вашего запроса"></textarea>
+            </form>
+        </div>
+        <div class="PostDialogSubmit"><a id="PostDialogSubmit" href="#">Отправить</a></div>
+        <div id="PostDialogComplete" style="display: none;">Ваша заявка отправлена.<br>В ближайшее время с Вами<br>свяжется менеджер.<br>Спасибо за проявленный интерес.<br></div>
     </div>
