@@ -43,20 +43,23 @@
 <script>
     $(document).ready(function(){
         ymaps.ready(function () {
-            //alert('Вот теперь API точно загружено.');
-            ymaps.geocode("%{$OFFICE_ADDRESS_MAP}%", { results: 1 }).then(function (res) {
-                // Выбираем первый результат геокодирования
-                var firstGeoObject = res.geoObjects.get(0);
-                // Создаем карту с нужным центром
-                var point_coordinates = firstGeoObject.geometry.getCoordinates();
-                myMap = new ymaps.Map("MGContactsMap", {
-                    center: point_coordinates,
-                    zoom: 11
-                });
-            }, function (err) {
-                // Если геокодирование не удалось, сообщаем об ошибке.
-                alert(err.message);
+            var map = new ymaps.Map(document.getElementById("MGContactsMap"), {
+                // При инициализации карты, обязательно нужно указать
+                // ее центр и коэффициент масштабирования                
+                center: [55.661721, 37.364543],
+                zoom: 16
             });
+            
+            var placemark = new ymaps.Placemark(
+                [55.661721, 37.364543],
+                {
+                    hintContent: '6-я Лазенки, 2c15'
+                },
+                {
+                    preset: 'twirl#redIcon'
+                }
+            );
+            map.geoObjects.add(placemark);            
         });
     });
 </script>
