@@ -108,8 +108,9 @@ $smarty->assign('navi','');
 
 
 
-$smarty->assign('name',  "".$rf->GetValue('404.php','header',$lang)."");;
-$content= "".$rf->GetValue('404.php','text',$lang)."<p>";
+$smarty->assign('name',  "".$rf->GetValue('404.php','header',$lang)."");
+$content = "";
+$content .= "".$rf->GetValue('404.php','text',$lang)."<p>";
 
 
 //нарисуем дерево сайта
@@ -123,7 +124,9 @@ $content.= $tree->DrawTreeCli();
 
 
 $smarty->assign('content',$content);
-$smarty->display('common_page.html');
+
+//$smarty->display('common_page.html');
+$smarty->display('page_404.html');
 //нижний код
 
 $smarty = new SmartyAdm;

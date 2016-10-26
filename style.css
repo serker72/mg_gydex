@@ -3321,6 +3321,30 @@ input.PostDialogInput {
     text-transform: uppercase;
 }
 
+.p404_title {
+    color: #313331;
+    font-size: 26px;
+    font-weight: bold;
+    padding: 55px 0 220px 0;
+}
+
+.p404_text_wrapper {
+    background: url('/img/404.png') no-repeat left 60px top 0px;
+    padding: 0px 0 100px 380px;
+}
+
+.p404_text_caption1 {
+    color: #313331;
+    font-size: 28px;
+    font-weight: bold;
+    padding: 0px 0 0 0;
+}
+
+.p404_text_caption2 {
+    color: #49494b;
+    font-size: 16px;
+    padding: 15px 0 10px 0;
+}
 
 /************************************
  * #ID - Ёлементы
