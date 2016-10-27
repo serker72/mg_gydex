@@ -81,8 +81,8 @@ class Searcher{
 		}
 		
 		$set=new MysqlSet($sql,$to_page,$from,$sql_count);
-		//echo " $sql <p>";
-		//echo $set->GetResultNumRows();
+		echo " $sql <p>";
+		echo $set->GetResultNumRows();
 		$total=$set->GetResultNumRowsUnf();
 		$rc=$set->GetResultNumRows();
 		$rs=$set->GetResult();

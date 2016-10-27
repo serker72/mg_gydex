@@ -1,13 +1,13 @@
             <!-- Блок "Услуги" -->
             <div class="row-fluid services_wrapper">
-                <div class="col-lg-12 caption_title"><a href="/uslugi/">Услуги</a></div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 caption_title"><a href="/uslugi/">Услуги</a></div>
                 
                 <!--div class="col-lg-12"-->
                     
                 <div id="our_services_slider"><!-- data-slick='{"slidesToShow": 4, "slidesToScroll": 2}'-->
                     %{foreach from=$items item=item name=f_services}% 
-                    <div class="%{if $smarty.foreach.f_services.index == 0}%col-lg-offset-2%{/if}% col-lg-2 services_small_wrapper">
-                            <div class="service_image"><img src="%{$item.image_big}%"></div>
+                    <div class="%{if $smarty.foreach.f_services.index == 0}%col-lg-offset-2 col-md-offset-2 col-sm-offset-2 col-xs-offset-2%{/if}% col-lg-2 col-md-2 col-sm-2 col-xs-2 services_small_wrapper">
+                            <div class="service_image"><img class="img-responsive" src="%{$item.image_big}%"></div>
                             <div class="service_text">%{$item.name}%</div>
                         </div>
                     %{/foreach}%

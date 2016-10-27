@@ -136,7 +136,7 @@ if($qry!=''){
 	//собираем прочие параметры строки
 	$other_params='';
 	foreach($_GET as $k=>$v){
-		//echo " $k = $v <br>";
+		echo " $k = $v <br>";
 		if(eregi('in_',$k)) $other_params.='&'.$k.'='.$v;
 	}
 	
