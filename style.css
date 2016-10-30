@@ -43,10 +43,12 @@ body{
 	background-repeat:repeat-x;
 	margin: 0px 0px 0px 0px; 
 	padding: 0px 0px 0px 0px; 
+        width: 100%;
 	
 }
 body, p, td, input, label, textarea, select, option{
 	font-family: MyriadProRegular, IstokWeb, Tahoma, Geneva, sans-serif;
+	/*font-size: 88%;*/
 	font-size:14px;
 	/*color:#959595;*/
         color: #333;
@@ -80,8 +82,8 @@ img{border:none;}
 }
 
 #header{
-	
-	width:1200px;
+	width: 100%;
+	/*width:1200px;*/
 	margin:0px auto;
 	font-size:15px;	
 		
@@ -1072,8 +1074,8 @@ background-image:url(/images/how-right-hover.png);
 
 #our_clients_slider{
 	
-	width:1000px;
-	height:200px;
+	/*width:1000px;*/
+	/*height:200px;*/
 	/*border:1px solid red;*/
 }
 
@@ -2356,6 +2358,7 @@ a.news_more:hover{
 
 .contacts {
     font-size: 17px;
+    /*font-size: 107%;*/
     height: 145px;
     padding: 40px 0 0 30px;
 }
@@ -2403,6 +2406,7 @@ a.news_more:hover{
     display: inline;
     list-style-type: none;
     font-size: 15px;
+    /*font-size: 94%;*/
     padding: 8px 8px 5px 11px;
 }
 
@@ -2446,6 +2450,7 @@ a.news_more:hover{
 .search_call_link {
     background-color: #eb3844;
     font-size: 17px;
+    /*font-size: 107%;*/
     padding: 13px 50px 12px 50px;
     text-align: center;
     text-transform: uppercase;
@@ -2463,12 +2468,13 @@ a.search_call_link:focus
     text-decoration: none;
 }
 
-.navbar-nav > li {
+.nav > li {
 }
 
-.navbar-nav > li > a {
+.nav > li > a {
     text-transform: uppercase;
     font-size: 18px;
+    /*font-size: 113%;*/
     color: #feffff;
     height: 75px;
     padding-top: 27px;
@@ -2476,9 +2482,9 @@ a.search_call_link:focus
     padding-right: 40px;
 }
 
-.navbar-nav > li > a:hover, 
-.navbar-nav > li > a:focus,
-.navbar-nav > li.dropdown.open > a.dropdown-toggle
+.nav > li > a:hover, 
+.nav > li > a:focus,
+.nav > li.dropdown.open > a.dropdown-toggle
 {
     background-color: #eb3844;
 }
@@ -2525,6 +2531,7 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
     padding: 120px 40px 25px 35px;
     background: url('/img/slider/caption_background.png') no-repeat;
     font-size: 40px;
+    /*font-size: 250%;*/
     font-weight: bold;
     text-align: left;
     text-transform: uppercase;
@@ -2537,6 +2544,7 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
       -webkit-border-radius: 8px;
     bottom: 25px;
     font-size: 20px;
+    /*font-size: 125%;*/
     height: 40px;
     padding-top: 5px;
     position: absolute;
@@ -2572,6 +2580,7 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
     background: url('/img/caption_bottom.png') no-repeat bottom;
     color: #313331;
     font-size: 24px;
+    /*font-size: 150%;*/
     font-weight: bold;
     text-align: center;
     text-transform: uppercase;
@@ -2599,6 +2608,7 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
 
 .services_small_wrapper {
     font-size: 16px;
+    /*font-size: 100%;*/
     /*height: 220px;*/
     padding-top: 15px;
     text-align: center;
@@ -2659,6 +2669,7 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
 
 .news_date {
     font-size: 15px;
+    /*font-size: 94%;*/
 }
 
 .news_img {
@@ -2670,6 +2681,7 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
 .news_text {
     /*float: left;*/
     font-size: 13px;
+    /*font-size: 82%;*/
     /*width: 230px;*/
 }
 
@@ -2698,12 +2710,13 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
     padding-top: 5px;
     text-align: center;
     text-transform: uppercase;
-    width: 155px;
+    /*width: 155px;*/
 }
 
 .news_advanced_info > a {
     color: #feffff;
     font-size: 13px;
+    /*font-size: 82%;*/
 }
 
 .news_advanced_info > a:hover,
@@ -2737,6 +2750,7 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
 .footer_main_title a {
     color: #fdfdfd;
     font-size: 15px;
+    /*font-size: 94%;*/
     padding-bottom: 24px;
     text-decoration: none;
     text-transform: uppercase
@@ -2751,6 +2765,7 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
 .footer_main_text, .footer_main_text > p  {
     color: #fdfdfd;
     font-size: 13px;
+    /*font-size: 82%;*/
 }
 
 .footer_services_list {
@@ -2809,6 +2824,7 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
     color: #727272;
     display: inline;
     font-size: 14px;
+    /*font-size: 88%;*/
     list-style-type: none;
     padding: 0px 8px 0px 8px;
     text-decoration: underline;
@@ -2820,6 +2836,7 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
     color: #fbfbfb;
     display: inline;
     font-size: 14px;
+    /*font-size: 88%;*/
     list-style-type: none;
     padding: 0px 8px 0px 8px;
     text-decoration: underline;
@@ -2868,6 +2885,7 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
 .about-text-1 {
     /*font-family: FranklinGothicMediumCondRegular;*/
     font-size: 22px;
+    /*font-size: 138%;*/
     font-weight: normal;
     padding: 105px 70px 110px 85px;
 }
@@ -2875,6 +2893,7 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
 .about-text-2 {
     /*background-color: #449d44;*/
     font-size: 17px;
+    /*font-size: 107%;*/
     font-weight: normal;
     padding: 0px 0px 0px 40px;
 }
@@ -2883,6 +2902,7 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
     /*background-color: #449d44;*/
     color: #feffff;
     font-size: 24px;
+    /*font-size: 150%;*/
     font-weight: normal;
     padding: 0px 0px 0px 85px;
     text-transform: uppercase;
@@ -2891,6 +2911,7 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
 .about-text-4 {
     color: #feffff;
     font-size: 17px;
+    /*font-size: 107%;*/
     font-weight: normal;
     padding: 0px 0px 0px 40px;
 }
@@ -2898,6 +2919,7 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
 .about-text-5 {
     color: #feffff;
     font-size: 17px;
+    /*font-size: 107%;*/
     font-weight: normal;
     padding: 0px 40px 0px 80px;
 }
@@ -2905,6 +2927,7 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
 .about-text-6 {
     color: #feffff;
     font-size: 17px;
+    /*font-size: 107%;*/
     font-weight: normal;
     padding: 0px 0px 0px 80px;
 }
@@ -2917,6 +2940,7 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
 .caption_services p {
     color: #2b2a29;
     font-size: 17px;
+    /*font-size: 107%;*/
     padding-bottom: 20px;
 }
 
@@ -2949,6 +2973,7 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
     background: url('/img/li_splitter.png') no-repeat top 3px left 0px;
     display: inline;
     font-size: 14px;
+    /*font-size: 88%;*/
     list-style-type: none;
     padding: 0px 8px 0px 8px;
 }
@@ -2980,6 +3005,7 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
 .news_col p {
     color: #727272;
     font-size: 14px;
+    /*font-size: 88%;*/
     min-height: 40px;
     padding-bottom: 20px;
 }
@@ -2993,6 +3019,7 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
     background: none;
     display: inline;
     font-size: 22px;
+    /*font-size: 138%;*/
     list-style-type: none;
     /*margin-right: 6px;*/
     /*padding: 6px 8px;*/
@@ -3019,12 +3046,14 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
 /*   Страница одной новости   */
 .news_page_title {
     font-size: 20px;
+    /*font-size: 125%;*/
     font-weight: bold;
     padding: 30px 0 0 0;
 }
 
 .news_page_date {
     font-size: 16px;
+    /*font-size: 100%;*/
     padding: 20px 0 25px 0;
 }
 
@@ -3034,12 +3063,14 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
 
 .news_page_text {
     font-size: 16px;
+    /*font-size: 100%;*/
     margin: 0 0 0 -60px;
     text-align: justify;
 }
 
 .news_page_text p {
     font-size: 16px;
+    /*font-size: 100%;*/
     padding: 0 0 20px 0;
 }
 
@@ -3077,6 +3108,7 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
 .catalog_category_item_title {
     color: #eb3844;
     font-size: 18px;
+    /*font-size: 113%;*/
     font-weight: bold;
     padding: 0 0 15px 0;
 }
@@ -3092,6 +3124,7 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
       -webkit-border-radius: 8px;
     /*bottom: 25px;*/
     font-size: 14px;
+    /*font-size: 88%;*/
     height: 30px;
     padding: 5px 15px;
     /*position: absolute;*/
@@ -3116,6 +3149,7 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
 .catalog_text {
     color: #2b2a29;
     font-size: 18px;
+    /*font-size: 113%;*/
     padding: 65px 0 140px 0;
 }
 
@@ -3139,6 +3173,7 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
 
 .caption_category_text > span {
     font-size: 16px;
+    /*font-size: 100%;*/
     margin: 5px 10px;
     position: absolute;
 }
@@ -3157,6 +3192,7 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
 
 .category_item_text {
     font-size: 16px;
+    /*font-size: 100%;*/
     padding: 15px 35px 0 0;
 }
 
@@ -3172,11 +3208,13 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
 .contacts_left {
     background: url('/img/i_contacts_address.png') no-repeat top 3px left 0;
     font-size: 16px;
+    /*font-size: 100%;*/
     padding: 0 0 0 50px;
 }
 
 .contacts_center {
     font-size: 16px;
+    /*font-size: 100%;*/
 }
 
 .contacts_center a {
@@ -3208,6 +3246,7 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
 .contacts_right > div > a {
     color: #fdf5f6;
     font-size: 18px;
+    /*font-size: 113%;*/
     text-transform: uppercase;
 }
 
@@ -3227,6 +3266,7 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
     color: #fefefe;
     display: none;
     font-size: 26px;
+    /*font-size: 163%;*/
     height: 540px;
     margin: 0 auto;
     position: absolute;
@@ -3246,6 +3286,7 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
 .callDialogModal_title > p {
     color: #fefefe;
     font-size: 26px;
+    /*font-size: 163%;*/
 }
 
 .postDialogModal
@@ -3254,6 +3295,7 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
     color: #fefefe;
     display: none;
     font-size: 28px;
+    /*font-size: 175%;*/
     height: 760px;
     margin: 0 auto;
     position: absolute;
@@ -3278,6 +3320,7 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
 .postDialogModal_title > p {
     color: #fefefe;
     font-size: 28px;
+    /*font-size: 175%;*/
 }
 
 .postDialogModal_form {
@@ -3287,6 +3330,7 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
 .postDialogModal_form > form > label {
     color: #fefefe;
     font-size: 26px;
+    /*font-size: 163%;*/
 }
 
 .PostDialogInput {
@@ -3296,6 +3340,7 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
         -webkit-border-radius: 8px;
     color: #7c7c7c;
     font-size: 26px;
+    /*font-size: 163%;*/
     margin-left: 25px;
     width: 320px;
 }
@@ -3317,6 +3362,7 @@ input.PostDialogInput {
         -webkit-border-radius: 8px;
     color: #fefefe;
     font-size: 28px;
+    /*font-size: 175%;*/
     padding: 10px 88px;
     text-transform: uppercase;
 }
@@ -3324,6 +3370,7 @@ input.PostDialogInput {
 .p404_title {
     color: #313331;
     font-size: 26px;
+    /*font-size: 163%;*/
     font-weight: bold;
     padding: 55px 0 220px 0;
 }
@@ -3336,6 +3383,7 @@ input.PostDialogInput {
 .p404_text_caption1 {
     color: #313331;
     font-size: 28px;
+    /*font-size: 175%;*/
     font-weight: bold;
     padding: 0px 0 0 0;
 }
@@ -3343,6 +3391,7 @@ input.PostDialogInput {
 .p404_text_caption2 {
     color: #49494b;
     font-size: 16px;
+    /*font-size: 100%;*/
     padding: 15px 0 10px 0;
 }
 
@@ -3365,8 +3414,9 @@ input.PostDialogInput {
 }
 
 #our_clients_slider{
-	width:1200px;
-	/*height:200px;*/
+    width: 100%;
+    /*width:1200px;*/
+    /*height:200px;*/
 }
 
 #CallDialogComplete,
@@ -3374,4 +3424,50 @@ input.PostDialogInput {
 {
     padding: 40px 20px;
     text-align: center;
+}
+
+/*  Media запросы  */
+@media screen and (min-width:1200px){
+    .container-fluid {
+        width: 1200px;
+    }
+}
+
+@media screen and (max-width:992px)
+{
+    .container-fluid {
+        width: 990px;
+    }
+}
+
+@media screen and (max-width:768px){
+    .container-fluid {
+        width: 760px;
+    }
+    
+    .logo {
+        display: none;
+    }
+    
+    .contacts {
+        /*font-size: 15px;*/
+    }
+    
+    #slider1, #slider3 {
+        display: none;
+    }
+}
+
+@media screen and (max-width:640px)
+{
+    .container-fluid {
+        width: 635px;
+    }
+}
+
+@media screen and (max-width:480px)
+{
+    .container-fluid {
+        width: 475px;
+    }
 }

@@ -13,7 +13,7 @@
                         <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10"><a href="mailto:%{$FEEDBACK_EMAIL}%">%{$FEEDBACK_EMAIL}%</a></div>
                     </div>
                 </div>
-                <div class="col-lg-3 search">
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 search">
                     <div class="row-fluid">
                         <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7 col-lg-offset-4 col-md-offset-4 col-sm-offset-4 col-xs-offset-4 search_lang">
                             <ul>
@@ -38,23 +38,35 @@
                 </div>
             </div>
             
-            <div id="main_menu">
-                <ul class="nav navbar-nav">
-                    %{section name=hmenusec loop=$hmenu}%
-                        %{section name=hmenusec1 loop=$hmenu[hmenusec].subs}%%{/section}%
-                        <!-- hmenu item -->
-                        <li class="%{if $hmenu[hmenusec].is_current}%current%{/if}% %{if $smarty.section.hmenusec1.total>0}%dropdown%{/if}%"><a href="%{$hmenu[hmenusec].item_url}%"  class="%{if $hmenu[hmenusec].is_current}%current%{/if}% %{if $smarty.section.hmenusec1.total>0}%dropdown%{/if}%">%{$hmenu[hmenusec].name}%%{if $smarty.section.hmenusec1.total>0}%<span class="caret"></span>%{/if}%</a>
-                        %{if $smarty.section.hmenusec1.total>0}%
-                            <ul class="dropdown-menu">
-                            %{foreach from=$hmenu[hmenusec].subs item=itm}%
-                                <li  class="%{if $itm.is_current}%current%{/if}% "><a href="%{$itm.item_url}%"  class="%{if $itm.is_current}%current%{/if}% " >%{$itm.name}%</a></li>
-                            %{/foreach}%
+            <div id="main_menu" class="row-fluid">
+                <!--nav class="navbar navbar-default" role="navigation">
+                    <div class="container-fluid">
+                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        </a>
+                        
+                        <div class="nav-collapse"-->
+                            <ul class="nav navbar-nav">
+                                %{section name=hmenusec loop=$hmenu}%
+                                    %{section name=hmenusec1 loop=$hmenu[hmenusec].subs}%%{/section}%
+                                    <!-- hmenu item -->
+                                    <li class="%{if $hmenu[hmenusec].is_current}%current%{/if}% %{if $smarty.section.hmenusec1.total>0}%dropdown%{/if}%"><a href="%{$hmenu[hmenusec].item_url}%"  class="%{if $hmenu[hmenusec].is_current}%current%{/if}% %{if $smarty.section.hmenusec1.total>0}%dropdown%{/if}%">%{$hmenu[hmenusec].name}%%{if $smarty.section.hmenusec1.total>0}%<span class="caret"></span>%{/if}%</a>
+                                    %{if $smarty.section.hmenusec1.total>0}%
+                                        <ul class="dropdown-menu">
+                                        %{foreach from=$hmenu[hmenusec].subs item=itm}%
+                                            <li  class="%{if $itm.is_current}%current%{/if}% "><a href="%{$itm.item_url}%"  class="%{if $itm.is_current}%current%{/if}% " >%{$itm.name}%</a></li>
+                                        %{/foreach}%
+                                        </ul>
+                                    %{/if}%
+                                    </li>
+                                    <!-- endof hmenu item -->
+                                %{/section}%
                             </ul>
-                        %{/if}%
-                        </li>
-                        <!-- endof hmenu item -->
-                    %{/section}%
-                </ul>
+                        <!--/div>
+                    </div>
+                </nav-->
             </div>
             <!--div class="clr"></div-->
         </div>
