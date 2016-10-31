@@ -1,17 +1,17 @@
             <!-- Блок "Каталог" -->
             <div class="row-fluid">
-                <div class="col-lg-offset-1 col-lg-10 caption_catalog">
-                    <img src="/img/caption_catalog.png">
+                <div class="col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 col-lg-10 col-md-10 col-sm-10 col-xs-10 caption_catalog">
+                    <img class="img-responsive" src="/img/caption_catalog.png">
                 </div>
             </div>
             <div class="row-fluid">
-                <div class="col-lg-offset-1 col-lg-10 catalog_category_wrapper">
+                <div class="col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 col-lg-10 col-md-10 col-sm-10 col-xs-10 catalog_category_wrapper">
                     <ul class="catalog_category_list">
                     %{foreach from=$items item=item}% 
                         <li>
                             <div class="catalog_category_item">
                                 <div class="catalog_category_item_title">%{$item.name}%</div>
-                                <div class="catalog_category_item_image"><img src="/img/catalog_item.png"></div>
+                                <div class="catalog_category_item_image"><img class="img-responsive" src="/img/catalog_item.png"></div>
                                 <div class="catalog_category_item_link"><a href="%{$item.url}%">Узнать больше</a></div>
                             </div>
                         </li>

@@ -2468,13 +2468,13 @@ a.search_call_link:focus
     text-decoration: none;
 }
 
-.nav {
+.nav.navbar-nav {
 }
 
-.nav > li {
+.nav.navbar-nav > li {
 }
 
-.nav > li > a {
+.nav.navbar-nav > li > a {
     color: #feffff;
     font-size: 18px;
     /*font-size: 113%;*/
@@ -2485,9 +2485,9 @@ a.search_call_link:focus
     text-transform: uppercase;
 }
 
-.nav > li > a:hover, 
-.nav > li > a:focus,
-.nav > li.dropdown.open > a.dropdown-toggle
+.nav.navbar-nav > li > a:hover, 
+.nav.navbar-nav > li > a:focus,
+.nav.navbar-nav > li.dropdown.open > a.dropdown-toggle
 {
     background-color: #eb3844;
     text-decoration: none;
@@ -2518,8 +2518,28 @@ ul.dropdown-menu {
     background-color: #333333;
 }
 
-ul.nav li.dropdown:hover ul.dropdown-menu {
+ul.nav.navbar-nav li.dropdown:hover ul.dropdown-menu {
     display: block;
+}
+
+.collapse.in {
+    display:block !important;
+    background-color: #333333;
+    position: absolute;
+    z-index: 111111111;
+}
+
+.collapse.in > ul.navbar-nav {
+    width: 420px;
+}
+
+.collapse.in > ul.nav.navbar-nav > li > a {
+    height: 60px;
+}
+
+
+.navbar-toggle {
+    float: left;
 }
 
 /*  Carousel  */
@@ -3443,6 +3463,35 @@ input.PostDialogInput {
     .container-fluid {
         width: 990px;
     }
+    
+    .logo {
+        display: none;
+    }
+    
+    .nav.navbar-nav > li > a {
+        font-size: 16px;
+        /*font-size: 113%;*/
+        height: 75px;
+        padding-top: 27px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    
+    .dropdown-menu {
+        width: 400px;
+    }
+    
+    .dropdown-menu > li > a {
+        padding: 3px 5px;
+    }
+    
+    #slider1, #slider3 {
+        display: none;
+    }
+    
+    #main_menu {
+        padding-left: 10px;
+    }
 }
 
 @media screen and (max-width:768px){
@@ -3468,6 +3517,23 @@ input.PostDialogInput {
         font-size: 15px;
     }
     
+    .nav.navbar-nav > li > a {
+        font-size: 15px;
+        /*font-size: 113%;*/
+        height: 75px;
+        padding-top: 27px;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    
+    .dropdown-menu {
+        width: 400px;
+    }
+    
+    .dropdown-menu > li > a {
+        padding: 3px 5px;
+    }
+    
     .caption_title {
         font-size: 22px;
     }
@@ -3478,6 +3544,34 @@ input.PostDialogInput {
     
     .about_wrapper {
         height: 170px;
+    }
+    
+    .contacts_right > div {
+        width: 170px;
+    }
+    
+    .contacts_right > div > a {
+        font-size: 15px;
+    }
+    
+    .contacts_left > p, .contacts_center > p {
+        font-size: 13px;
+    }
+    
+    .catalog_category_item_title {
+        font-size: 15px;
+    }
+    
+    .about-text-1, .about-text-3 {
+        font-size: 18px;
+    }
+    
+    .about-text-2 {
+        font-size: 14px;
+    }
+    
+    .about-text-4,.about-text-5, .about-text-6 {
+        font-size: 13px;
     }
     
     #slider1, #slider3 {

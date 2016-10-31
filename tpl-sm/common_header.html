@@ -38,16 +38,16 @@
                 </div>
             </div>
             
-            <div id="main_menu" class="row-fluid">
-                <!--nav class="navbar navbar-default" role="navigation">
-                    <div class="container-fluid">
-                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
+            <div id="main_menu" class="row-fluid navbar navbar-default">
+                <!--nav class="navbar navbar-default" role="navigation"-->
+                    <div class="navbar-header">
+                        <a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
                         </a>
-                        
-                        <div class="nav-collapse"-->
+                    </div>
+                        <div class="navbar-collapse collapse"-->
                             <ul class="nav navbar-nav">
                                 %{section name=hmenusec loop=$hmenu}%
                                     %{section name=hmenusec1 loop=$hmenu[hmenusec].subs}%%{/section}%
@@ -64,11 +64,12 @@
                                     <!-- endof hmenu item -->
                                 %{/section}%
                             </ul>
-                        <!--/div>
-                    </div>
+                        </div>
+                    <!--/div>
                 </nav-->
             </div>
             <!--div class="clr"></div-->
+            <div style="clear: both;"></div>
         </div>
 
 <script>
