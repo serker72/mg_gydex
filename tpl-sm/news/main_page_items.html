@@ -17,4 +17,37 @@
                     </div>
                 </div>
                 %{/foreach}%
+                <div style="clear: both;"></div>
             </div>
+
+<script>
+    function news_wrapper_change() {
+        var ws = $(window).width();
+        
+        if(ws<768){
+            $('.news_right').hide();
+
+            $('.news_left').removeClass('col-xs-5');
+            $('.news_left').addClass('col-xs-10');
+
+            $('.news_left div.news_text').removeClass('col-xs-6');
+            $('.news_left div.news_text').addClass('col-xs-7');
+        } else {
+            $('.news_right').show();
+
+            $('.news_left').removeClass('col-xs-10');
+            $('.news_left').addClass('col-xs-5');
+
+            $('.news_left div.news_text').removeClass('col-xs-7');
+            $('.news_left div.news_text').addClass('col-xs-6');
+        }
+    }
+    
+    $(window).resize(function(){
+        news_wrapper_change();
+    });
+    
+    $(document).ready(function(){
+        news_wrapper_change();
+    });
+</script>

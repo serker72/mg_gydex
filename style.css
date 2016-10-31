@@ -2468,18 +2468,21 @@ a.search_call_link:focus
     text-decoration: none;
 }
 
+.nav {
+}
+
 .nav > li {
 }
 
 .nav > li > a {
-    text-transform: uppercase;
+    color: #feffff;
     font-size: 18px;
     /*font-size: 113%;*/
-    color: #feffff;
     height: 75px;
     padding-top: 27px;
     padding-left: 40px;
     padding-right: 40px;
+    text-transform: uppercase;
 }
 
 .nav > li > a:hover, 
@@ -2487,6 +2490,7 @@ a.search_call_link:focus
 .nav > li.dropdown.open > a.dropdown-toggle
 {
     background-color: #eb3844;
+    text-decoration: none;
 }
 
 .dropdown-menu {
@@ -2602,7 +2606,7 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
 .services_wrapper {
     padding: 0px 0 20px 0px;
     margin: 0 auto;
-    height: 270px;
+    /*height: 270px;*/
     /*width: 100%;*/
 }
 
@@ -2626,7 +2630,7 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
 /*  Блок "О компании"  */
 .about_wrapper {
     background: url('/img/about_bg.png') no-repeat;
-    height: 250px;
+    /*height: 250px;*/
     margin: 0 auto;
     padding: 0px 110px 25px 110px;
     /*width: 100%;*/
@@ -2647,9 +2651,10 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
 /*  Блок "Новости"  */
 .news_wrapper {
     background-color: #d9dada;
-    height: 290px;
+    /*height: 290px;*/
     margin: 0 auto;
     /*padding: 0px 105px 20px 105px;*/
+    padding: 0px 0px 30px 0px;
     /*width: 100%;*/
 }
 
@@ -3450,7 +3455,29 @@ input.PostDialogInput {
     }
     
     .contacts {
-        /*font-size: 15px;*/
+        font-size: 15px;
+    }
+    
+    .contacts_phone img,
+    .contacts_mail img
+    {
+        width: 20px;
+    }
+    
+    .search_lang > ul > li {
+        font-size: 15px;
+    }
+    
+    .caption_title {
+        font-size: 22px;
+    }
+    
+    .services_small_wrapper {
+        font-size: 14px;
+    }
+    
+    .about_wrapper {
+        height: 170px;
     }
     
     #slider1, #slider3 {
@@ -3463,11 +3490,54 @@ input.PostDialogInput {
     .container-fluid {
         width: 635px;
     }
+    
+    .news_right {
+        display: none;
+    }
+    
+    .caption_title {
+        font-size: 21px;
+    }
+    
+    .about_wrapper {
+        height: 150px;
+    }
+    
+    .services_small_wrapper {
+        font-size: 13px;
+    }
 }
 
 @media screen and (max-width:480px)
 {
     .container-fluid {
         width: 475px;
+    }
+    
+    .contacts {
+        font-size: 13px;
+    }
+    
+    .contacts_phone img,
+    .contacts_mail img
+    {
+        width: 17px;
+    }
+    
+    .search_lang > ul > li {
+        font-size: 13px;
+    }
+    
+    .search_str {
+        width: 155px;
+    }
+    
+    .search_call_link {
+        font-size: 15px;
+        padding: 8px 35px;
+    }
+    
+    .caption_title {
+        font-size: 20px;
     }
 }

@@ -70,3 +70,29 @@
             </div>
             <!--div class="clr"></div-->
         </div>
+
+<script>
+    function header_wrapper_change() {
+        var ws = $(window).width();
+        
+        if(ws<768){
+            $('.logo').hide();
+
+            $('.search').addClass('col-xs-7');
+            $('.search').removeClass('col-xs-3');
+        } else {
+            $('.logo').show();
+
+            $('.search').addClass('col-xs-3');
+            $('.search').removeClass('col-xs-7');
+        }
+    }
+    
+    $(window).resize(function(){
+        header_wrapper_change();
+    });
+    
+    $(document).ready(function(){
+        header_wrapper_change();
+    });
+</script>
