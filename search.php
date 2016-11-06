@@ -76,7 +76,7 @@ unset($smarty);
 <input type="text" name="qry" id="qry" size="50" value="<?if(isset($_GET['qrya'])) echo htmlspecialchars($_GET['qrya']); if(isset($_GET['qry'])) echo htmlspecialchars($_GET['qry']);?>" maxlength="255"> 
 <input type="submit" name="doSrch" value="<?=$rf->GetValue('search.php','search_button',$lang)?>"><p>
 
-<strong><? if(HAS_PRICE||HAS_PAPERS||HAS_GALLERY) echo $rf->GetValue('search.php','add_places',$lang);?></strong><p>
+<strong><? if(HAS_PRICE||HAS_PAPERS||HAS_GALLERY||HAS_NEWS) echo $rf->GetValue('search.php','add_places',$lang);?></strong><p>
 
 <?
 if(HAS_PRICE){
@@ -99,6 +99,22 @@ if(HAS_PAPERS){
 if(HAS_GALLERY){
 ?>
 <input type="checkbox" name="in_photos" id="in_photos" value="1" <?if(isset($_GET['in_photos'])) echo 'checked';?>> <?=$rf->GetValue('search.php','in_photos',$lang)?><br>
+<?
+}
+?>
+
+<?
+//if(HAS_LINKS){
+?>
+<!--input type="checkbox" name="in_links" id="in_links" value="1" <?if(isset($_GET['in_links'])) echo 'checked';?>> <?=$rf->GetValue('search.php','in_links',$lang)?><br-->
+<?
+//}
+?>
+
+<?
+if(HAS_NEWS){
+?>
+<input type="checkbox" name="in_news" id="in_news" value="1" <?if(isset($_GET['in_news'])) echo 'checked';?>> <?=$rf->GetValue('search.php','in_news',$lang)?><br>
 <?
 }
 ?>
@@ -136,7 +152,7 @@ if($qry!=''){
 	//собираем прочие параметры строки
 	$other_params='';
 	foreach($_GET as $k=>$v){
-		echo " $k = $v <br>";
+		//echo " $k = $v <br>";
 		if(eregi('in_',$k)) $other_params.='&'.$k.'='.$v;
 	}
 	
@@ -242,6 +258,48 @@ if($qry!=''){
 		$srch->SetTemplates($tpl);
 		$srch->SetMode(4);
 		echo $srch->Search($qry,$lang,$photos_from,ITEMS_PER_PAGE,$extra);
+	}
+	
+	
+	//поиск в статьях(если указаны флаги)
+	/*if(HAS_LINKS&&isset($_GET['in_links'])){
+		if(!isset($_GET['links_from'])) $links_from = 0;
+		else $links_from = $_GET['links_from'];	
+		$links_from = abs((int)$links_from);	
+		$links_from = floor($links_from/ITEMS_PER_PAGE)*ITEMS_PER_PAGE;
+		
+		$srch->SetParams('link_item', 'link_lang', 'link_id', 'lang_id', 'is_shown', 'links_from', 'name,short_name,small_txt', $rf->GetValue('search.php','found_links_entries',$lang), '', $other_params);
+		$extra=Array();
+		$extra[]='l.name';
+		$extra[]='l.small_txt';
+		$extra[]='l.photo_small';
+		$tpl=Array();
+		$tpl['section']='search/section.html';
+		$tpl['item']='';	
+		$srch->SetTemplates($tpl);
+		$srch->SetMode(5);
+		echo $srch->Search($qry, $lang, $links_from, ITEMS_PER_PAGE, $extra);
+	}*/
+	
+	
+	//поиск в статьях(если указаны флаги)
+	if(HAS_NEWS&&isset($_GET['in_news'])){
+		if(!isset($_GET['news_from'])) $news_from=0;
+		else $news_from = $_GET['news_from'];	
+		$news_from=abs((int)$news_from);	
+		$news_from=floor($news_from/ITEMS_PER_PAGE)*ITEMS_PER_PAGE;
+		
+		$srch->SetParams('news_item','news_lang','news_id', 'lang_id','is_shown','news_from','name,small_txt,big_txt,title',$rf->GetValue('search.php','found_news_entries',$lang),'',$other_params);
+		$extra=Array();
+		$extra[]='l.name';
+		$extra[]='l.small_txt';
+		$extra[]='t.photo_small';
+		$tpl=Array();
+		$tpl['section']='search/section.html';
+		$tpl['item']='';	
+		$srch->SetTemplates($tpl);
+		$srch->SetMode(6);
+		echo $srch->Search($qry,$lang,$news_from,ITEMS_PER_PAGE,$extra);
 	}
 }
 ?>

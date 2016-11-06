@@ -89,6 +89,14 @@
         }
     }
     
+    $('#search_button').bind('click', function(){
+        if ($('#search_str').val().length > 3) {
+            url = '/search.php?qry=' + $('#search_str').val() + '&doSrch=Найти&in_papers=1&in_news=1';
+            alert('url=' + url);
+            location.href = url;
+        }
+    });
+    
     $(window).resize(function(){
         header_wrapper_change();
     });

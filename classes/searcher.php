@@ -81,8 +81,8 @@ class Searcher{
 		}
 		
 		$set=new MysqlSet($sql,$to_page,$from,$sql_count);
-		echo " $sql <p>";
-		echo $set->GetResultNumRows();
+		//echo " $sql <p>";
+		//echo $set->GetResultNumRows();
 		$total=$set->GetResultNumRowsUnf();
 		$rc=$set->GetResultNumRows();
 		$rs=$set->GetResult();
@@ -134,6 +134,12 @@ class Searcher{
 			break;
 			case 4:
 				$res=$this->DrawPhoto($f);
+			break;
+			case 5:
+				//$res=$this->DrawPhoto($f);
+			break;
+			case 6:
+				$res=$this->DrawNews($f);
 			break;
 			default:
 				$res=$this->DrawRazd($f);
@@ -250,6 +256,26 @@ class Searcher{
 		//url
 		$pap=new PhotoItem();
 		$url=$pap->ConstructPath($f[0],$this->lang_id,'/');
+		//echo " $url ";
+		$res['url']=$url;
+		$res['more']=$this->rf->GetValue('search.php','more_caption',$this->lang_id);
+		return $res;
+	}
+	
+	//функция вывода новости
+	public function DrawNews($f){
+		$res=Array();
+		
+		$res['title']=stripslashes($f[1]);
+		$res['altname']=htmlspecialchars(stripslashes($f[1]));
+		$res['image_src']=stripslashes($f[3]);
+		
+		$annot=stripslashes(substr(strip_tags($f[2]),0,255));
+		if($annot!='') $annot.='...';
+		$res['annot']=$annot;
+		//url
+		$pap=new NewsItem();
+		$url=$pap->ConstructUrl($f[0],$this->lang_id,NULL,1);
 		//echo " $url ";
 		$res['url']=$url;
 		$res['more']=$this->rf->GetValue('search.php','more_caption',$this->lang_id);
