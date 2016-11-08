@@ -2441,12 +2441,6 @@ a.news_more:hover{
     position: absolute;
 }
 
-.search_button:hover,
-.search_button:focus
-{
-    cursor: pointer;
-}
-
 .search_call {
     height: 68px;
     padding-top: 20px;
@@ -3424,12 +3418,6 @@ input.PostDialogInput {
     font-size: 16px;
     /*font-size: 100%;*/
     padding: 15px 0 10px 0;
-}
-
-/*  Страница поиска  */
-.caption_search {
-    /*color: #727272;*/
-    font-size: 20px;
 }
 
 /************************************

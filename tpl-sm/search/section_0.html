@@ -1,6 +1,5 @@
-
-<!--h3>%{*$titletext*}%</h3-->
-%{*$pages*}%
+<h3>%{$titletext}%</h3>
+%{$pages}%
 
 
 <table width="98%" border="0" cellspacing="10" cellpadding="0">
@@ -52,12 +51,11 @@
 </tr>
 %{/if}%
 
-%{if $mode==4}%
+%{if $mode==4 or $mode==5 or $mode==6}%
 <!-- in photo -->
 <tr align="left" valign="top">
 <td width="*" class="itemscell">
-<h4><a href="%{$items[itemsec].url}%" target="_blank">%{$items[itemsec].title}%</a></h4>
-<!--a href="%{$items[itemsec].url}%" target="_blank"><img src="/%{$items[itemsec].image_src}%" alt="%{$items[itemsec].altname}%" border="0"  align="left" hspace="5" vspace="2"-->
+<a href="%{$items[itemsec].url}%" target="_blank"><img src="/%{$items[itemsec].image_src}%" alt="%{$items[itemsec].altname}%" border="0"  align="left" hspace="5" vspace="2">
 %{$items[itemsec].name}%</a>
 <div class="paper_annot">
 	%{$items[itemsec].annot}%
@@ -66,32 +64,6 @@
 	</div>
 </td>
 </tr>
-%{/if}%
-
-%{if $mode==6}%
-<div class="row-fluid">
-    <div class="col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 col-lg-10 col-md-10 col-sm-10 col-xs-10 news_col">
-        <ul>
-            <li><a href="/novosti/">Новости</a></li>
-            <li><a href="%{$items[itemsec].url}%" target="_blank">%{$items[itemsec].title}%</a></li>
-        </ul>
-        %{$items[itemsec].annot|truncate:500}%
-    </div>
-</div>
-%{/if}%
-
-%{if $mode==5}%
-<div class="row-fluid">
-    <div class="col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 col-lg-10 col-md-10 col-sm-10 col-xs-10 news_col">
-        <ul>
-            %{if $items[itemsec].parent_url !== ''}%
-            <li><a href="%{$items[itemsec].parent_url}%">%{$items[itemsec].parent_title}%</a></li>
-            %{/if}%
-            <li><a href="%{$items[itemsec].url}%" target="_blank">%{$items[itemsec].title}%</a></li>
-        </ul>
-        %{$items[itemsec].annot|truncate:500}%
-    </div>
-</div>
 %{/if}%
 
 %{/section}%

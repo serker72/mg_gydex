@@ -91,9 +91,11 @@
     
     $('#search_button').bind('click', function(){
         if ($('#search_str').val().length > 3) {
-            url = '/search.php?qry=' + $('#search_str').val() + '&doSrch=Найти&in_papers=1&in_news=1';
+            url = '/search.php?qry=' + $('#search_str').val() + '&doSrch=Найти&in_papers=1&in_news=1&in_links=1';
             alert('url=' + url);
             location.href = url;
+        } else {
+            alert('Для выполнения поиска введите более 3-х символов в строке');
         }
     });
     

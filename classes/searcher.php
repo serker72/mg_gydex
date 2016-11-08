@@ -55,7 +55,7 @@ class Searcher{
 	}
 	
 	//блок поиска
-	public function Search($word,$lang_id,$from=0,$to_page=ITEMS_PER_PAGE,$extra_params=NULL,$sort_params=NULL){
+	public function Search($word,$lang_id,$from=0,$to_page=ITEMS_PER_PAGE,$extra_params=NULL,$sort_params=NULL,&$total_count){
 		$txt=''; $extra=''; $sort='';
 		$this->lang_id=$lang_id;
 		
@@ -64,9 +64,9 @@ class Searcher{
 		if($this->is_fulltext){
 			if($extra_params!==NULL) $extra=', '.join(', ',$extra_params).', ';
 			if($sort_params!==NULL) $sort=', '.join(', ',$sort_params);
-			$sql='select t.id '.$extra.' MATCH('.$this->index_defs.') AGAINST("'.$word.'"  IN BOOLEAN MODE) as rel from '.$this->tablename.' as t INNER JOIN '.$this->lang_tablename.' as l on (t.id=l.'.$this->mid_name.' and l.'.$this->lang_id_name.'="'.$lang_id.'" and l.'.$this->vis_name.'="1") having rel>0 order by rel desc '.$sort.' ';
+			$sql='select t.id '.$extra.' MATCH('.$this->index_defs.') AGAINST("'.$word.'"  IN BOOLEAN MODE) as rel from '.$this->tablename.' as t INNER JOIN '.$this->lang_tablename.' as l on (t.id=l.'.$this->mid_name.' and l.'.$this->lang_id_name.'="'.$lang_id.'" and l.'.$this->vis_name.'="1")'.($this->tablename == 'link_item' ? ' INNER JOIN allmenu as m on (t.mid=m.id and m.parent_id>0)' : '').' having rel>0 order by rel desc '.$sort.' ';
 			
-			$sql_count='select count(t.id), MATCH('.$this->index_defs.') AGAINST("'.$word.'"  IN BOOLEAN MODE) as rel from '.$this->tablename.' as t INNER JOIN '.$this->lang_tablename.' as l on (t.id=l.'.$this->mid_name.' and l.'.$this->lang_id_name.'="'.$lang_id.'" and l.'.$this->vis_name.'="1") group by rel having rel>0  ';
+			$sql_count='select count(t.id), MATCH('.$this->index_defs.') AGAINST("'.$word.'"  IN BOOLEAN MODE) as rel from '.$this->tablename.' as t INNER JOIN '.$this->lang_tablename.' as l on (t.id=l.'.$this->mid_name.' and l.'.$this->lang_id_name.'="'.$lang_id.'" and l.'.$this->vis_name.'="1")'.($this->tablename == 'link_item' ? ' INNER JOIN allmenu as m on (t.mid=m.id and m.parent_id>0)' : '').' group by rel having rel>0  ';
 		}else{
 			if($extra_params!==NULL) $extra=', '.join(', ',$extra_params).' ';
 			if($sort_params!==NULL) $sort='order by '.join(', ',$sort_params);
@@ -74,14 +74,14 @@ class Searcher{
 			
 			$like_string=join(' LIKE "%'.$word.'%" or ',$like_params).' LIKE "%'.$word.'%" ';
 			
-			$sql='select t.id '.$extra.' from '.$this->tablename.' as t INNER JOIN '.$this->lang_tablename.' as l on (t.id=l.'.$this->mid_name.' and l.'.$this->lang_id_name.'="'.$lang_id.'" and l.'.$this->vis_name.'="1") where '.$like_string.'   '.$sort.' ';
+			$sql='select t.id '.$extra.' from '.$this->tablename.' as t INNER JOIN '.$this->lang_tablename.' as l on (t.id=l.'.$this->mid_name.' and l.'.$this->lang_id_name.'="'.$lang_id.'" and l.'.$this->vis_name.'="1")'.($this->tablename == 'link_item' ? ' INNER JOIN allmenu as m on (t.mid=m.id and m.parent_id>0)' : '').' where '.$like_string.'   '.$sort.' ';
 			
-			$sql_count='select count(t.id) from '.$this->tablename.' as t INNER JOIN '.$this->lang_tablename.' as l on (t.id=l.'.$this->mid_name.' and l.'.$this->lang_id_name.'="'.$lang_id.'" and l.'.$this->vis_name.'="1") where '.$like_string.' ';
+			$sql_count='select count(t.id) from '.$this->tablename.' as t INNER JOIN '.$this->lang_tablename.' as l on (t.id=l.'.$this->mid_name.' and l.'.$this->lang_id_name.'="'.$lang_id.'" and l.'.$this->vis_name.'="1")'.($this->tablename == 'link_item' ? ' INNER JOIN allmenu as m on (t.mid=m.id and m.parent_id>0)' : '').' where '.$like_string.' ';
 		
 		}
 		
 		$set=new MysqlSet($sql,$to_page,$from,$sql_count);
-		//echo " $sql <p>";
+		echo " $sql <p>";
 		//echo $set->GetResultNumRows();
 		$total=$set->GetResultNumRowsUnf();
 		$rc=$set->GetResultNumRows();
@@ -111,8 +111,10 @@ class Searcher{
 			}
 			$smarty->assign('items',$rows);
 			$txt=$smarty->fetch($this->templates['section']);
-		}else $txt=$this->not_found_title;
+		} //else $txt=$this->not_found_title;
 		
+                $total_count = $total;
+                
 		return $txt;
 	}
 	
@@ -136,7 +138,7 @@ class Searcher{
 				$res=$this->DrawPhoto($f);
 			break;
 			case 5:
-				//$res=$this->DrawPhoto($f);
+				$res=$this->DrawLink($f);
 			break;
 			case 6:
 				$res=$this->DrawNews($f);
@@ -256,6 +258,37 @@ class Searcher{
 		//url
 		$pap=new PhotoItem();
 		$url=$pap->ConstructPath($f[0],$this->lang_id,'/');
+		//echo " $url ";
+		$res['url']=$url;
+		$res['more']=$this->rf->GetValue('search.php','more_caption',$this->lang_id);
+		return $res;
+	}
+        
+	//функция вывода ссылки
+	public function DrawLink($f){
+		
+		$res=Array();
+		$mi=new MmenuItem();
+                $_mi = $mi->GetItemById($f[4], $this->lang_id);
+                if ($_mi['parent_id'] > 0) {
+                    $_mip = $mi->GetItemById($_mi['parent_id'], $this->lang_id);
+                    $res['parent_title']=$_mip['name'];
+                    $res['parent_url']=$mi->ConstructPath($_mi['parent_id'], $this->lang_id, 1, '/');
+                } else {
+                    $res['parent_title']='';
+                    $res['parent_url']='';
+                }
+                
+		$res['title']=stripslashes($_mi['name']);
+		$annot=stripslashes(substr(strip_tags($f[2]),0,255));
+		if($annot!='') $annot.='...';
+		$res['annot']=$annot;
+		//url
+		if(HAS_URLS){
+			$url=$mi->ConstructPath($f[4],$this->lang_id,1,'/');
+		}else{
+			$url='/razds.php?id='.$f[4];
+		}
 		//echo " $url ";
 		$res['url']=$url;
 		$res['more']=$this->rf->GetValue('search.php','more_caption',$this->lang_id);
