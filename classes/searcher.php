@@ -55,9 +55,10 @@ class Searcher{
 	}
 	
 	//блок поиска
-	public function Search($word,$lang_id,$from=0,$to_page=ITEMS_PER_PAGE,$extra_params=NULL,$sort_params=NULL,&$total_count){
+	public function Search($word,$lang_id,$from=0,$to_page=ITEMS_PER_PAGE,$extra_params=NULL,$sort_params=NULL,&$alls,&$total_count){
 		$txt=''; $extra=''; $sort='';
 		$this->lang_id=$lang_id;
+		$alls = Array();
 		
 		
 		
@@ -106,8 +107,11 @@ class Searcher{
 			$rows=Array();
 			for($i=0;$i<$rc;$i++){
 				$f=mysqli_fetch_array($rs);
-				$rows[]=$this->DrawItem($f);
+				$res=$this->DrawItem($f);
 				//echo " $f[rel] <br>";
+                                $res['mode'] = $this->s_mode;
+				$rows[]=$res;
+                                $alls[] = $res;
 			}
 			$smarty->assign('items',$rows);
 			$txt=$smarty->fetch($this->templates['section']);

@@ -1,99 +1,48 @@
-
-<!--h3>%{*$titletext*}%</h3-->
+%{*debug*}%
 %{*$pages*}%
-
-
-<table width="98%" border="0" cellspacing="10" cellpadding="0">
 
 %{section name=itemsec loop=$items}%
 
-%{if $mode==1 or $mode==0}%
-<!-- in razd, paper -->
-
-<tr align="left" valign="top">
-	<td width="*" class="itemscell">
-	<h4><a href="%{$items[itemsec].url}%" target="_blank">%{$items[itemsec].title}%</a></h4>
-	<div class="paper_annot">
-	%{$items[itemsec].annot}%
-	<br>
-	<a href="%{$items[itemsec].url}%" target="_blank">%{$items[itemsec].more}%</a>
-	</div>
-	</td>
-</tr>
-
-%{/if}%
-
-%{if $mode==2}%
-<!-- in firm -->
-<tr align="left" valign="top">
-<td width="*" class="itemscell">
-<a href="%{$items[itemsec].url}%" target="_blank"><img src="/%{$items[itemsec].image_src}%" alt="%{$items[itemsec].altname}%" border="0"  align="left" hspace="5" vspace="2">
-%{$items[itemsec].name}%</a>
-<div class="paper_annot">
-	%{$items[itemsec].annot}%
-	<br clear="all">
-	<a href="%{$items[itemsec].url}%" target="_blank">%{$items[itemsec].more}%</a>
-	</div>
-</td>
-</tr>
-%{/if}%
-
-%{if $mode==3}%
-<!-- in good -->
-<tr align="left" valign="top">
-<td width="*" class="itemscell">
-<a href="%{$items[itemsec].url}%" target="_blank"><img src="/%{$items[itemsec].image_src}%" alt="%{$items[itemsec].altname}%" border="0"  align="left" hspace="5" vspace="2">
-%{$items[itemsec].name}%</a>
-<br>
-%{$items[itemsec].firm}%
-%{$items[itemsec].annot}%
-<div class="basicprice">%{$items[itemsec].price}%</div>
-</td>
-</tr>
-%{/if}%
-
-%{if $mode==4}%
-<!-- in photo -->
-<tr align="left" valign="top">
-<td width="*" class="itemscell">
-<h4><a href="%{$items[itemsec].url}%" target="_blank">%{$items[itemsec].title}%</a></h4>
-<!--a href="%{$items[itemsec].url}%" target="_blank"><img src="/%{$items[itemsec].image_src}%" alt="%{$items[itemsec].altname}%" border="0"  align="left" hspace="5" vspace="2"-->
-%{$items[itemsec].name}%</a>
-<div class="paper_annot">
-	%{$items[itemsec].annot}%
-	<br  clear="all">
-	<a href="%{$items[itemsec].url}%" target="_blank">%{$items[itemsec].more}%</a>
-	</div>
-</td>
-</tr>
-%{/if}%
-
-%{if $mode==6}%
 <div class="row-fluid">
     <div class="col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 col-lg-10 col-md-10 col-sm-10 col-xs-10 news_col">
         <ul>
-            <li><a href="/novosti/">Новости</a></li>
-            <li><a href="%{$items[itemsec].url}%" target="_blank">%{$items[itemsec].title}%</a></li>
-        </ul>
-        %{$items[itemsec].annot|truncate:500}%
-    </div>
-</div>
-%{/if}%
-
-%{if $mode==5}%
-<div class="row-fluid">
-    <div class="col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 col-lg-10 col-md-10 col-sm-10 col-xs-10 news_col">
-        <ul>
-            %{if $items[itemsec].parent_url !== ''}%
-            <li><a href="%{$items[itemsec].parent_url}%">%{$items[itemsec].parent_title}%</a></li>
+            %{if $items[itemsec].mode == 6}%
+            <li><a href="/novosti/" target="_blank">Новости</a></li>
+            %{elseif $items[itemsec].parent_url !== ''}%
+            <li><a href="%{$items[itemsec].parent_url}%" target="_blank">%{$items[itemsec].parent_title}%</a></li>
+            %{else}%
+            <li><a href="/" target="_blank">Главная</a></li>
             %{/if}%
             <li><a href="%{$items[itemsec].url}%" target="_blank">%{$items[itemsec].title}%</a></li>
         </ul>
         %{$items[itemsec].annot|truncate:500}%
     </div>
 </div>
-%{/if}%
 
 %{/section}%
-</table>
-%{$pages}%
+
+%{*$pages*}%
+<div style="clear:both;"></div>
+<!-- Блок пагинации новостей -->
+<div class="row-fluid">
+    <div class="col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 col-lg-10 col-md-10 col-sm-10 col-xs-10 news_paginate" id="news_paginate">
+        <ul id="news_pages">
+            %{$pages|replace:'<span':'<li><span'|replace:'</span>':'</span></li>'|replace:'<a href':'<li><a href'|replace:'</a>':'</a></li>'}%
+        </ul>
+    </div>
+</div>
+<!-- Блок пагинации новостей -->
+
+<script>
+    $(document).ready(function(){
+       $("div.alblinks > li > span.inactive").each(function () {
+           if ((this.textContent !== '|<') && (this.textContent !== '<<') && (this.textContent !== '>|') && (this.textContent !== '>>')) {
+               $(this).removeClass('inactive');
+               $(this).addClass('active');
+           } else {
+               $(this).hide();
+           }
+       });
+       $("div.alblinks1").hide();
+    });
+</script>                    

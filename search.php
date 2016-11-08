@@ -71,6 +71,7 @@ if(isset($left_res)){
 $smarty->display('common_top.html');
 unset($smarty);
 
+$search_items_per_page = 2;
 $content='';
 $smarty_content=new SmartyAdm();
 
@@ -107,6 +108,8 @@ if(isset($_GET['qry'])){
 $smarty_content->assign('qry', $qry);
 
 //ищем
+$search_rows = Array();
+$search_all_rows = Array();
 $search_count = 0;
 $search_all_count = 0;
 if($qry!=''){
@@ -124,7 +127,7 @@ if($qry!=''){
 	if(!isset($_GET['from'])) $from=0;
 	else $from = $_GET['from'];	
 	$from=abs((int)$from);	
-	$from=floor($from/ITEMS_PER_PAGE)*ITEMS_PER_PAGE;
+	$from=floor($from/$search_items_per_page)*$search_items_per_page;
 	
 	$srch->SetParams('allmenu','menu_lang','mid', 'lang_id','is_shown','from','name,txt,title',$rf->GetValue('search.php','found_entries',$lang),$rf->GetValue('search.php','no_entries',$lang),$other_params);
 	$extra=Array();
@@ -135,8 +138,11 @@ if($qry!=''){
 	$tpl['item']='';	
 	$srch->SetTemplates($tpl);
 	$srch->SetMode(0);
-	$content .= $srch->Search($qry,$lang,$from,ITEMS_PER_PAGE,$extra,NULL,$search_count);
-        $search_all_count += $search_count;
+	$content .= $srch->Search($qry,$lang,$from,$search_items_per_page,$extra, NULL, $search_rows, $search_count);
+        if ($search_count > 0) {
+            $search_all_rows = array_merge($search_all_rows, $search_rows);
+            $search_all_count += $search_count;
+        }
 	
 	//поиск в каталоге товаров и в фирмах(если указаны флаги)
 	if(HAS_PRICE&&isset($_GET['in_price'])){
@@ -145,7 +151,7 @@ if($qry!=''){
 		$price_from=abs((int)$price_from);	
 		$price_from=floor($price_from/ITEMS_PER_PAGE)*ITEMS_PER_PAGE;
 		
-		$srch->SetParams('price_item','price_lang','price_id', 'lang_id','is_shown','price_from','name,small_txt,big_txt,title',$rf->GetValue('search.php','found_price_entries',$lang),'',$other_params);
+		$srch->SetParams('price_item','price_lang','price_id', 'lang_id','is_shown','from','name,small_txt,big_txt,title',$rf->GetValue('search.php','found_price_entries',$lang),'',$other_params);
 		$extra=Array();
 		$extra[]='l.name';
 		$extra[]='l.small_txt';
@@ -156,8 +162,11 @@ if($qry!=''){
 		$tpl['item']='';	
 		$srch->SetTemplates($tpl);
 		$srch->SetMode(3);
-		$content .= $srch->Search($qry,$lang,$price_from,ITEMS_PER_PAGE,$extra,NULL,$search_count);
-                $search_all_count += $search_count;
+		$content .= $srch->Search($qry,$lang,$price_from,$search_items_per_page,$extra, NULL, $search_rows, $search_count);
+                if ($search_count > 0) {
+                    $search_all_rows = array_merge($search_all_rows, $search_rows);
+                    $search_all_count += $search_count;
+                }
 	
 	}
 	
@@ -168,7 +177,7 @@ if($qry!=''){
 		$firms_from=abs((int)$firms_from);	
 		$firms_from=floor($firms_from/ITEMS_PER_PAGE)*ITEMS_PER_PAGE;
 		
-		$srch->SetParams('firms','firms_lang','firmid', 'lang_id','is_shown','firms_from','name,info',$rf->GetValue('search.php','found_firms_entries',$lang),'',$other_params);
+		$srch->SetParams('firms','firms_lang','firmid', 'lang_id','is_shown','from','name,info',$rf->GetValue('search.php','found_firms_entries',$lang),'',$other_params);
 		$extra=Array();
 		$extra[]='l.name';
 		$extra[]='l.info';
@@ -178,8 +187,11 @@ if($qry!=''){
 		$tpl['item']='';	
 		$srch->SetTemplates($tpl);
 		$srch->SetMode(2);
-		$content .= $srch->Search($qry,$lang,$firms_from,ITEMS_PER_PAGE,$extra,NULL,$search_count);
-                $search_all_count += $search_count;
+		$content .= $srch->Search($qry,$lang,$firms_from,$search_items_per_page,$extra, NULL, $search_rows, $search_count);
+                if ($search_count > 0) {
+                    $search_all_rows = array_merge($search_all_rows, $search_rows);
+                    $search_all_count += $search_count;
+                }
 	}
 	
 	
@@ -192,7 +204,7 @@ if($qry!=''){
 		$pap_from=abs((int)$pap_from);	
 		$pap_from=floor($pap_from/ITEMS_PER_PAGE)*ITEMS_PER_PAGE;
 		
-		$srch->SetParams('paper_item','paper_lang','paper_id', 'lang_id','is_shown','pap_from','name,small_txt,big_txt,title',$rf->GetValue('search.php','found_paper_entries',$lang),'',$other_params);
+		$srch->SetParams('paper_item','paper_lang','paper_id', 'lang_id','is_shown','from','name,small_txt,big_txt,title',$rf->GetValue('search.php','found_paper_entries',$lang),'',$other_params);
 		$extra=Array();
 		$extra[]='l.name';
 		$extra[]='l.small_txt';
@@ -202,8 +214,11 @@ if($qry!=''){
 		$tpl['item']='';	
 		$srch->SetTemplates($tpl);
 		$srch->SetMode(1);
-		$content .= $srch->Search($qry,$lang,$pap_from,ITEMS_PER_PAGE,$extra,NULL,$search_count);
-                $search_all_count += $search_count;
+		$content .= $srch->Search($qry,$lang,$pap_from,$search_items_per_page,$extra, NULL, $search_rows, $search_count);
+                if ($search_count > 0) {
+                    $search_all_rows = array_merge($search_all_rows, $search_rows);
+                    $search_all_count += $search_count;
+                }
 	}
 	
 	
@@ -214,7 +229,7 @@ if($qry!=''){
 		$photos_from=abs((int)$photos_from);	
 		$photos_from=floor($photos_from/ITEMS_PER_PAGE)*ITEMS_PER_PAGE;
 		
-		$srch->SetParams('photo_item','photo_lang','photo_id', 'lang_id','is_shown','photos_from','name,small_txt,big_txt,title',$rf->GetValue('search.php','found_photos_entries',$lang),'',$other_params);
+		$srch->SetParams('photo_item','photo_lang','photo_id', 'lang_id','is_shown','from','name,small_txt,big_txt,title',$rf->GetValue('search.php','found_photos_entries',$lang),'',$other_params);
 		$extra=Array();
 		$extra[]='l.name';
 		$extra[]='l.small_txt';
@@ -224,8 +239,11 @@ if($qry!=''){
 		$tpl['item']='';	
 		$srch->SetTemplates($tpl);
 		$srch->SetMode(4);
-		$content .= $srch->Search($qry,$lang,$photos_from,ITEMS_PER_PAGE,$extra,NULL,$search_count);
-                $search_all_count += $search_count;
+		$content .= $srch->Search($qry,$lang,$photos_from,$search_items_per_page,$extra, NULL,$search_rows, $search_count);
+                if ($search_count > 0) {
+                    $search_all_rows = array_merge($search_all_rows, $search_rows);
+                    $search_all_count += $search_count;
+                }
 	}
 	
 	
@@ -236,7 +254,7 @@ if($qry!=''){
 		$links_from = abs((int)$links_from);	
 		$links_from = floor($links_from/ITEMS_PER_PAGE)*ITEMS_PER_PAGE;
 		
-		$srch->SetParams('link_item', 'link_lang', 'link_id', 'lang_id', 'is_shown', 'links_from', 'name,short_name,small_txt', $rf->GetValue('search.php','found_links_entries',$lang), '', $other_params);
+		$srch->SetParams('link_item', 'link_lang', 'link_id', 'lang_id', 'is_shown', 'from', 'name,short_name,small_txt', $rf->GetValue('search.php','found_links_entries',$lang), '', $other_params);
 		$extra=Array();
 		$extra[]='l.name';
 		$extra[]='l.small_txt';
@@ -247,7 +265,11 @@ if($qry!=''){
 		$tpl['item']='';	
 		$srch->SetTemplates($tpl);
 		$srch->SetMode(5);
-		$content .= $srch->Search($qry, $lang, $links_from, ITEMS_PER_PAGE, $extra);
+		$content .= $srch->Search($qry, $lang, $links_from, $search_items_per_page, $extra, NULL, $search_rows, $search_count);
+                if ($search_count > 0) {
+                    $search_all_rows = array_merge($search_all_rows, $search_rows);
+                    $search_all_count += $search_count;
+                }
 	}
 	
 	
@@ -258,7 +280,7 @@ if($qry!=''){
 		$news_from=abs((int)$news_from);	
 		$news_from=floor($news_from/ITEMS_PER_PAGE)*ITEMS_PER_PAGE;
 		
-		$srch->SetParams('news_item','news_lang','news_id', 'lang_id','is_shown','news_from','name,small_txt,big_txt,title',$rf->GetValue('search.php','found_news_entries',$lang),'',$other_params);
+		$srch->SetParams('news_item','news_lang','news_id', 'lang_id','is_shown','from','name,small_txt,big_txt,title',$rf->GetValue('search.php','found_news_entries',$lang),'',$other_params);
 		$extra=Array();
 		$extra[]='l.name';
 		$extra[]='l.small_txt';
@@ -268,14 +290,38 @@ if($qry!=''){
 		$tpl['item']='';	
 		$srch->SetTemplates($tpl);
 		$srch->SetMode(6);
-		$content .= $srch->Search($qry,$lang,$news_from,ITEMS_PER_PAGE,$extra,NULL,$search_count);
-                $search_all_count += $search_count;
+		$content .= $srch->Search($qry,$lang,$news_from,$search_items_per_page,$extra, NULL, $search_rows, $search_count);
+                if ($search_count > 0) {
+                    $search_all_rows = array_merge($search_all_rows, $search_rows);
+                    $search_all_count += $search_count;
+                }
 	}
 }
-?>
 
 
-<?
+$content='';
+if ($search_all_count > 0) {
+    $smarty=new SmartyAdm;
+    $smarty->debugging=DEBUG_INFO;
+
+    //$smarty->assign('titletext',$this->found_title.' '.$total);
+
+    //разбивка по страницам
+    $navig = new PageNavigator('/search.php', $search_all_count, $search_items_per_page, $from, 10, '&qry='.$qry.$other_params);
+    $navig->setFirstParamName('from');
+    $navig->setDivWrapperName('alblinks');
+    $navig->setPageDisplayDivName('alblinks1');			
+    $pages= $navig->GetNavigator();
+    $smarty->assign('pages',$pages);
+    //$smarty->assign('mode',$this->s_mode);
+    
+    $smarty->assign('items', $search_all_rows);
+    $content = $smarty->fetch('search/section.html');
+    
+    unset($smarty);
+}
+
+
 $smarty_content->assign('search_all_count', $search_all_count);
 $smarty_content->assign('content', $content);
 
