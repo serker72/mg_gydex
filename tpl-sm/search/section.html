@@ -1,6 +1,3 @@
-%{*debug*}%
-%{*$pages*}%
-
 %{section name=itemsec loop=$items}%
 
 <div class="row-fluid">
@@ -8,20 +5,28 @@
         <ul>
             %{if $items[itemsec].mode == 6}%
             <li><a href="/novosti/" target="_blank">Новости</a></li>
-            %{elseif $items[itemsec].parent_url !== ''}%
+            %{elseif ($items[itemsec].parent_url !== null) and ($items[itemsec].parent_url !== '')}%
             <li><a href="%{$items[itemsec].parent_url}%" target="_blank">%{$items[itemsec].parent_title}%</a></li>
             %{else}%
-            <li><a href="/" target="_blank">Главная</a></li>
+            <!--li><a href="/" target="_blank">Главная</a></li-->
             %{/if}%
             <li><a href="%{$items[itemsec].url}%" target="_blank">%{$items[itemsec].title}%</a></li>
         </ul>
-        %{$items[itemsec].annot|truncate:500}%
+        %{if ($items[itemsec].image_src !== null) and ($items[itemsec].image_src !== '') and ($items[itemsec].image_src !== 'img/no.gif')}%
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+            <img class="img-responsive" src="/%{$items[itemsec].image_src}%" alt="%{$items[itemsec].altname}%" border="0"  align="left" hspace="5" vspace="2">
+        </div>
+        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 news_text">
+            %{$items[itemsec].annot|truncate:500}%
+        </div>
+        %{else}%
+            %{$items[itemsec].annot|truncate:500}%
+        %{/if}%
     </div>
 </div>
 
 %{/section}%
 
-%{*$pages*}%
 <div style="clear:both;"></div>
 <!-- Блок пагинации новостей -->
 <div class="row-fluid">
@@ -35,9 +40,10 @@
 
 <script>
     $(document).ready(function(){
-       $("div.alblinks > li > span.inactive").each(function () {
+       $("div.alblinks > li > span.inactive, div.alblinks > li > span.inactive1").each(function () {
            if ((this.textContent !== '|<') && (this.textContent !== '<<') && (this.textContent !== '>|') && (this.textContent !== '>>')) {
                $(this).removeClass('inactive');
+               $(this).removeClass('inactive1');
                $(this).addClass('active');
            } else {
                $(this).hide();

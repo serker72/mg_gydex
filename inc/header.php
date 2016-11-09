@@ -36,6 +36,21 @@ if(count($arr)>0){
 	$smarty_s->assign('bigtitle',stripslashes($_str));
 }*/
 
+$qry='';
+if(isset($_GET['qrya'])){
+	if(strlen(SecStr($_GET['qrya'],9))>=4){
+		$qry=SecStr($_GET['qrya'],9);
+	}
+}
+
+if(isset($_GET['qry'])){
+	if(strlen(SecStr($_GET['qry'],9))>=4){
+		$qry=SecStr($_GET['qry'],9);
+	}
+}
+
+$smarty_s->assign('qry', $qry);
+
 $header_res=$smarty_s->fetch('common_header.html');
 unset($smarty_s);
 ?>

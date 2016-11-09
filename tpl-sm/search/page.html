@@ -8,12 +8,33 @@
                     </div>
                 </div>
             </div>
+            %{if $search_all_count > 0}%
             <div class="row-fluid">
                 <div class="col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 col-lg-10 col-md-10 col-sm-10 col-xs-10 caption_search">
                     По запросу «%{$qry}%» найдено результатов: %{$search_all_count}%
                 </div>
             </div>
+            %{else}%
+            <div class="row-fluid">
+                <div class="col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 col-lg-10 col-md-10 col-sm-10 col-xs-10 caption_search">
+                    Ничего не найдено по заданным критериям
+                </div>
+            </div>
+            <div class="row-fluid">
+                <div class="col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 col-lg-10 col-md-10 col-sm-10 col-xs-10 caption_search1">
+                    Советы:
+                </div>
+            </div>
+            <div class="row-fluid">
+                <div class="col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 col-lg-10 col-md-10 col-sm-10 col-xs-10 caption_search2">
+                    Возможно, поисковый запрос составлен с ошибками в словах - проверьте его еще раз.<br>
+                    Измените условия поиска, используйте более точные ключевые слова.<br>
+                    Для поиска товаров воспользуйтесь классификацией нашего каталога товаров в главном меню.                   
+                </div>
+            </div>
+            %{/if}%
             <div class="row-fluid">
 %{$content}%
             </div>
+            <div style="clear: both; padding-bottom: 50px;"></div>
         </div>

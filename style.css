@@ -222,7 +222,6 @@ img{border:none;}
 }
 
 /*.slide{
-	/*border:1px solid green;*/
 	width:1000px !important;
 	height:350px;
  	overflow:hidden;
@@ -1685,7 +1684,7 @@ a.close, a.close_serv,  a.close_login, a.close_login1, a.close_feedback,  a.clos
 .img_preview .img_meta{
 	float:right;
 	font-size:12px;
-	color:	rgb(142,? 151,? 172);	
+	color:	rgb(142, 151, 172);	
 }
 .sol_screen{
 	width:450px;
@@ -3012,7 +3011,7 @@ ul.nav.navbar-nav li.dropdown:hover ul.dropdown-menu {
 .news_col ul li:first-child
 {
     background: none;
-    padding: 0px 8px 0px 0px;
+    padding: 0px 8px 0px 8px;
 }
 
 .news_col ul li:last-child
@@ -3428,9 +3427,20 @@ input.PostDialogInput {
 
 /*  Страница поиска  */
 .caption_search {
-    /*color: #727272;*/
     font-size: 20px;
 }
+
+.caption_search1 {
+    font-size: 18px;
+    font-weight: bold;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.caption_search2 {
+    font-size: 16px;
+}
+
 
 /************************************
  * #ID - Элементы

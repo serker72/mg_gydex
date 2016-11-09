@@ -138,7 +138,7 @@ if($qry!=''){
 	$tpl['item']='';	
 	$srch->SetTemplates($tpl);
 	$srch->SetMode(0);
-	$content .= $srch->Search($qry,$lang,$from,$search_items_per_page,$extra, NULL, $search_rows, $search_count);
+	$content .= $srch->Search($qry,$lang,0,$search_items_per_page,$extra, NULL, $search_rows, $search_count);
         if ($search_count > 0) {
             $search_all_rows = array_merge($search_all_rows, $search_rows);
             $search_all_count += $search_count;
@@ -162,7 +162,7 @@ if($qry!=''){
 		$tpl['item']='';	
 		$srch->SetTemplates($tpl);
 		$srch->SetMode(3);
-		$content .= $srch->Search($qry,$lang,$price_from,$search_items_per_page,$extra, NULL, $search_rows, $search_count);
+		$content .= $srch->Search($qry,$lang,0,$search_items_per_page,$extra, NULL, $search_rows, $search_count);
                 if ($search_count > 0) {
                     $search_all_rows = array_merge($search_all_rows, $search_rows);
                     $search_all_count += $search_count;
@@ -187,7 +187,7 @@ if($qry!=''){
 		$tpl['item']='';	
 		$srch->SetTemplates($tpl);
 		$srch->SetMode(2);
-		$content .= $srch->Search($qry,$lang,$firms_from,$search_items_per_page,$extra, NULL, $search_rows, $search_count);
+		$content .= $srch->Search($qry,$lang,0,$search_items_per_page,$extra, NULL, $search_rows, $search_count);
                 if ($search_count > 0) {
                     $search_all_rows = array_merge($search_all_rows, $search_rows);
                     $search_all_count += $search_count;
@@ -214,7 +214,7 @@ if($qry!=''){
 		$tpl['item']='';	
 		$srch->SetTemplates($tpl);
 		$srch->SetMode(1);
-		$content .= $srch->Search($qry,$lang,$pap_from,$search_items_per_page,$extra, NULL, $search_rows, $search_count);
+		$content .= $srch->Search($qry,$lang,0,$search_items_per_page,$extra, NULL, $search_rows, $search_count);
                 if ($search_count > 0) {
                     $search_all_rows = array_merge($search_all_rows, $search_rows);
                     $search_all_count += $search_count;
@@ -239,7 +239,7 @@ if($qry!=''){
 		$tpl['item']='';	
 		$srch->SetTemplates($tpl);
 		$srch->SetMode(4);
-		$content .= $srch->Search($qry,$lang,$photos_from,$search_items_per_page,$extra, NULL,$search_rows, $search_count);
+		$content .= $srch->Search($qry,$lang,0,$search_items_per_page,$extra, NULL,$search_rows, $search_count);
                 if ($search_count > 0) {
                     $search_all_rows = array_merge($search_all_rows, $search_rows);
                     $search_all_count += $search_count;
@@ -258,14 +258,14 @@ if($qry!=''){
 		$extra=Array();
 		$extra[]='l.name';
 		$extra[]='l.small_txt';
-		$extra[]='l.photo_small';
+		$extra[]='l.photo_big';
 		$extra[]='t.mid';
 		$tpl=Array();
 		$tpl['section']='search/section.html';
 		$tpl['item']='';	
 		$srch->SetTemplates($tpl);
 		$srch->SetMode(5);
-		$content .= $srch->Search($qry, $lang, $links_from, $search_items_per_page, $extra, NULL, $search_rows, $search_count);
+		$content .= $srch->Search($qry, $lang, 0, $search_items_per_page, $extra, NULL, $search_rows, $search_count);
                 if ($search_count > 0) {
                     $search_all_rows = array_merge($search_all_rows, $search_rows);
                     $search_all_count += $search_count;
@@ -290,7 +290,7 @@ if($qry!=''){
 		$tpl['item']='';	
 		$srch->SetTemplates($tpl);
 		$srch->SetMode(6);
-		$content .= $srch->Search($qry,$lang,$news_from,$search_items_per_page,$extra, NULL, $search_rows, $search_count);
+		$content .= $srch->Search($qry,$lang,0,$search_items_per_page,$extra, NULL, $search_rows, $search_count);
                 if ($search_count > 0) {
                     $search_all_rows = array_merge($search_all_rows, $search_rows);
                     $search_all_count += $search_count;
@@ -299,6 +299,7 @@ if($qry!=''){
 }
 
 
+$content1 = $content;
 $content='';
 if ($search_all_count > 0) {
     $smarty=new SmartyAdm;
@@ -315,7 +316,8 @@ if ($search_all_count > 0) {
     $smarty->assign('pages',$pages);
     //$smarty->assign('mode',$this->s_mode);
     
-    $smarty->assign('items', $search_all_rows);
+    $search_all_rows1 = array_slice($search_all_rows, $from, $search_items_per_page);
+    $smarty->assign('items', $search_all_rows1);
     $content = $smarty->fetch('search/section.html');
     
     unset($smarty);
@@ -323,14 +325,14 @@ if ($search_all_count > 0) {
 
 
 $smarty_content->assign('search_all_count', $search_all_count);
-$smarty_content->assign('content', $content);
+$smarty_content->assign('content', $content);//.'<div>'.$content1.'</div>');
 
 $smarty_content->display('search/page.html'); 
 unset($smarty_content);
 
 ?>
 
-<h1><?=$rf->GetValue('search.php','search_title',$lang)?></h1>
+<!--h1><?=$rf->GetValue('search.php','search_title',$lang)?></h1>
 
 <form action="/search.php" name="mainsrch" id="mainsrch" style="text-indent:0;">
 <input type="text" name="qry" id="qry" size="50" value="<?if(isset($_GET['qrya'])) echo htmlspecialchars($_GET['qrya']); if(isset($_GET['qry'])) echo htmlspecialchars($_GET['qry']);?>" maxlength="255"> 
@@ -385,7 +387,7 @@ if(HAS_NEWS){
   var  frmvalidator    =  new  Validator("mainsrch");  
   frmvalidator.addValidation("qry","req","<?=$rf->GetValue('search.php','minlen_error',$lang)?>");    
   frmvalidator.addValidation("qry","minlen=4","<?=$rf->GetValue('search.php','minlen_error',$lang)?>");    
-</script>  
+</script-->  
 
 
 <?

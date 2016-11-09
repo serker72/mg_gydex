@@ -82,7 +82,7 @@ class Searcher{
 		}
 		
 		$set=new MysqlSet($sql,$to_page,$from,$sql_count);
-		echo " $sql <p>";
+		//echo " $sql <p>";
 		//echo $set->GetResultNumRows();
 		$total=$set->GetResultNumRowsUnf();
 		$rc=$set->GetResultNumRows();
@@ -117,7 +117,8 @@ class Searcher{
 			$txt=$smarty->fetch($this->templates['section']);
 		} //else $txt=$this->not_found_title;
 		
-                $total_count = $total;
+                //$total_count = $total;
+                $total_count = $rc;
                 
 		return $txt;
 	}
@@ -284,6 +285,9 @@ class Searcher{
                 }
                 
 		$res['title']=stripslashes($_mi['name']);
+		$res['altname']=htmlspecialchars(stripslashes($f[1]));
+		$res['image_src']=stripslashes($f[3]);
+                
 		$annot=stripslashes(substr(strip_tags($f[2]),0,255));
 		if($annot!='') $annot.='...';
 		$res['annot']=$annot;

@@ -24,8 +24,14 @@
                     </div>
                     <div class="row-fluid">
                         <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
-                            <input type="text" class="search_str" id="search_str" name="search_str" value="">
-                            <span class="search_button" id="search_button"><img src="/img/search.png"></span>
+                            <form action="/search.php" name="headersrch" id="headersrch" method="get">
+                                <input type="text" class="search_str" id="search_str" name="qry" value="%{$qry}%">
+                                <span class="search_button" id="search_button"><img src="/img/search.png"></span>
+                                <!--input type="submit" name="doSrch" id="doSrch" value="Найти" style="display: none;"-->
+                                <input type="hidden" name="in_papers" value="1">
+                                <input type="hidden" name="in_news" value="1">
+                                <input type="hidden" name="in_links" value="1">
+                            </form>
                         </div>
                     </div>
                     <div class="row-fluid">
@@ -73,6 +79,10 @@
         </div>
 
 <script>
+    var  frmvalidator    =  new  Validator("headersrch");  
+    frmvalidator.addValidation("qry","req","Для выполнения поиска введите более 3-х символов в строке");    
+    frmvalidator.addValidation("qry","minlen=4","Для выполнения поиска введите более 3-х символов в строке");    
+  
     function header_wrapper_change() {
         var ws = $(window).width();
         
@@ -92,7 +102,7 @@
     $('#search_button').bind('click', function(){
         if ($('#search_str').val().length > 3) {
             url = '/search.php?qry=' + $('#search_str').val() + '&doSrch=Найти&in_papers=1&in_news=1&in_links=1';
-            alert('url=' + url);
+            //alert('url=' + url);
             location.href = url;
         } else {
             alert('Для выполнения поиска введите более 3-х символов в строке');
