@@ -24,7 +24,8 @@ $smarty_s->assign('footer1',stripslashes($tmp));
 
 //подвал 2
 $tmp=$fi->GetItem('parts/razd2-'.$_SESSION['lang'].'.txt');
-$smarty_s->assign('footer2',stripslashes($tmp));
+//$smarty_s->assign('footer2',stripslashes($tmp));
+$smarty_s->assign('footer2', strip_tags($tmp));
 
 
 

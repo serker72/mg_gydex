@@ -3011,7 +3011,7 @@ ul.nav.navbar-nav li.dropdown:hover ul.dropdown-menu {
 .news_col ul li:first-child
 {
     background: none;
-    padding: 0px 8px 0px 8px;
+    padding: 0px 8px 0px 0px;
 }
 
 .news_col ul li:last-child
