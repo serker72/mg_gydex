@@ -2920,12 +2920,19 @@ ul.nav.navbar-nav li.dropdown:hover ul.dropdown-menu {
     padding: 105px 70px 110px 85px;
 }
 
+.about-text-1 > div > p {
+    font-size: 22px;
+}
+
 .about-text-2 {
     /*background-color: #449d44;*/
     font-size: 17px;
     /*font-size: 107%;*/
     font-weight: normal;
     padding: 0px 0px 0px 40px;
+}
+.about-text-2 > div > p {
+    font-size: 17px;
 }
 
 .about-text-3 {
@@ -2936,6 +2943,10 @@ ul.nav.navbar-nav li.dropdown:hover ul.dropdown-menu {
     font-weight: normal;
     padding: 0px 0px 0px 85px;
     text-transform: uppercase;
+}
+
+.about-text-3 > div > p {
+    font-size: 24px;
 }
 
 .about-text-4 {
@@ -2961,6 +2972,14 @@ ul.nav.navbar-nav li.dropdown:hover ul.dropdown-menu {
     font-weight: normal;
     padding: 0px 0px 0px 80px;
 }
+
+.about-text-4 > div > p,
+.about-text-5 > div > p,
+.about-text-6 > div > p
+{
+    font-size: 17px;
+}
+
 
 /*   Услуги   */
 .caption_services {
@@ -3000,23 +3019,24 @@ ul.nav.navbar-nav li.dropdown:hover ul.dropdown-menu {
 
 .news_col ul li
 {
-    background: url('/img/li_splitter.png') no-repeat top 3px left 0px;
+    background: url('/img/li_splitter.png') no-repeat top 3px right 8px;
     display: inline;
     font-size: 14px;
     /*font-size: 88%;*/
     list-style-type: none;
-    padding: 0px 8px 0px 8px;
+    padding: 0px 16px 0px 0px;
 }
 
 .news_col ul li:first-child
 {
-    background: none;
-    padding: 0px 8px 0px 0px;
+    /*background: none;
+    padding: 0px 8px 0px 0px;*/
 }
 
 .news_col ul li:last-child
 {
-    padding: 0px 8px 0px 8px;
+    background: none;
+    /*padding: 0px 8px 0px 8px;*/
 }
 
 .news_col ul li a

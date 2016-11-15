@@ -7,7 +7,7 @@ $smarty_s->debugging = DEBUG_INFO;
 
 
 $smarty_s->assign('OFFICE_ADDRESS', str_replace('ул.', '<br>ул.', OFFICE_ADDRESS));
-$smarty_s->assign('FEEDBACK_PHONE',FEEDBACK_PHONE);
+$smarty_s->assign('FEEDBACK_PHONE', implode('<br>', explode(',', FEEDBACK_PHONE_FOOTER)));
 $smarty_s->assign('FEEDBACK_EMAIL', FEEDBACK_EMAIL);
 
 

@@ -180,7 +180,7 @@ $smarty->assign('navi',$mi->DrawNavigCli($mm['id'], $lang, 1, 'tpl/navi.html','t
 foreach($mm as $k=>$v) $mm[$k]=stripslashes($v);
 $smarty->assign('mm', $mm);
 
-$smarty->assign('FEEDBACK_PHONE', FEEDBACK_PHONE);
+$smarty->assign('FEEDBACK_PHONE', implode('<br>', explode(',', FEEDBACK_PHONE_FOOTER)));
 
 
 //найти предыдущий и следующий материал, дать ссылки на них

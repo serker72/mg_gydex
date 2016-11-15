@@ -19,7 +19,8 @@ if(isset($_POST['doInp'])||isset($_POST['doInp1'])){
         
 	if(isset($_POST['FEEDBACK_EMAIL'])) $settings['FEEDBACK_EMAIL']=SecStr($_POST['FEEDBACK_EMAIL'],10);
 	
-	if(isset($_POST['FEEDBACK_PHONE'])) $settings['FEEDBACK_PHONE']=SecStr($_POST['FEEDBACK_PHONE'],10);
+	if(isset($_POST['FEEDBACK_PHONE_HEADER'])) $settings['FEEDBACK_PHONE_HEADER']=SecStr($_POST['FEEDBACK_PHONE_HEADER'],10);
+	if(isset($_POST['FEEDBACK_PHONE_FOOTER'])) $settings['FEEDBACK_PHONE_FOOTER']=SecStr($_POST['FEEDBACK_PHONE_FOOTER'],10);
 	
 	
 	
@@ -165,8 +166,11 @@ if($rights_man->CheckAccess($global_profile['login'], $global_profile['passw'], 
 		<strong>Адрес офиса:</strong><br>
 		<input type="text" name="OFFICE_ADDRESS" value="<?=OFFICE_ADDRESS?>" size="60" maxlength="255"><p>
 		
-        <strong>Контактный телефон:</strong><br>
-		<input type="text" name="FEEDBACK_PHONE" value="<?=FEEDBACK_PHONE?>" size="40" maxlength="40"><p>
+                <strong>Контактные телефоны для шапки сайта (разеляются запятой):</strong><br>
+		<input type="text" name="FEEDBACK_PHONE_HEADER" value="<?=FEEDBACK_PHONE_HEADER?>" size="40" maxlength="255"><p>
+		
+                <strong>Контактные телефоны для подвала сайта (разеляются запятой):</strong><br>
+		<input type="text" name="FEEDBACK_PHONE_FOOTER" value="<?=FEEDBACK_PHONE_FOOTER?>" size="40" maxlength="255"><p>
         
 		<strong>Контактный e-mail:</strong><br>
 		<input type="text" name="FEEDBACK_EMAIL" value="<?=FEEDBACK_EMAIL?>" size="40" maxlength="40"><p>

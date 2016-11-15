@@ -487,7 +487,7 @@ foreach($mm as $k=>$v) $mm[$k]=stripslashes($v);
 
 $smarty_content->assign('mm', $mm);
 
-$smarty_content->assign('FEEDBACK_PHONE', FEEDBACK_PHONE);
+$smarty_content->assign('FEEDBACK_PHONE', implode('<br>', explode(',', FEEDBACK_PHONE_FOOTER)));
 $smarty_content->assign('FEEDBACK_EMAIL', FEEDBACK_EMAIL);
 $smarty_content->assign('OFFICE_ADDRESS', str_replace('ул.', '<br>ул.', OFFICE_ADDRESS));
 $map_address_array = explode(',', OFFICE_ADDRESS);

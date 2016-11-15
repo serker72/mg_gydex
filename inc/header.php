@@ -11,7 +11,7 @@ $tmp=$fi->GetItem('parts/razd3-'.$_SESSION['lang'].'.txt');
 $smarty_s->assign('text1',stripslashes($tmp));
 
 
-$smarty_s->assign('FEEDBACK_PHONE',FEEDBACK_PHONE);
+$smarty_s->assign('FEEDBACK_PHONE', implode('<br>', explode(',', FEEDBACK_PHONE_HEADER)));
 $smarty_s->assign('FEEDBACK_EMAIL', FEEDBACK_EMAIL);
 
 /*

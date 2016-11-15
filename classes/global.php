@@ -61,8 +61,11 @@ else define("LANG_CODE",1);
 if(isset($global_settings['FEEDBACK_EMAIL'])) define("FEEDBACK_EMAIL",$global_settings['FEEDBACK_EMAIL']);
 else define("FEEDBACK_EMAIL",'info@blackcat');
 
-if(isset($global_settings['FEEDBACK_PHONE'])) define("FEEDBACK_PHONE",$global_settings['FEEDBACK_PHONE']);
-else define("FEEDBACK_PHONE",'');
+if(isset($global_settings['FEEDBACK_PHONE_HEADER'])) define("FEEDBACK_PHONE_HEADER",$global_settings['FEEDBACK_PHONE_HEADER']);
+else define("FEEDBACK_PHONE_HEADER",'');
+
+if(isset($global_settings['FEEDBACK_PHONE_FOOTER'])) define("FEEDBACK_PHONE_FOOTER",$global_settings['FEEDBACK_PHONE_FOOTER']);
+else define("FEEDBACK_PHONE_FOOTER",'');
 
 if(isset($global_settings['OFFICE_ADDRESS'])) define("OFFICE_ADDRESS",$global_settings['OFFICE_ADDRESS']);
 else define("OFFICE_ADDRESS",'');
