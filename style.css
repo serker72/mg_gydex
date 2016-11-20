@@ -2671,7 +2671,7 @@ ul.nav.navbar-nav li.dropdown:hover ul.dropdown-menu {
 .about_right {
     background: url('/img/about_right_bg.png') no-repeat top 10px right 0;
     /*float: right;*/
-    height: 160px;
+    min-height: 160px;
     padding: 10px 20px 0 130px;
 }
 
