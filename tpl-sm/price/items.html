@@ -1,123 +1,83 @@
+
 <!-- шаблон вывода товаров -->
+            <div class="row-fluid">
+                <div class="col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 col-lg-10 col-md-10 col-sm-10 col-xs-10 caption_category">
+                    <div class="caption_category_inner">
+                        <div class="caption_category_text"><span>CATEGORY_NAME</span></div>
+                        <div style="clear: both;"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row-fluid">
+                <div class="col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 col-lg-10 col-md-10 col-sm-10 col-xs-10 category_wrapper">
+                    %{section name=itemsec loop=$items}%
+                    <div class="row-fluid category_price_item_wrapper">
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 category_price_item_image">
+                            <img class="img-responsive" src="/%{$items[itemsec].image_src}%">
+                        </div>
+                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 category_price_item_text">
+                            <div class="row-fluid">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 category_price_item_prop">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th width="70%" valign="top">
+                                                    <div class="category_price_item_name">%{$items[itemsec].name}%</div>
+                                                    <div class="category_price_item_firm"><strong>%{$items[itemsec].firm_caption}%</strong> %{$items[itemsec].firm_name}%</div>
+                                                    <br>
+                                                </th>
+                                                <th valign="top">
+                                                    <div class="category_price_item_link"><a href="javascript:OpenPostDialog();">”знать цену</a></div>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            %{$items[itemsec].props}%
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div style="clear: both;"></div>
+                            </div>
+                            <!--div class="row-fluid">
+                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                    <div class="category_price_item_name">%{$items[itemsec].name}%</div>
+                                    <div class="category_price_item_firm"><strong>%{$items[itemsec].firm_caption}%</strong> %{$items[itemsec].firm_name}%</div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                    <div class="category_price_item_link"><a href="#">”знать цену</a></div>
+                                </div>
+                            </div>
+                            <div class="row-fluid">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 category_price_item_prop">
+                                </div>
+                            </div-->
+                        </div>
+                        <div style="clear: both;"></div>
+                    </div>
+                    %{/section}%
+                </div>
+            </div>
+            <div style="clear:both;"></div>
+            <!-- Ѕлок пагинации товаров -->
+            <div class="row-fluid">
+                <div class="col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 col-lg-10 col-md-10 col-sm-10 col-xs-10 news_paginate" id="news_paginate">
+                    <ul id="news_pages">
+%{$pages|replace:'<span':'<li><span'|replace:'</span>':'</span></li>'|replace:'<a href':'<li><a href'|replace:'</a>':'</a></li>'}%
+                    </ul>
+                </div>
+            </div>
+            <!-- Ѕлок пагинации товаров -->
 
-
-<!--форма фильтрации и сортировки -->
-<div align="right"><form action="/redir.php" name="sorter" id="sorter">
-
-<!-- выборка по именам и значени€м свойств -->
-%{section name=propsel loop=$props}%
-<!-- элемент отбора по значению свойства -->
-<nobr><b>%{$props[propsel].byname}%:</b>&nbsp;<select name="name_id_%{$props[propsel].nameid}%" id="name_id_%{$props[propsel].nameid}%" style="width: 120px;">
-	<option value="0" %{if $props[propsel].not_selected}%selected%{/if}%>%{$props[propsel].not_selected_text}%</option>
-	%{section name=valsel loop=$props[propsel].vals}%
-		<option value="%{$props[propsel].vals[valsel].val_id}%" %{if $props[propsel].vals[valsel].not_selected}%selected%{/if}%>%{$props[propsel].vals[valsel].val_name}%</option>
-	%{/section}%
-</select>
-&nbsp;</nobr>
-%{/section}%
-
-
-&nbsp;&nbsp;
-<br>
-<b>%{$byfirmname}%:</b>&nbsp;<select name="firmid" id="firmid">
-	<option value="0" %{if $not_firm_selected}%selected%{/if}%>%{$not_firm_selected_text}%</option>
-	%{$firms}%
-</select>
-&nbsp;&nbsp;
-
-
-<nobr>
-<b>%{$bypricename}%</b>&nbsp;
-
-<i>%{$bypricefrom}%:</i>
-<input type="text" name="fromprice" id="fromprice" value="%{$frompriceval}%" size="6" maxlength="10">
-&nbsp;
-
-<i>%{$bypriceto}%:</i>
-<input type="text" name="toprice" id="toprice" value="%{$topriceval}%" size="6" maxlength="10">
-
-<input type="radio" name="sortmode" value="2" %{if $sortmode==2}%checked%{/if}%>
-<img src="/img/arrowdown.gif" alt="" width="13" height="13" hspace="0" vspace="0" border="0" align="top">
-
-<input type="radio" name="sortmode" value="1" %{if $sortmode==1}%checked%{/if}%>
-<img src="/img/arrowup.gif" alt="" width="13" height="13" border="0"  vspace="0" align="top">
-</nobr>
-<input type="hidden" name="id" id="id" value="%{$parent_id}%">
-
-<input type="submit" name="doSort" id="doSort" value="%{$dosort}%">
-</form></div>
-
-
-
-%{$pages}%
-<!-- список товаров на странице-->
-<table width="98%" border="0" cellspacing="1" cellpadding="0" align="center">
-%{section name=rowsel loop=$rows}%
-<tr align="left" valign="top">
-
-
-%{section name=goodsel loop=$rows[rowsel].goods}%
-<!-- €чейка с товаром -->
-<td width="%{$rows[rowsel].goods[goodsel].td_width}%%" align="left">
-		<!-- block -->
-		<table width="98%" border="0" cellspacing="0" cellpadding="0">
-		<tr align="left" valign="top">
-			<td width="12" style="background-image: url(/img/block/left-fon.gif); background-position: top left; background-repeat: repeat-y;"><img src="/img/block/left-ugol.gif" alt="" width="12" height="19" border="0"></td>
-			<td width="*" valign="middle" style=" background-image: url(/img/block/up-fon.gif); background-position: top left; background-repeat: repeat-x;">
-			
-			<span style="background-color: white; padding: 2px 2px 2px 2px;">
-			<a href="%{$rows[rowsel].goods[goodsel].page_url}%" title="%{$rows[rowsel].goods[goodsel].altname}%">%{$rows[rowsel].goods[goodsel].name}%</a>
-			</span>
-			
-			</td>
-			<td width="12" align="right" style="background-image: url(/img/block/right-fon.gif); background-position: top right; background-repeat: repeat-y;"><img src="/img/block/right-ugol.gif" alt="" width="12" height="19" border="0"></td>
-		</tr>
-		<tr align="left" valign="top">
-			<td width="12" valign="bottom" style="background-image: url(/img/block/left-fon.gif); background-position: top left; background-repeat: repeat-y;"><img src="/img/block/left-grad.gif" alt="" width="12" height="55" border="0"></td>
-			<td width="*" style="background-image: url(/img/block/fon.gif); background-position: bottom left; background-repeat: repeat-x;">
-			
-			<a href="%{$rows[rowsel].goods[goodsel].page_url}%" title="%{$rows[rowsel].goods[goodsel].altname}%"><img src="/%{$rows[rowsel].goods[goodsel].image_src}%" alt="%{$rows[rowsel].goods[goodsel].altname}%" border="0" width="%{$rows[rowsel].goods[goodsel].image_w}%" height="%{$rows[rowsel].goods[goodsel].image_h}%" align="left" hspace="2"></a>
-			
-			
-			<div class="basicprice">%{$rows[rowsel].goods[goodsel].price}%</div>
-			
-			%{if $rows[rowsel].goods[goodsel].has_basket}%
-			<!-- малое изображение корзины заказа (дл€ списка товаров) -->
-			<a href="/addtobasket.php?good_id=%{$rows[rowsel].goods[goodsel].good_id}%&qty=1&doOrder=1"><img src="/img/basket_impr.gif" alt="" width="24" height="24" border="0" hspace="1" vspace="0" align="absmiddle"></a>
-			%{/if}%
-			
-			
-			<!-- форма сравнени€ товара -->
-			<a href="/compare.php?doAdd=1&id_%{$rows[rowsel].goods[goodsel].good_id}%=%{$rows[rowsel].goods[goodsel].good_id}%" title="%{$to_compare}%"><img src="/img/compare.gif" alt="%{$to_compare}%" width="24" height="24" hspace="1" vspace="0" border="0" align="absmiddle"></a>
-			<br>
-			
-			
-			%{if $rows[rowsel].goods[goodsel].has_firm}%
-			<strong>%{$rows[rowsel].goods[goodsel].firm_caption}%</strong> <a href="/firm.php?id=%{$rows[rowsel].goods[goodsel].firm_id}%" target="_blank">%{$rows[rowsel].goods[goodsel].firm_name}%</a><br>
-			%{/if}%
-			
-			%{$rows[rowsel].goods[goodsel].smalltxt}%
-			
-			<!-- словари свойств -->
-			%{$rows[rowsel].goods[goodsel].props}%
-			
-						
-			</td>
-			<td width="12" align="right" valign="bottom" style="background-image: url(/img/block/right-fon.gif); background-position: top right; background-repeat: repeat-y;"><img src="/img/block/right-grad.gif" alt="" width="12" height="55" border="0"></td>
-		</tr>
-		<tr align="left" valign="top">
-			<td width="12" style="background-image: url(/img/block/left-fon.gif); background-position: top left; background-repeat: repeat-y;"><img src="/img/block/left-down.gif" alt="" width="12" height="15" border="0"></td>
-			<td width="*" style="background-image: url(/img/block/down-fon.gif); background-position: bottom left; background-repeat: repeat-x;"><img src="img/block/down-fon.gif" alt="" width="1" height="14" border="0"></td>
-			<td width="12" align="right" style="background-image: url(/img/block/right-fon.gif); background-position: top right; background-repeat: repeat-y;"><img src="/img/block/right-down.gif" alt="" width="12" height="15" border="0"></td>
-		</tr>
-		</table>
-		<!--endof block -->		
-</td>
-%{/section}%
-
-
-
-</tr>
-%{/section}%
-</table>
-%{$pages}%
+<script>
+    $(document).ready(function(){
+       $("div.alblinks > li > span.inactive").each(function () {
+           if ((this.textContent !== '|<') && (this.textContent !== '<<') && (this.textContent !== '>|') && (this.textContent !== '>>')) {
+               $(this).removeClass('inactive');
+               $(this).addClass('active');
+           } else {
+               $(this).hide();
+           }
+       });
+       $("div.alblinks1").hide();
+    });
+</script>                    

@@ -185,6 +185,86 @@ class FirmsGroup extends AbstractLangGroup {
 	
 	
 	//!!!!!!!!!!!!!!клиентский вывоƒ
+        // KSK 20.11.2016 - вывод списка фирм, товары которых вход€т в выбранную категорию
+	public function GetItemsByIdCli($template1, $template2, $template3, $template4, $parent_id, $lang_id=LANG_CODE, $from=0, $to_page=ITEMS_PER_PAGE){
+		$txt='';
+		
+		$query = 'select * 
+                    from '.$this->tablename.' as p, firms_lang as l
+                    where p.id in (select distinct firmid from price_item where mid="'.$parent_id.'")
+                        and l.firmid=p.id 
+                        and l.lang_id="'.$lang_id.'"
+                        and l.is_shown=1 
+                    order by p.ord desc, p.id desc';
+		
+		$query_count='select count(*)
+                    from '.$this->tablename.' as p, firms_lang as l
+                    where p.id in (select distinct firmid from price_item where mid="'.$parent_id.'")
+                        and l.firmid=p.id 
+                        and l.lang_id="'.$lang_id.'"
+                        and l.is_shown=1';
+		
+		$items=new mysqlSet($query, $to_page, $from, $query_count);
+		$rs=$items->GetResult();
+		//echo $query;
+		
+		$smarty = new SmartyAdm;
+		$smarty->debugging = DEBUG_INFO;
+		
+		$rc=$items->GetResultNumRows();
+		
+		$totalcount=$items->GetResultNumRowsUnf();
+		
+		$cter=1; $max=2;
+		$strs='';
+		
+		if(HAS_URLS){ 
+			$mi=new MmenuItem();
+			$url_path=$mi->ConstructPath($parent_id,$lang_id,1,'/');
+			$navig = new PageNavigatorKri($url_path,$totalcount,$to_page,$from,10,'&show_firms_only=1');
+			
+		}else $navig = new PageNavigator($this->pagename,$totalcount,$to_page,$from,10,'&show_firms_only=1&id='.$parent_id);
+                
+		$navig->setFirstParamName('from');
+		$navig->setDivWrapperName('alblinks');
+		$navig->setPageDisplayDivName('alblinks1');			
+		$pages= $navig->GetNavigator();
+		
+		$alls=Array();
+		for($i=0;$i<$rc;$i++){
+                    $f = mysqli_fetch_array($rs);
+			
+                    $im = GetImageSize(ABSPATH.stripslashes($f['photo_big']));
+                    if($im != false){
+                        $image_w = $im[0];
+                        $image_h = $im[1];
+                    }else{
+                        $image_w = 320;
+                        $image_h = 240;
+                    }
+                    
+                    $alls[]=Array(
+                        'is_code'=>false,
+                        'id'=>$f['id'],
+                        'image_src'=>stripslashes($f['photo_small']),
+                        'image_big'=>stripslashes($f['photo_big']),
+                        'image_w'=>$image_w,
+                        'image_h'=>$image_h,
+                        'name'=>stripslashes($f['name']),
+                        'annot'=>stripslashes($f['info']),
+                        'altname'=>strip_tags(stripslashes($f['name'])),
+                        'td_width'=>floor(100/$max),
+                        'page_url'=>stripslashes($f['url'])
+                    );
+		}
+		
+		$smarty->assign('max',$max);
+		$smarty->assign('pages',$pages);
+		$smarty->assign('items',$alls);
+		$txt=$smarty->fetch($template1);
+		
+		return $txt;
+	}
 	
 	
 	

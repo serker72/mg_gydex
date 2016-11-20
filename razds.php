@@ -191,50 +191,63 @@ $smarty_content->assign('navi',$mi->DrawNavigCli($mm['id'], $lang, 1, '','','','
 //echo getenv('QUERY_STRING');
 //каталог товаров ли это
 if((HAS_PRICE)&&($mm['is_price']==1)){
-	//вывод товаров
-	//положение в каталоге товара
-	if(!isset($_GET['from'])) $from=0;
-	else $from = $_GET['from'];	
-	$from=abs((int)$from);	
-	$from=floor($from/GOODS_PER_PAGE)*GOODS_PER_PAGE;
-	
-	$pr_g=new PriceGroup();
-	$pr_g->SetPagename('razds.php');
-	
+    //вывод товаров
+    //положение в каталоге товара
+    if(!isset($_GET['from'])) $from=0;
+    else $from = $_GET['from'];	
+    $from=abs((int)$from);	
+    $from=floor($from/GOODS_PER_PAGE)*GOODS_PER_PAGE;
+
+    if(!isset($_GET['show_firms_only'])) $show_firms_only = 0;
+    else $show_firms_only = $_GET['show_firms_only'];
+
+    $pr_g=new PriceGroup();
+    $pr_g->SetPagename('razds.php');
+
 //	$flt_params=NULL;
-	$flt_params=Array();
-	if(isset($_GET['firmid'])){
-		$flt_params['p.firmid']=abs((int)$_GET['firmid']);
-	}
-	if(isset($_GET['fromprice'])){
-		$flt_params['fromprice']=abs((float)$_GET['fromprice']);
-	}
-	
-	if(isset($_GET['toprice'])){
-		$flt_params['toprice']=abs((float)$_GET['toprice']);
-	}
-	//включим в список параметров и параметры отбора по значениям свойств
-	foreach($_GET as $k=>$v){
-		if(eregi('name_id_',$k)){
-			$flt_params[$k]=SecStr($v);
-		}
-	}
-	
-	if(isset($_GET['sortmode'])){
-		$sortmode=abs((int)$_GET['sortmode']);
-	}else $sortmode=0;
-	
-	
-	$m_templates=Array();
-	//$m_templates['byname_set']='price/props.html';
-	//$m_templates['byname_val']='tpl/price/byname_val.html';
-	$m_templates['byname_set']='';
-	$m_templates['byname_val']='';
-	$pr_g->SetMinorTemplates($m_templates);
-		
-	//echo $pr_g->GetItemsByIdCli('tpl/price/alltable.html', 'tpl/price/row.html', 'tpl/price/cell.html', $mm['id'], $lang,$from,GOODS_PER_PAGE,$flt_params,$sortmode);
-	$content.= $pr_g->GetItemsByIdCli('price/items.html', '', '', $mm['id'], $lang,$from,GOODS_PER_PAGE,$flt_params,$sortmode);
-	
+    $flt_params=Array();
+    if(isset($_GET['firmid'])){
+            $flt_params['p.firmid']=abs((int)$_GET['firmid']);
+    }
+    if(isset($_GET['fromprice'])){
+            $flt_params['fromprice']=abs((float)$_GET['fromprice']);
+    }
+
+    if(isset($_GET['toprice'])){
+            $flt_params['toprice']=abs((float)$_GET['toprice']);
+    }
+    //включим в список параметров и параметры отбора по значениям свойств
+    foreach($_GET as $k=>$v){
+            if(eregi('name_id_',$k)){
+                    $flt_params[$k]=SecStr($v);
+            }
+    }
+
+    if(isset($_GET['sortmode'])){
+            $sortmode=abs((int)$_GET['sortmode']);
+    }else $sortmode=0;
+
+
+    $m_templates=Array();
+    //$m_templates['byname_set']='price/props.html';
+    //$m_templates['byname_val']='tpl/price/byname_val.html';
+    $m_templates['byname_set']='';
+    $m_templates['byname_val']='';
+    $pr_g->SetMinorTemplates($m_templates);
+
+    // KSK 20.11.2016 - вывод списка фирм, товары которых входят в выбранную категорию каталога
+    if ($show_firms_only == 1) {
+        $f_g = new FirmsGroup();
+	$f_g->SetPagename('razds.php');
+        
+        $content_category = $f_g->GetItemsByIdCli('firms/catalog_items.html', '', '', '', $mm['id'], $lang, $from, GOODS_PER_PAGE);
+    } else {
+        //echo $pr_g->GetItemsByIdCli('tpl/price/alltable.html', 'tpl/price/row.html', 'tpl/price/cell.html', $mm['id'], $lang,$from,GOODS_PER_PAGE,$flt_params,$sortmode);
+        $content_category = $pr_g->GetItemsByIdCli('price/items.html', '', '', $mm['id'], $lang, $from, GOODS_PER_PAGE, $flt_params, $sortmode);
+    }
+    
+    $content_category = str_replace('CATEGORY_NAME', $mm['name'], $content_category);
+    $content .= $content_category;
 }
 
 
@@ -288,7 +301,7 @@ if((HAS_LINKS)&&($mm['is_links']==1)){
         
         // KSK 24.10.2016 - вывод подкатегорий для каталога
         if ($mm['parent_id'] == 3) {
-            $content_category .= $ph_g->GetItemsByIdCli('links/catalog_items.html', '', '', '', $mm['id'], $lang, $lfrom);
+            $content_category = $ph_g->GetItemsByIdCli('links/catalog_items.html', '', '', '', $mm['id'], $lang, $lfrom);
             $content_category = str_replace('CATEGORY_NAME', $mm['name'], $content_category);
             $content .= $content_category;
         } else {

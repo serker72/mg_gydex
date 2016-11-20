@@ -108,8 +108,9 @@ $smarty->assign('opinions', $og->GetItemsCli('index_opinions.html'));
 //текст главной
 $smarty1=new SmartyAdm;
 $tmp=$fi->GetItem('parts/razd4-'.$_SESSION['lang'].'.txt');
-$smarty1->assign('text', stripslashes($tmp));
-$smarty->assign('text',  $smarty1->fetch('index_how.html') );
+//$smarty1->assign('text', stripslashes($tmp));
+//$smarty->assign('text',  $smarty1->fetch('index_how.html') );
+$smarty->assign('text_home_1', stripslashes($tmp));
 
 //гидекс в цифрах
 $_nums=new NumGroup;

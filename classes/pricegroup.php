@@ -211,8 +211,8 @@ class PriceGroup extends AbstractLangGroup {
 	public function GetItemsByIdCli($template1, $template2, $template3, $parent_id, $lang_id=LANG_CODE,$from=0, $to_page=GOODS_PER_PAGE,$flt_params=NULL,$sortmode=0){
 		$txt=''; $rf=new ResFile(ABSPATH.'cnf/resources.txt'); $gd=new PriceItem();
 		$mi=new MmenuItem(); $mmenuitem=$mi->GetItemById($parent_id,$lang_id,1);
-		if(HAS_URLS) $url_path='/'.$mi->ConstructPath($parent_id,$lang_id,1,'/');
-		else $url_path='/';
+		if(HAS_URLS) $url_path=$mi->ConstructPath($parent_id,$lang_id,1,'/');
+		else $url_path='';
 		
 		$price_disp=new PriceDisp();
 		$disp_nv=new DictNVDisp();
@@ -344,7 +344,11 @@ class PriceGroup extends AbstractLangGroup {
 		$navig->setPageDisplayDivName('alblinks1');			
 		$pages= $navig->GetNavigator();
 		
-		$alls=Array(); $pi=new PriceItem;
+		$alls=Array(); 
+                $pi=new PriceItem;
+                // KSK 20.11.2016 - массив для сбора всех записей без разбиения на колонки
+                $all_items = array();
+                
 		for($i=0;$i<$rc;$i++){
 			$f=mysqli_fetch_array($rs);
 			
@@ -400,7 +404,7 @@ class PriceGroup extends AbstractLangGroup {
 			}
 			
 			
-			$row[]=Array(
+			$item=Array(
 				'td_width'=>floor(100/$max),
 				'page_url'=>$path,
 				'altname'=>strip_tags(stripslashes($f[3])),
@@ -419,6 +423,9 @@ class PriceGroup extends AbstractLangGroup {
 				'props'=>$dicts->DrawDictsCli(1, $f[0], $lang_id,'price/prop_tables.html', '', ''),
 				'smalltxt'=>stripslashes($f[4])
 			);
+                        
+                        $row[] = $item;
+                        $all_items[] = $item;
 			
 			if(($i==($rc-1))||($cter>=$max)){
 				$cter=1;
@@ -430,6 +437,7 @@ class PriceGroup extends AbstractLangGroup {
 		
 		$smarty->assign('pages',$pages);
 		$smarty->assign('rows',$alls);
+		$smarty->assign('items',$all_items);
 		$txt=$smarty->fetch($template1);
 		
 		

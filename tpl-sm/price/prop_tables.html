@@ -1,25 +1,20 @@
 
 <!-- словари свойств товара -->
-<table width="95%" border="0" cellspacing="1" cellpadding="3" style="background-color: black;">
+<!--table-->
 
 %{section name=dicsec loop=$dicts}%
-<tr align="left" valign="top">
-	<td width="*" colspan="2" class="proptitle">
-		%{$dicts[dicsec].caption}%
-	</td>
-</tr>
 
-%{section name=propsec loop=$dicts[dicsec].props}%
-<tr align="left">
-	<td width="30%" class="propname" valign="middle">
+    %{section name=propsec loop=$dicts[dicsec].props}%
+    <tr align="left">
+	<td width="70%" class="propname" valign="middle">
 		%{$dicts[dicsec].props[propsec].name}%
 	</td>
-	<td width="*" class="propvalue" valign="top">
+	<td width="*" class="propvalue" valign="top" align="center">
 		%{$dicts[dicsec].props[propsec].value}%
 	</td>
-</tr>
-%{/section}%
+    </tr>
+    %{/section}%
 
 %{/section}%
 
-</table>
+<!--/table-->
