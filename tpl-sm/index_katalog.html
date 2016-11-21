@@ -11,7 +11,7 @@
                         <li>
                             <div class="catalog_category_item">
                                 <div class="catalog_category_item_title">%{$item.name}%</div>
-                                <div class="catalog_category_item_image"><img class="img-responsive" src="/img/catalog_item.png"></div>
+                                <div class="catalog_category_item_image"><img class="img-responsive" src="/%{if $item.photo_small<>'img/no.gif'}%%{$item.photo_small}%%{else}%img/catalog_item.png%{/if}%"></div>
                                 <div class="catalog_category_item_link"><a href="%{$item.url}%?show_firms_only=1">Производители</a></div>
                                 <div class="catalog_category_item_link"><a href="%{$item.url}%">Оборудование</a></div>
                             </div>

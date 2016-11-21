@@ -5,14 +5,16 @@
 %{section name=dicsec loop=$dicts}%
 
     %{section name=propsec loop=$dicts[dicsec].props}%
-    <tr align="left">
-	<td width="70%" class="propname" valign="middle">
-		%{$dicts[dicsec].props[propsec].name}%
-	</td>
-	<td width="*" class="propvalue" valign="top" align="center">
-		%{$dicts[dicsec].props[propsec].value}%
-	</td>
-    </tr>
+        %{if $dicts[dicsec].props[propsec].value<>''}%
+        <tr align="left">
+            <td width="70%" class="propname" valign="middle">
+                    %{$dicts[dicsec].props[propsec].name}%
+            </td>
+            <td width="*" class="propvalue" valign="top" align="center">
+                    %{$dicts[dicsec].props[propsec].value}%
+            </td>
+        </tr>
+        %{/if}%
     %{/section}%
 
 %{/section}%
