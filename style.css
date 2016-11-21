@@ -3280,7 +3280,12 @@ ul.nav.navbar-nav li.dropdown:hover ul.dropdown-menu {
 }
 
 .category_price_item_image {
-    padding: 0px 20px;
+    padding: 0px 10px;
+}
+
+.category_price_item_image > img {
+    margin: auto;
+    vertical-align: middle;
 }
 
 .category_price_item_text {
