@@ -222,8 +222,10 @@ class FirmsGroup extends AbstractLangGroup {
 			$mi=new MmenuItem();
 			$url_path=$mi->ConstructPath($parent_id,$lang_id,1,'/');
 			$navig = new PageNavigatorKri($url_path,$totalcount,$to_page,$from,10,'&show_firms_only=1');
-			
-		}else $navig = new PageNavigator($this->pagename,$totalcount,$to_page,$from,10,'&show_firms_only=1&id='.$parent_id);
+		}else {
+                    $url_path = $this->pagename;
+                    $navig = new PageNavigator($this->pagename,$totalcount,$to_page,$from,10,'&show_firms_only=1&id='.$parent_id);
+                }
                 
 		$navig->setFirstParamName('from');
 		$navig->setDivWrapperName('alblinks');
@@ -254,7 +256,8 @@ class FirmsGroup extends AbstractLangGroup {
                         'annot'=>stripslashes($f['info']),
                         'altname'=>strip_tags(stripslashes($f['name'])),
                         'td_width'=>floor(100/$max),
-                        'page_url'=>stripslashes($f['url'])
+                        'page_url'=>stripslashes($f['url']),
+                        'url_path' => stripslashes($url_path),
                     );
 		}
 		
