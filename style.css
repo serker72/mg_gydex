@@ -3540,7 +3540,7 @@ ul.nav.navbar-nav li.dropdown:hover ul.dropdown-menu {
 {
     cursor: pointer;
     float: right;
-    padding: 0px 0px 0 0;
+    padding: 10px 10px 0 0;
 }
 
 .postDialogModal_title {
