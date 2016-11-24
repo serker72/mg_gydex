@@ -3463,31 +3463,60 @@ ul.nav.navbar-nav li.dropdown:hover ul.dropdown-menu {
     padding: 50px 0 0px 0;
 }
 
-.callDialogModal {
+/*.callDialogModal {
     background-color: #49494b;
     color: #fefefe;
     display: none;
     font-size: 26px;
-    /*font-size: 163%;*/
     height: 540px;
     margin: 0 auto;
     position: absolute;
     top: 0px;
     left: 35%;
     width: 490px;
+}*/
+
+.DialogModal {
+    background: rgba(245,245,245);
+    bottom: 0;
+    display: none;
+    left: 0;
+    /*pointer-events: none;*/    
+    position: fixed;
+    right: 0;
+    top: 0;
+    transition: opacity 400ms ease-in;
+    -webkit-transition: opacity 400ms ease-in;
+    -moz-transition: opacity 400ms ease-in;
+    z-index: 9999999;
+}
+
+.DialogModal:target {
+    display: block;
+    pointer-events: auto;
+}
+
+.DialogModal > div {
+    /*border-radius: 10px;*/
+    background-color: #333333;
+    color: #fefefe;
+    margin: 10% auto;
+    padding: 0px 0px 40px 0px;
+    position: relative;
+    width: 490px;
 }
 
 .callDialogModal_title
 {
     font-weight: bold;
-    padding: 10px 80px 40px 80px;
+    padding: 0px 80px 0px 80px;
     text-align: center;
     text-transform: uppercase;
 }
 
 .callDialogModal_title > p {
     color: #fefefe;
-    font-size: 26px;
+    font-size: 23px;
     /*font-size: 163%;*/
 }
 
@@ -3511,17 +3540,17 @@ ul.nav.navbar-nav li.dropdown:hover ul.dropdown-menu {
 {
     cursor: pointer;
     float: right;
-    padding: 13px 13px 0 0;
+    padding: 0px 0px 0 0;
 }
 
 .postDialogModal_title {
-    padding: 0px 40px 10px 40px;
+    padding: 0px 5px 0px 5px;
     text-align: center;
 }
 
 .postDialogModal_title > p {
     color: #fefefe;
-    font-size: 28px;
+    font-size: 23px;
     /*font-size: 175%;*/
 }
 
@@ -3531,7 +3560,7 @@ ul.nav.navbar-nav li.dropdown:hover ul.dropdown-menu {
 
 .postDialogModal_form > form > label {
     color: #fefefe;
-    font-size: 26px;
+    font-size: 20px;
     /*font-size: 163%;*/
 }
 
@@ -3541,7 +3570,7 @@ ul.nav.navbar-nav li.dropdown:hover ul.dropdown-menu {
         -moz-border-radius: 8px;
         -webkit-border-radius: 8px;
     color: #7c7c7c;
-    font-size: 26px;
+    font-size: 22px;
     /*font-size: 163%;*/
     margin-left: 25px;
     width: 320px;
@@ -3552,7 +3581,7 @@ input.PostDialogInput {
 }
 
 .PostDialogSubmit {
-    padding: 40px 0 0 95px;
+    padding: 20px 0 0 95px;
     text-align: center;
     width: 320px;
 }
@@ -3563,9 +3592,9 @@ input.PostDialogInput {
         -moz-border-radius: 8px;
         -webkit-border-radius: 8px;
     color: #fefefe;
-    font-size: 28px;
+    font-size: 24px;
     /*font-size: 175%;*/
-    padding: 10px 88px;
+    padding: 10px 98px;
     text-transform: uppercase;
 }
 

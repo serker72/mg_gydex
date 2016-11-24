@@ -25,7 +25,7 @@ $.extend({
 function OpenCallDialog() {
     //var w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
     //var h = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-    var w = window.outerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    /*var w = window.outerWidth || document.documentElement.clientWidth || document.body.clientWidth;
     var h = window.outerHeight || document.documentElement.clientHeight || document.body.clientHeight;
     
     var w1 = (w - 490)/2;
@@ -34,7 +34,7 @@ function OpenCallDialog() {
     $("#callDialog").css({
         'left': w1,
         'top': h1
-    });
+    });*/
     $('#CallDialogForm').show(); 
     $('#CallDialogSubmit').show(); 
     $('#CallDialogComplete').hide(); 
@@ -45,7 +45,7 @@ function OpenCallDialog() {
 function OpenPostDialog() {
     //var w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
     //var h = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-    var w = window.outerWidth;// || document.documentElement.clientWidth || document.body.clientWidth;
+    /*var w = window.outerWidth;// || document.documentElement.clientWidth || document.body.clientWidth;
     var h = window.outerHeight;// || document.documentElement.clientHeight || document.body.clientHeight;
     
     var w1 = (w - 490)/2;
@@ -54,7 +54,7 @@ function OpenPostDialog() {
     $("#postDialog").css({
         'left': w1,
         'top': h1
-    });
+    });*/
     $('#PostDialogForm').show(); 
     $('#PostDialogSubmit').show(); 
     $('#PostDialogComplete').hide(); 

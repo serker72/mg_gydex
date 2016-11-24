@@ -1,0 +1,21 @@
+syntax: glob
+cnf/*
+tmp/*
+sxd/*
+msd/*
+upload/*
+uploadphotos/*
+webstat/*
+classes/global.php
+classes/dbparams.php
+tpl-sm/compile/*
+convert*.php
+nbproject/*
+.git/*
+userfiles/image/*
+
+\.orig$
+\.orig\..*$
+\.chg\..*$
+\.rej$
+\.conflict\~$
