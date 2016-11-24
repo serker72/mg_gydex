@@ -500,7 +500,15 @@ foreach($mm as $k=>$v) $mm[$k]=stripslashes($v);
 
 $smarty_content->assign('mm', $mm);
 
-$smarty_content->assign('FEEDBACK_PHONE', implode('<br>', explode(',', FEEDBACK_PHONE_FOOTER)));
+$_prt=new AllmenuTemplateItem;
+$prt=$_prt->GetItemById($mm['template_id']);
+
+if ($prt['template'] == 'page_contacts.html') {
+    $smarty_content->assign('FEEDBACK_PHONE', explode(',', FEEDBACK_PHONE_FOOTER));
+} else {
+    $smarty_content->assign('FEEDBACK_PHONE', implode('<br>', explode(',', FEEDBACK_PHONE_FOOTER)));
+}
+
 $smarty_content->assign('FEEDBACK_EMAIL', FEEDBACK_EMAIL);
 $smarty_content->assign('OFFICE_ADDRESS', str_replace('ул.', '<br>ул.', OFFICE_ADDRESS));
 $map_address_array = explode(',', OFFICE_ADDRESS);
@@ -511,9 +519,6 @@ for($i=1;$i<count($map_address_array);$i++) {
 //$smarty_content->assign('OFFICE_ADDRESS_MAP', iconv('windows-1251', 'utf-8', $map_address));
 $smarty_content->assign('OFFICE_ADDRESS_MAP', $map_address);
 
-
-$_prt=new AllmenuTemplateItem;
-$prt=$_prt->GetItemById($mm['template_id']);
 
 //$smarty_content->assign('content', $content);
 $smarty_content->display('razd/'.$prt['template']); 

@@ -15,7 +15,13 @@
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 contacts_center">
                             <p>
-                                <strong>Телефон:</strong>&nbsp;<a href="skype:%{$FEEDBACK_PHONE}%">%{$FEEDBACK_PHONE}%</a><br>
+                                <strong>Телефон:</strong>&nbsp;
+                                %{foreach from=$FEEDBACK_PHONE item=phone name=ff}%
+                                    %{if $smarty.foreach.ff.index > 0}%
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    %{/if}%
+                                    <a href="skype:%{$phone}%">%{$phone}%</a><br>
+                                %{/foreach}%
                                 <strong>E-mail:</strong>&nbsp;<a href="mailto:%{$FEEDBACK_EMAIL}%">%{$FEEDBACK_EMAIL}%</a>
                             </p>
                         </div>

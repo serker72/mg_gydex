@@ -23,8 +23,10 @@ $.extend({
 });
 
 function OpenCallDialog() {
-    var w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-    var h = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+    //var w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    //var h = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+    var w = window.outerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    var h = window.outerHeight || document.documentElement.clientHeight || document.body.clientHeight;
     
     var w1 = (w - 490)/2;
     var h1 = (h - 540)/2;
@@ -41,8 +43,10 @@ function OpenCallDialog() {
 }
 
 function OpenPostDialog() {
-    var w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-    var h = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+    //var w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    //var h = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+    var w = window.outerWidth;// || document.documentElement.clientWidth || document.body.clientWidth;
+    var h = window.outerHeight;// || document.documentElement.clientHeight || document.body.clientHeight;
     
     var w1 = (w - 490)/2;
     var h1 = (h - 760)/2;
